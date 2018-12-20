@@ -1,5 +1,8 @@
-const CLIENT_ID = '';
-const API_KEY = '';
+// This file is not in use, might delete later.
+
+// Remember to remove CLIENT_ID and API_KEY before committing and pushing!!!
+const CLIENT_ID = '98686281361-hb7urq5falh7d02ksrvoe01ms71dbm90.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyA5qack-WFBRSGqpq2TuakISHgXbqm8fFM';
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 
