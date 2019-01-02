@@ -4,9 +4,8 @@ import MailPreview from './MailPreview';
 import Typography from '@material-ui/core/Typography';
 import { speak } from './Voice';
 
-// Remember to remove CLIENT_ID and API_KEY before committing and pushing!!!
-const CLIENT_ID = '98686281361-k3b077eof4he43t41ijdnn3k0v2b90un.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyAtXvNpiA8yQ5KJcJC1gmoayz0MYrlaR_Y';
+const CLIENT_ID = '<CLIENT_ID>';
+const API_KEY = '<API_KEY>';
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 
