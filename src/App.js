@@ -5,7 +5,6 @@ import Button from "@material-ui/core/Button";
 import Compose from './Compose';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
-import DraftsIcon from '@material-ui/icons/Drafts';
 import Drawer from '@material-ui/core/Drawer';
 import InboxIcon from '@material-ui/icons/Inbox';
 import List from '@material-ui/core/List';
@@ -14,9 +13,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from "@material-ui/core/ListItemText";
 import Mailbox from './Mailbox';
 import SendIcon from '@material-ui/icons/Send';
-import { speak } from './Voice';
+import Settings from './Settings';
+import SettingsIcon from '@material-ui/icons/Settings'
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import { speak } from './Voice';
 import { withStyles } from '@material-ui/core/styles';
 
 const style = theme => ({
@@ -53,6 +54,10 @@ const style = theme => ({
   icon: {
     fontSize: '40pt'
   },
+  settings: {
+    position: 'absolute',
+    left: '-40vw'
+  },
   toolbar: theme.mixins.toolbar
 });
 
@@ -61,24 +66,29 @@ class App extends React.Component {
     super(props);
     this.state = {
       auth: null,
-      compose: false
+      compose: false,
+      settings: false,
+      box: 'INBOX'
     }
   }
 
-  // handleLogin() {
-  //   speak('Sign in');
-  // }
-
-  // componentDidMount() {
-  //   load();
-  //   // this.setState({
-  //   //   auth: true ? <Button color='secondary' className={ this.props.classes.auth } id='btn-logout' onClick={ () => this.handleLogout() } size='large'>Sign Out</Button> : <Button color='secondary' className={ this.props.classes.auth } id='btn-login' onClick={ () => this.handleLogin() } size='large'>Sign In</Button>
-  //   // });
-  // }
+  login(status = false) {
+    if (status) {
+      this.setState({ auth: <Button variant='contained' color='secondary' id='btn-logout' className={ this.props.classes.auth } onClick={ () => { speak('Sign out'); setTimeout(() => window.location.reload(), 3000); } }>Sign Out</Button> });
+    } else {
+      this.setState({ auth: <Button variant='contained' color='secondary' id='btn-login' className={ this.props.classes.auth } onClick={ () => { speak('Sign in'); } }>Sign In</Button> });
+    }
+  }
 
   handleCompose(bool) {
     this.setState({
       compose: bool
+    });
+  }
+
+  handleSettings(bool) {
+    this.setState({
+      settings: bool
     });
   }
 
@@ -89,15 +99,19 @@ class App extends React.Component {
         <CssBaseline />
         <AppBar className={ classes.appBar }>
           <Toolbar>
-            <Typography variant='h4' color='inherit' onClick={ () => speak('name') }>[Name]</Typography>
+            <Settings open={ this.state.settings } onClose={ () => this.handleSettings(false) } />
+            <Button variant='outlined' color='secondary' className={ classes.settings } onClick={ () => { this.handleSettings(true); speak('Settings') } }>
+              <SettingsIcon />&emsp;Settings
+            </Button>
+            <Typography variant='h4' color='inherit' onClick={ () => speak('AbleMail') }>AbleMail</Typography>
             { this.state.auth }
           </Toolbar>
         </AppBar>
         <Drawer variant='permanent' classes={ { paper: classes.drawerPaper } } className={ classes.drawer }>
           <List component='nav'>
             <div className={ classes.toolbar } />
-            <ListItem button={ true } onClick={ () => speak('Inbox') }>
-              <Divider />
+            <Divider />
+            <ListItem button={ true } onClick={ () => { speak('Inbox'); this.setState({ box: 'INBOX' }) } }>
               <ListItemIcon>
                 <InboxIcon className={ classes.icon } />
               </ListItemIcon>
@@ -110,26 +124,13 @@ class App extends React.Component {
             <Divider />
             <div className={ classes.toolbar } />
             <Divider />
-            <ListItem button={ true } onClick={ () => speak('Sent') }>
+            <ListItem button={ true } onClick={ () => { speak('Sent'); this.setState({ box: 'SENT' }) } }>
               <ListItemIcon>
                 <SendIcon className={ classes.icon } />
               </ListItemIcon>
               <ListItemText>
                 <br />
                 <Typography variant='h3' color='inherit' className={ classes.bold }>Sent</Typography>
-                <br />
-              </ListItemText>
-            </ListItem>
-            <Divider />
-            <div className={ classes.toolbar } />
-            <Divider />
-            <ListItem button={ true } onClick={ () => speak('Drafts') }>
-              <ListItemIcon>
-                <DraftsIcon className={ classes.icon } />
-              </ListItemIcon>
-              <ListItemText>
-                <br />
-                <Typography variant='h3' color='inherit' className={ classes.bold }>Drafts</Typography>
                 <br />
               </ListItemText>
             </ListItem>
@@ -151,7 +152,7 @@ class App extends React.Component {
         </Drawer>
         <main className={ classes.content }>
           <div className={ classes.toolbar }>
-            <Mailbox />
+            <Mailbox isLogin={ (status) => this.login(status) } box={ this.state.box } />
             <Compose open={ this.state.compose } onClose={ () => this.handleCompose(false) } />
           </div>
         </main>

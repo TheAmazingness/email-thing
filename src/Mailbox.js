@@ -1,10 +1,12 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MailPreview from './MailPreview';
+import Typography from '@material-ui/core/Typography';
+import { speak } from './Voice';
 
-
-const CLIENT_ID = '<CLIENT_ID>';
-const API_KEY = '<API_KEY>';
+// Remember to remove CLIENT_ID and API_KEY before committing and pushing!!!
+const CLIENT_ID = '98686281361-k3b077eof4he43t41ijdnn3k0v2b90un.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyAtXvNpiA8yQ5KJcJC1gmoayz0MYrlaR_Y';
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 
@@ -16,9 +18,15 @@ export default class Mailbox extends React.Component {
     };
   }
   componentDidMount() {
-    window.gapi.load('client:auth2', () => {
-      this.init();
-    });
+    try {
+      window.gapi.load('client:auth2', () => {
+        this.init();
+      });
+    } catch (e) {
+      console.error(e);
+      alert('Something went wrong. Try refreshing the page?');
+      this.setState({ mail: <Typography variant='h2' onClick={ () => speak('Unable to fetch emails') }>Unable to fetch emails.</Typography> });
+    }
   }
 
   init() {
@@ -31,8 +39,9 @@ export default class Mailbox extends React.Component {
       if (window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
         this.getMessages();
       }
-      // document.getElementById('btn-login').onclick = Mail.login;
-      // document.getElementById('').onclick = Mail.logout;
+      this.props.isLogin(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+      try { document.getElementById('btn-login').onclick = Mailbox.login; } catch (e) {}
+      try { document.getElementById('btn-logout').onclick = Mailbox.logout; } catch (e) {}
     });
   }
 
@@ -46,21 +55,22 @@ export default class Mailbox extends React.Component {
 
   getMessages() {
     window.gapi.client.gmail.users.messages.list({
-      userId: 'me'
+      userId: 'me',
+      labelIds: [this.props.box]
     }).then((response) => {
-      let { messages, nextPageToken, resultSizeEstimate } = response.result;
+      let { messages } = response.result;
       let fullMessage = [];
       messages.forEach((m, i) => {
         window.gapi.client.gmail.users.messages.get({
           userId: 'me',
           id: m.id
         }).then((res) => {
-          fullMessage.push(res);
+          fullMessage.push(res.result);
           if (i + 1 === messages.length) {
             this.setState({
               mail: fullMessage.map((el, i) =>
                 <div key={ `preview-${ i }` }>
-                  <MailPreview headers={ el.result.payload.headers } snippet={ el.result.snippet } />
+                  <MailPreview snippet={ el.snippet } payload={ el.payload } />
                   <br />
                   <br />
                 </div>
