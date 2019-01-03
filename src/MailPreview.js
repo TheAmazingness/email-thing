@@ -1,7 +1,9 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
 import Card from '@material-ui/core/Card';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
 import Mail from './Mail';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import Typography from "@material-ui/core/Typography";
@@ -11,6 +13,9 @@ import { withStyles } from '@material-ui/core/styles';
 const style = theme => ({
   card: {
     padding: theme.spacing.unit * 5
+  },
+  date: {
+    lineHeight: 2
   }
 });
 
@@ -62,8 +67,13 @@ class MailPreview extends React.Component {
               Open Email
             </Button>
           </Grid>
-          <Grid item sm={ 6 }>
-            <Typography variant='h6' onClick={ () => speak(this.date) }>{ this.date }</Typography>
+          <Grid item sm={ 5 }>
+            <Typography variant='h6' onClick={ () => speak(this.date) } className={ classes.date }>{ this.date }</Typography>
+          </Grid>
+          <Grid item sm={ 1 }>
+            <IconButton aria-label='Delete' color='primary' onClick={ () => this.props.trash() }>
+              <DeleteForeverIcon />
+            </IconButton>
           </Grid>
         </Grid>
         <Mail open={ this.state.open } onClose={ () => this.handleClick(false) } subject={ this.subject } data={ this.data } />

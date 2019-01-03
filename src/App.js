@@ -6,6 +6,7 @@ import Compose from './Compose';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import InboxIcon from '@material-ui/icons/Inbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -144,6 +145,19 @@ class App extends React.Component {
               <ListItemText>
                 <br />
                 <Typography variant='h3' color='inherit' className={ classes.bold }>Compose</Typography>
+                <br />
+              </ListItemText>
+            </ListItem>
+            <Divider />
+            <div className={ classes.toolbar } />
+            <Divider />
+            <ListItem button={ true } onClick={ () => { speak('Reload'); setTimeout(() => window.location.reload(), 1000); } }>
+              <ListItemIcon>
+                <RefreshIcon className={ classes.icon } />
+              </ListItemIcon>
+              <ListItemText>
+                <br />
+                <Typography variant='h3' color='inherit' className={ classes.bold }>Reload</Typography>
                 <br />
               </ListItemText>
             </ListItem>

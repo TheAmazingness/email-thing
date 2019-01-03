@@ -4,8 +4,8 @@ import MailPreview from './MailPreview';
 import Typography from '@material-ui/core/Typography';
 import { speak } from './Voice';
 
-const CLIENT_ID = '<CLIENT_ID>';
-const API_KEY = '<API_KEY>';
+const CLIENT_ID = '98686281361-5l6nivk6tmg7t26c956o9dabpjnuji3k.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyAUzEBKad7KWqUjqljPQ6R6IFLfQJQg68Y';
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 
@@ -52,6 +52,13 @@ export default class Mailbox extends React.Component {
     window.gapi.auth2.getAuthInstance().signOut();
   }
 
+  static trash(id) {
+    window.gapi.client.gmail.users.messages.trash({
+      userId: 'me',
+      id: id
+    }).then(() => window.location.reload());
+  }
+
   getMessages() {
     window.gapi.client.gmail.users.messages.list({
       userId: 'me',
@@ -66,10 +73,14 @@ export default class Mailbox extends React.Component {
         }).then((res) => {
           fullMessage.push(res.result);
           if (i + 1 === messages.length) {
+            if (fullMessage.length !== messages.length) {
+              window.location.reload();
+            }
+            fullMessage.sort((a, b) => b.internalDate - a.internalDate);
             this.setState({
               mail: fullMessage.map((el, i) =>
                 <div key={ `preview-${ i }` }>
-                  <MailPreview snippet={ el.snippet } payload={ el.payload } />
+                  <MailPreview snippet={ el.snippet } payload={ el.payload } trash={ () => Mailbox.trash(messages[i].id) } />
                   <br />
                   <br />
                 </div>

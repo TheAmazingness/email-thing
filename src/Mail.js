@@ -11,28 +11,32 @@ const style = theme => ({
   },
   dialogTitle: {
     fontSize: '30pt'
-  },
-  pre: {
-    fontFamily: 'Roboto'
   }
 });
 
-let count = 0;
-
 class Mail extends React.Component {
   entered() {
-    document.getElementById(`body-${ count }`).innerHTML = this.props.data;
+    document.getElementsByClassName('mail-body')[0].innerHTML = this.props.data;
+  }
+
+  static getAllText() {
+    speak(document.getElementsByClassName('mail-body')[0].innerText);
+  }
+
+  static getSelectedText() {
+    let text = '';
+    if (window.getSelection) {
+      text = window.getSelection().toString();
+    }
+    speak(text);
   }
 
   render() {
     const { classes } = this.props;
-    // console.log(this.props.data);
     return (
       <Dialog className={ classes.dialog } open={ this.props.open } fullScreen={ true } onClose={ () => this.props.onClose() } onEntered={ () => this.entered() }>
         <DialogTitle className={ classes.dialogTitle } onClick={ () => speak(this.props.subject) }>{ this.props.subject }</DialogTitle>
-        <div className={ classes.dialog } id={ `body-${ count }` }>
-          {/*<pre className={ classes.pre }>{ this.props.data }</pre>*/}
-        </div>
+        <div className={ `${ classes.dialog } mail-body` } onClick={ () => Mail.getAllText() } onMouseUp={ () => Mail.getSelectedText() } />
       </Dialog>
     );
   }

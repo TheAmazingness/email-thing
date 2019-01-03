@@ -27,16 +27,16 @@ const style = theme => ({
 class Settings extends React.Component {
   constructor(props) {
     super(props);
-    if (typeof Storage !== void 0) {
+    if (!!typeof Storage) {
       this.storage = window.localStorage;
-      if (this.storage.getItem('tts') === void 0) {
+      if (!this.storage.getItem('tts')) {
         this.storage.setItem('tts', false);
       }
-      if (this.storage.getItem('recognition') === void 0) {
+      if (!this.storage.getItem('recognition')) {
         this.storage.setItem('recognition', false);
       }
 
-      if (this.storage.getItem('vemail') === void 0) {
+      if (!this.storage.getItem('vemail')) {
         this.storage.setItem('vemail', false);
       }
     } else {
