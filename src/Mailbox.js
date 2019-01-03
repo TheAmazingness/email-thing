@@ -4,8 +4,8 @@ import MailPreview from './MailPreview';
 import Typography from '@material-ui/core/Typography';
 import { speak } from './Voice';
 
-const CLIENT_ID = '98686281361-5l6nivk6tmg7t26c956o9dabpjnuji3k.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyAUzEBKad7KWqUjqljPQ6R6IFLfQJQg68Y';
+const CLIENT_ID = '<CLIENT_ID>';
+const API_KEY = '<API_KEY>';
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 
