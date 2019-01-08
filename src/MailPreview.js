@@ -34,6 +34,7 @@ class MailPreview extends React.Component {
   }
 
   static mime(payload) {
+    // Needs to be optimized later
     return payload.body.data || MailPreview.mime(payload.parts.filter((el) => el.mimeType === 'text/html' || el.mimeType === 'multipart/alternative' || el.mimeType === 'multipart/related')[0]);
   }
 
@@ -47,8 +48,8 @@ class MailPreview extends React.Component {
     const { classes } = this.props;
     this.from = this.props.payload.headers.filter(el => el.name === 'From')[0].value.split('<');
     this.subject = this.props.payload.headers.filter(el => el.name === 'Subject')[0].value;
-    this.date = this.props.payload.headers.filter(el => el.name === 'Date')[0].value;
     this.data = atob(MailPreview.mime(this.props.payload).replace(/_/g, '/').replace(/-/g, '+'));
+    this.props.mailData(`From ${ this.from[0] }. ${ this.subject }.`);
     return (
       <Card raised className={ classes.card }>
         <Typography variant='h3' onClick={ () => speak(`From ${ this.from[0] }`) }>From: { this.from[0] }</Typography>
@@ -61,18 +62,15 @@ class MailPreview extends React.Component {
         <br />
         <br />
         <Grid container spacing={ 24 }>
-          <Grid item sm={ 6 }>
+          <Grid item sm={ 9 }>
             <Button variant='contained' onClick={ () => { this.handleClick(true); speak('Open email'); } } size='large' color='secondary' fullWidth>
               <OpenInBrowserIcon />&emsp;
               Open Email
             </Button>
           </Grid>
-          <Grid item sm={ 5 }>
-            <Typography variant='h6' onClick={ () => speak(this.date) } className={ classes.date }>{ this.date }</Typography>
-          </Grid>
-          <Grid item sm={ 1 }>
+          <Grid item sm={ 3 }>
             <IconButton aria-label='Delete' color='primary' onClick={ () => this.props.trash() }>
-              <DeleteForeverIcon />
+              <DeleteForeverIcon fontSize='large' />
             </IconButton>
           </Grid>
         </Grid>

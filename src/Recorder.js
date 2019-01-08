@@ -12,7 +12,6 @@ export default class Recorder {
         this.mediaRecorder.addEventListener('stop', () => {
           let audioBlob = new Blob(this.audioChunks);
           this.audioUrl = URL.createObjectURL(audioBlob);
-          new Audio(this.audioUrl).play();
         });
       });
     }
@@ -30,5 +29,11 @@ export default class Recorder {
       this.mediaRecorder.stop();
       console.log('Stopping recording...');
     }
+  }
+  
+  get recording() {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(new Audio(this.audioUrl)), 100);
+    });
   }
 }

@@ -26,18 +26,29 @@ class Compose extends React.Component {
     };
   }
 
+  send() {
+    this.props.send(
+      document.getElementById('recipient').value,
+      this.state.content,
+      this.mediaRecorder.recording
+    );
+  }
+
   render() {
     const { classes } = this.props;
-    let mediaRecorder = new Recorder();
+    this.mediaRecorder = new Recorder();
     let recognition = new Recognition();
     return (
-      <Dialog className={ classes.dialog } open={ this.props.open } fullScreen onClose={ () => this.props.onClose() } onEntered={ () => setTimeout(() => { mediaRecorder.start(); recognition.start(); }, 2000) }>
+      <Dialog className={ classes.dialog } open={ this.props.open } fullScreen onClose={ () => this.props.onClose() } onEntered={ () => setTimeout(() => { this.mediaRecorder.start(); recognition.start(); }, 2000) }>
         <DialogTitle className={ classes.dialogTitle }>Compose Email</DialogTitle>
         <div className={ classes.dialog }>
-          <TextField autoFocus fullWidth multiline variant='outlined' rows='25' id='compose-body' value={ this.state.content } onChange={ () => this.setState({ content: document.getElementById('compose-body').value }) } />
+          <TextField autoFocus fullWidth variant='outlined' rows='1' placeholder='To:' id='recipient' />
           <br />
           <br />
-          <Button variant='outlined' color='secondary' onClick={ () => { mediaRecorder.stop(); this.setState({ content: recognition.stop() }); } }>
+          <TextField fullWidth multiline variant='outlined' rows='20' id='compose-body' value={ this.state.content } onChange={ () => this.setState({ content: document.getElementById('compose-body').value }) } placeholder='Message' />
+          <br />
+          <br />
+          <Button variant='outlined' color='secondary' onClick={ () => { this.mediaRecorder.stop(); this.setState({ content: recognition.stop() }); this.send(); } }>
             <SendIcon />&emsp;Send Email
           </Button>
         </div>

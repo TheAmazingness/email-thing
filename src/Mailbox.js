@@ -6,7 +6,7 @@ import { speak } from './Voice';
 
 const CLIENT_ID = '<CLIENT_ID>';
 const API_KEY = '<API_KEY>';
-const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
+const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'];
 const SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 
 export default class Mailbox extends React.Component {
@@ -15,6 +15,8 @@ export default class Mailbox extends React.Component {
     this.state = {
       mail: <CircularProgress color='secondary' />
     };
+    this.emailCount = 0;
+    this.compiled = '';
   }
   componentDidMount() {
     try {
@@ -39,6 +41,9 @@ export default class Mailbox extends React.Component {
         this.getMessages();
       }
       this.props.isLogin(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+      window.gapi.client.gmail.users.getProfile({ userId: 'me' }).then((response) => {
+        this.props.getEmail(JSON.parse(response.body));
+      });
       try { document.getElementById('btn-login').onclick = Mailbox.login; } catch (e) {}
       try { document.getElementById('btn-logout').onclick = Mailbox.logout; } catch (e) {}
     });
@@ -62,7 +67,7 @@ export default class Mailbox extends React.Component {
   getMessages() {
     window.gapi.client.gmail.users.messages.list({
       userId: 'me',
-      labelIds: [this.props.box]
+      labelIds: ['INBOX']
     }).then((response) => {
       let { messages } = response.result;
       let fullMessage = [];
@@ -80,7 +85,7 @@ export default class Mailbox extends React.Component {
             this.setState({
               mail: fullMessage.map((el, i) =>
                 <div key={ `preview-${ i }` }>
-                  <MailPreview snippet={ el.snippet } payload={ el.payload } trash={ () => Mailbox.trash(messages[i].id) } />
+                  <MailPreview snippet={ el.snippet } payload={ el.payload } trash={ () => Mailbox.trash(messages[i].id) } mailData={ (data) => this.compile(data) } />
                   <br />
                   <br />
                 </div>
@@ -90,6 +95,12 @@ export default class Mailbox extends React.Component {
         });
       });
     });
+  }
+
+  compile(data) {
+    this.emailCount++;
+    this.compiled += `Email number ${ this.emailCount }: ${ data } `;
+    this.props.mailData(this.compiled);
   }
 
   render() {
