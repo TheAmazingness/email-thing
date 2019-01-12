@@ -29,8 +29,8 @@ class Compose extends React.Component {
   send() {
     this.props.send(
       document.getElementById('recipient').value,
-      this.state.content,
-      this.mediaRecorder.recording
+      document.getElementById('compose-body').value,
+      this.mediaRecorder.base64Recording
     );
   }
 
@@ -48,7 +48,7 @@ class Compose extends React.Component {
           <TextField fullWidth multiline variant='outlined' rows='20' id='compose-body' value={ this.state.content } onChange={ () => this.setState({ content: document.getElementById('compose-body').value }) } placeholder='Message' />
           <br />
           <br />
-          <Button variant='outlined' color='secondary' onClick={ () => { this.mediaRecorder.stop(); this.setState({ content: recognition.stop() }); this.send(); } }>
+          <Button variant='outlined' color='secondary' id='btn-send' onClick={ () => { this.mediaRecorder.stop(); this.setState({ content: recognition.stop() }); this.send(); } }>
             <SendIcon />&emsp;Send Email
           </Button>
         </div>

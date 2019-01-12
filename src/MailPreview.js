@@ -74,7 +74,7 @@ class MailPreview extends React.Component {
             </IconButton>
           </Grid>
         </Grid>
-        <Mail open={ this.state.open } onClose={ () => this.handleClick(false) } subject={ this.subject } data={ this.data } />
+        <Mail open={ this.state.open } onClose={ () => this.handleClick(false) } subject={ this.subject } data={ this.data } from={ this.from[0] } address={ this.from[1] } />
       </Card>
     );
   }
