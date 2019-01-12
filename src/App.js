@@ -116,13 +116,36 @@ class App extends React.Component {
   }
 
   send(recipient, body, recording) {
-    let email = `Content-Type: text/plain\r\nFrom: ${ this.address }\r\nTo: ${ recipient }\r\nSubject: Email from ${ this.address }\r\nReply-To: ${ this.address }\r\n\r\n${ body }`;
+    // if (!!recording) {
+    //   recording.then((result) => {
+    //     this.emailContent = `
+    //       Content-Type: multipart/mixed\r\n
+    //       From: ${ this.address }\r\n
+    //       To: ${ recipient }\r\n
+    //       Subject: Email from ${ this.address }\r\n
+    //       Reply-To: ${ this.address }\r\n\r\n
+    //       --boundary\r\n
+    //       Content-Type: text/plain\r\n\r\n
+    //       ${ body }\n
+    //       Sent with AbleMail.\r\n\r\n
+    //       --boundary\r\n
+    //       Content-Type: audio/*\r\n\r\n
+    //       ${ result }`;
+    //     this.gmailSend();
+    //   });
+    // } else {
+      this.emailContent = `Content-Type: text/plain\r\nFrom: ${ this.address }\r\nTo: ${ recipient }\r\nSubject: Email from ${ this.address }\r\nReply-To: ${ this.address }\r\n\r\n${ body }\nSent with AbleMail.`;
+      this.gmailSend();
+    // }
+  }
+
+  gmailSend() {
     window.gapi.client.gmail.users.messages.send({
       userId: 'me',
       resource: {
-        raw: btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
+        raw: btoa(this.emailContent).replace(/\+/g, '-').replace(/\//g, '_')
       }
-    }).then();
+    }).then(() => setTimeout(() => window.location.reload(), 500));
   }
 
   handleRecognition() {
@@ -138,7 +161,7 @@ class App extends React.Component {
               this.recognition.transcript = '';
               this.recognition.stop();
               break;
-            case /my emails/.test(message):
+            case /read emails/.test(message):
               speak(`You have ${ this.emailCount } emails. ${ this.mailData } That's all of your emails.`);
               this.recognition.transcript = '';
               this.recognition.stop();
@@ -161,7 +184,8 @@ class App extends React.Component {
             <Button variant='outlined' color='secondary' className={ classes.settings } onClick={ () => { this.handleSettings(true); speak('Settings') } }>
               <SettingsIcon />&emsp;Coach's Settings
             </Button>
-            <Typography variant='h4' color='inherit' onClick={ () => speak('AbleMail') }>AbleMail</Typography>
+            <img onClick={ () => speak('AbleMail') } src='logo.png' alt='AbleMail' />
+            {/*<Typography variant='h4' color='inherit' onClick={ () => speak('AbleMail') }>AbleMail</Typography>*/}
             { this.state.auth }
           </Toolbar>
         </AppBar>
