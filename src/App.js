@@ -184,7 +184,7 @@ class App extends React.Component {
             <Button variant='outlined' color='secondary' className={ classes.settings } onClick={ () => { this.handleSettings(true); speak('Settings') } }>
               <SettingsIcon />&emsp;Coach's Settings
             </Button>
-            <img onClick={ () => speak('AbleMail') } src='logo.png' alt='AbleMail' />
+            <img onClick={ () => speak('AbleMail') } src='https://lh3.googleusercontent.com/QXgAJzNC6BONPxSwpDZN5K1aS8klswHmkVwFCoZbYnEw9KvEoNgOrlteo30X2o3Oy3aOWkfjl0x-oVBy6jEf=w1440-h820-rw' alt='AbleMail' />
             {/*<Typography variant='h4' color='inherit' onClick={ () => speak('AbleMail') }>AbleMail</Typography>*/}
             { this.state.auth }
           </Toolbar>
