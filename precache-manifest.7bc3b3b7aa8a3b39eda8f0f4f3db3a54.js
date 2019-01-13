@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "35d95a5a98c30127eb02",
-    "url": "/ablemail/static/js/main.35d95a5a.chunk.js"
+    "revision": "1576bd3ca87fd8d0766f",
+    "url": "/ablemail/static/js/main.1576bd3c.chunk.js"
   },
   {
     "revision": "ad1532231125f7f9ca7b",
@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/ablemail/static/js/runtime~main.37d0c7c2.js"
   },
   {
-    "revision": "91312676e6c69669bf49c68af639d171",
+    "revision": "3c8d6f3dced4a299c786bb52ae640da2",
     "url": "/ablemail/index.html"
   }
 ];
