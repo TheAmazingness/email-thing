@@ -1,4 +1,4 @@
-# ![AbleMail](https://lh3.googleusercontent.com/QXgAJzNC6BONPxSwpDZN5K1aS8klswHmkVwFCoZbYnEw9KvEoNgOrlteo30X2o3Oy3aOWkfjl0x-oVBy6jEf=w1440-h820-rw)
+# ![AbleMail](logo.png)
 AbleMail SourceAmerica Project.  An email client for those with cognitive disabilities.
 
 ## Setup
