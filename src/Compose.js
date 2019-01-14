@@ -8,6 +8,7 @@ import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 
+const icon = JSON.parse(window.localStorage.getItem('icon'));
 const style = theme => ({
   dialog: {
     padding: theme.spacing.unit * 5,
@@ -15,6 +16,9 @@ const style = theme => ({
   },
   dialogTitle: {
     fontSize: '1.5em'
+  },
+  send: {
+    fontSize: icon ? '60pt' : '40pt'
   }
 });
 
@@ -49,7 +53,7 @@ class Compose extends React.Component {
           <br />
           <br />
           <Button variant='outlined' color='secondary' id='btn-send' onClick={ () => { this.mediaRecorder.stop(); this.setState({ content: recognition.stop() }); this.send(); } }>
-            <SendIcon />&emsp;Send Email
+            <SendIcon className={ classes.send } />&emsp;Send Email
           </Button>
         </div>
       </Dialog>

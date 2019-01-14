@@ -20,6 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import { speak } from './Voice';
 import { withStyles } from '@material-ui/core/styles';
 
+const icon = JSON.parse(window.localStorage.getItem('icon'));
 const style = theme => ({
   appBar: {
     zIndex: 1400,
@@ -37,7 +38,7 @@ const style = theme => ({
     display: 'flex'
   },
   bold: {
-    fontWeight: 'bold'
+    fontWeight: icon ? '' : 'bold'
   },
   content: {
     flexGrow: 1,
@@ -52,10 +53,10 @@ const style = theme => ({
     width: 360
   },
   icon: {
-    fontSize: '40pt'
+    fontSize: icon ? '60pt' : '40pt'
   },
   logo: {
-    height: '10vh'
+    height: '5vh'
   },
   settings: {
     position: 'absolute',
@@ -84,7 +85,7 @@ class App extends React.Component {
             </ListItemIcon>
             <ListItemText>
               <br />
-              <Typography variant='h3' color='inherit' className={ this.props.classes.bold }>Voice Command</Typography>
+              <Typography variant={ icon ? 'h5' : 'h3' } color='inherit' className={ this.props.classes.bold }>Voice Command</Typography>
               <br />
             </ListItemText>
           </ListItem>
@@ -202,7 +203,7 @@ class App extends React.Component {
               </ListItemIcon>
               <ListItemText>
                 <br />
-                <Typography variant='h3' color='inherit' className={ classes.bold }>Compose</Typography>
+                <Typography variant={ icon ? 'h5' : 'h3' } color='inherit' className={ classes.bold }>Compose</Typography>
                 <br />
               </ListItemText>
             </ListItem>
@@ -216,7 +217,7 @@ class App extends React.Component {
               </ListItemIcon>
               <ListItemText>
                 <br />
-                <Typography variant='h3' color='inherit' className={ classes.bold }>Settings</Typography>
+                <Typography variant={ icon ? 'h5' : 'h3' } color='inherit' className={ classes.bold }>Settings</Typography>
                 <br />
               </ListItemText>
             </ListItem>

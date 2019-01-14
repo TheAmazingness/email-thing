@@ -35,9 +35,11 @@ class Settings extends React.Component {
       if (!this.storage.getItem('recognition')) {
         this.storage.setItem('recognition', false);
       }
-
       if (!this.storage.getItem('vemail')) {
         this.storage.setItem('vemail', false);
+      }
+      if (!this.storage.getItem('icon')) {
+        this.storage.setItem('icon', false);
       }
     } else {
       alert('Your browser doesn\'t support local storage.');
@@ -45,7 +47,8 @@ class Settings extends React.Component {
     this.state = {
       tts: this.storage.getItem('tts'),
       recognition: this.storage.getItem('recognition'),
-      vemail: this.storage.getItem('vemail')
+      vemail: this.storage.getItem('vemail'),
+      icon: this.storage.getItem('icon')
     }
   }
 
@@ -71,6 +74,10 @@ class Settings extends React.Component {
             <Grid item sm={ 6 }>
               <Typography variant='h4'>Voice Emails</Typography>
               <Switch checked={ JSON.parse(this.state.vemail) } onChange={ (e, checked) => { this.storage.setItem('vemail', checked); this.setState({ vemail: this.storage.getItem('vemail') }); } } />
+            </Grid>
+            <Grid item sm={ 6 }>
+              <Typography variant='h4'>Bigger Icons</Typography>
+              <Switch checked={ JSON.parse(this.state.icon) } onChange={ (e, checked) => { this.storage.setItem('icon', checked); this.setState({ icon: this.storage.getItem('icon') }); } } />
             </Grid>
           </Grid>
           <br />

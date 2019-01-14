@@ -10,12 +10,16 @@ import Typography from "@material-ui/core/Typography";
 import { speak } from './Voice';
 import { withStyles } from '@material-ui/core/styles';
 
+const icon = JSON.parse(window.localStorage.getItem('icon'));
 const style = theme => ({
   card: {
     padding: theme.spacing.unit * 5
   },
   date: {
     lineHeight: 2
+  },
+  open: {
+    fontSize: icon ? '60pt' : '40pt'
   }
 });
 
@@ -54,7 +58,7 @@ class MailPreview extends React.Component {
       <Card raised className={ classes.card }>
         <Typography variant='h3' onClick={ () => speak(`From ${ this.from[0] }`) }>From: { this.from[0] }</Typography>
         <br />
-        <Typography variant='h4' onClick={ () => speak(this.from[1]) }>{ `<${ this.from[1] }` }</Typography>
+        <Typography variant='h6' onClick={ () => speak(this.from[1]) }>{ `<${ this.from[1] }` }</Typography>
         <br />
         <Typography variant='h2'  onClick={ () => speak(this.subject) }>{ `${ this.subject }` }</Typography>
         <br />
@@ -64,13 +68,13 @@ class MailPreview extends React.Component {
         <Grid container spacing={ 24 }>
           <Grid item sm={ 9 }>
             <Button variant='contained' onClick={ () => { this.handleClick(true); speak('Open email'); } } size='large' color='secondary' fullWidth>
-              <OpenInBrowserIcon />&emsp;
+              <OpenInBrowserIcon className={ classes.open } />&emsp;
               Open Email
             </Button>
           </Grid>
           <Grid item sm={ 3 }>
             <IconButton aria-label='Delete' color='primary' onClick={ () => this.props.trash() }>
-              <DeleteForeverIcon fontSize='large' />
+              <DeleteForeverIcon className={ classes.open } />
             </IconButton>
           </Grid>
         </Grid>
