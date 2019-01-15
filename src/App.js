@@ -85,7 +85,7 @@ class App extends React.Component {
             </ListItemIcon>
             <ListItemText>
               <br />
-              <Typography variant={ icon ? 'h5' : 'h3' } color='inherit' className={ this.props.classes.bold }>Voice Command</Typography>
+              <Typography variant='h3' color='inherit' className={ this.props.classes.bold }>Voice Command</Typography>
               <br />
             </ListItemText>
           </ListItem>
@@ -189,7 +189,6 @@ class App extends React.Component {
               <SettingsIcon />&emsp;Coach's Settings
             </Button>
             <img onClick={ () => speak('AbleMail') } className={ classes.logo } src='https://lh3.googleusercontent.com/QXgAJzNC6BONPxSwpDZN5K1aS8klswHmkVwFCoZbYnEw9KvEoNgOrlteo30X2o3Oy3aOWkfjl0x-oVBy6jEf=w1440-h820-rw' alt='AbleMail' />
-            {/*<Typography variant='h4' color='inherit' onClick={ () => speak('AbleMail') }>AbleMail</Typography>*/}
             { this.state.auth }
           </Toolbar>
         </AppBar>
@@ -203,7 +202,7 @@ class App extends React.Component {
               </ListItemIcon>
               <ListItemText>
                 <br />
-                <Typography variant={ icon ? 'h5' : 'h3' } color='inherit' className={ classes.bold }>Compose</Typography>
+                <Typography variant='h3' color='inherit' className={ classes.bold }>Compose</Typography>
                 <br />
               </ListItemText>
             </ListItem>
@@ -217,7 +216,7 @@ class App extends React.Component {
               </ListItemIcon>
               <ListItemText>
                 <br />
-                <Typography variant={ icon ? 'h5' : 'h3' } color='inherit' className={ classes.bold }>Settings</Typography>
+                <Typography variant='h3' color='inherit' className={ classes.bold }>Settings</Typography>
                 <br />
               </ListItemText>
             </ListItem>

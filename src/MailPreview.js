@@ -67,7 +67,7 @@ class MailPreview extends React.Component {
         <br />
         <Grid container spacing={ 24 }>
           <Grid item sm={ 9 }>
-            <Button variant='contained' onClick={ () => { this.handleClick(true); speak('Open email'); } } size='large' color='secondary' fullWidth>
+            <Button variant='contained' onClick={ () => { this.handleClick(true); speak('Open email'); } } size='large' color='primary' fullWidth>
               <OpenInBrowserIcon className={ classes.open } />&emsp;
               Open Email
             </Button>
@@ -78,7 +78,7 @@ class MailPreview extends React.Component {
             </IconButton>
           </Grid>
         </Grid>
-        <Mail open={ this.state.open } onClose={ () => this.handleClick(false) } subject={ this.subject } data={ this.data } from={ this.from[0] } address={ this.from[1] } />
+        <Mail open={ this.state.open } func={ (bool) => this.handleClick(bool) } onClose={ () => this.handleClick(false) } subject={ this.subject } data={ this.data } from={ this.from[0] } address={ this.from[1] } />
       </Card>
     );
   }

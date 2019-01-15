@@ -1,16 +1,20 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from "@material-ui/core/DialogTitle";
 import FlashOnIcon from '@material-ui/icons/FlashOn'
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
-import {speak} from "./Voice";
-import {withStyles} from '@material-ui/core/styles';
+import { speak } from './Voice';
+import { withStyles } from '@material-ui/core/styles';
 
+const icon = JSON.parse(window.localStorage.getItem('icon'));
 const style = theme => ({
   dialog: {
     padding: theme.spacing.unit * 5,
@@ -25,6 +29,9 @@ const style = theme => ({
   grid: {
     margin: 10,
     textAlign: 'center'
+  },
+  record: {
+    fontSize: icon ? '40pt' : '60pt'
   },
   replyIcon: {
     fontSize: '24pt'
@@ -45,6 +52,14 @@ class Mail extends React.Component {
     this.maybe = `
       Dear ${ this.props.from },
       `;
+    this.state = {
+      read: JSON.parse(window.localStorage.getItem('tts')) ? (
+        <Button variant='contained' color='secondary' onClick={ () => Mail.getAllText() }>
+          <RecordVoiceOverIcon className={ this.props.classes.record } />&nbsp;
+          Read Email
+        </Button>
+      ) : null
+    };
   }
 
   entered() {
@@ -80,18 +95,36 @@ class Mail extends React.Component {
     const { classes } = this.props;
     return (
       <Dialog className={ classes.dialog } open={ this.props.open } fullScreen={ true } onClose={ () => this.props.onClose() } onEntered={ () => this.entered() }>
-        <DialogTitle className={ classes.dialogTitle } onClick={ () => speak(this.props.subject) }>{ this.props.subject }</DialogTitle>
+        <Grid container spacing={ 8 }>
+          <Grid item sm={ 7 }>
+            <DialogTitle className={ classes.dialogTitle } onClick={ () => speak(this.props.subject) }>{ this.props.subject }</DialogTitle>
+            <br />
+          </Grid>
+          <Grid item sm={ 3 }>
+            <br />
+            <br />
+            { this.state.read }
+          </Grid>
+          <Grid item sm={ 2 }>
+            <br />
+            <IconButton aria-label='Close' color='primary' onClick={ () => this.props.func(false) }>
+              <CloseIcon className={ classes.record } />
+            </IconButton>
+          </Grid>
+        </Grid>
+        <br />
         <div className={ `${ classes.dialog } mail-body` } onClick={ () => Mail.getAllText() } onMouseUp={ () => Mail.getSelectedText() } />
         <Grid container spacing={ 8 } className={ classes.grid }>
           <Grid item sm={ 12 }>
             <br />
             <br />
-            <Typography variant='h3'>
+            <Typography variant='h3' onClick={ () => speak('Quick reply') }>
               <FlashOnIcon className={ classes.flashIcon } />Quick Reply
             </Typography>
             <br />
             <br />
           </Grid>
+          <Grid item sm={ 4 } />
           <Grid item sm={ 1 }>
             <IconButton aria-label='Ok' color='primary' onClick={ () => this.send(this.ok) }>
               <ThumbUpIcon className={ classes.replyIcon } />
@@ -113,6 +146,9 @@ class Mail extends React.Component {
             </IconButton>
           </Grid>
         </Grid>
+        <br />
+        <br />
+        <br />
       </Dialog>
     );
   }
