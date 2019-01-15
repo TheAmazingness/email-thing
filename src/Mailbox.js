@@ -1,6 +1,8 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MailPreview from './MailPreview';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import Typography from '@material-ui/core/Typography';
 import { speak } from './Voice';
 
@@ -17,6 +19,22 @@ export default class Mailbox extends React.Component {
     };
     this.emailCount = 0;
     this.compiled = '';
+    setTimeout(() => this.setState({
+      mail: (
+        <div>
+          <CircularProgress color='secondary' />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Button color='secondary' variant='contained'>
+            <RefreshIcon style={ { fontSize: JSON.parse(window.localStorage.getItem('icon')) ? '60pt': '40pt' } } />&emsp;
+            Reload
+          </Button>
+        </div>
+      )
+    }), 5000);
   }
   componentDidMount() {
     try {
