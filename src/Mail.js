@@ -16,6 +16,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 const icon = JSON.parse(window.localStorage.getItem('icon'));
 const style = theme => ({
+  close: {
+    fontSize: icon ? '40pt' : '60pt',
+    zIndex: 99999
+  },
   dialog: {
     padding: theme.spacing.unit * 5,
     zIndex: 2000
@@ -30,8 +34,12 @@ const style = theme => ({
     margin: 10,
     textAlign: 'center'
   },
+  mailBody: {
+    padding: theme.spacing.unit * 5
+  },
   record: {
-    fontSize: icon ? '40pt' : '60pt'
+    fontSize: icon ? '40pt' : '60pt',
+    zIndex: 99999
   },
   replyIcon: {
     fontSize: '24pt'
@@ -108,12 +116,12 @@ class Mail extends React.Component {
           <Grid item sm={ 2 }>
             <br />
             <IconButton aria-label='Close' color='primary' onClick={ () => this.props.func(false) }>
-              <CloseIcon className={ classes.record } />
+              <CloseIcon className={ classes.close } />
             </IconButton>
           </Grid>
         </Grid>
         <br />
-        <div className={ `${ classes.dialog } mail-body` } onClick={ () => Mail.getAllText() } onMouseUp={ () => Mail.getSelectedText() } />
+        <div className={ `${ classes.mailBody } mail-body` } onClick={ () => Mail.getAllText() } onMouseUp={ () => Mail.getSelectedText() } />
         <Grid container spacing={ 8 } className={ classes.grid }>
           <Grid item sm={ 12 }>
             <br />
