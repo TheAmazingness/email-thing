@@ -19,7 +19,7 @@ export default class Mailbox extends React.Component {
     };
     this.emailCount = 0;
     this.compiled = '';
-    setTimeout(() => this.setState({
+    this.reload = setTimeout(() => this.setState({
       mail: (
         <div>
           <CircularProgress color='secondary' />
@@ -28,7 +28,7 @@ export default class Mailbox extends React.Component {
           <br />
           <br />
           <br />
-          <Button color='secondary' variant='contained'>
+          <Button color='secondary' variant='contained' onClick={ () => window.location.reload() }>
             <RefreshIcon style={ { fontSize: JSON.parse(window.localStorage.getItem('icon')) ? '60pt': '40pt' } } />&emsp;
             Reload
           </Button>
@@ -89,6 +89,7 @@ export default class Mailbox extends React.Component {
     }).then((response) => {
       let { messages } = response.result;
       let fullMessage = [];
+      clearTimeout(this.reload);
       messages.forEach((m, i) => {
         window.gapi.client.gmail.users.messages.get({
           userId: 'me',
