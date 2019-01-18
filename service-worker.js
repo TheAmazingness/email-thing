@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ablemail/precache-manifest.f1f8977c4a805a242ea9e46f5f6a9774.js"
+  "/ablemail/precache-manifest.af0b9372338c855b070d51a7ae896149.js"
 );
 
 workbox.clientsClaim();
