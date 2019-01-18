@@ -1,7 +1,7 @@
 import Voice from '@cheapundies/responsive-voice';
 
 const SPEAK = JSON.parse(window.localStorage.getItem('tts'));
-let cancel = false;
+let cancel = true;
 
 export function speak(text) {
   if (SPEAK) {

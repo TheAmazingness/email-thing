@@ -122,15 +122,15 @@ class App extends React.Component {
   }
 
   send(recipient, body, recording) {
-    if (!!recording) {
-      recording.then((result) => {
-        this.emailContent = `MIME-Version: 1.0\r\nFrom: ${ this.address }\r\nTo: ${ recipient }\r\nSubject: Email from ${ this.address }\r\nContent-Type: multipart/related\r\nReply-To: ${ this.address }\r\nboundary="myboundary"\r\n--myboundary\r\nContent-Type: text/plain\r\n\r\n${ body }\nSent with AbleMail.\r\n\r\n--myboundary\r\nContent-Type: audio/webp\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: attachment; filename="audio.webp"\r\n\r\n${ result }`;
-        this.gmailSend();
-      });
-    } else {
+    // if (!!recording) {
+    //   recording.then((result) => {
+    //     this.emailContent = `MIME-Version: 1.0\r\nFrom: ${ this.address }\r\nTo: ${ recipient }\r\nSubject: Email from ${ this.address }\r\nContent-Type: multipart/related\r\nReply-To: ${ this.address }\r\nboundary="myboundary"\r\n--myboundary\r\nContent-Type: text/plain\r\n\r\n${ body }\nSent with AbleMail.\r\n\r\n--myboundary\r\nContent-Type: audio/webp\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: attachment; filename="audio.webp"\r\n\r\n${ result }`;
+    //     this.gmailSend();
+    //   });
+    // } else {
       this.emailContent = `Content-Type: text/plain\r\nFrom: ${ this.address }\r\nTo: ${ recipient }\r\nSubject: Email from ${ this.address }\r\nReply-To: ${ this.address }\r\n\r\n${ body }\nSent with AbleMail.`;
       this.gmailSend();
-    }
+    // }
   }
 
   gmailSend() {
@@ -178,7 +178,7 @@ class App extends React.Component {
             <Button variant='outlined' color='secondary' className={ classes.settings } onClick={ () => { this.handleSettings(true); speak('Settings') } }>
               <SettingsIcon />&emsp;Coach's Settings
             </Button>
-            <img onClick={ () => speak('AbleMail') } className={ classes.logo } src='logo.png' alt='AbleMail' />
+            {/*<img onClick={ () => speak('AbleMail') } className={ classes.logo } src='logo.png' alt='AbleMail' />*/}
             { this.state.auth }
           </Toolbar>
         </AppBar>

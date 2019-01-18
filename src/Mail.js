@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '@material-ui/core/IconButton';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
+import ReplyIcon from '@material-ui/icons/Reply'
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -136,33 +137,33 @@ class Mail extends React.Component {
         <div className={ `${ classes.mailBody } mail-body` } onClick={ () => Mail.getAllText() } onMouseUp={ () => Mail.getSelectedText() } />
         <Grid container spacing={ 8 } className={ classes.grid }>
           <Grid item sm={ 12 }>
-            <Typography variant='h3' onClick={ () => speak('Quick reply') }>
-              <FlashOnIcon className={ classes.flashIcon } />Quick Reply
+            <Typography variant='h3' onClick={ () => speak('Reply') }>
+              <FlashOnIcon className={ classes.flashIcon } />Reply
             </Typography>
             <br />
             <br />
           </Grid>
           <Grid item sm={ 4 } />
           <Grid item sm={ 1 }>
-            <IconButton aria-label='Ok' color='primary' onClick={ () => this.send(this.ok) }>
+            <IconButton aria-label='Ok' color='primary' onClick={ () => { this.send(this.ok); speak('Yes'); } }>
               <ThumbUpIcon className={ classes.replyIcon } />
             </IconButton>
           </Grid>
           <Grid item sm={ 1 }>
-            <IconButton aria-label='No' color='primary' onClick={ () => this.send(this.no) } >
+            <IconButton aria-label='No' color='primary' onClick={ () => { this.send(this.no); speak('No'); } } >
               <ThumbDownIcon className={ classes.replyIcon } />
             </IconButton>
           </Grid>
           <Grid item sm={ 1 }>
-            <IconButton aria-label='Maybe' color='primary' onClick={ () => this.send(this.maybe) }>
+            <IconButton aria-label='Maybe' color='primary' onClick={ () => { this.send(this.maybe); speak('Maybe'); } }>
               <SentimentDissatisfiedIcon className={ classes.replyIcon } />
             </IconButton>
           </Grid>
-          {/*<Grid item sm={ 1 }>*/}
-            {/*<IconButton aria-label='Maybe' color='primary' onClick={ () => this.send('test') }>*/}
-              {/*<SentimentDissatisfiedIcon className={ classes.replyIcon } />*/}
-            {/*</IconButton>*/}
-          {/*</Grid>*/}
+          <Grid item sm={ 1 }>
+            <IconButton aria-label='Reply' color='primary' onClick={ () => { speak('Reply'); document.getElementById('btn-compose').click(); setTimeout(() => document.getElementById('recipient').value = this.props.address.substring(0, this.props.address.length - 1), 1000); } }>
+              <ReplyIcon className={ classes.replyIcon } />
+            </IconButton>
+          </Grid>
         </Grid>
         <br />
         <br />
