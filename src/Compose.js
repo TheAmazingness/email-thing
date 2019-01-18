@@ -1,16 +1,25 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
+import CloseIcon from "@material-ui/icons/Close";
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Grid from '@material-ui/core/Grid';
+import IconButton from "@material-ui/core/IconButton";
 import Recorder from './Recorder';
 import Recognition from './Recognition';
 import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import { speak } from './Voice';
 
 const icon = JSON.parse(window.localStorage.getItem('icon'));
 const style = theme => ({
+  close: {
+    fontSize: JSON.parse(window.localStorage.getItem('icon')) ? '60pt' : '40pt',
+    zIndex: 99999
+  },
   dialog: {
+    overflow: 'hidden',
     padding: theme.spacing.unit * 5,
     zIndex: 2000
   },
@@ -44,7 +53,18 @@ class Compose extends React.Component {
     let recognition = new Recognition();
     return (
       <Dialog className={ classes.dialog } open={ this.props.open } fullScreen onClose={ () => this.props.onClose() } onEntered={ () => setTimeout(() => { this.mediaRecorder.start(); recognition.start(); }, 2000) }>
-        <DialogTitle className={ classes.dialogTitle }>Compose Email</DialogTitle>
+        <Grid container spacing={ 8 }>
+          <Grid item sm={ 10 }>
+            <DialogTitle className={ classes.dialogTitle } onClick={ () => speak('Compose Email') }>Compose Email</DialogTitle>
+            <br />
+          </Grid>
+          <Grid item sm={ 2 }>
+            <br />
+            <IconButton aria-label='Close' color='primary' onClick={ () => this.props.func(false) }>
+              <CloseIcon className={ classes.close } />
+            </IconButton>
+          </Grid>
+        </Grid>
         <div className={ classes.dialog }>
           <TextField autoFocus fullWidth variant='outlined' rows='1' placeholder='To:' id='recipient' />
           <br />
