@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input';
 import Switch from '@material-ui/core/Switch';
-import Typography from "@material-ui/core/Typography";
+import Typography from '@material-ui/core/Typography';
+import { speak } from './Voice';
 import { withStyles } from '@material-ui/core/styles';
 
 const style = theme => ({
@@ -65,32 +65,48 @@ class Settings extends React.Component {
         <div className={ classes.dialog }>
           <Grid container spacing={ 24 } className={ classes.grid }>
             <Grid item sm={ 6 }>
-              <Typography variant='h4'>Text-to-Speech</Typography>
-              <Switch checked={ JSON.parse(this.state.tts) } onChange={ (e, checked) => { this.storage.setItem('tts', checked); this.setState({ tts: this.storage.getItem('tts') }); } } />
+              {
+                JSON.parse(this.state.tts) ? (
+                  <div>
+                    <Typography variant='h4' onClick={ () => speak('Text to speech') }>Text-to-Speech</Typography>
+                    <Switch checked={ JSON.parse(this.state.tts) } onChange={ (e, checked) => { this.storage.setItem('tts', checked); this.setState({ tts: this.storage.getItem('tts') }); } } />
+                  </div>
+                ) : ''
+              }
             </Grid>
             <Grid item sm={ 6 }>
-              <Typography variant='h4'>Voice Recognition</Typography>
-              <Switch checked={ JSON.parse(this.state.recognition) } onChange={ (e, checked) => { this.storage.setItem('recognition', checked); this.setState({ recognition: this.storage.getItem('recognition') }); } } />
+              {
+                JSON.parse(this.state.recognition) ? (
+                  <div>
+                    <Typography variant='h4' onClick={ () => speak('Voice recognition') }>Voice Recognition</Typography>
+                    <Switch checked={ JSON.parse(this.state.recognition) } onChange={ (e, checked) => { this.storage.setItem('recognition', checked); this.setState({ recognition: this.storage.getItem('recognition') }); } } />
+                  </div>
+                ) : ''
+              }
             </Grid>
           </Grid>
           <br />
           <br />
           <Grid container spacing={ 24 } className={ classes.grid }>
             <Grid item sm={ 6 }>
-              <Typography variant='h4'>Voice Emails</Typography>
-              <Switch checked={ JSON.parse(this.state.vemail) } onChange={ (e, checked) => { this.storage.setItem('vemail', checked); this.setState({ vemail: this.storage.getItem('vemail') }); } } />
+              {
+                JSON.parse(this.state.vemail) ? (
+                  <div>
+                    <Typography variant='h4' onClick={ () => speak('Voice emails') }>Voice Emails</Typography>
+                    <Switch checked={ JSON.parse(this.state.vemail) } onChange={ (e, checked) => { this.storage.setItem('vemail', checked); this.setState({ vemail: this.storage.getItem('vemail') }); } } />
+                  </div>
+                ) : ''
+              }
             </Grid>
             <Grid item sm={ 6 }>
-              <Typography variant='h4'>Bigger Icons</Typography>
-              <Switch checked={ JSON.parse(this.state.icon) } onChange={ (e, checked) => { this.storage.setItem('icon', checked); this.setState({ icon: this.storage.getItem('icon') }); } } />
-            </Grid>
-          </Grid>
-          <br />
-          <br />
-          <Grid container spacing={ 24 } className={ classes.grid }>
-            <Grid item sm={ 6 }>
-              <Typography variant='h4'>Emergency Contact Email</Typography>
-              <Input defaultValue={ this.state.helpAddress } id='helpAddress' onChange={ () => this.storage.setItem('helpAddress', document.getElementById('helpAddress').value) } type='email' />
+              {
+                JSON.parse(this.state.icon) ? (
+                  <div>
+                    <Typography variant='h4' onClick={ () => speak('Bigger icons') }>Bigger Icons</Typography>
+                    <Switch checked={ JSON.parse(this.state.icon) } onChange={ (e, checked) => { this.storage.setItem('icon', checked); this.setState({ icon: this.storage.getItem('icon') }); } } />
+                  </div>
+                ) : ''
+              }
             </Grid>
           </Grid>
           <br />

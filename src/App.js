@@ -1,7 +1,8 @@
 import React from 'react';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AppBar from '@material-ui/core/AppBar';
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
+import ClientSettings from './ClientSettings';
 import Compose from './Compose';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -9,7 +10,7 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from "@material-ui/core/ListItemText";
+import ListItemText from '@material-ui/core/ListItemText';
 import Mailbox from './Mailbox';
 import Recognition from "./Recognition";
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
@@ -75,6 +76,7 @@ class App extends React.Component {
       auth: null,
       compose: false,
       settings: false,
+      clientSettings: false,
       recognition: JSON.parse(window.localStorage.getItem('recognition')) ? (
         <div>
           <div className={ this.props.classes.toolbar } />
@@ -120,27 +122,15 @@ class App extends React.Component {
   }
 
   send(recipient, body, recording) {
-    // if (!!recording) {
-    //   recording.then((result) => {
-    //     this.emailContent = `
-    //       Content-Type: multipart/mixed\r\n
-    //       From: ${ this.address }\r\n
-    //       To: ${ recipient }\r\n
-    //       Subject: Email from ${ this.address }\r\n
-    //       Reply-To: ${ this.address }\r\n\r\n
-    //       --boundary\r\n
-    //       Content-Type: text/plain\r\n\r\n
-    //       ${ body }\n
-    //       Sent with AbleMail.\r\n\r\n
-    //       --boundary\r\n
-    //       Content-Type: audio/*\r\n\r\n
-    //       ${ result }`;
-    //     this.gmailSend();
-    //   });
-    // } else {
+    if (!!recording) {
+      recording.then((result) => {
+        this.emailContent = `MIME-Version: 1.0\r\nFrom: ${ this.address }\r\nTo: ${ recipient }\r\nSubject: Email from ${ this.address }\r\nContent-Type: multipart/related\r\nReply-To: ${ this.address }\r\nboundary="myboundary"\r\n--myboundary\r\nContent-Type: text/plain\r\n\r\n${ body }\nSent with AbleMail.\r\n\r\n--myboundary\r\nContent-Type: audio/webp\r\nContent-Transfer-Encoding: base64\r\nContent-Disposition: attachment; filename="audio.webp"\r\n\r\n${ result }`;
+        this.gmailSend();
+      });
+    } else {
       this.emailContent = `Content-Type: text/plain\r\nFrom: ${ this.address }\r\nTo: ${ recipient }\r\nSubject: Email from ${ this.address }\r\nReply-To: ${ this.address }\r\n\r\n${ body }\nSent with AbleMail.`;
       this.gmailSend();
-    // }
+    }
   }
 
   gmailSend() {
@@ -217,7 +207,8 @@ class App extends React.Component {
               </ListItemIcon>
               <ListItemText>
                 <br />
-                <Typography variant='h3' color='inherit' className={ classes.bold }>Settings</Typography>
+                <ClientSettings open={ this.state.clientSettings } onClose={ () => this.setState({ clientSettings: false }) } />
+                <Typography variant='h3' color='inherit' className={ classes.bold } onClick={ () => { this.setState({ clientSettings: true }); speak('Settings') } }>Settings</Typography>
                 <br />
               </ListItemText>
             </ListItem>
@@ -227,7 +218,7 @@ class App extends React.Component {
         <main className={ classes.content }>
           <div className={ classes.toolbar }>
             <Mailbox isLogin={ (status) => this.login(status) } mailData={ (data) => { this.mailData = data; this.emailCount++; } } getEmail={ (profile) => this.getEmail(profile) } />
-            <Compose open={ this.state.compose } onClose={ () => this.handleCompose(false) } send={ (recipient, body, recording) => this.send(recipient, body, recording) } />
+            <Compose open={ this.state.compose } onClose={ () => this.handleCompose(false) } send={ (recipient, body, recording) => this.send(recipient, body, recording) } func={ (bool) => this.setState({ compose: bool }) } />
           </div>
         </main>
       </div>
