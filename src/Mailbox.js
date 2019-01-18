@@ -38,12 +38,15 @@ export default class Mailbox extends React.Component {
   }
   componentDidMount() {
     try {
-      window.gapi.load('client:auth2', () => {
-        this.init();
-      });
+      document.addEventListener('DOMContentLoaded', () => {
+        window.gapi.load('client:auth2', () => {
+          this.init();
+        });
+      }, false);
     } catch (e) {
       console.error(e);
       alert('Something went wrong. Try refreshing the page?');
+      clearTimeout(this.reload);
       this.setState({ mail: <Typography variant='h2' onClick={ () => speak('Unable to fetch emails') }>Unable to fetch emails.</Typography> });
     }
   }
