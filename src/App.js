@@ -195,6 +195,7 @@ class App extends React.Component {
         <Drawer variant='permanent' classes={ { paper: classes.drawerPaper } } className={ classes.drawer }>
           <List component='nav'>
             <div className={ classes.toolbar } />
+            <div className={ classes.toolbar } />
             <Divider />
             <ListItem button={ true } onClick={ () => { this.recognition.stop(); this.handleCompose(true); speak('Compose email'); } } id='btn-compose'>
               <ListItemIcon>

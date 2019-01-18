@@ -5,6 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from "@material-ui/core/DialogTitle";
 import FlashOnIcon from '@material-ui/icons/FlashOn'
 import Grid from '@material-ui/core/Grid';
+import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '@material-ui/core/IconButton';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
@@ -49,17 +50,9 @@ const style = theme => ({
 class Mail extends React.Component {
   constructor(props) {
     super(props);
-    this.ok = `
-      Dear ${ this.props.from },
-      \r\n\n
-      Sounds great!`;
-    this.no = `
-      Dear ${ this.props.from },
-      \r\n\n
-      No, sorry. I don't think so.`;
-    this.maybe = `
-      Dear ${ this.props.from },
-      `;
+    this.ok = `Dear ${ this.props.from },\r\n\nSounds great!`;
+    this.no = `Dear ${ this.props.from },\r\nNo, sorry. I don't think so.`;
+    this.maybe = `Dear ${ this.props.from },\r\nI'm not sure. Can we talk in person?`;
     this.state = {
       read: JSON.parse(window.localStorage.getItem('tts')) ? (
         <Button variant='contained' color='secondary' onClick={ () => Mail.getAllText() }>
@@ -71,7 +64,7 @@ class Mail extends React.Component {
   }
 
   entered() {
-    document.getElementsByClassName('mail-body')[0].innerHTML = this.props.data;
+    document.getElementsByClassName('mail-body')[0].innerHTML = this.props.data.replace(/Â/g, ' ');
   }
 
   static getAllText() {
@@ -99,12 +92,25 @@ class Mail extends React.Component {
     }, 1000);
   }
 
+  sendHelp() {
+    window.gapi.client.gmail.users.getProfile({ userId: 'me' }).then((response) => {
+      this.address = JSON.parse(response.body).emailAddress;
+      this.emailContent = `Content-Type: text/html\r\nFrom: ${ this.address }\r\nTo: ${ window.localStorage.getItem('helpAddress') }\r\nSubject: Help!\r\nReply-To: ${ this.address }\r\n\r\nPlease help:\n\n${ this.props.data.replace(/Â/g, ' ') }`;
+      window.gapi.client.gmail.users.messages.send({
+        userId: 'me',
+        resource: {
+          raw: btoa(this.emailContent).replace(/\+/g, '-').replace(/\//g, '_')
+        }
+      }).then(() => setTimeout(() => window.location.reload(), 500));
+    });
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <Dialog className={ classes.dialog } open={ this.props.open } fullScreen={ true } onClose={ () => this.props.onClose() } onEntered={ () => this.entered() }>
         <Grid container spacing={ 8 }>
-          <Grid item sm={ 7 }>
+          <Grid item sm={ 5 }>
             <DialogTitle className={ classes.dialogTitle } onClick={ () => speak(this.props.subject) }>{ this.props.subject }</DialogTitle>
             <br />
           </Grid>
@@ -112,6 +118,12 @@ class Mail extends React.Component {
             <br />
             <br />
             { this.state.read }
+          </Grid>
+          <Grid item sm={ 2 }>
+            <br />
+            <IconButton aria-label='Help' color='secondary' onClick={ () => this.sendHelp() }>
+              <HelpIcon className={ classes.close } />
+            </IconButton>
           </Grid>
           <Grid item sm={ 2 }>
             <br />
@@ -124,8 +136,6 @@ class Mail extends React.Component {
         <div className={ `${ classes.mailBody } mail-body` } onClick={ () => Mail.getAllText() } onMouseUp={ () => Mail.getSelectedText() } />
         <Grid container spacing={ 8 } className={ classes.grid }>
           <Grid item sm={ 12 }>
-            <br />
-            <br />
             <Typography variant='h3' onClick={ () => speak('Quick reply') }>
               <FlashOnIcon className={ classes.flashIcon } />Quick Reply
             </Typography>
@@ -148,11 +158,11 @@ class Mail extends React.Component {
               <SentimentDissatisfiedIcon className={ classes.replyIcon } />
             </IconButton>
           </Grid>
-          <Grid item sm={ 1 }>
-            <IconButton aria-label='Maybe' color='primary' onClick={ () => this.send('test') }>
-              <SentimentDissatisfiedIcon className={ classes.replyIcon } />
-            </IconButton>
-          </Grid>
+          {/*<Grid item sm={ 1 }>*/}
+            {/*<IconButton aria-label='Maybe' color='primary' onClick={ () => this.send('test') }>*/}
+              {/*<SentimentDissatisfiedIcon className={ classes.replyIcon } />*/}
+            {/*</IconButton>*/}
+          {/*</Grid>*/}
         </Grid>
         <br />
         <br />
