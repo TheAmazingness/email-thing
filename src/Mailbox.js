@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import MailPreview from './MailPreview';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import Typography from '@material-ui/core/Typography';
-import { speak } from './Voice';
+import { Voice } from './Voice';
 
 const CLIENT_ID = '<CLIENT_ID>';
 const API_KEY = '<API_KEY>';
@@ -47,7 +47,7 @@ export default class Mailbox extends React.Component {
       console.error(e);
       alert('Something went wrong. Try refreshing the page?');
       clearTimeout(this.reload);
-      this.setState({ mail: <Typography variant='h2' onClick={ () => speak('Unable to fetch emails') }>Unable to fetch emails.</Typography> });
+      this.setState({ mail: <Typography variant='h2' onClick={ () => new Voice('Unable to fetch emails').activate() }>Unable to fetch emails.</Typography> });
     }
   }
 

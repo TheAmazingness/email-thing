@@ -6,7 +6,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
-import { speak } from './Voice';
+import { Voice } from './Voice';
 import { withStyles } from '@material-ui/core/styles';
 
 const style = theme => ({
@@ -68,7 +68,7 @@ class Settings extends React.Component {
               {
                 JSON.parse(this.state.tts) ? (
                   <div>
-                    <Typography variant='h4' onClick={ () => speak('Text to speech') }>Text-to-Speech</Typography>
+                    <Typography variant='h4' onClick={ () => new Voice('Text to speech').activate() }>Text-to-Speech</Typography>
                     <Switch checked={ JSON.parse(this.state.tts) } onChange={ (e, checked) => { this.storage.setItem('tts', checked); this.setState({ tts: this.storage.getItem('tts') }); } } />
                   </div>
                 ) : ''
@@ -78,7 +78,7 @@ class Settings extends React.Component {
               {
                 JSON.parse(this.state.recognition) ? (
                   <div>
-                    <Typography variant='h4' onClick={ () => speak('Voice recognition') }>Voice Recognition</Typography>
+                    <Typography variant='h4' onClick={ () => new Voice('Voice recognition').activate() }>Voice Recognition</Typography>
                     <Switch checked={ JSON.parse(this.state.recognition) } onChange={ (e, checked) => { this.storage.setItem('recognition', checked); this.setState({ recognition: this.storage.getItem('recognition') }); } } />
                   </div>
                 ) : ''
@@ -92,7 +92,7 @@ class Settings extends React.Component {
               {
                 JSON.parse(this.state.vemail) ? (
                   <div>
-                    <Typography variant='h4' onClick={ () => speak('Voice emails') }>Voice Emails</Typography>
+                    <Typography variant='h4' onClick={ () => new Voice('Voice emails').activate() }>Voice Emails</Typography>
                     <Switch checked={ JSON.parse(this.state.vemail) } onChange={ (e, checked) => { this.storage.setItem('vemail', checked); this.setState({ vemail: this.storage.getItem('vemail') }); } } />
                   </div>
                 ) : ''
@@ -102,7 +102,7 @@ class Settings extends React.Component {
               {
                 JSON.parse(this.state.icon) ? (
                   <div>
-                    <Typography variant='h4' onClick={ () => speak('Bigger icons') }>Bigger Icons</Typography>
+                    <Typography variant='h4' onClick={ () => new Voice('Bigger icons').activate() }>Bigger Icons</Typography>
                     <Switch checked={ JSON.parse(this.state.icon) } onChange={ (e, checked) => { this.storage.setItem('icon', checked); this.setState({ icon: this.storage.getItem('icon') }); } } />
                   </div>
                 ) : ''

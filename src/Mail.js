@@ -13,7 +13,7 @@ import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied'
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
-import { speak } from './Voice';
+import { Voice } from './Voice';
 import { withStyles } from '@material-ui/core/styles';
 
 const icon = JSON.parse(window.localStorage.getItem('icon'));
@@ -69,7 +69,7 @@ class Mail extends React.Component {
   }
 
   static getAllText() {
-    speak(document.getElementsByClassName('mail-body')[0].innerText);
+    new Voice(document.getElementsByClassName('mail-body')[0].innerText).activate();
   }
 
   static getSelectedText() {
@@ -77,7 +77,7 @@ class Mail extends React.Component {
     if (window.getSelection) {
       text = window.getSelection().toString();
     }
-    speak(text);
+    new Voice(text).activate();
   }
 
   send(value) {
@@ -112,7 +112,7 @@ class Mail extends React.Component {
       <Dialog className={ classes.dialog } open={ this.props.open } fullScreen={ true } onClose={ () => this.props.onClose() } onEntered={ () => this.entered() }>
         <Grid container spacing={ 8 }>
           <Grid item sm={ 5 }>
-            <DialogTitle className={ classes.dialogTitle } onClick={ () => speak(this.props.subject) }>{ this.props.subject }</DialogTitle>
+            <DialogTitle className={ classes.dialogTitle } onClick={ () => new Voice(this.props.subject).activate() }>{ this.props.subject }</DialogTitle>
             <br />
           </Grid>
           <Grid item sm={ 3 }>
@@ -137,7 +137,7 @@ class Mail extends React.Component {
         <div className={ `${ classes.mailBody } mail-body` } onClick={ () => Mail.getAllText() } onMouseUp={ () => Mail.getSelectedText() } />
         <Grid container spacing={ 8 } className={ classes.grid }>
           <Grid item sm={ 12 }>
-            <Typography variant='h3' onClick={ () => speak('Reply') }>
+            <Typography variant='h3' onClick={ () => new Voice('Reply').activate() }>
               <FlashOnIcon className={ classes.flashIcon } />Reply
             </Typography>
             <br />
@@ -145,22 +145,22 @@ class Mail extends React.Component {
           </Grid>
           <Grid item sm={ 4 } />
           <Grid item sm={ 1 }>
-            <IconButton aria-label='Ok' color='primary' onClick={ () => { this.send(this.ok); speak('Yes'); } }>
+            <IconButton aria-label='Ok' color='primary' onClick={ () => { this.send(this.ok); new Voice('Yes').activate(); } }>
               <ThumbUpIcon className={ classes.replyIcon } />
             </IconButton>
           </Grid>
           <Grid item sm={ 1 }>
-            <IconButton aria-label='No' color='primary' onClick={ () => { this.send(this.no); speak('No'); } } >
+            <IconButton aria-label='No' color='primary' onClick={ () => { this.send(this.no); new Voice('No').activate(); } } >
               <ThumbDownIcon className={ classes.replyIcon } />
             </IconButton>
           </Grid>
           <Grid item sm={ 1 }>
-            <IconButton aria-label='Maybe' color='primary' onClick={ () => { this.send(this.maybe); speak('Maybe'); } }>
+            <IconButton aria-label='Maybe' color='primary' onClick={ () => { this.send(this.maybe); new Voice('Maybe').activate(); } }>
               <SentimentDissatisfiedIcon className={ classes.replyIcon } />
             </IconButton>
           </Grid>
           <Grid item sm={ 1 }>
-            <IconButton aria-label='Reply' color='primary' onClick={ () => { speak('Reply'); document.getElementById('btn-compose').click(); setTimeout(() => document.getElementById('recipient').value = this.props.address.substring(0, this.props.address.length - 1), 1000); } }>
+            <IconButton aria-label='Reply' color='primary' onClick={ () => { new Voice('Reply').activate(); document.getElementById('btn-compose').click(); setTimeout(() => document.getElementById('recipient').value = this.props.address.substring(0, this.props.address.length - 1), 1000); } }>
               <ReplyIcon className={ classes.replyIcon } />
             </IconButton>
           </Grid>

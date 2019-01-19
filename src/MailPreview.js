@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Mail from './Mail';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import Typography from "@material-ui/core/Typography";
-import { speak } from './Voice';
+import { Voice } from './Voice';
 import { withStyles } from '@material-ui/core/styles';
 
 const icon = JSON.parse(window.localStorage.getItem('icon'));
@@ -56,18 +56,18 @@ class MailPreview extends React.Component {
     this.props.mailData(`From ${ this.from[0] }. ${ this.subject }.`);
     return (
       <Card raised className={ classes.card }>
-        <Typography variant='h3' onClick={ () => speak(`From ${ this.from[0] }`) }>From: { this.from[0] }</Typography>
+        <Typography variant='h3' onClick={ () => new Voice(`From ${ this.from[0] }`).activate() }>From: { this.from[0] }</Typography>
         <br />
-        <Typography variant='h6' onClick={ () => speak(this.from[1]) }>{ `<${ this.from[1] }` }</Typography>
+        <Typography variant='h6' onClick={ () => new Voice(this.from[1]).activate() }>{ `<${ this.from[1] }` }</Typography>
         <br />
-        <Typography variant='h2'  onClick={ () => speak(this.subject) }>{ `${ this.subject }` }</Typography>
+        <Typography variant='h2'  onClick={ () => new Voice(this.subject).activate() }>{ `${ this.subject }` }</Typography>
         <br />
-        <Typography variant='h5' onClick={ () => speak(MailPreview.htmlDecode(this.props.snippet)) }>{ MailPreview.htmlDecode(this.props.snippet) }...</Typography>
+        <Typography variant='h5' onClick={ () => new Voice(MailPreview.htmlDecode(this.props.snippet)).activate() }>{ MailPreview.htmlDecode(this.props.snippet) }...</Typography>
         <br />
         <br />
         <Grid container spacing={ 24 }>
           <Grid item sm={ 9 }>
-            <Button variant='contained' onClick={ () => { this.handleClick(true); speak('Open email'); } } size='large' color='primary' fullWidth>
+            <Button variant='contained' onClick={ () => { this.handleClick(true); new Voice('Open email').activate(); } } size='large' color='primary' fullWidth>
               <OpenInBrowserIcon className={ classes.open } />&emsp;
               Open Email
             </Button>

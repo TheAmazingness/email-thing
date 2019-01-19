@@ -12,13 +12,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Mailbox from './Mailbox';
-import Recognition from "./Recognition";
+import Recognition from './Recognition';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import Settings from './Settings';
 import SettingsIcon from '@material-ui/icons/Settings'
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { speak } from './Voice';
+import { Voice } from './Voice';
 import { withStyles } from '@material-ui/core/styles';
 
 const icon = JSON.parse(window.localStorage.getItem('icon'));
@@ -81,7 +81,7 @@ class App extends React.Component {
         <div>
           <div className={ this.props.classes.toolbar } />
           <Divider />
-          <ListItem button={ true } onClick={ () => { speak('Voice Command'); this.handleRecognition(); } }>
+          <ListItem button={ true } onClick={ () => { new Voice('Voice Command').activate(); this.handleRecognition(); } }>
             <ListItemIcon>
               <RecordVoiceOverIcon className={ this.props.classes.icon } />
             </ListItemIcon>
@@ -99,9 +99,9 @@ class App extends React.Component {
 
   login(status = false) {
     if (status) {
-      this.setState({ auth: <Button variant='contained' color='secondary' id='btn-logout' className={ this.props.classes.auth } onClick={ () => { speak('Sign out'); setTimeout(() => window.location.reload(), 3000); } }>Sign Out</Button> });
+      this.setState({ auth: <Button variant='contained' color='secondary' id='btn-logout' className={ this.props.classes.auth } onClick={ () => { new Voice('Sign out').activate(); setTimeout(() => window.location.reload(), 3000); } }>Sign Out</Button> });
     } else {
-      this.setState({ auth: <Button variant='contained' color='secondary' id='btn-login' className={ this.props.classes.auth } onClick={ () => { speak('Sign in'); } }>Sign In</Button> });
+      this.setState({ auth: <Button variant='contained' color='secondary' id='btn-login' className={ this.props.classes.auth } onClick={ () => { new Voice('Sign in').activate(); } }>Sign In</Button> });
     }
   }
 
@@ -156,7 +156,7 @@ class App extends React.Component {
               this.recognition.stop();
               break;
             case /read emails/.test(message):
-              speak(`You have ${ this.emailCount } emails. ${ this.mailData } That's all of your emails.`);
+              new Voice(`You have ${ this.emailCount } emails. ${ this.mailData } That's all of your emails.`).activate();
               this.recognition.transcript = '';
               this.recognition.stop();
               break;
@@ -175,10 +175,10 @@ class App extends React.Component {
         <AppBar className={ classes.appBar }>
           <Toolbar>
             <Settings open={ this.state.settings } onClose={ () => this.handleSettings(false) } />
-            <Button variant='outlined' color='secondary' className={ classes.settings } onClick={ () => { this.handleSettings(true); speak('Settings') } }>
+            <Button variant='outlined' color='secondary' className={ classes.settings } onClick={ () => { this.handleSettings(true); new Voice('Settings').activate() } }>
               <SettingsIcon />&emsp;Coach's Settings
             </Button>
-            {/*<img onClick={ () => speak('AbleMail') } className={ classes.logo } src='logo.png' alt='AbleMail' />*/}
+            {/*<img onClick={ () => new Voice('AbleMail') } className={ classes.logo } src='logo.png' alt='AbleMail' />*/}
             { this.state.auth }
           </Toolbar>
         </AppBar>
@@ -187,7 +187,7 @@ class App extends React.Component {
             <div className={ classes.toolbar } />
             <div className={ classes.toolbar } />
             <Divider />
-            <ListItem button={ true } onClick={ () => { this.recognition.stop(); this.handleCompose(true); speak('Compose email'); } } id='btn-compose'>
+            <ListItem button={ true } onClick={ () => { this.recognition.stop(); this.handleCompose(true); new Voice('Compose email').activate(); } } id='btn-compose'>
               <ListItemIcon>
                 <AddCircleOutlineIcon className={ classes.icon } />
               </ListItemIcon>
@@ -201,14 +201,14 @@ class App extends React.Component {
             { this.state.recognition }
             <div className={ classes.toolbar } />
             <Divider />
-            <ListItem button={ true } onClick={ () => speak('Settings') }>
+            <ListItem button={ true } onClick={ () => new Voice('Settings').activate() }>
               <ListItemIcon>
                 <SettingsIcon className={ classes.icon } />
               </ListItemIcon>
               <ListItemText>
                 <br />
                 <ClientSettings open={ this.state.clientSettings } onClose={ () => this.setState({ clientSettings: false }) } />
-                <Typography variant='h3' color='inherit' className={ classes.bold } onClick={ () => { this.setState({ clientSettings: true }); speak('Settings') } }>Settings</Typography>
+                <Typography variant='h3' color='inherit' className={ classes.bold } onClick={ () => { this.setState({ clientSettings: true }); new Voice('Settings').activate() } }>Settings</Typography>
                 <br />
               </ListItemText>
             </ListItem>

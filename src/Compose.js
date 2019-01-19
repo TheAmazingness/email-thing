@@ -10,7 +10,7 @@ import Recognition from './Recognition';
 import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-import { speak } from './Voice';
+import { Voice } from './Voice';
 
 const icon = JSON.parse(window.localStorage.getItem('icon'));
 const style = theme => ({
@@ -55,7 +55,7 @@ class Compose extends React.Component {
       <Dialog className={ classes.dialog } open={ this.props.open } fullScreen onClose={ () => this.props.onClose() } onEntered={ () => setTimeout(() => { this.mediaRecorder.start(); recognition.start(); }, 2000) }>
         <Grid container spacing={ 8 }>
           <Grid item sm={ 10 }>
-            <DialogTitle className={ classes.dialogTitle } onClick={ () => speak('Compose Email') }>Compose Email</DialogTitle>
+            <DialogTitle className={ classes.dialogTitle } onClick={ () => new Voice('Compose Email').activate() }>Compose Email</DialogTitle>
             <br />
           </Grid>
           <Grid item sm={ 2 }>
