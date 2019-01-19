@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Mail from './Mail';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
-import Typography from "@material-ui/core/Typography";
+import Typography from '@material-ui/core/Typography';
 import { Voice } from './Voice';
 import { withStyles } from '@material-ui/core/styles';
 

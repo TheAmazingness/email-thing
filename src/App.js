@@ -48,10 +48,10 @@ const style = theme => ({
   },
   drawer: {
     flexShrink: 0,
-    width: 360
+    width: 400
   },
   drawerPaper: {
-    width: 360
+    width: 400
   },
   icon: {
     fontSize: icon ? '60pt' : '40pt'
