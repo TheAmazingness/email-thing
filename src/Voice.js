@@ -2,6 +2,7 @@ import ResponsiveVoice from '@cheapundies/responsive-voice';
 
 const SPEAK = JSON.parse(window.localStorage.getItem('tts'));
 
+// Need a better solution
 export class Voice {
   constructor(text) {
     this.text = text;
@@ -17,7 +18,6 @@ export class Voice {
   activate() {
     if (SPEAK) {
       this.isSpeaking = JSON.parse(window.localStorage.getItem('is_tts'));
-      console.log(this.isSpeaking);
       this.isSpeaking && ResponsiveVoice.cancel();
       !this.isSpeaking && ResponsiveVoice.speak(this.text, 'US English Female', { rate: 0.75, onend: () => this.onEnd() });
       window.localStorage.setItem('is_tts', !this.isSpeaking);
