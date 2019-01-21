@@ -27,7 +27,7 @@ const style = theme => ({
     zIndex: 2000
   },
   dialogTitle: {
-    fontSize: '30pt'
+    fontSize: icon ? '48pt' : '36pt'
   },
   flashIcon: {
     fontSize: '36pt'
@@ -37,6 +37,7 @@ const style = theme => ({
     textAlign: 'center'
   },
   mailBody: {
+    fontSize: icon ? '36pt' : '24pt',
     padding: theme.spacing.unit * 5
   },
   record: {
@@ -52,8 +53,8 @@ class Mail extends React.Component {
   constructor(props) {
     super(props);
     this.ok = `Dear ${ this.props.from },\r\n\nSounds great! See you then!`;
-    this.no = `Dear ${ this.props.from },\r\nNo. That does not work for me.`;
-    this.maybe = `Dear ${ this.props.from },\r\nI’ll get back to you.`;
+    this.no = `Dear ${ this.props.from },\r\n\nNo. That does not work for me.`;
+    this.maybe = `Dear ${ this.props.from },\r\n\nI'll get back to you.`;
     this.state = {
       read: JSON.parse(window.localStorage.getItem('tts')) ? (
         <Button variant='contained' color='secondary' onClick={ () => Mail.getAllText() }>
@@ -112,7 +113,11 @@ class Mail extends React.Component {
       <Dialog className={ classes.dialog } open={ this.props.open } fullScreen={ true } onClose={ () => this.props.onClose() } onEntered={ () => this.entered() }>
         <Grid container spacing={ 8 }>
           <Grid item sm={ 5 }>
-            <DialogTitle className={ classes.dialogTitle } onClick={ () => new Voice(this.props.subject).activate() }>{ this.props.subject }</DialogTitle>
+            <DialogTitle onClick={ () => new Voice(this.props.subject).activate() }>
+              <Typography className={ classes.dialogTitle }>
+                { this.props.subject }
+              </Typography>
+            </DialogTitle>
             <br />
           </Grid>
           <Grid item sm={ 3 }>

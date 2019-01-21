@@ -128,7 +128,7 @@ class App extends React.Component {
     //     this.gmailSend();
     //   });
     // } else {
-      this.emailContent = `Content-Type: text/plain\r\nFrom: ${ this.address }\r\nTo: ${ recipient }\r\nSubject: Email from ${ this.address }\r\nReply-To: ${ this.address }\r\n\r\n${ body }\nSent with AbleMail.`;
+      this.emailContent = `Content-Type: text/plain\r\nFrom: ${ this.address }\r\nTo: ${ recipient }\r\nSubject: Email from ${ this.address }\r\nReply-To: ${ this.address }\r\n\r\n${ body }\n\nSent with AbleMail.`;
       this.gmailSend();
     // }
   }
@@ -178,7 +178,7 @@ class App extends React.Component {
             <Button variant='outlined' color='secondary' className={ classes.settings } onClick={ () => { this.handleSettings(true); new Voice('Settings').activate() } }>
               <SettingsIcon />&emsp;Coach's Settings
             </Button>
-            {/*<img onClick={ () => new Voice('AbleMail') } className={ classes.logo } src='logo.png' alt='AbleMail' />*/}
+            <img onClick={ () => new Voice('AbleMail').activate() } className={ classes.logo } src='logo.png' alt='AbleMail' />
             { this.state.auth }
           </Toolbar>
         </AppBar>

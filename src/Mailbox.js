@@ -6,8 +6,8 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import Typography from '@material-ui/core/Typography';
 import { Voice } from './Voice';
 
-const CLIENT_ID = '<CLIENT_ID>';
-const API_KEY = '<API_KEY>';
+const CLIENT_ID = '98686281361-9a0d3m6nk7j0rdg4895hpbjmeocbhtr0.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyBLg1vhu4aiHvzGeTjxyWUxDvpkJk2DL9U';
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'];
 const SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 

@@ -9,6 +9,7 @@ import Recorder from './Recorder';
 import Recognition from './Recognition';
 import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { Voice } from './Voice';
 
@@ -23,11 +24,17 @@ const style = theme => ({
     padding: theme.spacing.unit * 5,
     zIndex: 2000
   },
-  dialogTitle: {
-    fontSize: '1.5em'
-  },
   send: {
     fontSize: icon ? '60pt' : '40pt'
+  },
+  sendEmail: {
+    fontSize: icon ? '36pt' : '28pt'
+  },
+  title: {
+    fontSize: icon ? '48pt' : '36pt'
+  },
+  type: {
+    fontSize: icon ? '28pt' : '20pt'
   }
 });
 
@@ -55,7 +62,9 @@ class Compose extends React.Component {
       <Dialog className={ classes.dialog } open={ this.props.open } fullScreen onClose={ () => this.props.onClose() } onEntered={ () => setTimeout(() => { this.mediaRecorder.start(); recognition.start(); }, 2000) }>
         <Grid container spacing={ 8 }>
           <Grid item sm={ 10 }>
-            <DialogTitle className={ classes.dialogTitle } onClick={ () => new Voice('Compose Email').activate() }>Compose Email</DialogTitle>
+            <DialogTitle onClick={ () => new Voice('Compose Email').activate() }>
+              <Typography className={ classes.title }>Compose Email</Typography>
+            </DialogTitle>
             <br />
           </Grid>
           <Grid item sm={ 2 }>
@@ -66,14 +75,15 @@ class Compose extends React.Component {
           </Grid>
         </Grid>
         <div className={ classes.dialog }>
-          <TextField autoFocus fullWidth variant='outlined' rows='1' placeholder='To:' id='recipient' />
+          <TextField className={ classes.type } autoFocus fullWidth variant='outlined' rows='1' placeholder='To:' id='recipient' />
           <br />
           <br />
-          <TextField fullWidth multiline variant='outlined' rows='20' id='compose-body' value={ this.state.content } onChange={ () => this.setState({ content: document.getElementById('compose-body').value }) } placeholder='Message' />
+          <TextField className={ classes.type } fullWidth multiline variant='outlined' rows='12' id='compose-body' value={ this.state.content } onChange={ () => this.setState({ content: document.getElementById('compose-body').value }) } placeholder='Message' />
           <br />
           <br />
           <Button variant='outlined' color='secondary' id='btn-send' onClick={ () => { this.mediaRecorder.stop(); this.setState({ content: recognition.stop() }); this.send(); } }>
-            <SendIcon className={ classes.send } />&emsp;Send Email
+            <SendIcon className={ classes.send } />&emsp;
+            <Typography className={ classes.sendEmail } color='inherit'>Send Email</Typography>
           </Button>
         </div>
       </Dialog>
