@@ -22,10 +22,13 @@ const style = theme => ({
   },
   grid: {
     textAlign: 'center'
+  },
+  typography: {
+    fontSize: JSON.parse(window.localStorage.getItem('icon')) ? '48pt' : '36pt'
   }
 });
 
-class Settings extends React.Component {
+class ClientSettings extends React.Component {
   constructor(props) {
     super(props);
     if (!!typeof Storage) {
@@ -68,7 +71,7 @@ class Settings extends React.Component {
               {
                 JSON.parse(this.state.tts) ? (
                   <div>
-                    <Typography variant='h4' onClick={ () => new Voice('Text to speech').activate() }>Text-to-Speech</Typography>
+                    <Typography className={ classes.typography } onClick={ () => new Voice('Text to speech').activate() }>Text-to-Speech</Typography>
                     <Switch checked={ JSON.parse(this.state.tts) } onChange={ (e, checked) => { this.storage.setItem('tts', checked); this.setState({ tts: this.storage.getItem('tts') }); } } />
                   </div>
                 ) : ''
@@ -78,7 +81,7 @@ class Settings extends React.Component {
               {
                 JSON.parse(this.state.recognition) ? (
                   <div>
-                    <Typography variant='h4' onClick={ () => new Voice('Voice recognition').activate() }>Voice Recognition</Typography>
+                    <Typography className={ classes.typography } onClick={ () => new Voice('Voice recognition').activate() }>Voice Recognition</Typography>
                     <Switch checked={ JSON.parse(this.state.recognition) } onChange={ (e, checked) => { this.storage.setItem('recognition', checked); this.setState({ recognition: this.storage.getItem('recognition') }); } } />
                   </div>
                 ) : ''
@@ -92,7 +95,7 @@ class Settings extends React.Component {
               {
                 JSON.parse(this.state.vemail) ? (
                   <div>
-                    <Typography variant='h4' onClick={ () => new Voice('Voice emails').activate() }>Voice Emails</Typography>
+                    <Typography className={ classes.typography } onClick={ () => new Voice('Voice emails').activate() }>Voice Emails</Typography>
                     <Switch checked={ JSON.parse(this.state.vemail) } onChange={ (e, checked) => { this.storage.setItem('vemail', checked); this.setState({ vemail: this.storage.getItem('vemail') }); } } />
                   </div>
                 ) : ''
@@ -102,7 +105,7 @@ class Settings extends React.Component {
               {
                 JSON.parse(this.state.icon) ? (
                   <div>
-                    <Typography variant='h4' onClick={ () => new Voice('Bigger icons').activate() }>Bigger Icons</Typography>
+                    <Typography className={ classes.typography } onClick={ () => new Voice('Bigger icons').activate() }>Bigger Icons</Typography>
                     <Switch checked={ JSON.parse(this.state.icon) } onChange={ (e, checked) => { this.storage.setItem('icon', checked); this.setState({ icon: this.storage.getItem('icon') }); } } />
                   </div>
                 ) : ''
@@ -121,4 +124,4 @@ class Settings extends React.Component {
   }
 }
 
-export default withStyles(style)(Settings);
+export default withStyles(style)(ClientSettings);

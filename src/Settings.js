@@ -3,6 +3,10 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
 import Input from '@material-ui/core/Input';
@@ -57,29 +61,32 @@ class Settings extends React.Component {
       icon: this.storage.getItem('icon'),
       helpAddress: this.storage.getItem('helpAddress'),
       canned: JSON.parse(this.storage.getItem('canned')),
-      prevCan: null
+      allCan: null
     };
   }
 
   componentDidMount() {
-    let allCan = [];
-    let can = this.state.canned;
-    for (const icon in can) {
-      if (can.hasOwnProperty(icon)) {
-        allCan.push(
-          <Grid container spacing={ 8 } key={ icon }>
-            <Grid item sm={ 4 }>
-              <br />
-              <Icon>{ icon }</Icon>
-            </Grid>
-            <Grid item sm={ 8 }>
-              <p>{ this.state.canned[icon] }</p>
-            </Grid>
+    let all = this.state.canned;
+    let arr = [];
+    for (let icon in all) {
+      if (all.hasOwnProperty(icon)) {
+        arr.push(
+          <Grid item sm={ 12 } key={ icon }>
+            <ExpansionPanel>
+              <ExpansionPanelSummary expandIcon={ <ExpandMoreIcon /> }>
+                <Icon>{ icon }</Icon>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography variant='h6'>
+                  { all[icon] }
+                </Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
           </Grid>
         );
       }
     }
-    this.setState({ prevCan: allCan });
+    this.setState({ allCan: arr });
   }
 
   addCan() {
@@ -136,16 +143,16 @@ class Settings extends React.Component {
               <Button color='secondary' onClick={ () => this.addCan() }>Add</Button>
               <br />
               <br />
-              <div style={ { overflowX: 'hidden', overflowY: 'scroll' } }>
-                <br />
-                <br />
-                { /* To improve: display and remove canned responses */ }
-                <Grid container spacing={ 8 }>
-                  { this.state.prevCan }
-                </Grid>
-                <br />
-                <br />
-              </div>
+              <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={ <ExpandMoreIcon /> }>
+                  <Typography variant='h6'>See all canned responses</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                  <Grid container>
+                    { this.state.allCan }
+                  </Grid>
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
             </Grid>
           </Grid>
           <br />
