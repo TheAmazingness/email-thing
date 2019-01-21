@@ -19,7 +19,7 @@ import { withStyles } from '@material-ui/core/styles';
 const icon = JSON.parse(window.localStorage.getItem('icon'));
 const style = theme => ({
   close: {
-    fontSize: icon ? '40pt' : '60pt',
+    fontSize: icon ? '60pt' : '40pt',
     zIndex: 99999
   },
   dialog: {
@@ -40,7 +40,7 @@ const style = theme => ({
     padding: theme.spacing.unit * 5
   },
   record: {
-    fontSize: icon ? '40pt' : '60pt',
+    fontSize: icon ? '60pt' : '40pt',
     zIndex: 99999
   },
   replyIcon: {
@@ -51,9 +51,9 @@ const style = theme => ({
 class Mail extends React.Component {
   constructor(props) {
     super(props);
-    this.ok = `Dear ${ this.props.from },\r\n\nSounds great!`;
-    this.no = `Dear ${ this.props.from },\r\nNo, sorry. I don't think so.`;
-    this.maybe = `Dear ${ this.props.from },\r\nI'm not sure. Can we talk in person?`;
+    this.ok = `Dear ${ this.props.from },\r\n\nSounds great! See you then!`;
+    this.no = `Dear ${ this.props.from },\r\nNo. That does not work for me.`;
+    this.maybe = `Dear ${ this.props.from },\r\nI’ll get back to you.`;
     this.state = {
       read: JSON.parse(window.localStorage.getItem('tts')) ? (
         <Button variant='contained' color='secondary' onClick={ () => Mail.getAllText() }>

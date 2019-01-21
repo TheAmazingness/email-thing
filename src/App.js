@@ -201,14 +201,14 @@ class App extends React.Component {
             { this.state.recognition }
             <div className={ classes.toolbar } />
             <Divider />
-            <ListItem button={ true } onClick={ () => new Voice('Settings').activate() }>
+            <ListItem button={ true } onClick={ () => { this.setState({ clientSettings: true }); new Voice('Settings').activate(); } }>
               <ListItemIcon>
                 <SettingsIcon className={ classes.icon } />
               </ListItemIcon>
               <ListItemText>
                 <br />
                 <ClientSettings open={ this.state.clientSettings } onClose={ () => this.setState({ clientSettings: false }) } />
-                <Typography variant='h3' color='inherit' className={ classes.bold } onClick={ () => { this.setState({ clientSettings: true }); new Voice('Settings').activate() } }>Settings</Typography>
+                <Typography variant='h3' color='inherit' className={ classes.bold }>Settings</Typography>
                 <br />
               </ListItemText>
             </ListItem>
