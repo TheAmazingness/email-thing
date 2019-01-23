@@ -1,5 +1,5 @@
 # ![AbleMail](logo-blue.png)
-AbleMail SourceAmerica Project.  An email client for those with cognitive disabilities.
+AbleMail SourceAmerica Project. Furthering independence through email.
 
 Try it out [here](https://theamazingness.github.io/ablemail)!
 

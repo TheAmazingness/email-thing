@@ -9,6 +9,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
@@ -77,9 +78,15 @@ class Settings extends React.Component {
                 <Icon>{ icon }</Icon>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography variant='h6'>
-                  { all[icon] }
-                </Typography>
+                <div>
+                  <Typography variant='h6'>
+                    { all[icon] }
+                  </Typography>
+                  <br />
+                  <IconButton color='primary' onClimck={ () => this.deleteCan(icon) }>
+                    <Icon>delete_forever</Icon>
+                  </IconButton>
+                </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Grid>
@@ -94,6 +101,12 @@ class Settings extends React.Component {
     this.storage.setItem('canned', JSON.stringify(this.state.canned));
     document.getElementById('cannedIcon').value = '';
     document.getElementById('canned').value = '';
+    this.setState({ canned: JSON.parse(this.storage.getItem('canned')) });
+  }
+
+  deleteCan(icon) {
+    delete this.state.canned[icon];
+    this.storage.setItem('canned', JSON.stringify(this.state.canned));
   }
 
   render() {
@@ -128,7 +141,7 @@ class Settings extends React.Component {
           <br />
           <Grid container spacing={ 24 } className={ classes.grid }>
             <Grid item sm={ 6 }>
-              <Typography variant='h4'>Emergency Contact Email</Typography>
+              <Typography variant='h4'>Help Email</Typography>
               <Input defaultValue={ this.state.helpAddress } id='helpAddress' onChange={ () => this.storage.setItem('helpAddress', document.getElementById('helpAddress').value) } type='email' />
             </Grid>
             <Grid item sm={ 6 }>

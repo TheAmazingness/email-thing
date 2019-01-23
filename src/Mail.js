@@ -38,7 +38,10 @@ const style = theme => ({
   },
   mailBody: {
     fontSize: icon ? '36pt' : '24pt',
-    padding: theme.spacing.unit * 5
+    paddingBottom: theme.spacing.unit * 10,
+    paddingLeft: theme.spacing.unit * 5,
+    paddingRight: theme.spacing.unit * 5,
+    paddingTop: theme.spacing.unit * 5,
   },
   record: {
     fontSize: icon ? '60pt' : '40pt',
@@ -46,6 +49,9 @@ const style = theme => ({
   },
   replyIcon: {
     fontSize: '24pt'
+  },
+  spacing: {
+    padding: '5vh'
   }
 });
 
@@ -112,20 +118,19 @@ class Mail extends React.Component {
     return (
       <Dialog className={ classes.dialog } open={ this.props.open } fullScreen={ true } onClose={ () => this.props.onClose() } onEntered={ () => this.entered() }>
         <Grid container spacing={ 8 }>
-          <Grid item sm={ 5 }>
+          <Grid item sm={ 7 }>
             <DialogTitle onClick={ () => new Voice(this.props.subject).activate() }>
               <Typography className={ classes.dialogTitle }>
                 { this.props.subject }
               </Typography>
             </DialogTitle>
-            <br />
           </Grid>
-          <Grid item sm={ 3 }>
+          <Grid item sm={ 2 }>
             <br />
             <br />
             { this.state.read }
           </Grid>
-          <Grid item sm={ 2 }>
+          <Grid item sm={ 1 }>
             <br />
             <IconButton aria-label='Help' color='secondary' onClick={ () => this.sendHelp() }>
               <HelpIcon className={ classes.close } />
@@ -138,8 +143,13 @@ class Mail extends React.Component {
             </IconButton>
           </Grid>
         </Grid>
-        <br />
+        <div className={ classes.spacing } />
+        <div className={ classes.spacing } />
+        <hr style={ { border: '1px solid #eee', width: '95%' } } />
+        <div className={ classes.spacing } />
         <div className={ `${ classes.mailBody } mail-body` } onClick={ () => Mail.getAllText() } onMouseUp={ () => Mail.getSelectedText() } />
+        <div className={ classes.spacing } />
+        <hr style={ { border: '1px solid #eee', width: '95%' } } />
         <Grid container spacing={ 8 } className={ classes.grid }>
           <Grid item sm={ 12 }>
             <Typography variant='h3' onClick={ () => new Voice('Reply').activate() }>
@@ -148,6 +158,11 @@ class Mail extends React.Component {
             <br />
             <br />
           </Grid>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
           <Grid item sm={ 4 } />
           <Grid item sm={ 1 }>
             <IconButton aria-label='Ok' color='primary' onClick={ () => { this.send(this.ok); new Voice('Yes').activate(); } }>
@@ -170,6 +185,18 @@ class Mail extends React.Component {
             </IconButton>
           </Grid>
         </Grid>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />
