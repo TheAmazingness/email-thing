@@ -61,7 +61,7 @@ class SideNav extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Drawer className={ classes.drawer } classes={ classes.drawerPaper } variant='permanent'>
+      <Drawer className={ classes.drawer } classes={ { paper: classes.drawerPaper } } variant='permanent'>
         <List component='nav'>
           <div className={ classes.separator } />
           <div className={ classes.separator } />
