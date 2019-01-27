@@ -39,19 +39,14 @@ export default class Gapi {
   getMessages(status) {
     return new Promise(resolve => {
       if (!status) {
-        resolve({ status: status, data: null });
+        resolve({ status: status, messages: null });
       } else {
         window.gapi.client.gmail.users.messages.list({
           userId: 'me',
           labelIds: ['INBOX']
         }).then(response => {
-          let
-            { messages } = response.result,
-            index = 0;
-          resolve({ status: status, data: messages });
-          // messages.forEach(message => {
-          //
-          // });
+          let { messages } = response.result;
+          resolve({ status: status, messages: messages });
         });
       }
     });

@@ -18,14 +18,21 @@ import TopNav from './TopNav'
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const style = {
+const style = theme => ({
+  content: {
+    flexGrow: 1,
+    marginLeft: 400,
+    padding: theme.spacing.unit * 12.5,
+    overflowY: 'scroll'
+  },
   loading: {
     height: '100vh',
     lineHeight: '100vh',
     textAlign: 'center',
     width: '100vw'
-  }
-};
+  },
+  toolbar: theme.mixins.toolbar
+});
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // App Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ App Component//
@@ -62,7 +69,11 @@ class App extends React.Component {
             <div>
               <TopNav status={ true } />
               <SideNav />
-              <Mailbox />
+              <main className={ this.props.classes.content }>
+                <div className={ this.props.classes.toolbar }>
+                  <Mailbox messages={ data.messages } />
+                </div>
+              </main>
             </div>
           )
         });
