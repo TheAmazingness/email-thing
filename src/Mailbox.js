@@ -41,16 +41,14 @@ export default class Mailbox extends React.Component {
         index++;
         if (index === this.props.messages.length) {
           results.sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
-          results.map((e) => {
-            this.setState({
-              jsx: (
-                <div>
-                  <MailPreview result={ e[1] } />
-                  <br />
-                  <br />
-                </div>
-              )
-            });
+          this.setState({
+            jsx: results.map((e, i) =>
+              <div key={ `preview-${ i }` }>
+                <MailPreview result={ e[1] } />
+                <br />
+                <br />
+              </div>
+            )
           });
         }
       });

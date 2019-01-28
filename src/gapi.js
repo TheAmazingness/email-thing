@@ -1,7 +1,7 @@
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
-  API_KEY = '<API_KEY>',
-  CLIENT_ID = '<CLIENT_ID>',
+  API_KEY = 'AIzaSyB-zogDGAMWPWT13WkcHxDi9iLW0JIXkqw',
+  CLIENT_ID = '98686281361-8cfpc07ab56she27qsasqkfa7aegd8ka.apps.googleusercontent.com',
   DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'],
   SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //

@@ -33,7 +33,7 @@ const
       width: 400
     },
     fontSize: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt',
+      fontSize: FONT_SIZE ? '80pt' : '40pt',
       fontWeight: FONT_SIZE ? 'bold' : ''
     },
     login: {

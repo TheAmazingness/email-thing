@@ -4,24 +4,31 @@ import React from 'react';
 // React ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 // import Mail from './Mail';
-import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const style = theme => ({
-  card: {
-    padding: theme.spacing.unit * 5
-  }
-});
+const
+  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize') || false),
+  style = theme => ({
+    card: {
+      padding: theme.spacing.unit * 5
+    },
+    from: {
+      fontSize: FONT_SIZE ? '60pt' : '30pt'
+    },
+    email: {
+      fontSize: FONT_SIZE ? '28pt' : '14pt'
+    },
+    subject: {
+      fontSize: FONT_SIZE ? '80pt' : '40pt',
+      fontWeight: FONT_SIZE ? 'bold' : ''
+    }
+  });
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // MailPreview Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MailPreview Component//
@@ -31,14 +38,13 @@ class MailPreview extends React.Component {
     const { classes } = this.props;
     this.from = this.props.result.payload.headers.filter(el => el.name === 'From')[0].value.split('<');
     this.subject = this.props.result.payload.headers.filter(el => el.name === 'Subject')[0].value;
-    console.log(this.from, this.subject);
     return (
       <Card raised className={ classes.card }>
-        <Typography>From: { this.from[0] }</Typography>
+        <Typography className={ classes.from }>From: { this.from[0] }</Typography>
         <br />
-        <Typography>{ `<${ this.from[1] }` }</Typography>
+        <Typography className={ classes.email }>{ `<${ this.from[1] }` }</Typography>
         <br />
-        <Typography>{ `${ this.subject }` }</Typography>
+        <Typography className={ classes.subject }>{ `${ this.subject }` }</Typography>
         <br />
         {/*<Typography>{ MailPreview.htmlDecode(this.props.snippet) }...</Typography>*/}
         <br />
