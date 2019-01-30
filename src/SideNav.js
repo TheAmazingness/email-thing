@@ -33,7 +33,7 @@ const
       width: 400
     },
     fontSize: {
-      fontSize: FONT_SIZE ? '80pt' : '40pt',
+      fontSize: FONT_SIZE ? '60pt' : '40pt',
       fontWeight: FONT_SIZE ? 'bold' : ''
     },
     login: {
@@ -71,7 +71,7 @@ class SideNav extends React.Component {
               <Icon className={ classes.fontSize }>add_circle_outline</Icon>
             </ListItemIcon>
             <ListItemText>
-              <Typography className={ classes.fontSize }>Compose</Typography>
+              <Typography className={ classes.fontSize }>Write</Typography>
             </ListItemText>
           </ListItem>
           {
