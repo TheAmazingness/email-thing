@@ -22,7 +22,7 @@ const style = theme => ({
   content: {
     flexGrow: 1,
     marginLeft: 400,
-    padding: theme.spacing.unit * 12.5,
+    padding: theme.spacing.unit * 10,
     overflowY: 'scroll'
   },
   loading: {
