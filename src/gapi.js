@@ -1,12 +1,12 @@
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
-  API_KEY = 'AIzaSyB-zogDGAMWPWT13WkcHxDi9iLW0JIXkqw',
-  CLIENT_ID = '98686281361-8cfpc07ab56she27qsasqkfa7aegd8ka.apps.googleusercontent.com',
+  API_KEY = '<API_KEY>',
+  CLIENT_ID = '<CLIENT_ID>',
   DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'],
   SCOPES = 'https://www.googleapis.com/auth/gmail.modify';
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
-// Gapi Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Gapi Component//
+// Gapi ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Gapi //
 export default class Gapi {
   /** constructor */
   constructor() {
@@ -28,13 +28,14 @@ export default class Gapi {
       });
     } catch (e) {
       console.error(e);
-      alert('Something went wrong. Try refreshing the page?');
+      window.location.reload();
     }
   }
   // connect ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
   /** getMessages
    * @desc Fetches all emails from inbox of current account
+   * @param status
    */
   getMessages(status) {
     return new Promise(resolve => {
@@ -84,4 +85,4 @@ export default class Gapi {
   }
   // getData ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 }
-// Gapi Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Gapi Component//
+// Gapi ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Gapi //
