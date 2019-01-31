@@ -4,6 +4,7 @@ import React from 'react';
 // React ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Divider from '@material-ui/core/Divider';
 import Icon from '@material-ui/core/Icon';
@@ -16,8 +17,11 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize') || false),
+  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize') || true),
   style = theme => ({
+    btnText: {
+      fontSize: FONT_SIZE ? '45pt' : '30pt'
+    },
     close: {
       textAlign: 'right'
     },
@@ -31,6 +35,19 @@ const
       padding: theme.spacing.unit * 10,
       zIndex: 2000
     },
+    help: {
+      display: 'grid',
+      textAlign: 'center'
+    },
+    helpIcon: {
+      margin: 'auto'
+    },
+    icon: {
+      fontSize: FONT_SIZE ? '60pt' : '40pt'
+    },
+    iconLarge: {
+      fontSize: FONT_SIZE ? '90pt' : '60pt'
+    },
     mailBody: {
       height: '100%',
       padding: theme.spacing.unit * 10,
@@ -39,6 +56,9 @@ const
     pre: {
       fontFamily: 'Roboto',
       fontSize: FONT_SIZE ? '45pt' : '30pt'
+    },
+    read: {
+      padding: theme.spacing.unit * 5
     },
     subject: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
@@ -84,11 +104,23 @@ class Mail extends React.Component {
       >
         <div className={ classes.mailBody }>
           <Grid container spacing={ 8 }>
-            <Grid item sm={ 8 }>
+            <Grid item sm={ 6 }>
               <Typography className={ classes.from }>From: { this.props.from }</Typography>
               <Typography className={ classes.subject }>{ this.props.subject }</Typography>
             </Grid>
-            <Grid className={ classes.close } item sm={ 4 }>
+            <Grid item sm={ 3 }>
+              <Button className={ classes.read } color='secondary' size='large' variant='contained'>
+                <Icon className={ classes.icon }>record_voice_over</Icon>
+                &emsp;
+                <Typography className={ classes.btnText } color='inherit'>Read Email</Typography>
+              </Button>
+            </Grid>
+            <Grid className={ classes.help } item sm={ 2 }>
+              <IconButton className={ classes.helpIcon } color='secondary'>
+                <Icon className={ classes.iconLarge }>help</Icon>
+              </IconButton>
+            </Grid>
+            <Grid className={ classes.close } item sm={ 1 }>
               <IconButton color='primary'>
                 <Icon className={ classes.closeIcon } onClick={ () => this.props.close() }>close</Icon>
               </IconButton>
