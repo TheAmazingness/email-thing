@@ -17,7 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize') || true),
+  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize') || false),
   style = theme => ({
     btnText: {
       fontSize: FONT_SIZE ? '45pt' : '30pt'
