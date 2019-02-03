@@ -16,12 +16,13 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import Mail from './Mail';
+import TTS from './tts';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize') || false),
+  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
   style = theme => ({
     from: {
       fontSize: FONT_SIZE ? '45pt' : '30pt'
@@ -94,18 +95,29 @@ class MailPreview extends React.Component {
       <Card className={ classes.padding } raised>
         <Grid container spacing={ 8 }>
           <Grid item sm={ 8 }>
-            <Typography className={ classes.from }>From: { this.from[0] }</Typography>
+            <Typography className={ classes.from } onClick={ () => new TTS(`From ${ this.from[0] }`).speak() }>
+              From: { this.from[0] }
+            </Typography>
           </Grid>
           <Grid className={ classes.grid } item sm={ 4 }>
-            <Typography className={ classes.email }>{ `<${ this.from[1] }` }</Typography>
+            <Typography className={ classes.email } onClick={ () => new TTS(this.from[1]).speak() }>
+              { `<${ this.from[1] }` }
+            </Typography>
           </Grid>
         </Grid>
         <br />
         <Divider />
         <br />
-        <Typography className={ classes.subject }>{ `${ this.subject }` }</Typography>
+        <Typography className={ classes.subject } onClick={ () => new TTS(this.subject).speak() }>
+          { this.subject }
+        </Typography>
         <br />
-        <Typography className={ classes.snippet }>{ MailPreview.htmlDecode(this.props.result.snippet) }...</Typography>
+        <Typography
+          className={ classes.snippet }
+          onClick={ () => new TTS(MailPreview.htmlDecode(this.props.result.snippet)).speak() }
+        >
+          { MailPreview.htmlDecode(this.props.result.snippet) }...
+        </Typography>
         <br />
         <br />
         <Grid container spacing={ 16 }>
@@ -124,7 +136,7 @@ class MailPreview extends React.Component {
             </Button>
           </Grid>
           <Grid className={ classes.gridIcon } item sm={ 2 }>
-            <IconButton className={ classes.iconButton } color='primary'>
+            <IconButton className={ classes.iconButton } color='primary' onClick={ () => new TTS('Delete').speak() }>
               <Icon className={ classes.icon }>delete_forever</Icon>
             </IconButton>
           </Grid>

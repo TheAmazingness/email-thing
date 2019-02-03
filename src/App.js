@@ -14,6 +14,7 @@ import Gapi from './gapi';
 import Mailbox from './Mailbox';
 import SideNav from './SideNav';
 import TopNav from './TopNav'
+import TTS from './tts';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
@@ -42,7 +43,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       jsx: (
-        <div className={ this.props.classes.loading }>
+        <div className={ this.props.classes.loading } onClick={ () => new TTS('Loading').speak() }>
           <CircularProgress color='secondary' />
         </div>
       )

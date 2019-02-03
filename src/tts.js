@@ -5,27 +5,29 @@ import Voice from '@cheapundies/responsive-voice';
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const TTS = JSON.parse(window.localStorage.getItem('tts') || false);
+const TEXT_TO_SPEECH = JSON.parse(window.localStorage.getItem('tts')) || true;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
-export default class TextToSpeech {
+export default class TTS {
   /** constructor
    * @param text
    */
   constructor(text) {
-    this.speaking = false;
+    this.speaking = Voice.isPlaying();
     this.text = text;
   }
   // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
   // speak ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
   speak() {
-    if (TTS) {
+    if (TEXT_TO_SPEECH) {
+      console.log(this.speaking);
       if (!this.speaking) {
-        Voice.speak(this.text, 'UK English Female', { rate: 0.75 });
+        Voice.speak(this.text, 'US English Female', { rate: 0.75, onend: () => this.speaking = false });
         this.speaking = true;
       } else {
         Voice.cancel();
+        this.speaking = false;
       }
     }
   }

@@ -9,6 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import MailPreview from './MailPreview';
+import TTS from './tts';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
@@ -19,7 +20,7 @@ export default class Mailbox extends React.Component {
     super(props);
     this.state = {
       jsx: (
-        <div>
+        <div onClick={ () => new TTS('Loading').speak() }>
           <CircularProgress color='secondary' />
         </div>
       )

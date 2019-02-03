@@ -10,6 +10,10 @@ import Icon from '@material-ui/core/Icon';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+// Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import TTS from './tts';
+// Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
@@ -50,15 +54,30 @@ class TopNav extends React.Component {
           <Toolbar className={ classes.toolbar }>
             {
               this.props.status && (
-                <Button className={ classes.settings } color='secondary' variant='outlined'>
+                <Button
+                  className={ classes.settings }
+                  color='secondary'
+                  onClick={ () => new TTS('Settings').speak() }
+                  variant='outlined'
+                >
                   <Icon>settings</Icon>
                   &emsp;
                   Coach's Settings
                 </Button>
               )
             }
-            <img alt='AbleMail' className={ classes.logo } src='logo.png' />
-            <Button className={ classes.login } color='secondary' variant='outlined'>
+            <img
+              alt='AbleMail'
+              className={ classes.logo }
+              onClick={ () => new TTS('AbleMail').speak() }
+              src='logo.png'
+            />
+            <Button
+              className={ classes.login }
+              color='secondary'
+              onClick={ () => new TTS(this.props.status ? 'Sign Out' : 'Sign In').speak() }
+              variant='outlined'
+            >
               <Icon>how_to_reg</Icon>
               &emsp;
               { this.props.status ? 'Sign Out' : 'Sign In' }

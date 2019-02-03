@@ -13,20 +13,22 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+// Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import TTS from './tts';
+// Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize') || false),
+  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
   style = theme => ({
     btnText: {
       fontSize: FONT_SIZE ? '45pt' : '30pt'
     },
     close: {
+      display: 'grid',
       textAlign: 'right'
-    },
-    closeIcon: {
-      fontSize: FONT_SIZE ? '90pt' : '60pt'
     },
     from: {
       fontSize: FONT_SIZE ? '30pt' : '20pt'
@@ -39,7 +41,7 @@ const
       display: 'grid',
       textAlign: 'center'
     },
-    helpIcon: {
+    iconButton: {
       margin: 'auto'
     },
     icon: {
@@ -60,6 +62,9 @@ const
     read: {
       padding: theme.spacing.unit * 5
     },
+    readEmail: {
+      textAlign: 'center'
+    },
     subject: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
     }
@@ -68,12 +73,12 @@ const
 
 // Mail Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Mail Component//
 class Mail extends React.Component {
-  /** static enter
+  /** static getHTMLpart
    * @desc gets HTML or plain text part of an email
    * @param data
    * @returns { string }
    */
-  static enter(data) {
+  static getHTMLPart(data) {
     if (typeof data === 'object') {
       for (let i = 0; i <= data.length; i++) {
         if (typeof data[i].parts === 'undefined') {
@@ -89,7 +94,15 @@ class Mail extends React.Component {
       return atob(data.replace(/_/g, '/').replace(/-/g, '+'));
     }
   }
-  // static enter ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+  // static getHTMLPart ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+  /** enter */
+  enter() {
+    this.id = typeof this.props.data === 'string' ? 'pre-mail' : 'div-mail';
+    document.getElementById(this.id).innerHTML = Mail.getHTMLPart(this.props.data);
+    new TTS('Open email').speak();
+  }
+  // enter ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
   /** render */
   render() {
@@ -99,30 +112,40 @@ class Mail extends React.Component {
         className={ classes.dialog }
         fullScreen
         onClose={ () => this.props.close() }
-        onEntered={ () => document.getElementById(typeof this.props.data === 'string' ? 'pre-mail' : 'div-mail').innerHTML = Mail.enter(this.props.data) }
+        onEntered={ () => this.enter() }
         open={ this.props.open }
       >
         <div className={ classes.mailBody }>
           <Grid container spacing={ 8 }>
-            <Grid item sm={ 6 }>
-              <Typography className={ classes.from }>From: { this.props.from }</Typography>
-              <Typography className={ classes.subject }>{ this.props.subject }</Typography>
+            <Grid item sm={ 5 }>
+              <Typography className={ classes.from }  onClick={ () => new TTS(this.props.from).speak() }>
+                From: { this.props.from }
+              </Typography>
+              <Typography className={ classes.subject } onClick={ () => new TTS(this.props.subject).speak() }>
+                { this.props.subject }
+                </Typography>
             </Grid>
-            <Grid item sm={ 3 }>
-              <Button className={ classes.read } color='secondary' size='large' variant='contained'>
+            <Grid className={ classes.readEmail } item sm={ 5 }>
+              <Button
+                className={ classes.read }
+                color='secondary'
+                onClick={ () => new TTS(document.getElementById(this.id).innerText).speak() }
+                size='large'
+                variant='contained'
+              >
                 <Icon className={ classes.icon }>record_voice_over</Icon>
                 &emsp;
                 <Typography className={ classes.btnText } color='inherit'>Read Email</Typography>
               </Button>
             </Grid>
-            <Grid className={ classes.help } item sm={ 2 }>
-              <IconButton className={ classes.helpIcon } color='secondary'>
+            <Grid className={ classes.help } item sm={ 1 }>
+              <IconButton className={ classes.iconButton } color='secondary' onClick={ () => new TTS('Help').speak() }>
                 <Icon className={ classes.iconLarge }>help</Icon>
               </IconButton>
             </Grid>
             <Grid className={ classes.close } item sm={ 1 }>
-              <IconButton color='primary'>
-                <Icon className={ classes.closeIcon } onClick={ () => this.props.close() }>close</Icon>
+              <IconButton className={ classes.iconButton } color='primary' onClick={ () => new TTS('Clothes').speak() }>
+                <Icon className={ classes.iconLarge } onClick={ () => this.props.close() }>close</Icon>
               </IconButton>
             </Grid>
           </Grid>

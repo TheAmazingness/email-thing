@@ -14,12 +14,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+// Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import TTS from './tts';
+// Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize') || false),
-  VOICE_COMMAND = JSON.parse(window.localStorage.getItem('recognition') || false),
+  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
+  VOICE_COMMAND = JSON.parse(window.localStorage.getItem('recognition')) || false,
   style = theme => ({
     appBar: {
       alignItems: 'center',
@@ -66,7 +70,7 @@ class SideNav extends React.Component {
           <div className={ classes.separator } />
           <div className={ classes.separator } />
           <Divider />
-          <ListItem button divider>
+          <ListItem button divider onClick={ () => new TTS('Write email').speak() }>
             <ListItemIcon>
               <Icon className={ classes.fontSize }>add_circle_outline</Icon>
             </ListItemIcon>
@@ -79,7 +83,7 @@ class SideNav extends React.Component {
               <div>
                 <div className={ classes.separator } />
                 <Divider />
-                <ListItem button divider>
+                <ListItem button divider onClick={ () => new TTS('Voice command').speak() }>
                   <ListItemIcon>
                     <Icon className={ classes.fontSize }>record_voice_over</Icon>
                   </ListItemIcon>
@@ -92,7 +96,7 @@ class SideNav extends React.Component {
           }
           <div className={ classes.separator } />
           <Divider />
-          <ListItem button divider>
+          <ListItem button divider onClick={ () => new TTS('Settings').speak() }>
             <ListItemIcon>
               <Icon className={ classes.fontSize }>settings</Icon>
             </ListItemIcon>
