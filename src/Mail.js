@@ -41,11 +41,11 @@ const
       display: 'grid',
       textAlign: 'center'
     },
-    iconButton: {
-      margin: 'auto'
-    },
     icon: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
+    },
+    iconButton: {
+      margin: 'auto'
     },
     iconLarge: {
       fontSize: FONT_SIZE ? '90pt' : '60pt'
@@ -117,7 +117,7 @@ class Mail extends React.Component {
       >
         <div className={ classes.mailBody }>
           <Grid container spacing={ 8 }>
-            <Grid item sm={ 5 }>
+            <Grid item sm={ TTS.status ? 5 : 8 }>
               <Typography className={ classes.from }  onClick={ () => new TTS(this.props.from).speak() }>
                 From: { this.props.from }
               </Typography>
@@ -125,25 +125,29 @@ class Mail extends React.Component {
                 { this.props.subject }
                 </Typography>
             </Grid>
-            <Grid className={ classes.readEmail } item sm={ 5 }>
-              <Button
-                className={ classes.read }
-                color='secondary'
-                onClick={ () => new TTS(document.getElementById(this.id).innerText).speak() }
-                size='large'
-                variant='contained'
-              >
-                <Icon className={ classes.icon }>record_voice_over</Icon>
-                &emsp;
-                <Typography className={ classes.btnText } color='inherit'>Read Email</Typography>
-              </Button>
-            </Grid>
-            <Grid className={ classes.help } item sm={ 1 }>
+            {
+              TTS.status && (
+                <Grid className={ classes.readEmail } item sm={ 5 }>
+                  <Button
+                    className={ classes.read }
+                    color='secondary'
+                    onClick={ () => new TTS(document.getElementById(this.id).innerText).speak() }
+                    size='large'
+                    variant='contained'
+                  >
+                    <Icon className={ classes.icon }>record_voice_over</Icon>
+                    &emsp;
+                    <Typography className={ classes.btnText } color='inherit'>Read Email</Typography>
+                  </Button>
+                </Grid>
+              )
+            }
+            <Grid className={ classes.help } item sm={ TTS.status ? 1 : 2 }>
               <IconButton className={ classes.iconButton } color='secondary' onClick={ () => new TTS('Help').speak() }>
                 <Icon className={ classes.iconLarge }>help</Icon>
               </IconButton>
             </Grid>
-            <Grid className={ classes.close } item sm={ 1 }>
+            <Grid className={ classes.close } item sm={ TTS.status ? 1 : 2 }>
               <IconButton className={ classes.iconButton } color='primary' onClick={ () => new TTS('Clothes').speak() }>
                 <Icon className={ classes.iconLarge } onClick={ () => this.props.close() }>close</Icon>
               </IconButton>

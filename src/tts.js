@@ -18,7 +18,7 @@ export default class TTS {
   }
   // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-  // speak ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+  /** speak */
   speak() {
     if (TEXT_TO_SPEECH) {
       console.log(this.speaking);
@@ -32,4 +32,10 @@ export default class TTS {
     }
   }
   // speak ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+  /** status */
+  static get status() {
+    return TEXT_TO_SPEECH;
+  }
+  // static get status ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 }
