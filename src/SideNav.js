@@ -16,6 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import Compose from './Compose';
 import TTS from './tts';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
@@ -61,6 +62,15 @@ const
 
 // SideNav Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SideNav Component//
 class SideNav extends React.Component {
+  /** constructor */
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
+  // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
   /** render */
   render() {
     const { classes } = this.props;
@@ -70,7 +80,11 @@ class SideNav extends React.Component {
           <div className={ classes.separator } />
           <div className={ classes.separator } />
           <Divider />
-          <ListItem button divider onClick={ () => new TTS('Write email').speak() }>
+          <ListItem
+            button
+            divider
+            onClick={ () => this.setState({ open: true }) }
+          >
             <ListItemIcon>
               <Icon className={ classes.fontSize }>add_circle_outline</Icon>
             </ListItemIcon>
@@ -105,6 +119,7 @@ class SideNav extends React.Component {
             </ListItemText>
           </ListItem>
         </List>
+        <Compose close={ () => this.setState({ open: false }) }  open={ this.state.open } />
       </Drawer>
     );
   }
