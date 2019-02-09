@@ -26,20 +26,12 @@ const
     btnText: {
       fontSize: FONT_SIZE ? '45pt' : '30pt'
     },
-    close: {
-      display: 'grid',
-      textAlign: 'right'
-    },
     from: {
       fontSize: FONT_SIZE ? '30pt' : '20pt'
     },
     dialog: {
       padding: theme.spacing.unit * 10,
       zIndex: 2000
-    },
-    help: {
-      display: 'grid',
-      textAlign: 'center'
     },
     icon: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
@@ -67,6 +59,9 @@ const
     },
     subject: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
+    },
+    verticalCenter: {
+      display: 'grid'
     }
   });
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
@@ -142,12 +137,12 @@ class Mail extends React.Component {
                 </Grid>
               )
             }
-            <Grid className={ classes.help } item sm={ TTS.status ? 1 : 2 }>
+            <Grid className={ classes.verticalCenter } item sm={ TTS.status ? 1 : 2 }>
               <IconButton className={ classes.iconButton } color='secondary' onClick={ () => new TTS('Help').speak() }>
                 <Icon className={ classes.iconLarge }>help</Icon>
               </IconButton>
             </Grid>
-            <Grid className={ classes.close } item sm={ TTS.status ? 1 : 2 }>
+            <Grid className={ classes.verticalCenter } item sm={ TTS.status ? 1 : 2 }>
               <IconButton className={ classes.iconButton } color='primary' onClick={ () => new TTS('Clothes').speak() }>
                 <Icon className={ classes.iconLarge } onClick={ () => this.props.close() }>close</Icon>
               </IconButton>

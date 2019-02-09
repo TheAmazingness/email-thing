@@ -28,8 +28,7 @@ const
       width: '100%'
     },
     close: {
-      display: 'grid',
-      textAlign: 'right'
+      display: 'grid'
     },
     dialog: {
       padding: theme.spacing.unit * 10,
@@ -43,6 +42,11 @@ const
     },
     title: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
+    },
+    titleBox: {
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column'
     }
   });
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
@@ -62,10 +66,10 @@ class Compose extends React.Component {
       >
         <div className={ classes.body }>
           <Grid container spacing={ 8 }>
-            <Grid item sm={ 8 }>
+            <Grid className={ classes.titleBox } item sm={ 11 }>
               <Typography className={ classes.title }>Write Email</Typography>
             </Grid>
-            <Grid className={ classes.close } item sm={ 4 }>
+            <Grid className={ classes.close } item sm={ 1 }>
               <IconButton className={ classes.iconButton } color='primary' onClick={ () => new TTS('Clothes').speak() }>
                 <Icon className={ classes.iconLarge } onClick={ () => this.props.close() }>close</Icon>
               </IconButton>

@@ -119,7 +119,7 @@ class SideNav extends React.Component {
             </ListItemText>
           </ListItem>
         </List>
-        <Compose close={ () => this.setState({ open: false }) }  open={ this.state.open } />
+        <Compose close={ () => this.setState({ open: false }) } open={ this.state.open } />
       </Drawer>
     );
   }
