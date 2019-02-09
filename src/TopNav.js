@@ -12,7 +12,9 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import Settings from './Settings';
 import TTS from './tts';
+import Compose from "./Compose";
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
@@ -45,6 +47,15 @@ const style = {
 
 // TopNav Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TopNav Component//
 class TopNav extends React.Component {
+  /** constructor */
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
+  // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
   /** render */
   render() {
     const { classes } = this.props;
@@ -57,7 +68,7 @@ class TopNav extends React.Component {
                 <Button
                   className={ classes.settings }
                   color='secondary'
-                  onClick={ () => new TTS('Settings').speak() }
+                  onClick={ () => this.setState({ open: true }) }
                   variant='outlined'
                 >
                   <Icon>settings</Icon>
@@ -84,6 +95,7 @@ class TopNav extends React.Component {
             </Button>
           </Toolbar>
         </AppBar>
+        <Settings close={ () => this.setState({ open: false }) } open={ this.state.open } />
       </div>
     );
   }
