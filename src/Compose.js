@@ -79,6 +79,7 @@ class Compose extends React.Component {
           <br />
           <TextField
             fullWidth
+            InputProps={ { style: { fontSize: FONT_SIZE ? '24pt' : '' } } }
             label='Message'
             multiline
             placeholder='Message'
