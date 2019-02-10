@@ -19,10 +19,12 @@ import TTS from './tts';
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const style = theme => ({
+const
+  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
+  style = theme => ({
   content: {
     flexGrow: 1,
-    marginLeft: 400,
+    marginLeft: FONT_SIZE ? 450 : 400,
     padding: theme.spacing.unit * 10,
     overflowY: 'scroll'
   },

@@ -32,10 +32,10 @@ const
     },
     drawer: {
       flexShrink: 0,
-      width: 400
+      width: FONT_SIZE ? 450 : 400
     },
     drawerPaper: {
-      width: 400
+      width: FONT_SIZE ? 450 : 400
     },
     fontSize: {
       fontSize: FONT_SIZE ? '60pt' : '40pt',
