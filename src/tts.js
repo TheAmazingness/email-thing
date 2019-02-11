@@ -21,7 +21,6 @@ export default class TTS {
   /** speak */
   speak() {
     if (TEXT_TO_SPEECH) {
-      console.log(this.speaking);
       if (!this.speaking) {
         Voice.speak(this.text, 'US English Female', { rate: 0.75, onend: () => this.speaking = false });
         this.speaking = true;
