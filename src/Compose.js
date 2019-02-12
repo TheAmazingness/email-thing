@@ -70,8 +70,15 @@ class Compose extends React.Component {
               <Typography className={ classes.title }>Write Email</Typography>
             </Grid>
             <Grid className={ classes.close } item sm={ 1 }>
-              <IconButton className={ classes.iconButton } color='primary' onClick={ () => new TTS('Clothes').speak() }>
-                <Icon className={ classes.iconLarge } onClick={ () => this.props.close() }>close</Icon>
+              <IconButton
+                className={ classes.iconButton }
+                color='primary'
+                onClick={ () => {
+                  new TTS('Clothes').speak();
+                  this.props.close();
+                } }
+              >
+                <Icon className={ classes.iconLarge }>close</Icon>
               </IconButton>
             </Grid>
           </Grid>

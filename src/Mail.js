@@ -143,8 +143,15 @@ class Mail extends React.Component {
               </IconButton>
             </Grid>
             <Grid className={ classes.verticalCenter } item sm={ TTS.status ? 1 : 2 }>
-              <IconButton className={ classes.iconButton } color='primary' onClick={ () => new TTS('Clothes').speak() }>
-                <Icon className={ classes.iconLarge } onClick={ () => this.props.close() }>close</Icon>
+              <IconButton
+                className={ classes.iconButton }
+                color='primary'
+                onClick={ () => {
+                  new TTS('Clothes').speak();
+                  this.props.close();
+                } }
+              >
+                <Icon className={ classes.iconLarge }>close</Icon>
               </IconButton>
             </Grid>
           </Grid>
