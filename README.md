@@ -24,7 +24,7 @@ Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
 4. `yarn start` or `npm start` to run the app in development mode. ([http://localhost:3000](http://localhost:3000) will automagically open in your favorite browser and reload with any edits)
 5. `yarn run build` or `npm run build` to build the app for production in the `./build` directory.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Check out `React-README.md` for more information.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Check out [`React-README.md`](https://github.com/TheAmazingness/ablemail/blob/redesign/React-README.md) for more information.
 
 ## Redesign
 This branch is for reorganizing/documenting to make the code easier to read.
