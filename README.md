@@ -11,6 +11,16 @@ Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
 1. Clone this repository:
 <br>`git clone https://github.com/TheAmazingness/ablemail.git <your-project-folder>`
 2. Don't forget to get an API key and an OAuth client ID.
+<br>Create a file in `src/` called `credentials.json`, like this:
+<br> 
+	````json
+	{
+	  "localhost": {
+	    "CLIENT_ID": "xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com",
+	    "API_KEY": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+	  }
+	}
+	````
 3. `yarn` or `npm i`
 4. `yarn start` or `npm start` to run the app in development mode. ([http://localhost:3000](http://localhost:3000) will automagically open in your favorite browser and reload with any edits)
 5. `yarn run build` or `npm run build` to build the app for production in the `./build` directory.
