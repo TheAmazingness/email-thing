@@ -21,10 +21,15 @@ import TTS from './tts';
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
+  CANNED = JSON.parse(window.localStorage.getItem('canned')) || {},
   FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
   style = theme => ({
-    btnText: {
-      fontSize: FONT_SIZE ? '45pt' : '30pt'
+    cannedBtn: {
+      display: 'inline-block',
+      padding: `0 ${ theme.spacing.unit }px`
+    },
+    center: {
+      textAlign: 'center'
     },
     from: {
       fontSize: FONT_SIZE ? '30pt' : '20pt'
@@ -54,8 +59,8 @@ const
     read: {
       padding: theme.spacing.unit * 5
     },
-    readEmail: {
-      textAlign: 'center'
+    textLarge: {
+      fontSize: FONT_SIZE ? '45pt' : '30pt'
     },
     subject: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
@@ -68,6 +73,33 @@ const
 
 // Mail Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Mail Component//
 class Mail extends React.Component {
+  /** constructor */
+  constructor(props) {
+    super(props);
+    this.state = {
+      canned: null
+    }
+  }
+  // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+  /** componentDidMount */
+  componentDidMount() {
+    let jsx = [];
+    for (const icon in CANNED) {
+      if (CANNED.hasOwnProperty(icon)) {
+        jsx.push((
+          <div className={ this.props.classes.cannedBtn } key={ icon } >
+            <IconButton color='primary' onClick={ () => new TTS('Quick Reply').speak() }>
+              <Icon className={ this.props.classes.iconLarge }>{ icon }</Icon>
+            </IconButton>
+          </div>
+        ));
+      }
+    }
+    this.setState({ canned: jsx })
+  }
+  // componentDidMount ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
   /** static getHTMLpart
    * @desc gets HTML or plain text part of an email
    * @param data
@@ -122,7 +154,7 @@ class Mail extends React.Component {
             </Grid>
             {
               TTS.status && (
-                <Grid className={ classes.readEmail } item sm={ 5 }>
+                <Grid className={ classes.center } item sm={ 5 }>
                   <Button
                     className={ classes.read }
                     color='secondary'
@@ -160,6 +192,26 @@ class Mail extends React.Component {
           <br />
           <pre className={ classes.pre } id='pre-mail' />
           <div id='div-mail' />
+          <br />
+          <Divider />
+          <br />
+          <div>
+            <Typography
+              className={ `${ classes.textLarge } ${ classes.center }` }
+              onClick={ () => new TTS('Quick Reply').speak() }
+            >
+              <Icon className={ classes.icon }>fast_forward</Icon>
+              &nbsp;
+              Quick Reply
+            </Typography>
+            <br />
+            <br />
+            <div className={ classes.center }>
+              { this.state.canned }
+            </div>
+          </div>
+          <br />
+          <br />
         </div>
       </Dialog>
     );
