@@ -4,17 +4,16 @@ import React from 'react';
 // React ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Divider from '@material-ui/core/Divider';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import MailHeader from './mail/MailHeader';
 import TTS from './tts';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
@@ -31,18 +30,12 @@ const
     center: {
       textAlign: 'center'
     },
-    from: {
-      fontSize: FONT_SIZE ? '30pt' : '20pt'
-    },
     dialog: {
       padding: theme.spacing.unit * 10,
       zIndex: 2000
     },
     icon: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
-    },
-    iconButton: {
-      margin: 'auto'
     },
     iconLarge: {
       fontSize: FONT_SIZE ? '90pt' : '60pt'
@@ -56,14 +49,12 @@ const
       fontFamily: 'Roboto',
       fontSize: FONT_SIZE ? '45pt' : '30pt'
     },
-    read: {
-      padding: theme.spacing.unit * 5
+    quickReply: {
+      alignItems: 'flex-start',
+      display: 'flex'
     },
     textLarge: {
       fontSize: FONT_SIZE ? '45pt' : '30pt'
-    },
-    subject: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt'
     },
     verticalCenter: {
       display: 'grid'
@@ -143,50 +134,7 @@ class Mail extends React.Component {
         open={ this.props.open }
       >
         <div className={ classes.mailBody }>
-          <Grid container spacing={ 8 }>
-            <Grid item sm={ TTS.status ? 5 : 8 }>
-              <Typography className={ classes.from }  onClick={ () => new TTS(this.props.from).speak() }>
-                From: { this.props.from }
-              </Typography>
-              <Typography className={ classes.subject } onClick={ () => new TTS(this.props.subject).speak() }>
-                { this.props.subject }
-                </Typography>
-            </Grid>
-            {
-              TTS.status && (
-                <Grid className={ classes.center } item sm={ 5 }>
-                  <Button
-                    className={ classes.read }
-                    color='secondary'
-                    onClick={ () => new TTS(document.getElementById(this.id).innerText).speak() }
-                    size='large'
-                    variant='contained'
-                  >
-                    <Icon className={ classes.icon }>record_voice_over</Icon>
-                    &emsp;
-                    <Typography className={ classes.btnText } color='inherit'>Read Email</Typography>
-                  </Button>
-                </Grid>
-              )
-            }
-            <Grid className={ classes.verticalCenter } item sm={ TTS.status ? 1 : 2 }>
-              <IconButton className={ classes.iconButton } color='secondary' onClick={ () => new TTS('Help').speak() }>
-                <Icon className={ classes.iconLarge }>help</Icon>
-              </IconButton>
-            </Grid>
-            <Grid className={ classes.verticalCenter } item sm={ TTS.status ? 1 : 2 }>
-              <IconButton
-                className={ classes.iconButton }
-                color='primary'
-                onClick={ () => {
-                  new TTS('Clothes').speak();
-                  this.props.close();
-                } }
-              >
-                <Icon className={ classes.iconLarge }>close</Icon>
-              </IconButton>
-            </Grid>
-          </Grid>
+          <MailHeader close={ () => this.props.close() } from={ this.props.from } subject={ this.props.subject } />
           <br />
           <Divider />
           <br />
@@ -197,7 +145,7 @@ class Mail extends React.Component {
           <br />
           <div>
             <Typography
-              className={ `${ classes.textLarge } ${ classes.center }` }
+              className={ `${ classes.textLarge } ${ classes.quickReply }` }
               onClick={ () => new TTS('Quick Reply').speak() }
             >
               <Icon className={ classes.icon }>fast_forward</Icon>
