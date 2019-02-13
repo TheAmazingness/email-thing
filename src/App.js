@@ -59,13 +59,7 @@ class App extends React.Component {
     gapi.connect();
     gapi.getData.then((data) => {
       if (!data.status) {
-        this.setState({
-          jsx: (
-            <div>
-              <TopNav status={ false } />
-            </div>
-          )
-        });
+        this.setState({ jsx: <TopNav status={ false } /> });
       } else {
         this.setState({
           jsx: (
