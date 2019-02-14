@@ -37,7 +37,7 @@ const
     icon: {
       fontSize: FONT_SIZE ? '30pt' : '20pt'
     },
-    textCenter: {
+    textAlignCenter: {
       textAlign: 'center'
     }
   });
@@ -67,7 +67,7 @@ class SettingsBody extends React.Component {
         <br />
         <Grid container spacing={ 8 }>
           <HelpEmail />
-          <Grid className={ `${ classes.textCenter } ${ classes.canned }` } item sm={ 6 }>
+          <Grid className={ `${ classes.textAlignCenter } ${ classes.canned }` } item sm={ 6 }>
             <Button color='primary' onClick={ () => this.props.setState({ open: true }) } variant='contained'>
               <Icon className={ classes.icon }>add_comment</Icon>
               &nbsp;

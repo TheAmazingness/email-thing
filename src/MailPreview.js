@@ -30,13 +30,13 @@ const
     email: {
       fontSize: FONT_SIZE ? '0pt' : '12pt'
     },
-    grid: {
+    verticalCenterFlex: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center'
     },
     gridIcon: {
-      display: 'grid',
+      display: 'verticalCenterFlex',
       textAlign: 'center'
     },
     icon: {
@@ -99,7 +99,7 @@ class MailPreview extends React.Component {
               From: { this.from[0] }
             </Typography>
           </Grid>
-          <Grid className={ classes.grid } item sm={ 4 }>
+          <Grid className={ classes.verticalCenterFlex } item sm={ 4 }>
             <Typography className={ classes.email } onClick={ () => new TTS(this.from[1]).speak() }>
               { `<${ this.from[1] }` }
             </Typography>

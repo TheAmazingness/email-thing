@@ -21,7 +21,7 @@ import TTS from '../tts';
 const
   FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
   style = theme => ({
-    center: {
+    textAlignCenter: {
       textAlign: 'center'
     },
     from: {
@@ -45,8 +45,8 @@ const
     textLarge: {
       fontSize: FONT_SIZE ? '45pt' : '30pt'
     },
-    verticalCenter: {
-      display: 'grid'
+    verticalCenterGrid: {
+      display: 'verticalCenterFlex'
     }
   });
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
@@ -68,7 +68,7 @@ class MailHeader extends React.Component {
         </Grid>
         {
           TTS.status && (
-            <Grid className={ classes.center } item sm={ 5 }>
+            <Grid className={ classes.textAlignCenter } item sm={ 5 }>
               <Button
                 className={ classes.read }
                 color='secondary'
@@ -83,12 +83,12 @@ class MailHeader extends React.Component {
             </Grid>
           )
         }
-        <Grid className={ classes.verticalCenter } item sm={ TTS.status ? 1 : 2 }>
+        <Grid className={ classes.verticalCenterGrid } item sm={ TTS.status ? 1 : 2 }>
           <IconButton className={ classes.iconButton } color='secondary' onClick={ () => new TTS('Help').speak() }>
             <Icon className={ classes.iconLarge }>help</Icon>
           </IconButton>
         </Grid>
-        <Grid className={ classes.verticalCenter } item sm={ TTS.status ? 1 : 2 }>
+        <Grid className={ classes.verticalCenterGrid } item sm={ TTS.status ? 1 : 2 }>
           <IconButton
             className={ classes.iconButton }
             color='primary'

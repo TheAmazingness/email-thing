@@ -72,6 +72,7 @@ export default class Gapi {
         scope: SCOPES
       }).then(() => {
         resolve(this.getMessages(this.gapi.auth2.getAuthInstance().isSignedIn.get()));
+        // TODO: sign in and sign out
         // this.props.isLogin(window.gapi.auth2.getAuthInstance().isSignedIn.get());
         // window.gapi.client.gmail.users.getProfile({ userId: 'me' }).then(response => {
         //   this.props.getEmail(JSON.parse(response.body));

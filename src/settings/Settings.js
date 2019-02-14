@@ -49,7 +49,7 @@ const
     title: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
     },
-    titleBox: {
+    verticalCenterFlex: {
       display: 'flex',
       justifyContent: 'center',
       flexDirection: 'column'
@@ -81,7 +81,7 @@ class Settings extends React.Component {
       >
         <div className={ classes.body }>
           <Grid container spacing={ 8 }>
-            <Grid className={ classes.titleBox } item sm={ 11 }>
+            <Grid className={ classes.verticalCenterFlex } item sm={ 11 }>
               <Typography className={ classes.title }>Settings</Typography>
             </Grid>
             <Grid className={ classes.close } item sm={ 1 }>

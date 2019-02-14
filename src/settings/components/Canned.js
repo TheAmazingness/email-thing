@@ -36,7 +36,7 @@ const
     cannedTitle: {
       fontSize: FONT_SIZE ? '36pt' : '24pt'
     },
-    center: {
+    textAlignCenter: {
       textAlign: 'center'
     },
     close: {
@@ -46,7 +46,7 @@ const
       padding: theme.spacing.unit * 10,
       zIndex: 2000
     },
-    grid: {
+    verticalCenterFlex: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -66,11 +66,6 @@ const
     title: {
       fontSize: FONT_SIZE ? '60pt' : '40pt'
     },
-    titleBox: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'column'
-    }
   });
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
@@ -123,7 +118,7 @@ class Canned extends React.Component {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Grid container spacing={ 8 }>
-                <Grid className={ this.props.classes.grid } item sm={ 10 }>
+                <Grid className={ this.props.classes.verticalCenterFlex } item sm={ 10 }>
                   { CANNED[icon] }
                 </Grid>
                 <Grid item sm={ 2 }>
@@ -156,7 +151,7 @@ class Canned extends React.Component {
       >
         <div className={ classes.body }>
           <Grid container spacing={ 8 }>
-            <Grid className={ classes.titleBox } item sm={ 11 }>
+            <Grid className={ classes.verticalCenterFlex } item sm={ 11 }>
               <Typography className={ classes.title }>Canned Responses</Typography>
             </Grid>
             <Grid className={ classes.close } item sm={ 1 }>
@@ -176,12 +171,12 @@ class Canned extends React.Component {
           <Divider />
           <br />
           <Grid container spacing={ 8 }>
-            <Grid className={ classes.center } item sm={ 6 }>
+            <Grid className={ classes.textAlignCenter } item sm={ 6 }>
               <Typography className={ classes.cannedTitle }>Existing Canned Responses</Typography>
               <br />
               { this.state.canned }
             </Grid>
-            <Grid className={ classes.center } item sm={ 6 }>
+            <Grid className={ classes.textAlignCenter } item sm={ 6 }>
               <Typography className={ classes.cannedTitle }>Add Canned Responses</Typography>
               <br />
               <TextField

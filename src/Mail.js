@@ -6,61 +6,16 @@ import React from 'react';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import Dialog from '@material-ui/core/Dialog';
 import Divider from '@material-ui/core/Divider';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import MailHeader from './mail/MailHeader';
+import QuickReply from './mail/QuickReply';
+import { style } from './style';
 import TTS from './tts';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
-
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const
-  CANNED = JSON.parse(window.localStorage.getItem('canned')) || {},
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  style = theme => ({
-    cannedBtn: {
-      display: 'inline-block',
-      padding: `0 ${ theme.spacing.unit }px`
-    },
-    center: {
-      textAlign: 'center'
-    },
-    dialog: {
-      padding: theme.spacing.unit * 10,
-      zIndex: 2000
-    },
-    icon: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt'
-    },
-    iconLarge: {
-      fontSize: FONT_SIZE ? '90pt' : '60pt'
-    },
-    mailBody: {
-      height: '100%',
-      padding: theme.spacing.unit * 10,
-      width: '100%'
-    },
-    pre: {
-      fontFamily: 'Roboto',
-      fontSize: FONT_SIZE ? '45pt' : '30pt'
-    },
-    quickReply: {
-      alignItems: 'flex-start',
-      display: 'flex'
-    },
-    textLarge: {
-      fontSize: FONT_SIZE ? '45pt' : '30pt'
-    },
-    verticalCenter: {
-      display: 'grid'
-    }
-  });
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // Mail Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Mail Component//
 class Mail extends React.Component {
@@ -72,24 +27,6 @@ class Mail extends React.Component {
     }
   }
   // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-
-  /** componentDidMount */
-  componentDidMount() {
-    let jsx = [];
-    for (const icon in CANNED) {
-      if (CANNED.hasOwnProperty(icon)) {
-        jsx.push((
-          <div className={ this.props.classes.cannedBtn } key={ icon } >
-            <IconButton color='primary' onClick={ () => new TTS('Quick Reply').speak() }>
-              <Icon className={ this.props.classes.iconLarge }>{ icon }</Icon>
-            </IconButton>
-          </div>
-        ));
-      }
-    }
-    this.setState({ canned: jsx })
-  }
-  // componentDidMount ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
   /** static getHTMLpart
    * @desc gets HTML or plain text part of an email
@@ -142,24 +79,7 @@ class Mail extends React.Component {
           <div id='div-mail' />
           <br />
           <Divider />
-          <br />
-          <div>
-            <Typography
-              className={ `${ classes.textLarge } ${ classes.quickReply }` }
-              onClick={ () => new TTS('Quick Reply').speak() }
-            >
-              <Icon className={ classes.icon }>fast_forward</Icon>
-              &nbsp;
-              Quick Reply
-            </Typography>
-            <br />
-            <br />
-            <div className={ classes.center }>
-              { this.state.canned }
-            </div>
-          </div>
-          <br />
-          <br />
+          <QuickReply />
         </div>
       </Dialog>
     );

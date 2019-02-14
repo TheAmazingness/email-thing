@@ -22,7 +22,7 @@ const
     label: {
       fontSize: FONT_SIZE ? '36pt' : '24pt'
     },
-    textCenter: {
+    textAlignCenter: {
       textAlign: 'center'
     }
   };
@@ -43,7 +43,7 @@ class FontSize extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid className={ classes.textCenter } item sm={ 6 }>
+      <Grid className={ classes.textAlignCenter } item sm={ 6 }>
         <FormControlLabel
           classes={ { label: classes.label } }
           control={
