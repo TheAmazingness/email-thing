@@ -1,15 +1,45 @@
 const FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false;
 export const style = theme => ({
-  // TODO: Keep sorting
-  // Unsorted
-  icon: {
+  // TODO: Make everything work
+  // Global
+  fontSize45_30: {
+    fontSize: FONT_SIZE ? '45pt' : '30pt'
+  },
+  fontSize60_40: {
     fontSize: FONT_SIZE ? '60pt' : '40pt'
   },
-  iconButton: {
+  fontSize90_60: {
+    fontSize: FONT_SIZE ? '90pt' : '60pt'
+  },
+  dialog: {
+    padding: theme.spacing.unit * 10,
+    zIndex: 2000
+  },
+  dialogBody: {
+    height: '100%',
+    padding: theme.spacing.unit * 10,
+    width: '100%'
+  },
+  displayGrid: {
+    display: 'grid'
+  },
+  marginAuto: {
     margin: 'auto'
   },
-  iconLarge: {
-    fontSize: FONT_SIZE ? '90pt' : '60pt'
+  textAlignCenter: {
+    textAlign: 'center'
+  },
+  toolbar: theme.mixins.toolbar,
+  verticalCenterFlex: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
+
+  // TopNav.js
+  appBar: {
+    alignItems: 'center',
+    zIndex: 1400
   },
   login: {
     position: 'absolute',
@@ -26,52 +56,33 @@ export const style = theme => ({
     left: 0,
     position: 'absolute'
   },
-  subject: {
-    fontSize: FONT_SIZE ? '60pt' : '40pt'
+  width90: {
+    width: '90%'
   },
-  textAlignCenter: {
-    textAlign: 'center'
+
+  // SideNav.js
+  drawer: {
+    flexShrink: 0,
+    width: FONT_SIZE ? 450 : 400
   },
-  textLarge: {
-    fontSize: FONT_SIZE ? '45pt' : '30pt'
+  drawerPaper: {
+    width: FONT_SIZE ? 450 : 400
   },
-  title: {
-    fontSize: FONT_SIZE ? '60pt' : '40pt'
+
+  // MailPreview.js
+  email: {
+    fontSize: FONT_SIZE ? '0pt' : '12pt'
   },
-  verticalCenterFlex: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column'
+  padding: {
+    padding: theme.spacing.unit * 5
   },
-  verticalCenterGrid: {
-    display: 'verticalCenterFlex'
+  snippet: {
+    fontSize: FONT_SIZE ? '36pt' : '24pt'
   },
 
   // Mail.js
-  cannedBtn: {
-    display: 'inline-block',
-    padding: `0 ${ theme.spacing.unit }px`
-  },
-  mailBody: {
-    height: '100%',
-    padding: theme.spacing.unit * 10,
-    width: '100%'
-  },
   pre: {
-    fontFamily: 'Roboto',
-    fontSize: FONT_SIZE ? '45pt' : '30pt'
-  },
-  quickReply: {
-    alignItems: 'flex-start',
-    display: 'flex'
-  },
-
-  // MailHeader.js
-  from: {
-    fontSize: FONT_SIZE ? '30pt' : '20pt'
-  },
-  read: {
-    padding: theme.spacing.unit * 5
+    fontFamily: 'Roboto'
   },
 
   // App.js
@@ -86,111 +97,5 @@ export const style = theme => ({
     lineHeight: '100vh',
     textAlign: 'center',
     width: '100vw'
-  },
-  toolbar: theme.mixins.toolbar,
-
-  // MailPreview.js
-  from: {
-    fontSize: FONT_SIZE ? '45pt' : '30pt'
-  },
-  email: {
-    fontSize: FONT_SIZE ? '0pt' : '12pt'
-  },
-  gridIcon: {
-    display: 'verticalCenterFlex',
-    textAlign: 'center'
-  },
-  open: {
-    fontSize: FONT_SIZE ? '45pt' : '30pt'
-  },
-  openIcon: {
-    fontSize: FONT_SIZE ? '60pt' : '40pt'
-  },
-  padding: {
-    padding: theme.spacing.unit * 5
-  },
-  snippet: {
-    fontSize: FONT_SIZE ? '36pt' : '24pt'
-  },
-
-  // SideNav
-  drawer: {
-    flexShrink: 0,
-    width: FONT_SIZE ? 450 : 400
-  },
-  drawerPaper: {
-    width: FONT_SIZE ? 450 : 400
-  },
-  fontSize: {
-    fontSize: FONT_SIZE ? '60pt' : '40pt',
-    fontWeight: FONT_SIZE ? 'bold' : ''
-  },
-  separator: theme.mixins.toolbar,
-
-  // TopNav.js
-  toolbar: {
-    width: '90%'
-  },
-
-  // SettingsBody.js
-  canned: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
-
-  // Canned.js
-  cannedTitle: {
-    fontSize: FONT_SIZE ? '36pt' : '24pt'
-  },
-  message: {
-    width: '100%'
-  },
-
-  // FontSize.js, HelpEmail.js
-  label: {
-    fontSize: FONT_SIZE ? '36pt' : '24pt'
-  },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Sorted
-  appBar: {
-    alignItems: 'center',
-    zIndex: 1400
-  },
-  body: {
-    height: '100%',
-    padding: theme.spacing.unit * 10,
-    width: '100%'
-  },
-  button: {
-    fontSize: FONT_SIZE ? '24pt' : '16pt',
-    padding: theme.spacing.unit
-  },
-  close: {
-    display: 'grid'
-  },
-  dialog: {
-    padding: theme.spacing.unit * 10,
-    zIndex: 2000
-  },
+  }
 });

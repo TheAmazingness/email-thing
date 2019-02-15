@@ -22,42 +22,7 @@ import TTS from './tts';
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  VOICE_COMMAND = JSON.parse(window.localStorage.getItem('recognition')) || false,
-  style = theme => ({
-    appBar: {
-      alignItems: 'center',
-      zIndex: 1400
-    },
-    drawer: {
-      flexShrink: 0,
-      width: FONT_SIZE ? 450 : 400
-    },
-    drawerPaper: {
-      width: FONT_SIZE ? 450 : 400
-    },
-    fontSize: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt',
-      fontWeight: FONT_SIZE ? 'bold' : ''
-    },
-    login: {
-      position: 'absolute',
-      right: 0
-    },
-    logo: {
-      height: '7.5vh',
-      left: 0,
-      margin: '0 auto',
-      position: 'absolute',
-      right: 0
-    },
-    separator: theme.mixins.toolbar,
-    settings: {
-      left: 0,
-      position: 'absolute'
-    }
-  });
+const VOICE_COMMAND = JSON.parse(window.localStorage.getItem('recognition')) || false;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // SideNav Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SideNav Component//
@@ -77,8 +42,8 @@ class SideNav extends React.Component {
     return (
       <Drawer className={ classes.drawer } classes={ { paper: classes.drawerPaper } } variant='permanent'>
         <List component='nav'>
-          <div className={ classes.separator } />
-          <div className={ classes.separator } />
+          <div className={ classes.toolbar } />
+          <div className={ classes.toolbar } />
           <Divider />
           <ListItem
             button
@@ -86,36 +51,36 @@ class SideNav extends React.Component {
             onClick={ () => this.setState({ open: true }) }
           >
             <ListItemIcon>
-              <Icon className={ classes.fontSize }>add_circle_outline</Icon>
+              <Icon className={ classes.fontSize60_40 }>add_circle_outline</Icon>
             </ListItemIcon>
             <ListItemText>
-              <Typography className={ classes.fontSize }>Write</Typography>
+              <Typography className={ classes.fontSize60_40 }>Write</Typography>
             </ListItemText>
           </ListItem>
           {
             VOICE_COMMAND && (
               <div>
-                <div className={ classes.separator } />
+                <div className={ classes.toolbar } />
                 <Divider />
                 <ListItem button divider onClick={ () => new TTS('Voice command').speak() }>
                   <ListItemIcon>
-                    <Icon className={ classes.fontSize }>record_voice_over</Icon>
+                    <Icon className={ classes.fontSize60_40 }>record_voice_over</Icon>
                   </ListItemIcon>
                   <ListItemText>
-                    <Typography className={ classes.fontSize }>Voice Command</Typography>
+                    <Typography className={ classes.fontSize60_40 }>Voice Command</Typography>
                   </ListItemText>
                 </ListItem>
               </div>
             )
           }
-          <div className={ classes.separator } />
+          <div className={ classes.toolbar } />
           <Divider />
           <ListItem button divider onClick={ () => new TTS('Settings').speak() }>
             <ListItemIcon>
-              <Icon className={ classes.fontSize }>settings</Icon>
+              <Icon className={ classes.fontSize60_40 }>settings</Icon>
             </ListItemIcon>
             <ListItemText>
-              <Typography className={ classes.fontSize }>Settings</Typography>
+              <Typography className={ classes.fontSize60_40 }>Settings</Typography>
             </ListItemText>
           </ListItem>
         </List>

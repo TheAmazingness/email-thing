@@ -14,41 +14,13 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import { style } from './style';
 import TTS from './tts';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  style = theme => ({
-    body: {
-      height: '100%',
-      padding: theme.spacing.unit * 10,
-      width: '100%'
-    },
-    close: {
-      display: 'grid'
-    },
-    dialog: {
-      padding: theme.spacing.unit * 10,
-      zIndex: 2000
-    },
-    iconButton: {
-      margin: 'auto'
-    },
-    iconLarge: {
-      fontSize: FONT_SIZE ? '90pt' : '60pt'
-    },
-    title: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt'
-    },
-    verticalCenterFlex: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'column'
-    }
-  });
+const FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // Compose Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Compose Component//
@@ -64,21 +36,21 @@ class Compose extends React.Component {
         onEntered={ () => new TTS('Write email').speak() }
         open={ this.props.open }
       >
-        <div className={ classes.body }>
+        <div className={ classes.dialogBody }>
           <Grid container spacing={ 8 }>
             <Grid className={ classes.verticalCenterFlex } item sm={ 11 }>
-              <Typography className={ classes.title }>Write Email</Typography>
+              <Typography className={ classes.fontSize60_40 }>Write Email</Typography>
             </Grid>
-            <Grid className={ classes.close } item sm={ 1 }>
+            <Grid className={ classes.displayGrid } item sm={ 1 }>
               <IconButton
-                className={ classes.iconButton }
+                className={ classes.marginAuto }
                 color='primary'
                 onClick={ () => {
                   new TTS('Clothes').speak();
                   this.props.close();
                 } }
               >
-                <Icon className={ classes.iconLarge }>close</Icon>
+                <Icon className={ classes.fontSize90_60 }>close</Icon>
               </IconButton>
             </Grid>
           </Grid>

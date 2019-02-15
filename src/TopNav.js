@@ -13,36 +13,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import Settings from './settings/Settings';
+import { style } from './style';
 import TTS from './tts';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
-
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const style = {
-  appBar: {
-    alignItems: 'center',
-    zIndex: 1400
-  },
-  login: {
-    position: 'absolute',
-    right: 0
-  },
-  logo: {
-    height: '7.5vh',
-    left: 0,
-    margin: '0 auto',
-    position: 'absolute',
-    right: 0
-  },
-  settings: {
-    left: 0,
-    position: 'absolute'
-  },
-  toolbar: {
-    width: '90%'
-  }
-};
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // TopNav Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TopNav Component//
 class TopNav extends React.Component {
@@ -61,7 +35,7 @@ class TopNav extends React.Component {
     return (
       <div>
         <AppBar className={ classes.appBar }>
-          <Toolbar className={ classes.toolbar }>
+          <Toolbar className={ classes.width90 }>
             {
               this.props.status && (
                 <Button

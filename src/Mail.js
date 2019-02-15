@@ -70,12 +70,12 @@ class Mail extends React.Component {
         onEntered={ () => this.enter() }
         open={ this.props.open }
       >
-        <div className={ classes.mailBody }>
+        <div className={ classes.dialogBody }>
           <MailHeader close={ () => this.props.close() } from={ this.props.from } subject={ this.props.subject } />
           <br />
           <Divider />
           <br />
-          <pre className={ classes.pre } id='pre-mail' />
+          <pre className={ `${ classes.pre } ${ classes.fontSize45_30 }` } id='pre-mail' />
           <div id='div-mail' />
           <br />
           <Divider />

@@ -16,52 +16,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import Mail from './Mail';
+import { style } from './style';
 import TTS from './tts';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
-
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  style = theme => ({
-    from: {
-      fontSize: FONT_SIZE ? '45pt' : '30pt'
-    },
-    email: {
-      fontSize: FONT_SIZE ? '0pt' : '12pt'
-    },
-    verticalCenterFlex: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center'
-    },
-    gridIcon: {
-      display: 'verticalCenterFlex',
-      textAlign: 'center'
-    },
-    icon: {
-      fontSize: FONT_SIZE ? '90pt' : '60pt'
-    },
-    iconButton: {
-      margin: 'auto'
-    },
-    open: {
-      fontSize: FONT_SIZE ? '45pt' : '30pt'
-    },
-    openIcon: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt'
-    },
-    padding: {
-      padding: theme.spacing.unit * 5
-    },
-    snippet: {
-      fontSize: FONT_SIZE ? '36pt' : '24pt'
-    },
-    subject: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt'
-    }
-  });
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // MailPreview Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MailPreview Component//
 class MailPreview extends React.Component {
@@ -95,7 +53,7 @@ class MailPreview extends React.Component {
       <Card className={ classes.padding } raised>
         <Grid container spacing={ 8 }>
           <Grid item sm={ 8 }>
-            <Typography className={ classes.from } onClick={ () => new TTS(`From ${ this.from[0] }`).speak() }>
+            <Typography className={ classes.fontSize45_30 } onClick={ () => new TTS(`From ${ this.from[0] }`).speak() }>
               From: { this.from[0] }
             </Typography>
           </Grid>
@@ -108,7 +66,7 @@ class MailPreview extends React.Component {
         <br />
         <Divider />
         <br />
-        <Typography className={ classes.subject } onClick={ () => new TTS(this.subject).speak() }>
+        <Typography className={ classes.fontSize60_40 } onClick={ () => new TTS(this.subject).speak() }>
           { this.subject }
         </Typography>
         <br />
@@ -130,14 +88,14 @@ class MailPreview extends React.Component {
               size='large'
               variant='contained'
             >
-              <Icon className={ classes.openIcon }>open_in_browser</Icon>
+              <Icon className={ classes.fontSize60_40 }>open_in_browser</Icon>
               &emsp;
-              <Typography className={ classes.open } variant='inherit'>Open Email</Typography>
+              <Typography className={ classes.fontSize45_30 } variant='inherit'>Open Email</Typography>
             </Button>
           </Grid>
-          <Grid className={ classes.gridIcon } item sm={ 2 }>
-            <IconButton className={ classes.iconButton } color='primary' onClick={ () => new TTS('Delete').speak() }>
-              <Icon className={ classes.icon }>delete_forever</Icon>
+          <Grid className={ `${ classes.displayGrid } ${ classes.textAlignCenter }` } item sm={ 2 }>
+            <IconButton className={ classes.marginAuto } color='primary' onClick={ () => new TTS('Delete').speak() }>
+              <Icon className={ classes.fontSize90_60 }>delete_forever</Icon>
             </IconButton>
           </Grid>
         </Grid>
