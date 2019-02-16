@@ -12,8 +12,8 @@ import { withStyles } from '@material-ui/core/styles';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import MailHeader from './mail/MailHeader';
 import QuickReply from './mail/QuickReply';
-import { style } from './style';
 import TTS from './tts';
+import { style } from './style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 

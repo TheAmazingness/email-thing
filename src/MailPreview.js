@@ -16,8 +16,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import Mail from './Mail';
-import { style } from './style';
 import TTS from './tts';
+import { style } from './style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
@@ -50,7 +50,7 @@ class MailPreview extends React.Component {
     this.from = this.props.result.payload.headers.filter(e => e.name === 'From')[0].value.split('<');
     this.subject = this.props.result.payload.headers.filter(e => e.name === 'Subject')[0].value;
     return (
-      <Card className={ classes.padding } raised>
+      <Card className={ classes.padding5 } raised>
         <Grid container spacing={ 8 }>
           <Grid item sm={ 8 }>
             <Typography className={ classes.fontSize45_30 } onClick={ () => new TTS(`From ${ this.from[0] }`).speak() }>
@@ -71,7 +71,7 @@ class MailPreview extends React.Component {
         </Typography>
         <br />
         <Typography
-          className={ classes.snippet }
+          className={ classes.fontSize36_24 }
           onClick={ () => new TTS(MailPreview.htmlDecode(this.props.result.snippet)).speak() }
         >
           { MailPreview.htmlDecode(this.props.result.snippet) }...
@@ -81,7 +81,7 @@ class MailPreview extends React.Component {
         <Grid container spacing={ 16 }>
           <Grid item sm={ 10 }>
             <Button
-              className={ classes.padding }
+              className={ classes.padding5 }
               color='primary'
               fullWidth
               onClick={ () => this.setState({ open: true }) }
