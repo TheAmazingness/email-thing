@@ -17,45 +17,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Canned from './components/Canned';
 import SettingsBody from './SettingsBody';
 import TTS from '../tts';
+import { style } from './../style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
-
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  style = theme => ({
-    body: {
-      height: '100%',
-      padding: theme.spacing.unit * 10,
-      width: '100%'
-    },
-    button: {
-      fontSize: FONT_SIZE ? '24pt' : '16pt',
-      padding: theme.spacing.unit
-    },
-    close: {
-      display: 'grid'
-    },
-    dialog: {
-      padding: theme.spacing.unit * 10,
-      zIndex: 2000
-    },
-    iconButton: {
-      margin: 'auto'
-    },
-    iconLarge: {
-      fontSize: FONT_SIZE ? '90pt' : '60pt'
-    },
-    title: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt'
-    },
-    verticalCenterFlex: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'column'
-    }
-  });
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // Settings Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Settings Component//
 class Settings extends React.Component {
@@ -79,21 +43,21 @@ class Settings extends React.Component {
         onEntered={ () => new TTS('Settings').speak() }
         open={ this.props.open }
       >
-        <div className={ classes.body }>
+        <div className={ classes.dialogBody }>
           <Grid container spacing={ 8 }>
             <Grid className={ classes.verticalCenterFlex } item sm={ 11 }>
-              <Typography className={ classes.title }>Settings</Typography>
+              <Typography className={ classes.fontSize60_40 }>Settings</Typography>
             </Grid>
-            <Grid className={ classes.close } item sm={ 1 }>
+            <Grid className={ classes.displayGrid } item sm={ 1 }>
               <IconButton
-                className={ classes.iconButton }
+                className={ classes.marginAuto }
                 color='primary'
                 onClick={ () => {
                   new TTS('Clothes').speak();
                   this.props.close();
                 } }
               >
-                <Icon className={ classes.iconLarge }>close</Icon>
+                <Icon className={ classes.fontSize90_60 }>close</Icon>
               </IconButton>
             </Grid>
           </Grid>

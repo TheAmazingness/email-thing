@@ -19,54 +19,15 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-import TTS from '../../tts';
+import TTS from './../../tts';
+import { style } from './../../style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
   CANNED = JSON.parse(window.localStorage.getItem('canned')) || {},
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  style = theme => ({
-    body: {
-      height: '100%',
-      padding: theme.spacing.unit * 10,
-      width: '100%'
-    },
-    cannedTitle: {
-      fontSize: FONT_SIZE ? '36pt' : '24pt'
-    },
-    textAlignCenter: {
-      textAlign: 'center'
-    },
-    close: {
-      display: 'grid'
-    },
-    dialog: {
-      padding: theme.spacing.unit * 10,
-      zIndex: 2000
-    },
-    verticalCenterFlex: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-    },
-    icon: {
-      fontSize: FONT_SIZE ? '36pt' : '24pt'
-    },
-    iconButton: {
-      margin: 'auto'
-    },
-    iconLarge: {
-      fontSize: FONT_SIZE ? '90pt' : '60pt'
-    },
-    message: {
-      width: '100%'
-    },
-    title: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt'
-    },
-  });
+  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // Canned Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Canned Component//
@@ -122,8 +83,8 @@ class Canned extends React.Component {
                   { CANNED[icon] }
                 </Grid>
                 <Grid item sm={ 2 }>
-                  <IconButton className={ this.props.classes.iconButton } color='primary'>
-                    <Icon className={ this.props.classes.icon } onClick={ () => Canned.delete(icon) }>
+                  <IconButton className={ this.props.classes.marginAuto } color='primary'>
+                    <Icon className={ this.props.classes.fontSize36_24 } onClick={ () => Canned.delete(icon) }>
                       delete_forever
                     </Icon>
                   </IconButton>
@@ -149,21 +110,21 @@ class Canned extends React.Component {
         onEntered={ () => new TTS('Edit canned responses').speak() }
         open={ this.props.open }
       >
-        <div className={ classes.body }>
+        <div className={ classes.dialogBody }>
           <Grid container spacing={ 8 }>
             <Grid className={ classes.verticalCenterFlex } item sm={ 11 }>
-              <Typography className={ classes.title }>Canned Responses</Typography>
+              <Typography className={ classes.fontSize60_40 }>Canned Responses</Typography>
             </Grid>
-            <Grid className={ classes.close } item sm={ 1 }>
+            <Grid className={ classes.displayGrid } item sm={ 1 }>
               <IconButton
-                className={ classes.iconButton }
+                className={ classes.marginAuto }
                 color='primary'
                 onClick={ () => {
                   new TTS('Clothes').speak();
                   this.props.close();
                 } }
               >
-                <Icon className={ classes.iconLarge }>close</Icon>
+                <Icon className={ classes.fontSize90_60 }>close</Icon>
               </IconButton>
             </Grid>
           </Grid>
@@ -172,12 +133,12 @@ class Canned extends React.Component {
           <br />
           <Grid container spacing={ 8 }>
             <Grid className={ classes.textAlignCenter } item sm={ 6 }>
-              <Typography className={ classes.cannedTitle }>Existing Canned Responses</Typography>
+              <Typography className={ classes.fontSize36_24 }>Existing Canned Responses</Typography>
               <br />
               { this.state.canned }
             </Grid>
             <Grid className={ classes.textAlignCenter } item sm={ 6 }>
-              <Typography className={ classes.cannedTitle }>Add Canned Responses</Typography>
+              <Typography className={ classes.fontSize36_24 }>Add Canned Responses</Typography>
               <br />
               <TextField
                 helperText={
@@ -214,7 +175,7 @@ class Canned extends React.Component {
               <br />
               <br />
               <Button color='secondary' onClick={ () => Canned.add() } variant='contained'>
-                <Icon className={ classes.icon }>add_box</Icon>
+                <Icon className={ classes.fontSize36_24 }>add_box</Icon>
                 &nbsp;&nbsp;
                 <Typography className={ classes.button } variant='inherit'>Add</Typography>
               </Button>

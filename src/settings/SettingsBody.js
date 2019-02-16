@@ -18,30 +18,9 @@ import HelpEmail from './components/HelpEmail';
 import TextToSpeech from './components/TextToSpeech';
 import VoiceEmail from './components/VoiceEmail';
 import VoiceRecognition from './components/VoiceRecognition';
+import { style } from './../style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
-
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  style = theme => ({
-    button: {
-      fontSize: FONT_SIZE ? '24pt' : '16pt',
-      padding: theme.spacing.unit
-    },
-    canned: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center'
-    },
-    icon: {
-      fontSize: FONT_SIZE ? '30pt' : '20pt'
-    },
-    textAlignCenter: {
-      textAlign: 'center'
-    }
-  });
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // SettingsBody Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SettingsBody Component//
 class SettingsBody extends React.Component {
@@ -67,9 +46,9 @@ class SettingsBody extends React.Component {
         <br />
         <Grid container spacing={ 8 }>
           <HelpEmail />
-          <Grid className={ `${ classes.textAlignCenter } ${ classes.canned }` } item sm={ 6 }>
+          <Grid className={ `${ classes.textAlignCenter } ${ classes.verticalCenterFlex }` } item sm={ 6 }>
             <Button color='primary' onClick={ () => this.props.setState({ open: true }) } variant='contained'>
-              <Icon className={ classes.icon }>add_comment</Icon>
+              <Icon className={ classes.fontSize30_20 }>add_comment</Icon>
               &nbsp;
               <Typography className={ classes.button } variant='inherit'>Edit Canned Responses</Typography>
             </Button>

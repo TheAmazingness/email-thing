@@ -11,21 +11,13 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-import TTS from '../../tts';
+import TTS from './../../tts';
+import { style } from './../../style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  style = {
-    label: {
-      fontSize: FONT_SIZE ? '36pt' : '24pt'
-    },
-    textAlignCenter: {
-      textAlign: 'center'
-    }
-  };
+const FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // TODO: Fix help email
@@ -45,7 +37,7 @@ class FontSize extends React.Component {
     const { classes } = this.props;
     return (
       <Grid className={ classes.textAlignCenter } item sm={ 6 }>
-        <Typography className={ classes.label }>Help Email</Typography>
+        <Typography className={ classes.fontSize36_24 }>Help Email</Typography>
         <br />
         <TextField
           InputProps={ { style: { fontSize: FONT_SIZE ? '24pt' : '' } } }

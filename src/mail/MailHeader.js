@@ -13,43 +13,10 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-import TTS from '../tts';
+import TTS from './../tts';
+import { style } from './../style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
-
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  style = theme => ({
-    textAlignCenter: {
-      textAlign: 'center'
-    },
-    from: {
-      fontSize: FONT_SIZE ? '30pt' : '20pt'
-    },
-    icon: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt'
-    },
-    iconButton: {
-      margin: 'auto'
-    },
-    iconLarge: {
-      fontSize: FONT_SIZE ? '90pt' : '60pt'
-    },
-    read: {
-      padding: theme.spacing.unit * 5
-    },
-    subject: {
-      fontSize: FONT_SIZE ? '60pt' : '40pt'
-    },
-    textLarge: {
-      fontSize: FONT_SIZE ? '45pt' : '30pt'
-    },
-    verticalCenterGrid: {
-      display: 'verticalCenterFlex'
-    }
-  });
-// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // MailHeader Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MailHeader Component//
 class MailHeader extends React.Component {
@@ -59,10 +26,10 @@ class MailHeader extends React.Component {
     return (
       <Grid container spacing={ 8 }>
         <Grid item sm={ TTS.status ? 5 : 8 }>
-          <Typography className={ classes.from }  onClick={ () => new TTS(this.props.from).speak() }>
+          <Typography className={ classes.fontSize30_20 }  onClick={ () => new TTS(this.props.from).speak() }>
             From: { this.props.from }
           </Typography>
-          <Typography className={ classes.subject } onClick={ () => new TTS(this.props.subject).speak() }>
+          <Typography className={ classes.fontSize60_40 } onClick={ () => new TTS(this.props.subject).speak() }>
             { this.props.subject }
           </Typography>
         </Grid>
@@ -70,34 +37,34 @@ class MailHeader extends React.Component {
           TTS.status && (
             <Grid className={ classes.textAlignCenter } item sm={ 5 }>
               <Button
-                className={ classes.read }
+                className={ classes.padding5 }
                 color='secondary'
                 onClick={ () => new TTS(document.getElementById(this.id).innerText).speak() }
                 size='large'
                 variant='contained'
               >
-                <Icon className={ classes.icon }>record_voice_over</Icon>
+                <Icon className={ classes.fontSize60_40 }>record_voice_over</Icon>
                 &emsp;
-                <Typography className={ classes.textLarge } color='inherit'>Read Email</Typography>
+                <Typography className={ classes.fontSize45_30 } color='inherit'>Read Email</Typography>
               </Button>
             </Grid>
           )
         }
-        <Grid className={ classes.verticalCenterGrid } item sm={ TTS.status ? 1 : 2 }>
-          <IconButton className={ classes.iconButton } color='secondary' onClick={ () => new TTS('Help').speak() }>
-            <Icon className={ classes.iconLarge }>help</Icon>
+        <Grid className={ classes.displayGrid } item sm={ TTS.status ? 1 : 2 }>
+          <IconButton className={ classes.marginAuto } color='secondary' onClick={ () => new TTS('Help').speak() }>
+            <Icon className={ classes.fontSize90_60 }>help</Icon>
           </IconButton>
         </Grid>
-        <Grid className={ classes.verticalCenterGrid } item sm={ TTS.status ? 1 : 2 }>
+        <Grid className={ classes.displayGrid } item sm={ TTS.status ? 1 : 2 }>
           <IconButton
-            className={ classes.iconButton }
+            className={ classes.marginAuto }
             color='primary'
             onClick={ () => {
               new TTS('Clothes').speak();
               this.props.close();
             } }
           >
-            <Icon className={ classes.iconLarge }>close</Icon>
+            <Icon className={ classes.fontSize90_60 }>close</Icon>
           </IconButton>
         </Grid>
       </Grid>

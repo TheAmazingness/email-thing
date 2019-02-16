@@ -1,7 +1,16 @@
 const FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false;
 export const style = theme => ({
-  // TODO: Make everything work
   // Global
+  button: {
+    fontSize: FONT_SIZE ? '24pt' : '16pt',
+    padding: theme.spacing.unit
+  },
+  fontSize30_20: {
+    fontSize: FONT_SIZE ? '30pt' : '20pt'
+  },
+  fontSize36_24: {
+    fontSize: FONT_SIZE ? '36pt' : '24pt'
+  },
   fontSize45_30: {
     fontSize: FONT_SIZE ? '45pt' : '30pt'
   },
@@ -25,6 +34,9 @@ export const style = theme => ({
   },
   marginAuto: {
     margin: 'auto'
+  },
+  padding5: {
+    padding: theme.spacing.unit * 5
   },
   textAlignCenter: {
     textAlign: 'center'
@@ -73,12 +85,6 @@ export const style = theme => ({
   email: {
     fontSize: FONT_SIZE ? '0pt' : '12pt'
   },
-  padding: {
-    padding: theme.spacing.unit * 5
-  },
-  snippet: {
-    fontSize: FONT_SIZE ? '36pt' : '24pt'
-  },
 
   // Mail.js
   pre: {
@@ -97,5 +103,20 @@ export const style = theme => ({
     lineHeight: '100vh',
     textAlign: 'center',
     width: '100vw'
+  },
+
+  // Canned.js
+  message: {
+    width: '100%'
+  },
+
+  // QuickReply.js
+  cannedBtn: {
+    display: 'inline-block',
+    padding: `0 ${ theme.spacing.unit }px`
+  },
+  quickReply: {
+    alignItems: 'flex-start',
+    display: 'flex'
   }
 });

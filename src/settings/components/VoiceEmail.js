@@ -11,22 +11,13 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-import TTS from '../../tts';
+import TTS from './../../tts';
+import { style } from './../../style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const
-  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false,
-  VOICE_EMAIL = JSON.parse(window.localStorage.getItem('voiceEmail')) || false,
-  style = {
-    label: {
-      fontSize: FONT_SIZE ? '36pt' : '24pt'
-    },
-    textAlignCenter: {
-      textAlign: 'center'
-    }
-  };
+const VOICE_EMAIL = JSON.parse(window.localStorage.getItem('voiceEmail')) || false;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // VoiceEmail Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ VoiceEmail Component//
@@ -46,7 +37,7 @@ class VoiceEmail extends React.Component {
     return (
       <Grid className={ classes.textAlignCenter } item sm={ 6 }>
         <FormControlLabel
-          classes={ { label: classes.label } }
+          classes={ { label: classes.fontSize36_24 } }
           control={
             <Switch
               checked={ this.state.voiceEmail }

@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-import TTS from '../tts';
+import TTS from './../tts';
 import { style } from './../style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
@@ -39,7 +39,7 @@ class QuickReply extends React.Component {
         jsx.push((
           <div className={ this.props.classes.cannedBtn } key={ icon } >
             <IconButton color='primary' onClick={ () => new TTS('Quick Reply').speak() }>
-              <Icon className={ this.props.classes.iconLarge }>{ icon }</Icon>
+              <Icon className={ this.props.classes.fontSize90_60 }>{ icon }</Icon>
             </IconButton>
           </div>
         ));
@@ -57,10 +57,10 @@ class QuickReply extends React.Component {
         <br />
         <div>
           <Typography
-            className={ `${ classes.textLarge } ${ classes.quickReply }` }
+            className={ `${ classes.fontSize45_30 } ${ classes.quickReply }` }
             onClick={ () => new TTS('Quick Reply').speak() }
           >
-            <Icon className={ classes.icon }>fast_forward</Icon>
+            <Icon className={ classes.fontSize60_40 }>fast_forward</Icon>
             &nbsp;
             Quick Reply
           </Typography>
