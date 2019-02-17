@@ -44,16 +44,20 @@ class SettingsBody extends React.Component {
         </Grid>
         <br />
         <br />
-        <Grid container spacing={ 8 }>
-          <HelpEmail />
-          <Grid className={ `${ classes.textAlignCenter } ${ classes.verticalCenterFlex }` } item sm={ 6 }>
-            <Button color='primary' onClick={ () => this.props.setState({ open: true }) } variant='contained'>
-              <Icon className={ classes.fontSize30_20 }>add_comment</Icon>
-              &nbsp;
-              <Typography className={ classes.button } variant='inherit'>Edit Canned Responses</Typography>
-            </Button>
-          </Grid>
-        </Grid>
+        {
+          !this.props.client && (
+            <Grid container spacing={ 8 }>
+              <HelpEmail />
+              <Grid className={ `${ classes.textAlignCenter } ${ classes.verticalCenterFlex }` } item sm={ 6 }>
+                <Button color='primary' onClick={ () => this.props.setState({ open: true }) } variant='contained'>
+                  <Icon className={ classes.fontSize30_20 }>add_comment</Icon>
+                  &nbsp;
+                  <Typography className={ classes.button } variant='inherit'>Edit Canned Responses</Typography>
+                </Button>
+              </Grid>
+            </Grid>
+          )
+        }
         <br />
         <Divider />
         <br />

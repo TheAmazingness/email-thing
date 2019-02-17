@@ -16,6 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import ClientSettings from './settings/ClientSettings';
 import Compose from './Compose';
 import TTS from './tts';
 import { style } from './style';
@@ -32,7 +33,8 @@ class SideNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      openCompose: false,
+      openSettings: false
     };
   }
   // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -46,11 +48,7 @@ class SideNav extends React.Component {
           <div className={ classes.toolbar } />
           <div className={ classes.toolbar } />
           <Divider />
-          <ListItem
-            button
-            divider
-            onClick={ () => this.setState({ open: true }) }
-          >
+          <ListItem button divider onClick={ () => this.setState({ openCompose: true }) }>
             <ListItemIcon>
               <Icon className={ classes.fontSize60_40 }>add_circle_outline</Icon>
             </ListItemIcon>
@@ -76,7 +74,7 @@ class SideNav extends React.Component {
           }
           <div className={ classes.toolbar } />
           <Divider />
-          <ListItem button divider onClick={ () => new TTS('Settings').speak() }>
+          <ListItem button divider onClick={ () => this.setState({ openSettings: true }) }>
             <ListItemIcon>
               <Icon className={ classes.fontSize60_40 }>settings</Icon>
             </ListItemIcon>
@@ -85,7 +83,8 @@ class SideNav extends React.Component {
             </ListItemText>
           </ListItem>
         </List>
-        <Compose close={ () => this.setState({ open: false }) } open={ this.state.open } />
+        <Compose close={ () => this.setState({ openCompose: false }) } open={ this.state.openCompose } />
+        <ClientSettings close={ () => this.setState({ openSettings: false }) } open={ this.state.openSettings } />
       </Drawer>
     );
   }
