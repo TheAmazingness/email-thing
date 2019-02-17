@@ -22,7 +22,7 @@ export const style = theme => ({
   },
   dialog: {
     padding: theme.spacing.unit * 10,
-    zIndex: 2000
+    zIndex: 1300
   },
   dialogBody: {
     height: '100%',
@@ -48,10 +48,54 @@ export const style = theme => ({
     justifyContent: 'center'
   },
 
+  // App.js
+  content: {
+    flexGrow: 1,
+    marginLeft: FONT_SIZE ? 450 : 400,
+    padding: theme.spacing.unit * 10,
+    overflowY: 'scroll'
+  },
+  loading: {
+    height: '100vh',
+    lineHeight: '100vh',
+    textAlign: 'center',
+    width: '100vw'
+  },
+
+  // Canned.js
+  message: {
+    width: '100%'
+  },
+
+  // Compose.js
+  select: {
+    width: '100%'
+  },
+
+  // Mail.js
+  pre: {
+    fontFamily: 'Roboto'
+  },
+
+  // MailPreview.js
+  email: {
+    fontSize: FONT_SIZE ? '0pt' : '12pt'
+  },
+
+  // QuickReply.js
+  cannedBtn: {
+    display: 'inline-block',
+    padding: `0 ${ theme.spacing.unit }px`
+  },
+  quickReply: {
+    alignItems: 'flex-start',
+    display: 'flex'
+  },
+
   // TopNav.js
   appBar: {
     alignItems: 'center',
-    zIndex: 1400
+    zIndex: 1299
   },
   login: {
     position: 'absolute',
@@ -79,44 +123,5 @@ export const style = theme => ({
   },
   drawerPaper: {
     width: FONT_SIZE ? 450 : 400
-  },
-
-  // MailPreview.js
-  email: {
-    fontSize: FONT_SIZE ? '0pt' : '12pt'
-  },
-
-  // Mail.js
-  pre: {
-    fontFamily: 'Roboto'
-  },
-
-  // App.js
-  content: {
-    flexGrow: 1,
-    marginLeft: FONT_SIZE ? 450 : 400,
-    padding: theme.spacing.unit * 10,
-    overflowY: 'scroll'
-  },
-  loading: {
-    height: '100vh',
-    lineHeight: '100vh',
-    textAlign: 'center',
-    width: '100vw'
-  },
-
-  // Canned.js
-  message: {
-    width: '100%'
-  },
-
-  // QuickReply.js
-  cannedBtn: {
-    display: 'inline-block',
-    padding: `0 ${ theme.spacing.unit }px`
-  },
-  quickReply: {
-    alignItems: 'flex-start',
-    display: 'flex'
   }
 });

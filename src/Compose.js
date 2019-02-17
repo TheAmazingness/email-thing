@@ -5,9 +5,12 @@ import React from 'react';
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import Dialog from '@material-ui/core/Dialog';
+import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
@@ -20,11 +23,35 @@ import { style } from './style';
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false;
+const
+  BUDDY_LIST = JSON.parse(window.localStorage.getItem('buddyList')) || [],
+  FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // Compose Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Compose Component//
 class Compose extends React.Component {
+  /** constructor */
+  constructor(props) {
+    super(props);
+    this.state = {
+      address: '',
+      buddyList: null
+    };
+  }
+  // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+  /** componentDidMount */
+  componentDidMount() {
+    let jsx = BUDDY_LIST;
+    for (let i = 0; i < jsx.length; i++) {
+      jsx[i] = (
+        <MenuItem key={ jsx[i][1] } value={ jsx[i][1] }>${ jsx[i][0] }</MenuItem>
+      );
+    }
+    this.setState({ buddyList: jsx });
+  }
+  // componentDidMount ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
   /** render */
   render() {
     const { classes } = this.props;
@@ -55,6 +82,22 @@ class Compose extends React.Component {
             </Grid>
           </Grid>
           <br />
+          <Divider />
+          <br />
+          <Select
+            className={ classes.select }
+            inputProps={ {
+              id: 'address'
+            } }
+            onChange={ (event) => this.setState({ buddyList: event.target.value }) }
+            value={ this.state.address }
+          >
+            <MenuItem value=''>&nbsp;</MenuItem>
+            { this.state.buddyList }
+          </Select>
+          <br />
+          <br />
+          <Divider />
           <br />
           <TextField
             fullWidth
