@@ -163,7 +163,7 @@ class Canned extends React.Component {
               <br />
               <br />
               <TextField
-                className={ classes.message }
+                className={ classes.width100 }
                 InputProps={ { id: 'message', style: { fontSize: FONT_SIZE ? '24pt' : '' } } }
                 label='Message'
                 multiline

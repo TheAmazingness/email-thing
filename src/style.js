@@ -47,6 +47,9 @@ export const style = theme => ({
     flexDirection: 'column',
     justifyContent: 'center'
   },
+  width100: {
+    width: '100%'
+  },
 
   // App.js
   content: {
@@ -62,10 +65,6 @@ export const style = theme => ({
     width: '100vw'
   },
 
-  // Canned.js
-  message: {
-    width: '100%'
-  },
 
   // Compose.js
   select: {
