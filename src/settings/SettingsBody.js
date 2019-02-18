@@ -49,10 +49,25 @@ class SettingsBody extends React.Component {
             <Grid container spacing={ 8 }>
               <HelpEmail />
               <Grid className={ `${ classes.textAlignCenter } ${ classes.verticalCenterFlex }` } item sm={ 6 }>
-                <Button color='primary' onClick={ () => this.props.setState({ open: true }) } variant='contained'>
+                <Button color='primary' onClick={ () => this.props.setState({ openCanned: true }) } variant='contained'>
                   <Icon className={ classes.fontSize30_20 }>add_comment</Icon>
                   &nbsp;
                   <Typography className={ classes.button } variant='inherit'>Edit Canned Responses</Typography>
+                </Button>
+              </Grid>
+            </Grid>
+          )
+        }
+        <br />
+        <br />
+        {
+          !this.props.client && (
+            <Grid container spacing={ 8 }>
+              <Grid className={ `${ classes.textAlignCenter } ${ classes.verticalCenterFlex }` } item sm={ 6 }>
+                <Button color='primary' onClick={ () => this.props.setState({ openBuddy: true }) } variant='contained'>
+                  <Icon className={ classes.fontSize30_20 }>person_add</Icon>
+                  &nbsp;
+                  <Typography className={ classes.button } variant='inherit'>Edit Buddy List</Typography>
                 </Button>
               </Grid>
             </Grid>

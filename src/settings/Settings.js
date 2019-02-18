@@ -14,6 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import BuddyList from './components/BuddyList';
 import Canned from './components/Canned';
 import SettingsBody from './SettingsBody';
 import TTS from './../tts';
@@ -27,7 +28,8 @@ class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      openBuddy: false,
+      openCanned: false
     };
   }
   // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -78,7 +80,8 @@ class Settings extends React.Component {
           <br />
           <br />
         </div>
-        <Canned close={ () => this.setState({ open: false }) } open={ this.state.open } />
+        <Canned close={ () => this.setState({ openCanned: false }) } open={ this.state.openCanned } />
+        <BuddyList close={ () => this.setState({ openBuddy: false }) } open={ this.state.openBuddy } />
       </Dialog>
     );
   }
