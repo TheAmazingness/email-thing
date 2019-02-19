@@ -24,7 +24,7 @@ import { style } from './style';
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
-  BUDDY_LIST = JSON.parse(window.localStorage.getItem('buddyList')) || [],
+  BUDDY_LIST = JSON.parse(window.localStorage.getItem('buddyList')) || {},
   FONT_SIZE = JSON.parse(window.localStorage.getItem('fontSize')) || false;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
@@ -42,11 +42,11 @@ class Compose extends React.Component {
 
   /** componentDidMount */
   componentDidMount() {
-    let jsx = BUDDY_LIST;
-    for (let i = 0; i < jsx.length; i++) {
-      jsx[i] = (
-        <MenuItem key={ jsx[i][1] } value={ jsx[i][1] }>${ jsx[i][0] }</MenuItem>
-      );
+    let jsx = [];
+    for (const address in BUDDY_LIST) {
+      if (BUDDY_LIST.hasOwnProperty(address)) {
+        jsx.push(<MenuItem key={ address } value={ address }>{ BUDDY_LIST[address] }</MenuItem>);
+      }
     }
     this.setState({ buddyList: jsx });
   }
@@ -89,10 +89,10 @@ class Compose extends React.Component {
             inputProps={ {
               id: 'address'
             } }
-            onChange={ (event) => this.setState({ buddyList: event.target.value }) }
+            onChange={ (event) => this.setState({ address: event.target.value }) }
             value={ this.state.address }
           >
-            <MenuItem value=''>&nbsp;</MenuItem>
+            <MenuItem value=''>Send to:</MenuItem>
             { this.state.buddyList }
           </Select>
           <br />
