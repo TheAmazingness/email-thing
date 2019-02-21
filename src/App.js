@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-import Gapi from './gapi';
+import Gapi from './gapi/gapi';
 import Mailbox from './Mailbox';
 import SideNav from './SideNav';
 import TopNav from './TopNav'
