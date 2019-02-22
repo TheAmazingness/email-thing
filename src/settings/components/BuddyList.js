@@ -70,7 +70,6 @@ class BuddyList extends React.Component {
   /** componentDidMount */
   componentDidMount() {
     let jsx = [];
-    console.log(BUDDY_LIST);
     for (const address in BUDDY_LIST) {
       if (BUDDY_LIST.hasOwnProperty(address)) {
         jsx.push((
