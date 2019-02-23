@@ -4,6 +4,7 @@ import React from 'react';
 // React ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -17,6 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import Gmail from './gapi/gmail';
 import TTS from './tts';
 import { style } from './style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -101,13 +103,31 @@ class Compose extends React.Component {
           <br />
           <TextField
             fullWidth
-            InputProps={ { style: { fontSize: FONT_SIZE ? '24pt' : '' } } }
+            InputProps={ { id: 'email', style: { fontSize: FONT_SIZE ? '24pt' : '' } } }
             label='Message'
             multiline
             placeholder='Message'
-            rows={ 15 }
+            rows={ 10 }
             variant='outlined'
           />
+          <br />
+          <Divider />
+          <br />
+          <Button
+            color='secondary'
+            onClick={ () => {
+              new TTS('Send').speak();
+              new Gmail(
+                document.getElementById('email').value,
+                document.getElementById('address').value
+              ).send();
+            } }
+            variant='contained'
+          >
+            <Icon className={ classes.icon }>send</Icon>
+            &nbsp;
+            <Typography className={ classes.button } variant='inherit'>Send</Typography>
+          </Button>
         </div>
       </Dialog>
     );
