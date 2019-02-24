@@ -18,7 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-import Gmail from './gapi/gmail';
+import SendMail from './gapi/sendmail';
 import TTS from './tts';
 import { style } from './style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -117,7 +117,7 @@ class Compose extends React.Component {
             color='secondary'
             onClick={ () => {
               new TTS('Send').speak();
-              new Gmail(
+              new SendMail(
                 document.getElementById('email').value,
                 document.getElementById('address').value
               ).send();
