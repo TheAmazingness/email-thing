@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import EmailFilter from './components/EmailFilter';
 import FontSize from './components/FontSize';
 import HelpEmail from './components/HelpEmail';
 import TextToSpeech from './components/TextToSpeech';
@@ -70,6 +71,7 @@ class SettingsBody extends React.Component {
                   <Typography className={ classes.button } variant='inherit'>Edit Buddy List</Typography>
                 </Button>
               </Grid>
+              <EmailFilter />
             </Grid>
           )
         }
