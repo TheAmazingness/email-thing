@@ -45,7 +45,7 @@ export default class Mailbox extends React.Component {
           this.setState({
             jsx: results.map((e, i) =>
               <div key={ `preview-${ i }` }>
-                <MailPreview result={ e[1] } />
+                <MailPreview id={ message.id } result={ e[1] } />
                 <br />
                 <br />
               </div>

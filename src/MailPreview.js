@@ -15,6 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import DeleteMail from './gapi/deletemail';
 import Mail from './mail/Mail';
 import TTS from './tts';
 import { style } from './style';
@@ -94,7 +95,14 @@ class MailPreview extends React.Component {
             </Button>
           </Grid>
           <Grid className={ `${ classes.displayGrid } ${ classes.textAlignCenter }` } item sm={ 2 }>
-            <IconButton className={ classes.marginAuto } color='primary' onClick={ () => new TTS('Delete').speak() }>
+            <IconButton
+              className={ classes.marginAuto }
+              color='primary'
+              onClick={ () => {
+                new TTS('Delete').speak();
+                new DeleteMail(this.props.id).delete();
+              } }
+            >
               <Icon className={ classes.fontSize90_60 }>delete_forever</Icon>
             </IconButton>
           </Grid>
