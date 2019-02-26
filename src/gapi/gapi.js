@@ -48,8 +48,9 @@ export default class Gapi {
       if (!status) {
         resolve({ status: status, messages: null });
       } else {
-        window.gapi.client.gmail.users.messages.list({
-          userId: 'me'
+        this.gapi.client.gmail.users.messages.list({
+          userId: 'me',
+          labelIds: ['INBOX']
         }).then(response => {
           let { messages } = response.result;
           resolve({ status: status, messages: messages });
