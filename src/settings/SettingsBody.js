@@ -5,6 +5,7 @@ import React from 'react';
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
@@ -49,12 +50,19 @@ class SettingsBody extends React.Component {
           !this.props.client && (
             <Grid container spacing={ 8 }>
               <HelpEmail />
-              <Grid className={ `${ classes.textAlignCenter } ${ classes.verticalCenterFlex }` } item sm={ 6 }>
-                <Button color='primary' onClick={ () => this.props.setState({ openCanned: true }) } variant='contained'>
-                  <Icon className={ classes.fontSize30_20 }>add_comment</Icon>
-                  &nbsp;
-                  <Typography className={ classes.button } variant='inherit'>Edit Canned Responses</Typography>
-                </Button>
+              <Grid item sm={ 6 }>
+                <Card className={ `${ classes.height100 } ${ classes.verticalCenterFlex } ${ classes.width100 }` }>
+                  <Button
+                    className={ `${ classes.marginAuto } ${ classes.width90 }` }
+                    color='primary'
+                    onClick={ () => this.props.setState({ openCanned: true }) }
+                    variant='contained'
+                  >
+                    <Icon className={ classes.fontSize30_20 }>add_comment</Icon>
+                    &nbsp;
+                    <Typography className={ classes.button } variant='inherit'>Edit Canned Responses</Typography>
+                  </Button>
+                </Card>
               </Grid>
             </Grid>
           )
@@ -64,12 +72,19 @@ class SettingsBody extends React.Component {
         {
           !this.props.client && (
             <Grid container spacing={ 8 }>
-              <Grid className={ `${ classes.textAlignCenter } ${ classes.verticalCenterFlex }` } item sm={ 6 }>
-                <Button color='primary' onClick={ () => this.props.setState({ openBuddy: true }) } variant='contained'>
-                  <Icon className={ classes.fontSize30_20 }>person_add</Icon>
-                  &nbsp;
-                  <Typography className={ classes.button } variant='inherit'>Edit Buddy List</Typography>
-                </Button>
+              <Grid item sm={ 6 }>
+                <Card className={ `${ classes.height100 } ${ classes.verticalCenterFlex } ${ classes.width100 }` }>
+                  <Button
+                    className={ `${ classes.marginAuto } ${ classes.width90 }` }
+                    color='primary'
+                    onClick={ () => this.props.setState({ openBuddy: true }) }
+                    variant='contained'
+                  >
+                    <Icon className={ classes.fontSize30_20 }>person_add</Icon>
+                    &nbsp;
+                    <Typography className={ classes.button } variant='inherit'>Edit Buddy List</Typography>
+                  </Button>
+                </Card>
               </Grid>
               <EmailFilter />
             </Grid>

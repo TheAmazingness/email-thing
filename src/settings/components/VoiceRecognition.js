@@ -4,6 +4,7 @@ import React from 'react';
 // React ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import Card from '@material-ui/core/Card';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
@@ -36,21 +37,23 @@ class VoiceRecognition extends React.Component {
     const { classes } = this.props;
     return (
       <Grid className={ classes.textAlignCenter } item sm={ 6 }>
-        <FormControlLabel
-          classes={ { label: classes.fontSize36_24 } }
-          control={
-            <Switch
-              checked={ this.state.recognition }
-              onChange={() => {
-                window.localStorage.setItem('recognition', !this.state.recognition);
-                new TTS(`Voice recognition: ${ !this.state.recognition ? 'enabled' : 'disabled' }`).speak();
-                this.setState(state => { return { recognition: !state.recognition } });
-              } }
-            />
-          }
-          label='Voice Recognition'
-          labelPlacement='top'
-        />
+        <Card className={ `${ classes.width100 } ${ classes.height100 }` }>
+          <FormControlLabel
+            classes={ { label: classes.fontSize36_24 } }
+            control={
+              <Switch
+                checked={ this.state.recognition }
+                onChange={() => {
+                  window.localStorage.setItem('recognition', !this.state.recognition);
+                  new TTS(`Voice recognition: ${ !this.state.recognition ? 'enabled' : 'disabled' }`).speak();
+                  this.setState(state => { return { recognition: !state.recognition } });
+                } }
+              />
+            }
+            label='Voice Recognition'
+            labelPlacement='top'
+          />
+        </Card>
       </Grid>
     );
   }

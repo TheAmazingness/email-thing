@@ -32,6 +32,9 @@ export const style = theme => ({
   displayGrid: {
     display: 'grid'
   },
+  height100: {
+    height: '100%'
+  },
   marginAuto: {
     margin: 'auto'
   },
@@ -46,6 +49,9 @@ export const style = theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'
+  },
+  width90: {
+    width: '90%'
   },
   width100: {
     width: '100%'
@@ -113,9 +119,6 @@ export const style = theme => ({
   settings: {
     left: 0,
     position: 'absolute'
-  },
-  width90: {
-    width: '90%'
   },
 
   // SideNav.js

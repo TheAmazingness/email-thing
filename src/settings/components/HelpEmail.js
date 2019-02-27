@@ -4,6 +4,7 @@ import React from 'react';
 // React ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -37,16 +38,20 @@ class FontSize extends React.Component {
     const { classes } = this.props;
     return (
       <Grid className={ classes.textAlignCenter } item sm={ 6 }>
-        <Typography className={ classes.fontSize36_24 }>Help Email</Typography>
-        <br />
-        <TextField
-          InputProps={ { style: { fontSize: FONT_SIZE ? '24pt' : '' } } }
-          label='Help Email'
-          onClick={ () => new TTS('Help email').speak() }
-          placeholder='Help Email'
-          type='email'
-          variant='outlined'
-        />
+        <Card className={ `${ classes.width100 } ${ classes.height100 }` }>
+          <Typography className={ classes.fontSize36_24 }>Help Email</Typography>
+          <br />
+          <TextField
+            InputProps={ { style: { fontSize: FONT_SIZE ? '24pt' : '' } } }
+            label='Help Email'
+            onClick={ () => new TTS('Help email').speak() }
+            placeholder='Help Email'
+            type='email'
+            variant='outlined'
+          />
+          <br />
+          <br />
+        </Card>
       </Grid>
     );
   }

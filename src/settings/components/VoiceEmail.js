@@ -4,6 +4,7 @@ import React from 'react';
 // React ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import Card from '@material-ui/core/Card';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
@@ -36,21 +37,23 @@ class VoiceEmail extends React.Component {
     const { classes } = this.props;
     return (
       <Grid className={ classes.textAlignCenter } item sm={ 6 }>
-        <FormControlLabel
-          classes={ { label: classes.fontSize36_24 } }
-          control={
-            <Switch
-              checked={ this.state.voiceEmail }
-              onChange={() => {
-                window.localStorage.setItem('voiceEmail', !this.state.voiceEmail);
-                new TTS(`Voice emails: ${ !this.state.voiceEmail ? 'enabled' : 'disabled' }`).speak();
-                this.setState(state => { return { voiceEmail: !state.voiceEmail } });
-              } }
-            />
-          }
-          label='Voice Emails'
-          labelPlacement='top'
-        />
+        <Card className={ `${ classes.width100 } ${ classes.height100 }` }>
+          <FormControlLabel
+            classes={ { label: classes.fontSize36_24 } }
+            control={
+              <Switch
+                checked={ this.state.voiceEmail }
+                onChange={() => {
+                  window.localStorage.setItem('voiceEmail', !this.state.voiceEmail);
+                  new TTS(`Voice emails: ${ !this.state.voiceEmail ? 'enabled' : 'disabled' }`).speak();
+                  this.setState(state => { return { voiceEmail: !state.voiceEmail } });
+                } }
+              />
+            }
+            label='Voice Emails'
+            labelPlacement='top'
+          />
+        </Card>
       </Grid>
     );
   }

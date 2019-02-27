@@ -4,6 +4,7 @@ import React from 'react';
 // React ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 // Material UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+import Card from '@material-ui/core/Card';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
@@ -36,21 +37,23 @@ class FontSize extends React.Component {
     const { classes } = this.props;
     return (
       <Grid className={ classes.textAlignCenter } item sm={ 6 }>
-        <FormControlLabel
-          classes={ { label: classes.fontSize36_24 } }
-          control={
-            <Switch
-              checked={ this.state.fontSize }
-              onChange={() => {
-                window.localStorage.setItem('fontSize', !this.state.fontSize);
-                new TTS(`Font size: ${ !this.state.tts ? 'enabled' : 'disabled' }`).speak();
-                this.setState(state => { return { fontSize: !state.fontSize } });
-              } }
-            />
-          }
-          label='Larger Font Size'
-          labelPlacement='top'
-        />
+        <Card className={ `${ classes.width100 } ${ classes.height100 }` }>
+          <FormControlLabel
+            classes={ { label: classes.fontSize36_24 } }
+            control={
+              <Switch
+                checked={ this.state.fontSize }
+                onChange={() => {
+                  window.localStorage.setItem('fontSize', !this.state.fontSize);
+                  new TTS(`Font size: ${ !this.state.tts ? 'enabled' : 'disabled' }`).speak();
+                  this.setState(state => { return { fontSize: !state.fontSize } });
+                } }
+              />
+            }
+            label='Larger Font Size'
+            labelPlacement='top'
+          />
+        </Card>
       </Grid>
     );
   }
