@@ -22,6 +22,12 @@ import { style } from './style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
+// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
+const
+  BUDDY_LIST = JSON.parse(window.localStorage.getItem('buddyList')) || {},
+  EMAIL_FILTER = JSON.parse(window.localStorage.getItem('emailFilter')) || false;
+// Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
+
 // MailPreview Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MailPreview Component//
 class MailPreview extends React.Component {
   /** constructor */
@@ -50,6 +56,9 @@ class MailPreview extends React.Component {
     const { classes } = this.props;
     this.from = this.props.result.payload.headers.filter(e => e.name === 'From')[0].value.split('<');
     this.subject = this.props.result.payload.headers.filter(e => e.name === 'Subject')[0].value;
+    if (EMAIL_FILTER && !BUDDY_LIST.hasOwnProperty(this.from[1].substring(0, this.from[1].length - 1))) {
+      return null;
+    }
     return (
       <Card className={ classes.padding5 } raised>
         <Grid container spacing={ 8 }>

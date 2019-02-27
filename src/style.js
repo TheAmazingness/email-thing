@@ -80,6 +80,9 @@ export const style = theme => ({
   email: {
     fontSize: FONT_SIZE ? '0pt' : '12pt'
   },
+  hide: {
+    display: 'none'
+  },
 
   // QuickReply.js
   cannedBtn: {

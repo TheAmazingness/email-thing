@@ -37,7 +37,7 @@ export default class Mailbox extends React.Component {
       window.gapi.client.gmail.users.messages.get({
         userId: 'me',
         id: message.id
-      }).then((m) => {
+      }).then(m => {
         results.push([i, m.result]);
         index++;
         if (index === this.props.messages.length) {
