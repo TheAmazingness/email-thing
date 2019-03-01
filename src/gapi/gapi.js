@@ -52,7 +52,7 @@ export default class Gapi {
           userId: 'me',
           labelIds: ['INBOX']
         }).then(response => {
-          let { messages } = response.result;
+          let { messages } = response.result || {};
           resolve({ status: status, messages: messages });
         });
       }
