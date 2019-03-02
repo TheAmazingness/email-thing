@@ -12,8 +12,8 @@ import { withStyles } from '@material-ui/core/styles';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import Gapi from './gapi/gapi';
 import Mailbox from './Mailbox';
-import SideNav from './SideNav';
-import TopNav from './TopNav'
+import SideNav from './nav/SideNav';
+import TopNav from './nav/TopNav'
 import TTS from './tts';
 import { style } from './style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
