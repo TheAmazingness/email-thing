@@ -17,7 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 import BuddyList from './components/BuddyList';
 import Canned from './components/Canned';
 import SettingsBody from './SettingsBody';
-import TTS from './../tts';
+import TTS from '../features/tts';
 import { style } from './../style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
