@@ -33,6 +33,22 @@ export default class Mailbox extends React.Component {
     let
       results = [],
       index = 0;
+    document.addEventListener('read', () => {
+      let email = '';
+      results.forEach(e => {
+        email += `
+          Email number ${ e[0] + 1 }
+          From ${ e[1].payload.headers.filter(f => f.name === 'From')[0].value.split('<')[0] }.
+          ${ e[1].payload.headers.filter(e => e.name === 'Subject')[0].value }.
+        `;
+      });
+      new TTS(
+        `
+          You have ${ results.length } email${ results.length === 1 ? '' : 's' }.
+          ${ email }
+        `
+      ).speak();
+    });
     this.props.messages.forEach((message, i) => {
       window.gapi.client.gmail.users.messages.get({
         userId: 'me',

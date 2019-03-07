@@ -18,7 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 import ClientSettings from './../settings/ClientSettings';
 import Compose from './../Compose';
-import TTS from '../features/tts';
+import VoiceRecognitionFeature from './../features/VoiceRecognitionFeature';
 import { style } from './../style';
 // Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
@@ -61,7 +61,7 @@ class SideNav extends React.Component {
               <div>
                 <div className={ classes.toolbar } />
                 <Divider />
-                <ListItem button divider onClick={ () => new TTS('Voice command').speak() }>
+                <ListItem button divider onClick={ () => new VoiceRecognitionFeature().start() }>
                   <ListItemIcon>
                     <Icon className={ classes.fontSize60_40 }>record_voice_over</Icon>
                   </ListItemIcon>
