@@ -40,12 +40,12 @@ class App extends React.Component {
     gapi.connect();
     gapi.getData.then((data) => {
       if (!data.status) {
-        this.setState({ jsx: <TopNav status={ false } /> });
+        this.setState({ jsx: <TopNav authenticate={ () => gapi.authenticate() } status={ false } /> });
       } else {
         this.setState({
           jsx: (
             <div>
-              <TopNav status={ true } />
+              <TopNav authenticate={ () => gapi.authenticate() } status={ true } />
               <SideNav />
               <main className={ this.props.classes.content }>
                 <div className={ this.props.classes.toolbar }>

@@ -20,6 +20,15 @@ export default class Gapi {
   }
   // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
+  authenticate() {
+    if (this.status) {
+      window.gapi.auth2.getAuthInstance().signOut();
+      window.location.reload();
+    } else {
+      window.gapi.auth2.getAuthInstance().signIn();
+    }
+  }
+
   /** connect
    * @desc tries to establish connection with Google APIs
    */
@@ -41,19 +50,18 @@ export default class Gapi {
 
   /** getMessages
    * @desc Fetches all emails from inbox of current account
-   * @param status
    */
-  getMessages(status) {
+  getMessages() {
     return new Promise(resolve => {
-      if (!status) {
-        resolve({ status: status, messages: null });
+      if (!this.status) {
+        resolve({ status: this.status, messages: null });
       } else {
         this.gapi.client.gmail.users.messages.list({
           userId: 'me',
           labelIds: ['INBOX']
         }).then(response => {
           let { messages } = response.result || {};
-          resolve({ status: status, messages: messages });
+          resolve({ status: this.status, messages: messages });
         });
       }
     });
@@ -71,14 +79,8 @@ export default class Gapi {
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES
       }).then(() => {
-        resolve(this.getMessages(this.gapi.auth2.getAuthInstance().isSignedIn.get()));
-        // TODO: sign in and sign out
-        // this.props.isLogin(window.gapi.auth2.getAuthInstance().isSignedIn.get());
-        // window.gapi.client.gmail.users.getProfile({ userId: 'me' }).then(response => {
-        //   this.props.getEmail(JSON.parse(response.body));
-        // });
-        // try { document.getElementById('btn-login').onclick = Mailbox.login; } catch (e) {}
-        // try { document.getElementById('btn-logout').onclick = Mailbox.logout; } catch (e) {}
+        this.status = this.gapi.auth2.getAuthInstance().isSignedIn.get();
+        resolve(this.getMessages(this.status));
       });
     });
   }

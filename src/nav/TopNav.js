@@ -59,7 +59,11 @@ class TopNav extends React.Component {
             <Button
               className={ classes.login }
               color='secondary'
-              onClick={ () => new TTS(this.props.status ? 'Sign Out' : 'Sign In').speak() }
+              id='btn-authenticate'
+              onClick={ () => {
+                new TTS(this.props.status ? 'Sign Out' : 'Sign In').speak();
+                this.props.authenticate();
+              } }
               variant='outlined'
             >
               <Icon>how_to_reg</Icon>
