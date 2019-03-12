@@ -7,16 +7,23 @@ import TTS from './tts';
 
 // VoiceRecognitionFeature ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ VoiceRecognitionFeature //
 export default class VoiceRecognitionFeature {
-  constructor() {
-    annyang.start();
-    annyang.addCommands({
-      'test': VoiceRecognitionFeature.read
-    });
+  constructor(type) {
+    if (type === 'recognition') {
+      annyang.isListening() && annyang.abort();
+      new TTS('Voice command').speak();
+      annyang.start();
+      annyang.addCommands({
+        'read email': VoiceRecognitionFeature.read,
+        'write': VoiceRecognitionFeature.compose
+      });
+    } else {
+      new TTS('Voice email').speak();
+      annyang.start();
+      annyang.addCallback('result', (phrase) => {
+        document.dispatchEvent(new CustomEvent('vemail', { phrase: phrase }));
+      });
+    }
   }
-
-  start = () => {
-    new TTS('Voice command').speak();
-  };
 
   static read() {
     annyang.abort();

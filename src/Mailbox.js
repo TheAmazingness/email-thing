@@ -36,38 +36,44 @@ export default class Mailbox extends React.Component {
     document.addEventListener('read', () => {
       let email = '';
       results.forEach(e => {
-        email += `
-          Email number ${ e[0] + 1 }
+        email +=
+          `Email number ${ e[0] + 1 }
           From ${ e[1].payload.headers.filter(f => f.name === 'From')[0].value.split('<')[0] }.
-          ${ e[1].payload.headers.filter(e => e.name === 'Subject')[0].value }.
-        `;
+          ${ e[1].payload.headers.filter(e => e.name === 'Subject')[0].value }.`;
       });
       new TTS(
-        `
-          You have ${ results.length } email${ results.length === 1 ? '' : 's' }.
-          ${ email }
-        `
+        `You have ${ results.length } email${ results.length === 1 ? '' : 's' }.
+        ${ email }`
       ).speak();
     });
-    this.props.messages.forEach((message, i) => {
-      window.gapi.client.gmail.users.messages.get({
-        userId: 'me',
-        id: message.id
-      }).then(m => {
-        results.push([i, m.result]);
-        index++;
-        if (index === this.props.messages.length) {
-          results.sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
-          this.setState({
-            jsx: results.map((e, i) =>
-              <div key={ `preview-${ i }` }>
-                <MailPreview id={ message.id } result={ e[1] } />
-                <br />
-                <br />
-              </div>
-            )
-          });
-        }
+    window.gapi.client.gmail.users.messages.list({
+      userId: 'me',
+      labelIds: ['INBOX'],
+      q: 'is:unread'
+    }).then(response => {
+      let
+        unread = response.result.messages || [],
+        unreadId = unread.map(e => e.id);
+      this.props.messages.forEach((message, i) => {
+        window.gapi.client.gmail.users.messages.get({
+          userId: 'me',
+          id: message.id
+        }).then(m => {
+          results.push([i, m.result, message.id]);
+          index++;
+          if (index === this.props.messages.length) {
+            results.sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
+            this.setState({
+              jsx: results.map((e, i) =>
+                <div key={ `preview-${ i }` }>
+                  <MailPreview id={ e[2] } result={ e[1] } unread={ unreadId.includes(e[2]) } />
+                  <br />
+                  <br />
+                </div>
+              )
+            });
+          }
+        });
       });
     });
   }
