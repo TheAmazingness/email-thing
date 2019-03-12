@@ -35,6 +35,9 @@ export const style = theme => ({
   height100: {
     height: '100%'
   },
+  inlineBlock: {
+    display: 'inline-block'
+  },
   marginAuto: {
     margin: 'auto'
   },
@@ -88,6 +91,20 @@ export const style = theme => ({
   },
   hide: {
     display: 'none'
+  },
+  unread: {
+    background: 'blue',
+    borderRadius: '50%',
+    height: theme.spacing.unit * 5,
+    position: 'absolute',
+    transform: 'translateY(-50%)',
+    width: theme.spacing.unit * 5
+  },
+  unreadEmail: {
+    background: '#ff9999'
+  },
+  unreadWrapper: {
+    position: 'relative'
   },
 
   // QuickReply.js

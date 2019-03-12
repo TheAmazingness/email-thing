@@ -60,10 +60,21 @@ class MailPreview extends React.Component {
       return null;
     }
     return (
-      <Card className={ classes.padding5 } raised>
+      <Card className={ `${ classes.padding5 } ${ this.props.unread && classes.unreadEmail }` } raised>
         <Grid container spacing={ 8 }>
           <Grid item sm={ 8 }>
-            <Typography className={ classes.fontSize45_30 } onClick={ () => new TTS(`From ${ this.from[0] }`).speak() }>
+            {
+              this.props.unread && (
+                <div className={ `${ classes.inlineBlock } ${ classes.unreadWrapper }` }>
+                  <div className={ `${ classes.unread } ${ classes.verticalCenterFlex }` } />
+                  &emsp;&emsp;&emsp;&emsp;&emsp;
+                </div>
+              )
+            }
+            <Typography
+              className={ `${ classes.fontSize45_30 } ${ classes.inlineBlock }` }
+              onClick={ () => new TTS(`From ${ this.from[0] }`).speak() }
+            >
               From: { this.from[0] }
             </Typography>
           </Grid>
