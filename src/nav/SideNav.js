@@ -42,6 +42,7 @@ class SideNav extends React.Component {
   /** render */
   render() {
     const { classes } = this.props;
+    document.addEventListener('compose', () => this.setState({ openCompose: true }));
     return (
       <Drawer className={ classes.drawer } classes={ { paper: classes.drawerPaper } } variant='permanent'>
         <List component='nav'>
@@ -61,7 +62,7 @@ class SideNav extends React.Component {
               <div>
                 <div className={ classes.toolbar } />
                 <Divider />
-                <ListItem button divider onClick={ () => new VoiceRecognitionFeature().start() }>
+                <ListItem button divider onClick={ () => new VoiceRecognitionFeature('recognition') }>
                   <ListItemIcon>
                     <Icon className={ classes.fontSize60_40 }>record_voice_over</Icon>
                   </ListItemIcon>

@@ -21,6 +21,11 @@ export default class VoiceRecognitionFeature {
   static read() {
     annyang.abort();
     document.dispatchEvent(new CustomEvent('read'));
-  };
+  }
+
+  static compose() {
+    annyang.abort();
+    document.dispatchEvent(new CustomEvent('compose'));
+  }
 }
 // VoiceRecognitionFeature ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ VoiceRecognitionFeature //
