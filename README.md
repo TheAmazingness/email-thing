@@ -10,7 +10,7 @@ Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
 ## Setup
 1. Clone this repository:
 <br>`git clone https://github.com/TheAmazingness/ablemail.git <your-project-folder>`
-2. Don't forget to get an API key and an OAuth client ID.
+2. Don't forget to get an API key and an OAuth client ID from the [Google API Console](https://console.developers.google.com/apis/dashboard).
 <br>Create a file in `src/` called `credentials.json`, like this:
 ```json
 {
