@@ -24,7 +24,9 @@ import { style } from './../style';
 // Imports ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Imports //
 
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
-const VOICE_COMMAND = JSON.parse(window.localStorage.getItem('recognition')) || false;
+const
+  VOICE_COMMAND = JSON.parse(window.localStorage.getItem('recognition')) || false,
+  VOICE_EMAIL = JSON.parse(window.localStorage.getItem('vemail')) || false;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // SideNav Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SideNav Component//
@@ -49,7 +51,14 @@ class SideNav extends React.Component {
           <div className={ classes.toolbar } />
           <div className={ classes.toolbar } />
           <Divider />
-          <ListItem button divider onClick={ () => this.setState({ openCompose: true }) }>
+          <ListItem
+            button
+            divider
+            onClick={ () => {
+              this.setState({ openCompose: true });
+              VOICE_EMAIL && new VoiceRecognitionFeature('vemail');
+            } }
+          >
             <ListItemIcon>
               <Icon className={ classes.fontSize60_40 }>add_circle_outline</Icon>
             </ListItemIcon>

@@ -16,7 +16,7 @@ export default class VoiceRecognitionFeature {
         'read email': VoiceRecognitionFeature.read,
         'write': VoiceRecognitionFeature.compose
       });
-    } else {
+    } else if (type === 'vemail') {
       new TTS('Voice email').speak();
       annyang.start();
       annyang.addCallback('result', (phrase) => {
