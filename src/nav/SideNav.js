@@ -26,7 +26,7 @@ import { style } from './../style';
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 const
   VOICE_COMMAND = JSON.parse(window.localStorage.getItem('recognition')) || false,
-  VOICE_EMAIL = JSON.parse(window.localStorage.getItem('vemail')) || false;
+  VOICE_EMAIL = JSON.parse(window.localStorage.getItem('voiceEmail')) || false;
 // Constants ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Constants //
 
 // SideNav Component ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SideNav Component//
@@ -56,6 +56,7 @@ class SideNav extends React.Component {
             divider
             onClick={ () => {
               this.setState({ openCompose: true });
+              console.log(VOICE_EMAIL);
               VOICE_EMAIL && new VoiceRecognitionFeature('vemail');
             } }
           >

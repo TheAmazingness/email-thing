@@ -51,6 +51,7 @@ class Compose extends React.Component {
       }
     }
     this.setState({ buddyList: jsx });
+    document.addEventListener('vemail', res => console.log(res));
   }
   // componentDidMount ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 

@@ -19,9 +19,7 @@ export default class VoiceRecognitionFeature {
     } else if (type === 'vemail') {
       new TTS('Voice email').speak();
       annyang.start();
-      annyang.addCallback('result', (phrase) => {
-        document.dispatchEvent(new CustomEvent('vemail', { phrase: phrase }));
-      });
+      annyang.addCallback('result', phrase => document.dispatchEvent(new CustomEvent('vemail', { phrase: phrase })));
     }
   }
 
