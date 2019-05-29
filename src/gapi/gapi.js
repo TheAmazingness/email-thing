@@ -14,12 +14,6 @@ const
 
 // Gapi ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Gapi //
 export default class Gapi {
-  /** constructor */
-  constructor() {
-    this.gapi = window.gapi;
-  }
-  // constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-
   authenticate() {
     if (this.status) {
       window.gapi.auth2.getAuthInstance().signOut();
@@ -36,7 +30,7 @@ export default class Gapi {
     try {
       this.data = new Promise(resolve => {
         document.addEventListener('DOMContentLoaded', () => {
-          this.gapi.load('client:auth2', () => {
+          window.gapi.load('client:auth2', () => {
             resolve(this.init());
           });
         }, false);
@@ -56,7 +50,7 @@ export default class Gapi {
       if (!this.status) {
         resolve({ status: this.status, messages: null });
       } else {
-        this.gapi.client.gmail.users.messages.list({
+        window.gapi.client.gmail.users.messages.list({
           userId: 'me',
           labelIds: ['INBOX']
         }).then(response => {
@@ -73,13 +67,13 @@ export default class Gapi {
    */
   init() {
     return new Promise(resolve => {
-      this.gapi.client.init({
+      window.gapi.client.init({
         apiKey: API_KEY,
         clientId: CLIENT_ID,
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES
       }).then(() => {
-        this.status = this.gapi.auth2.getAuthInstance().isSignedIn.get();
+        this.status = window.gapi.auth2.getAuthInstance().isSignedIn.get();
         resolve(this.getMessages(this.status));
       });
     });

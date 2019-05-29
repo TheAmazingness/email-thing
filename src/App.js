@@ -38,7 +38,7 @@ class App extends React.Component {
   componentDidMount() {
     let gapi = new Gapi();
     gapi.connect();
-    gapi.getData.then((data) => {
+    gapi.getData.then(data => {
       if (!data.status) {
         this.setState({ jsx: <TopNav authenticate={ () => gapi.authenticate() } status={ false } /> });
       } else {
