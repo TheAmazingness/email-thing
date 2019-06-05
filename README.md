@@ -1,3 +1,0 @@
-  # AbleMail
-  ## Hooks
-  Implementing hooks
