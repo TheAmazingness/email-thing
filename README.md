@@ -9,8 +9,7 @@ Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
 
 ## Setup
 1. Clone this repository:
-<br>
-`git clone https://github.com/TheAmazingness/ablemail.git <your-project-folder>`
+<br>`git clone https://github.com/TheAmazingness/ablemail.git <your-project-folder>`
 
 This project was made with [Next.js](https://nextjs.org/), [Material UI](https://material-ui.com), [Express](http://expressjs.com), and [React](https://reactjs.org).
 
