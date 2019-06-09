@@ -1,8 +1,4 @@
-import { withStyles } from '@material-ui/core';
-import style from '../utils/style.json';
-
-const TopNav = props => {
-  const { classes } = props;
+const TopNav = () => {
   return (
     <div>
       1
@@ -10,4 +6,4 @@ const TopNav = props => {
   );
 };
 
-export default withStyles(style)(TopNav);
+export default TopNav;

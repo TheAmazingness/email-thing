@@ -1,19 +1,18 @@
 import TopNav from '../components/TopNav';
 import SideNav from '../components/SideNav';
 import Main from '../components/Main';
-import { withStyles } from '@material-ui/core';
-import style from '../utils/style.json';
+import style from '../utils/style';
 
-const App = props => {
-  const { classes } = props;
+const App = () => {
   document.title = 'AbleMail';
   return (
-    <div className={classes.app}>
+    <div className="app">
       <TopNav/>
       <SideNav/>
       <Main/>
+      <style global="true">{ style }</style>
     </div>
   );
 };
 
-export default withStyles(style)(App);
+export default App;

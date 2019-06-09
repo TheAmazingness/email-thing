@@ -1,13 +1,11 @@
-import { withStyles } from '@material-ui/core';
-import style from '../utils/style.json';
+import CircularProgress from '@material-ui/core/CircularProgress/index';
 
-const Main = props => {
-  const { classes } = props;
+const Main = () => {
   return (
-    <div>
-      3
-    </div>
+    <>
+      <CircularProgress/>
+    </>
   );
 };
 
-export default withStyles(style)(Main);
+export default Main;
