@@ -1,0 +1,33 @@
+{
+  "name": "ablemail",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "next": "next",
+    "next-start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheAmazingness/ablemail.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheAmazingness/ablemail/issues"
+  },
+  "homepage": "https://github.com/TheAmazingness/ablemail#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.0.2",
+    "@material-ui/icons": "^4.0.1",
+    "express": "^4.17.1",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
