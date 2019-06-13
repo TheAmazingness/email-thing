@@ -1,0 +1,38 @@
+{
+  ".app": {
+    "height": "100vh",
+    "left": 0,
+    "margin": 0,
+    "overflow": "hidden",
+    "position": "absolute",
+    "top": 0,
+    "width": "100vw"
+  },
+  ".auth": {
+    "position": "absolute",
+    "right": "5vw"
+  },
+  ".drawer > div": {
+    "z-index": 2,
+    "width": "20vw"
+  },
+  ".drawer-offset": {
+    "height": "10vh"
+  },
+  ".load-app": {
+    "color": "#ff0000",
+    "left": "-50%",
+    "position": "relative",
+    "top": "-50%"
+  },
+  ".load-wrap": {
+    "left": "50%",
+    "position": "absolute",
+    "top": "50%"
+  },
+  ".name": {
+    "display": "block",
+    "height": "5vh",
+    "margin": "auto"
+  }
+}
