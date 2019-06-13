@@ -11,9 +11,9 @@ const App = () => {
     //  <CircularProgress className="load-app"/>
     //</div>
     <>
-      <TopNav/>
-      <SideNav/>
-      <Main/>
+      <TopNav />
+      <SideNav />
+      <Main />
     </>
   );
   // setLoad(
@@ -25,7 +25,7 @@ const App = () => {
   // );
   return (
     <div className="app">
-      <CssBaseline/>
+      <CssBaseline />
       <title>AbleMail</title>
       { load }
       <style global="true">{ style }</style>
