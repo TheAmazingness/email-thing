@@ -8,10 +8,6 @@
     "top": 0,
     "width": "100vw"
   },
-  ".auth": {
-    "position": "absolute",
-    "right": "5vw"
-  },
   ".drawer > div": {
     "z-index": 2,
     "width": "20vw"
