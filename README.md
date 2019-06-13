@@ -1,4 +1,4 @@
-# ![AbleMail](media/logo-blue.png)
+# ![AbleMail](static/logo-blue.png)
 AbleMail SourceAmerica Project. Furthering independence through email.
 
 <!-- Try it out [here](https://theamazingness.github.io/ablemail)! -->
