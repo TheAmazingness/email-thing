@@ -8,12 +8,18 @@
     "top": 0,
     "width": "100vw"
   },
-  ".drawer > div": {
-    "z-index": 2,
-    "width": "20vw"
+  ".drawer-list-separator": {
+    "width": "2vw"
   },
   ".drawer-offset": {
     "height": "10vh"
+  },
+  ".drawer-paper": {
+    "z-index": 2,
+    "width": "25vw"
+  },
+  ".icon": {
+    "font-size": "45pt"
   },
   ".load-app": {
     "color": "#ff0000",
@@ -30,5 +36,8 @@
     "display": "block",
     "height": "5vh",
     "margin": "auto"
+  },
+  ".sidenav-text span": {
+    "font-size": "30pt"
   }
 }

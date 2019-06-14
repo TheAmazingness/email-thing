@@ -8,7 +8,7 @@ import { Mail as MailIcon, NoteAdd as NoteAddIcon, Settings as SettingsIcon } fr
 
 const SideNav = () => {
   return (
-    <Drawer className="drawer" variant="permanent">
+    <Drawer classes={ { paper: 'drawer-paper' } } className="drawer" variant="permanent">
       <div className="drawer-offset"/>
       <List>
         { [
@@ -17,6 +17,7 @@ const SideNav = () => {
           ].map(info => (
             <ListItem button key={ info[0] }>
               <ListItemIcon>{ info[1] }</ListItemIcon>
+              <div className="drawer-list-separator" />
               <ListItemText className="sidenav-text" primary={ info[0] } />
             </ListItem>
           ))
@@ -26,6 +27,7 @@ const SideNav = () => {
       <List>
         <ListItem button>
           <ListItemIcon><SettingsIcon className="icon" /></ListItemIcon>
+          <div className="drawer-list-separator" />
           <ListItemText className="sidenav-text" primary="Settings" />
         </ListItem>
       </List>
