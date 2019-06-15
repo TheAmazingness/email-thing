@@ -9,7 +9,7 @@ import { Mail as MailIcon, NoteAdd as NoteAddIcon, Settings as SettingsIcon } fr
 const SideNav = () => {
   return (
     <Drawer classes={ { paper: 'drawer-paper' } } className="drawer" variant="permanent">
-      <div className="drawer-offset"/>
+      <div className="drawer-offset" />
       <List>
         { [
             ['Inbox', <MailIcon className="icon" />],
@@ -19,6 +19,7 @@ const SideNav = () => {
               <ListItemIcon>{ info[1] }</ListItemIcon>
               <div className="drawer-list-separator" />
               <ListItemText className="sidenav-text" primary={ info[0] } />
+              <div className="drawer-offset" />
             </ListItem>
           ))
         }
