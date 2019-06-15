@@ -15,11 +15,11 @@
     "height": "10vh"
   },
   ".drawer-paper": {
-    "z-index": 2,
+    "z-index": "1 !important",
     "width": "25vw"
   },
   ".icon": {
-    "font-size": "45pt"
+    "font-size": "45pt !important"
   },
   ".load-app": {
     "color": "#ff0000",
