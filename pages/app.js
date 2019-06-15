@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TopNav from '../components/TopNav';
 import SideNav from '../components/SideNav';
 import Main from '../components/Main';
-import style from '../utils/style';
+import Head from '../utils/head';
 
 const App = () => {
   const [load, setLoad] = useState(
@@ -26,9 +26,8 @@ const App = () => {
   return (
     <div className="app">
       <CssBaseline />
-      <title>AbleMail</title>
+      <Head />
       { load }
-      <style global="true">{ style }</style>
     </div>
   );
 };
