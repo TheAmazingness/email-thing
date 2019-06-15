@@ -1,14 +1,14 @@
+import Head from 'next/head';
 import style from './style';
 
-const Head = () => {
-  // TODO: favicon
+const CustomHead = () => {
   return (
-    <>
+    <Head>
       <title>AbleMail</title>
       <link rel="shortcut icon" href="../static/favicon.ico" />
       <style global="true">{ style }</style>
-    </>
+    </Head>
   );
 };
 
-export default Head;
+export default CustomHead;
