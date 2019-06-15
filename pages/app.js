@@ -7,7 +7,7 @@ import Head from '../utils/head';
 
 const App = () => {
   const [load, setLoad] = useState(
-    //<div className='load-wrap'>
+    //<div className="load-wrap">
     //  <CircularProgress className="load-app"/>
     //</div>
     <>

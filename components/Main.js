@@ -1,10 +1,8 @@
-import CircularProgress from '@material-ui/core/CircularProgress/index';
-
 const Main = () => {
   return (
-    <>
-      <CircularProgress/>
-    </>
+    <main>
+      3
+    </main>
   );
 };
 
