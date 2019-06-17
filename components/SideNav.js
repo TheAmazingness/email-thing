@@ -24,7 +24,9 @@ const SideNav = () => {
           ))
         }
       </List>
+      <div className="drawer-offset" />
       <Divider />
+      <div className="drawer-offset" />
       <List>
         <ListItem button>
           <ListItemIcon><SettingsIcon className="icon" /></ListItemIcon>
