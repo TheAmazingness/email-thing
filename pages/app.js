@@ -2,7 +2,6 @@ import { useState } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TopNav from '../components/TopNav';
 import SideNav from '../components/SideNav';
-import Main from '../components/Main';
 import Head from '../utils/head';
 
 const App = () => {
@@ -13,7 +12,7 @@ const App = () => {
     <>
       <TopNav />
       <SideNav />
-      <Main />
+      {/*<Main />*/}
     </>
   );
   // setLoad(
