@@ -13,14 +13,14 @@ const login = JSON.parse(fs.readFileSync('login.json', 'utf8'));
 
 const imap = new Imap(login);
 
-const openInbox = cb => imap.openBox('INBOX', true, cb);
-
 app
   .prepare()
   .then(() => {
     const server = express();
 
     server.get('*', (req, res) => handle(req, res));
+
+    server.get('/app', (req, res) => res.send('test'));
 
     server.listen(port, err => {
       if (err) throw err;
@@ -29,7 +29,7 @@ app
 
     imap
       .once('ready', () => {
-        openInbox((err, box) => {
+        imap.openBox('INBOX', true, (err, box) => {
           if (err) throw err;
           imap.seq
             .fetch('1:3', {
