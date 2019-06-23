@@ -13,6 +13,14 @@ const login = JSON.parse(fs.readFileSync('login.json', 'utf8'));
 
 const imap = new Imap(login);
 
+imap
+  .once('ready', () => {
+    console.log(1);
+  })
+  .once('error', err => console.log(err))
+  .once('end', () => console.log('Connection ended'))
+  .connect();
+
 // app
 //   .prepare()
 //   .then(() => {
