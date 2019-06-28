@@ -17,26 +17,24 @@ imap
   .once('ready', () => {
     imap.openBox('INBOX', true, (err, box) => {
       if (err) throw err;
+      // imap.seq.fetch(`1:1`, {
       imap.seq.fetch(`1:${ box.messages.total }`, {
         bodies: ['HEADER.FIELDS (FROM TO SUBJECT DATE)', 'TEXT']
       }).on('message', (msg, seqno) => {
         let prefix = `(#${ seqno })`;
         console.log(`Message #${ seqno }`);
-        msg.on('body', function(stream, info) {
-          if (info.which === 'TEXT')
-            console.log(prefix + 'Body [%s] found, %d total bytes', inspect(info.which), info.size);
-          var buffer = '', count = 0;
-          stream.on('data', function(chunk) {
+        msg.on('body', (stream, info) => {
+          let buffer = '', count = 0;
+          stream.on('data', chunk => {
             count += chunk.length;
             buffer += chunk.toString('utf8');
-            if (info.which === 'TEXT')
-              console.log(prefix + 'Body [%s] (%d/%d)', inspect(info.which), count, info.size);
+            if (info.which === 'TEXT' && count === info.size) {
+              console.log(`${ prefix } Body: ${ buffer }`);
+            }
           });
-          stream.once('end', function() {
-            if (info.which !== 'TEXT')
-              console.log(prefix + 'Parsed header: %s', inspect(Imap.parseHeader(buffer)));
-            else
-              console.log(prefix + 'Body [%s] Finished', inspect(info.which));
+          stream.once('end', () => {
+            if (info.which !== 'TEXT') console.log(`${ prefix } Parsed header: ${ inspect(Imap.parseHeader(buffer)) }`);
+            else console.log(`${ prefix } Body [${ inspect(info.which) }] Finished`);
           });
         });
       });
