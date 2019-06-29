@@ -28,9 +28,6 @@ imap
           stream.on('data', chunk => {
             count += chunk.length;
             buffer += chunk.toString('utf8');
-            if (info.which === 'TEXT' && count === info.size) {
-              console.log(`${ prefix } Body: ${ buffer }`);
-            }
           });
           stream.once('end', () => {
             if (info.which !== 'TEXT') console.log(`${ prefix } Parsed header: ${ inspect(Imap.parseHeader(buffer)) }`);
