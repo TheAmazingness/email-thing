@@ -31,6 +31,7 @@ imap
           });
           stream.once('end', () => {
             if (info.which !== 'TEXT') console.log(`${ prefix } Parsed header: ${ inspect(Imap.parseHeader(buffer)) }`);
+            else if (info.which === 'TEXT') console.log(`${ prefix }: ${ buffer }`);
             else console.log(`${ prefix } Body [${ inspect(info.which) }] Finished`);
           });
         });
