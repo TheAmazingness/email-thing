@@ -17,7 +17,6 @@ imap
   .once('ready', () => {
     imap.openBox('INBOX', true, (err, box) => {
       if (err) throw err;
-      // imap.seq.fetch(`1:1`, {
       imap.seq.fetch(`1:${ box.messages.total }`, {
         bodies: ['HEADER.FIELDS (FROM TO SUBJECT DATE)', 'TEXT']
       }).on('message', (msg, seqno) => {
