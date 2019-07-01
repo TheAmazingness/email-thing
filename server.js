@@ -1,7 +1,6 @@
 const express = require('express');
 const next = require('next');
 const Imap = require('imap');
-const inspect = require('util').inspect;
 const fs = require('fs');
 
 const dev = process.env.NODE_ENV !== 'production';
