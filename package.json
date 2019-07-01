@@ -27,6 +27,7 @@
     "@material-ui/icons": "^4.0.1",
     "express": "^4.17.1",
     "imap": "^0.8.19",
+    "mailparser": "^2.7.1",
     "next": "^8.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
