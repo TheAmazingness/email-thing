@@ -3,12 +3,14 @@ const next = require('next');
 const Imap = require('imap');
 const fs = require('fs');
 const parser = require('mailparser').simpleParser;
+const WebSocketServer = require('ws').Server;
 
 const dev = process.env.NODE_ENV !== 'production';
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = 3000;
+const wss = new WebSocketServer({ port: 8081 });
 const login = JSON.parse(fs.readFileSync('login.json', 'utf8'));
 
 const imap = new Imap(login);
@@ -42,11 +44,14 @@ app
       .once('end', () => console.log('Connection ended'))
       .connect();
 
-    const server = express();
-
-    server.get('/app', (req, res) => {
-      res.send(mail);
+    wss.on('connection', ws => {
+      ws.on('end', () => {
+        console.log('Connection ended...');
     });
+      ws.send('Hello Client');
+    });
+
+    const server = express();
 
     server.get('*', (req, res) => handle(req, res));
 

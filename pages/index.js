@@ -1,12 +1,16 @@
 import Link from 'next/link';
-import Head from '../utils/head';
+import CustomHead from '../utils/head';
 
 const Index = () => {
   return (
     <div className="app">
-      <Head />
+      <CustomHead />
       <Link href="/app">
         <a>yeetus</a>
+      </Link>
+      <br />
+      <Link href="/mail">
+        <a>testing</a>
       </Link>
     </div>
   );
