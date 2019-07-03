@@ -47,8 +47,8 @@ app
     wss.on('connection', ws => {
       ws.on('end', () => {
         console.log('Connection ended...');
-    });
-      ws.send('Hello Client');
+      });
+      ws.send(JSON.stringify(mail));
     });
 
     const server = express();
