@@ -24,17 +24,16 @@ app
         imap.openBox('INBOX', true, (err, box) => {
           if (err) throw err;
           imap.seq.fetch(`1:${ box.messages.total }`, {
-            bodies: ['HEADER.FIELDS (FROM TO SUBJECT DATE)', 'TEXT']
+            bodies: ''
           }).on('message', (msg, seqno) => {
             msg.on('body', stream => {
               let buffer = '', count = 0;
               stream.on('data', chunk => {
                 count += chunk.length;
-                buffer += chunk.toString('utf8');
+                buffer += chunk;
               });
               stream.once('end', () => {
-                if (!mail[seqno - 1]) mail[seqno - 1] = [];
-                parser(buffer).then(parsed => mail[seqno - 1].push(parsed));
+                parser(buffer).then(parsed => mail[seqno - 1] = parsed);
               });
             });
           });
@@ -45,9 +44,7 @@ app
       .connect();
 
     wss.on('connection', ws => {
-      ws.on('end', () => {
-        console.log('Connection ended...');
-      });
+      ws.on('message', message => message === 'close' && ws.close());
       ws.send(JSON.stringify(mail));
     });
 
