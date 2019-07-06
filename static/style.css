@@ -1,0 +1,54 @@
+main {
+  bottom: 0;
+  display: grid;
+  left: 25vw;
+  position: absolute;
+  top: 64px;
+  width: 75vw;
+}
+
+.app {
+  height: 100vh;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+.drawer-list-separator {
+  width: 2vw;
+}
+.drawer-offset {
+  height: 10vh;
+}
+.drawer-paper {
+  z-index: 1 !important;
+  margin-top: 64px;
+  width: 25vw;
+}
+.icon {
+  font-size: 45pt !important;
+}
+.load-app {
+  color: #ff0000;
+  left: -50%;
+  position: relative;
+  top: -50%;
+}
+.load-wrap {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
+.name {
+  display: block;
+  height: 5vh;
+  margin: auto;
+}
+.sidenav-text span {
+  font-size: 30pt;
+}
+.main-load {
+  margin: auto;
+}
