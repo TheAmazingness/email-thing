@@ -8,10 +8,6 @@ const Index = () => {
       <Link href="/app">
         <a>yeetus</a>
       </Link>
-      <br />
-      <Link href="/mail">
-        <a>testing</a>
-      </Link>
     </div>
   );
 };
