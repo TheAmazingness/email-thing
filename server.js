@@ -13,13 +13,18 @@ const port = 3000;
 const wss = new WebSocketServer({ port: 8081 });
 const login = JSON.parse(fs.readFileSync('login.json', 'utf8'));
 
-const imap = new Imap(login);
+let imap;
+try {
+  imap = new Imap(login);
+} catch {
+  imap = false;
+}
 
 app
   .prepare()
   .then(() => {
     let mail = [];
-    imap
+    !imap && imap
       .once('ready', () => {
         imap.openBox('INBOX', true, (err, box) => {
           if (err) throw err;
@@ -45,7 +50,7 @@ app
 
     wss.on('connection', ws => {
       ws.on('message', message => message === 'close' && ws.close());
-      ws.send(JSON.stringify(mail));
+      ws.send(mail.length ? JSON.stringify(mail) : 'false');
     });
 
     const server = express();
