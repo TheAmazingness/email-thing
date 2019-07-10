@@ -5,11 +5,12 @@ import TopNav from '../components/TopNav';
 import SideNav from '../components/SideNav';
 import Main from '../components/Main';
 import CustomHead from '../utils/head';
+import Login from '../components/Login'
 
 const App = () => {
   const [load, setLoad] = useState(
     <div className="load-wrap">
-     <CircularProgress className="load-app"/>
+     <CircularProgress className="load-app" />
     </div>
   );
   useEffect(() => {
@@ -20,9 +21,14 @@ const App = () => {
       let data = JSON.parse(e.data);
       if (!data) {
         setLoad(
-          <>
-            Log in :(
-          </>
+          <Login open={ true } onSubmit={ login => {
+            ws.send(JSON.stringify(login));
+            setLoad(
+              <div className="load-wrap">
+                <CircularProgress className="load-app" />
+              </div>
+            );
+          } } />
         );
       } else {
         data.forEach((el, index) => messages[index] = {
