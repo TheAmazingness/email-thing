@@ -14,7 +14,6 @@ const App = () => {
     </div>
   );
   useEffect(() => {
-    let messages = {};
     let ws = new WebSocket('ws://localhost:8081');
     ws.onerror = err => console.error(err);
     ws.onmessage = e => {
@@ -31,23 +30,22 @@ const App = () => {
           } } />
         );
       } else {
+        let messages = {};
         data.forEach((el, index) => messages[index] = {
           from: el.from.value[0],
           subject: el.subject,
           body: el.html
         });
-        console.log(messages);
         setLoad(
           <>
             <TopNav />
             <SideNav />
-            <Main />
+            <Main data={ messages } />
           </>
         );
       }
-      ws.send('close');
     };
-  });
+  }, []);
   return (
     <div className="app">
       <CssBaseline />

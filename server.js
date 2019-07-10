@@ -11,45 +11,58 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = 3000;
 const wss = new WebSocketServer({ port: 8081 });
-const login = JSON.parse(fs.readFileSync('login.json', 'utf8'));
 
-let imap;
-try {
-  imap = new Imap(login);
-} catch {
-  imap = false;
-}
-
-app
-  .prepare()
-  .then(() => {
+const imapConnect = () => {
+  const login = fs.existsSync('login.json') ? JSON.parse(fs.readFileSync('login.json', 'utf8')) : {};
+  const imap = new Imap(login);
+  return new Promise(resolve => {
     let mail = [];
-    !imap && imap
+    imap
       .once('ready', () => {
         imap.openBox('INBOX', true, (err, box) => {
           if (err) throw err;
-          imap.seq.fetch(`1:${ box.messages.total }`, {
-            bodies: ''
-          }).on('message', (msg, seqno) => {
-            msg.on('body', stream => {
+          imap.seq.fetch(`1:${ box.messages.total }`, { bodies: '' })
+            .on('message', (msg, seqno) => msg.on('body', stream => {
               let buffer = '', count = 0;
               stream.on('data', chunk => {
                 count += chunk.length;
                 buffer += chunk;
               });
-              stream.once('end', () => {
-                parser(buffer).then(parsed => mail[seqno - 1] = parsed);
-              });
-            });
-          });
+              stream.once('end', () => parser(buffer).then(parsed => mail[seqno - 1] = parsed));
+            }))
+            .once('end', () => imap.end());
         });
       })
-      .once('error', err => console.log(err))
-      .once('end', () => console.log('Connection ended'))
+      .once('error', () => resolve([]))
+      .once('end', () => resolve(mail))
       .connect();
+  });
+};
+
+app
+  .prepare()
+  .then(async () => {
+    let mail = await imapConnect();
 
     wss.on('connection', ws => {
-      ws.on('message', message => message === 'close' && ws.close());
+      ws.on('message', async message => {
+        if (message === 'logout') {
+          fs.unlinkSync('login.json');
+          ws.send('false');
+        } else {
+          let login = JSON.parse(message);
+          let json = {
+            user: login[0],
+            password: login[1],
+            host: 'imap.gmail.com', // TODO: More hosts than Gmail
+            port: 993, // TODO: Check if all hosts are 993
+            tls: true
+          };
+          fs.writeFileSync('login.json', JSON.stringify(json));
+          mail = await imapConnect();
+          ws.send(mail.length ? JSON.stringify(mail) : 'false');
+        }
+      });
       ws.send(mail.length ? JSON.stringify(mail) : 'false');
     });
 

@@ -12,18 +12,6 @@ Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
 <br>`git clone https://github.com/TheAmazingness/ablemail.git <your-project-folder>`
 2. Run `yarn` on the folder to install all dependencies.
 3. Run `yarn run dev` for the dev version
-4. (Will be removed once login is implemented) Create a `login.json` file in the project root directory. Make sure it looks like this:
-
-```json
-{
-	"user": "example@example.com",
-	"password": "example",
-	"host": "imap.example.com",
-	"port": 993,
-	"tls": true
-}
-```
-
 
 This project was made with [Next.js](https://nextjs.org/), [Material UI](https://material-ui.com), [Express](http://expressjs.com), and [React](https://reactjs.org).
 
