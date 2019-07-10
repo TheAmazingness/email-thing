@@ -38,7 +38,7 @@ const App = () => {
         });
         setLoad(
           <>
-            <TopNav />
+            <TopNav onLogout={ () => ws.send('logout') } />
             <SideNav />
             <Main data={ messages } />
           </>
