@@ -15,13 +15,19 @@ const App = () => {
   );
   useEffect(() => {
     let ws = new WebSocket('ws://localhost:8081');
+    let credentials = JSON.parse(localStorage.getItem('login'));
     ws.onerror = err => console.error(err);
+    ws.onopen = () => {
+      if (!!credentials) ws.send(JSON.stringify(credentials));
+      else ws.send('no-login');
+    };
     ws.onmessage = e => {
       let data = JSON.parse(e.data);
       if (!data) {
         setLoad(
           <Login open={ true } onSubmit={ login => {
             ws.send(JSON.stringify(login));
+            localStorage.setItem('login', JSON.stringify(login));
             setLoad(
               <div className="load-wrap">
                 <CircularProgress className="load-app" />
@@ -38,7 +44,20 @@ const App = () => {
         });
         setLoad(
           <>
-            <TopNav onLogout={ () => ws.send('logout') } />
+            <TopNav onLogout={ () => {
+              localStorage.removeItem('login');
+              setLoad(
+                <Login open={ true } onSubmit={ login => {
+                  ws.send(JSON.stringify(login));
+                  localStorage.setItem('login', JSON.stringify(login));
+                  setLoad(
+                    <div className="load-wrap">
+                      <CircularProgress className="load-app" />
+                    </div>
+                  );
+                } } />
+              );
+            } } />
             <SideNav />
             <Main data={ messages } />
           </>

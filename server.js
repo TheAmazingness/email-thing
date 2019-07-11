@@ -13,16 +13,15 @@ const port = 3000;
 const wss = new WebSocketServer({ port: 8081 });
 const hosts = JSON.parse(fs.readFileSync('imap.json'));
 
-const imapConnect = () => {
-  const login = fs.existsSync('login.json') ? JSON.parse(fs.readFileSync('login.json', 'utf8')) : {};
+const imapConnect = login => {
   const imap = new Imap(login);
   return new Promise(resolve => {
     let mail = [];
     imap
       .once('ready', () => {
-        imap.openBox('INBOX', true, (err, box) => {
+        imap.openBox('INBOX', true, err => {
           if (err) throw err;
-          imap.seq.fetch(`1:${ box.messages.total }`, { bodies: '' })
+          imap.seq.fetch('1:20', { bodies: '' })
             .on('message', (msg, seqno) => msg.on('body', stream => {
               let buffer = '', count = 0;
               stream.on('data', chunk => {
@@ -43,15 +42,13 @@ const imapConnect = () => {
 app
   .prepare()
   .then(async () => {
-    let mail = await imapConnect();
-
     wss.on('connection', ws => {
       ws.on('message', async message => {
-        if (message === 'logout') {
-          fs.unlinkSync('login.json');
+        if (message === 'no-login') {
           ws.send('false');
         } else {
           let login = JSON.parse(message);
+          let mail;
           let json = {
             user: login[0],
             password: login[1],
@@ -59,12 +56,10 @@ app
             port: 993,
             tls: true
           };
-          fs.writeFileSync('login.json', JSON.stringify(json));
-          mail = await imapConnect();
+          mail = await imapConnect(json);
           ws.send(mail.length ? JSON.stringify(mail) : 'false');
         }
       });
-      ws.send(mail.length ? JSON.stringify(mail) : 'false');
     });
 
     const server = express();
