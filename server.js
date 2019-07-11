@@ -11,6 +11,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = 3000;
 const wss = new WebSocketServer({ port: 8081 });
+const hosts = JSON.parse(fs.readFileSync('imap.json'));
 
 const imapConnect = () => {
   const login = fs.existsSync('login.json') ? JSON.parse(fs.readFileSync('login.json', 'utf8')) : {};
@@ -54,8 +55,8 @@ app
           let json = {
             user: login[0],
             password: login[1],
-            host: 'imap.gmail.com', // TODO: More hosts than Gmail
-            port: 993, // TODO: Check if all hosts are 993
+            host: hosts[login[0].split('@')[1]],
+            port: 993,
             tls: true
           };
           fs.writeFileSync('login.json', JSON.stringify(json));
