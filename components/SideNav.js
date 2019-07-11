@@ -10,16 +10,21 @@ const SideNav = () => {
   return (
     <Drawer classes={ { paper: 'drawer-paper' } } className="drawer" variant="permanent">
       <List>
-        { [
+        {
+          [
             ['Inbox', <MailIcon className="icon" />],
             ['Send email', <NoteAddIcon className="icon" />]
-          ].map(info => (
-            <ListItem button key={ info[0] }>
-              <ListItemIcon>{ info[1] }</ListItemIcon>
-              <div className="drawer-list-separator" />
-              <ListItemText className="sidenav-text" primary={ info[0] } />
-            </ListItem>
-          ))
+          ].map(info =>
+            <span key={ info[0] }>
+              <ListItem button>
+                <ListItemIcon>{ info[1] }</ListItemIcon>
+                <div className="drawer-list-separator" />
+                <ListItemText className="sidenav-text" primary={ info[0] } />
+              </ListItem>
+              <br />
+              <br />
+            </span>
+          )
         }
       </List>
       <Divider />
