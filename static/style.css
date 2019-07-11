@@ -2,6 +2,7 @@ main {
   bottom: 0;
   display: grid;
   left: 25vw;
+  overflow-y: scroll;
   position: absolute;
   top: 64px;
   width: 75vw;
@@ -41,14 +42,24 @@ main {
   position: absolute;
   top: 50%;
 }
+.mail-preview {
+  height: 40vh;
+  margin: 2vh auto;
+  width: 70vw;
+}
+.main-load {
+  margin: auto;
+}
 .name {
   display: block;
   height: 5vh;
   margin: auto;
 }
+.preview-action-area {
+  border-radius: 4px;
+  height: 40vh;
+  width: 70vw;
+}
 .sidenav-text span {
   font-size: 30pt;
-}
-.main-load {
-  margin: auto;
 }

@@ -30,7 +30,7 @@ const App = () => {
           } } />
         );
       } else {
-        let messages = {};
+        let messages = [];
         data.forEach((el, index) => messages[index] = {
           from: el.from.value[0],
           subject: el.subject,
