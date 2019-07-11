@@ -12,11 +12,7 @@ const Mail = props => {
       <DialogTitle>
         { props.message.subject }
       </DialogTitle>
-      <DialogContent>
-        <pre>
-          { props.message.body }
-        </pre>
-      </DialogContent>
+      <DialogContent dangerouslySetInnerHTML={ { __html: props.message.body } } />
       <Divider />
       <DialogActions>
         <Button color="primary" onClick={ () => props.onClose() }>
