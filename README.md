@@ -15,5 +15,12 @@ Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
 
 This project was made with [Next.js](https://nextjs.org/), [Material UI](https://material-ui.com), [Express](http://expressjs.com), and [React](https://reactjs.org).
 
+## Signing In With a Gmail Account
+1. Visit [https://myaccount.google.com/](https://myaccount.google.com/).
+2. Click on `Security`
+3. Turn on `Less secure app access`
+4. Go back to AbleMail
+5. Sign in
+
 ## Next
 This branch is for AbleMail with Next.js, React hooks, and independency from Gmail.
