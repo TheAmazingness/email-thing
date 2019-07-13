@@ -37,11 +37,11 @@ const App = () => {
         );
       } else {
         let messages = [];
-        data.forEach((el, index) => messages[index] = {
+        data.forEach((el, index) => !!el ? messages[index] = {
           from: el.from.value[0],
           subject: el.subject,
           body: el.html
-        });
+        } : null);
         setLoad(
           <>
             <TopNav onLogout={ () => {
