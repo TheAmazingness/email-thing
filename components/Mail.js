@@ -8,14 +8,14 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const Mail = props => {
   return (
-    <Dialog fullScreen open={ props.open }>
+    <Dialog className="mail-dialog" fullScreen open={ props.open }>
       <DialogTitle>
         { props.message.subject }
       </DialogTitle>
-      <DialogContent dangerouslySetInnerHTML={ { __html: props.message.body } } />
+      <DialogContent className="mail-content" dangerouslySetInnerHTML={ { __html: props.message.body } } />
       <Divider />
       <DialogActions>
-        <Button color="primary" onClick={ () => props.onClose() }>
+        <Button className="mail-close" color="primary" onClick={ () => props.onClose() }>
           <CloseIcon />
           &emsp;Close
         </Button>

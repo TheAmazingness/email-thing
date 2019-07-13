@@ -42,6 +42,19 @@ main {
   position: absolute;
   top: 50%;
 }
+.mail-close {
+  margin: auto !important;
+}
+.mail-close > span {
+  font-size: 20pt;
+}
+.mail-content {
+  border: 5px solid black;
+  border-radius: 4px;
+}
+.mail-dialog > div[role=document] > div {
+  padding: 2vh 2vw;
+}
 .mail-preview {
   height: 40vh;
   margin: 2vh auto;
@@ -60,6 +73,6 @@ main {
   height: 40vh;
   width: 70vw;
 }
-.sidenav-text span {
+.sidenav-text > span {
   font-size: 30pt;
 }
