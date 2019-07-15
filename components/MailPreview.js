@@ -11,12 +11,10 @@ const MailPreview = props => {
     <div key={ Math.random() }>
       <Card className="mail-preview" raised>
         <CardActionArea className="preview-action-area" color="primary" onClick={ () => setOpen(true) }>
-          <CardContent>
-            <h2>{ props.message.from.name }</h2>
-            <br />
+          <CardContent className="mp-content">
+            <h2 className="mp-name">{ props.message.from.name }</h2>
             <Divider />
-            <br />
-            <h1>{ props.message.subject }</h1>
+            <h1 className="mp-subject">{ props.message.subject }</h1>
           </CardContent>
         </CardActionArea>
       </Card>
