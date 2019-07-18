@@ -15,19 +15,19 @@ const App = () => {
   );
   let open = false;
   useEffect(() => {
-    let ws = new WebSocket('ws://localhost:8081');
-    let credentials = JSON.parse(localStorage.getItem('login'));
+    const ws = new WebSocket('ws://localhost:8081');
+    const credentials = JSON.parse(localStorage.getItem('login'));
     ws.onerror = err => console.error(err);
     ws.onopen = () => {
       open = true;
-      ws.send(!!credentials ? JSON.stringify(['credentials', credentials]) : JSON.stringify(['no-login']));
+      ws.send(JSON.stringify(!!credentials ? ['credentials', credentials] : ['no-login']));
     };
     ws.onmessage = e => {
-      let data = JSON.parse(e.data);
-      if (!data) {
+      const data = JSON.parse(e.data);
+      if (data[0] === 'no-login') {
         setLoad(
           <Login open={ true } onSubmit={ login => {
-            ws.send(JSON.stringify(login));
+            ws.send(JSON.stringify(['credentials', login]));
             localStorage.setItem('login', JSON.stringify(login));
             setLoad(
               <div className="load-wrap">
@@ -38,7 +38,7 @@ const App = () => {
         );
       } else {
         let messages = [];
-        data.forEach((el, index) => !!el ? messages[index] = {
+        data[1].forEach((el, index) => !!el ? messages[index] = {
           from: el.from.value[0],
           subject: el.subject,
           body: el.html
@@ -49,7 +49,7 @@ const App = () => {
               localStorage.removeItem('login');
               setLoad(
                 <Login open={ true } onSubmit={ login => {
-                  ws.send(JSON.stringify(login));
+                  ws.send(JSON.stringify(['credentials', login]));
                   localStorage.setItem('login', JSON.stringify(login));
                   setLoad(
                     <div className="load-wrap">

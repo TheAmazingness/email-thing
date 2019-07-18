@@ -58,7 +58,7 @@ app
               tls: true
             };
             const mail = await imapConnect(json);
-            ws.send(mail !== -1 ? JSON.stringify(mail) : 'false');
+            ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
           	break;
         }
       });
