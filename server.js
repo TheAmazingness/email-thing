@@ -33,7 +33,7 @@ const imapConnect = login => {
             .once('end', () => imap.end());
         });
       })
-      .once('error', () => resolve([]))
+      .once('error', () => resolve(-1))
       .once('end', () => resolve(mail))
       .connect();
   });
@@ -44,20 +44,22 @@ app
   .then(async () => {
     wss.on('connection', ws => {
       ws.on('message', async message => {
-        if (message === 'no-login') {
-          ws.send('false');
-        } else {
-          let login = JSON.parse(message);
-          let mail;
-          let json = {
-            user: login[0],
-            password: login[1],
-            host: hosts[login[0].split('@')[1]],
-            port: 993,
-            tls: true
-          };
-          mail = await imapConnect(json);
-          ws.send(mail.length ? JSON.stringify(mail) : 'false');
+        const m = JSON.parse(message);
+        switch (m[0]) {
+          case 'no-login':
+            ws.send('false');
+          	break;
+          case 'credentials':
+            const json = {
+              user: m[1][0],
+              password: m[1][1],
+              host: hosts[m[1][0].split('@')[1]],
+              port: 993,
+              tls: true
+            };
+            const mail = await imapConnect(json);
+            ws.send(mail !== -1 ? JSON.stringify(mail) : 'false');
+          	break;
         }
       });
     });

@@ -13,13 +13,14 @@ const App = () => {
      <CircularProgress className="load-app" />
     </div>
   );
+  let open = false;
   useEffect(() => {
     let ws = new WebSocket('ws://localhost:8081');
     let credentials = JSON.parse(localStorage.getItem('login'));
     ws.onerror = err => console.error(err);
     ws.onopen = () => {
-      if (!!credentials) ws.send(JSON.stringify(credentials));
-      else ws.send('no-login');
+      open = true;
+      ws.send(!!credentials ? JSON.stringify(['credentials', credentials]) : JSON.stringify(['no-login']));
     };
     ws.onmessage = e => {
       let data = JSON.parse(e.data);
