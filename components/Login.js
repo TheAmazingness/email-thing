@@ -14,7 +14,6 @@ const Login = props => {
     <Dialog
       aria-labelledby="form-dialog-title"
       fullWidth
-      onClose={ () => !!props.onClose && props.onClose() }
       open={ props.open }
     >
       <DialogTitle id="form-dialog-title">
@@ -41,12 +40,6 @@ const Login = props => {
         />
       </DialogContent>
       <DialogActions>
-        {
-          !!props.onClose &&
-          <Button color="primary" onClose={ () => props.onClose() }>
-            Cancel
-          </Button>
-        }
         {
           (!!email && !!password) &&
           <Button color="primary" onClick={ () => props.onSubmit([email, password]) }>
