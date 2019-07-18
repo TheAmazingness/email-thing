@@ -59,7 +59,7 @@ const App = () => {
                 } } />
               );
             } } />
-            <SideNav />
+            <SideNav onSend={ data => open && ws.send(JSON.stringify(['send', credentials, data])) } />
             <Main data={ messages } />
           </>
         );

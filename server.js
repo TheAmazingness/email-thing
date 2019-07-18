@@ -1,6 +1,7 @@
 const express = require('express');
 const next = require('next');
 const Imap = require('imap');
+const nodemailer = require('nodemailer');
 const fs = require('fs');
 const parser = require('mailparser').simpleParser;
 const WebSocketServer = require('ws').Server;
@@ -60,6 +61,24 @@ app
             const mail = await imapConnect(json);
             ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
           	break;
+          case 'send':
+            const transporter = nodemailer.createTransport({
+              host: 'smtp.gmail.com', // TODO: Other smtp servers
+              port: 465,
+              secure: true,
+              auth: {
+                user: m[1][0],
+                pass: m[1][1]
+              }
+            });
+            await transporter.sendMail({
+              from: `"AbleMail" <${ m[1][0] }>`,
+              to: m[2][0], // TODO: Auto cc option
+              subject: m[2][1],
+              text: m[2][2],
+              // attachments: [{ filename: 'recording.mp4' }] // TODO: Make this work: https://nodemailer.com/message/attachments/
+            });
+
         }
       });
     });
