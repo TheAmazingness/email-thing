@@ -43,7 +43,7 @@ const Settings = props => {
       </DialogContent>
       <DialogActions>
         { /* TODO: Add confirmation */ }
-        <Button color="primary" onClose={ () => props.onClose() }>
+        <Button color="primary" onClick={ () => props.onClose() }>
           <CheckIcon />
           &emsp;Apply
         </Button>
