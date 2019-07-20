@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Mail from './Mail';
+import tts from '../utils/tts';
 
 const MailPreview = props => {
   const [open, setOpen] = useState(false);
+  const [close, setClose] = useState(false);
+  useEffect(() => {
+    open && tts('Open email');
+    if (close) {
+      setClose(false);
+      tts('Clothes email');
+    }
+  });
   return (
     <div key={ Math.random() }>
       <Card className="mail-preview" raised>
@@ -18,7 +27,7 @@ const MailPreview = props => {
           </CardContent>
         </CardActionArea>
       </Card>
-      <Mail message={ props.message } onClose={ () => setOpen(false) } open={ open } />
+      <Mail message={ props.message } onClose={ () => { setOpen(false); setClose(true); } } open={ open } />
     </div>
   );
 };
