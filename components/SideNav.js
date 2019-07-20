@@ -6,10 +6,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Compose from './Compose';
+import Settings from './Settings';
 import { Mail as MailIcon, NoteAdd as NoteAddIcon, Settings as SettingsIcon } from '@material-ui/icons';
 
 const SideNav = props => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState({ compose: false, settings: false });
+  const setState = (k, v) => setOpen({ ...open, [k]: v });
   return (
     <>
       <Drawer classes={ { paper: 'drawer-paper' } } className="drawer" variant="permanent">
@@ -17,7 +19,7 @@ const SideNav = props => {
           {
             [
               ['Inbox', <MailIcon className="icon" />],
-              ['Send Email', <NoteAddIcon className="icon" />, () => setOpen(true)]
+              ['Send Email', <NoteAddIcon className="icon" />, () => setState('compose', true)]
             ].map(info =>
                 <span key={ info[0] }>
               <ListItem button onClick={ () => info[2] && info[2]() }>
@@ -33,14 +35,19 @@ const SideNav = props => {
         </List>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem button onClick={ () => setState('settings', true) }>
             <ListItemIcon><SettingsIcon className="icon" /></ListItemIcon>
             <div className="drawer-list-separator" />
             <ListItemText className="sidenav-text" primary="Settings" />
           </ListItem>
         </List>
       </Drawer>
-      <Compose onClose={ () => setOpen(false) } open={ open } onSubmit={ data => props.onSend(data) } />
+      <Compose
+        onClose={ () => setState('compose', false) }
+        open={ open.compose }
+        onSubmit={ data => props.onSend(data) }
+      />
+      <Settings onClose={ () => setState('settings', false) } open={ open.settings } />
     </>
   );
 };
