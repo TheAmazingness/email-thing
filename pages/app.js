@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TopNav from '../components/TopNav';
 import SideNav from '../components/SideNav';
 import Main from '../components/Main';
-import CustomHead from '../utils/head';
+import CustomHead from '../components/Head';
 import Login from '../components/Login'
 
 const App = () => {

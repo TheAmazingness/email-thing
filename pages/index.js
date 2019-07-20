@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import CustomHead from '../utils/head';
+import CustomHead from '../components/Head';
 
 const Index = () => {
   return (
