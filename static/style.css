@@ -82,6 +82,36 @@ main {
   height: 50vh;
   width: 70vw;
 }
+.settings-action {
+  display: block !important;
+  text-align: center;
+}
+.settings-apply {
+  text-align: center;
+}
+.settings-apply > button {
+  bottom: 2vh;
+  left: 2vw;
+  position: absolute;
+  width: 96vw;
+}
+.settings-body {
+  margin: 0 2vw !important;
+  width: 96vw !important;
+}
+.settings-icon {
+  font-size: 24pt !important;
+}
+.settings-name {
+  font-size: 24pt;
+}
+.settings-offset {
+  margin: 75px 0;
+}
+.settings-title {
+  font-size: 36pt;
+  text-align: center;
+}
 .sidenav-text > span {
   font-size: 30pt;
 }
