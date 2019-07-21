@@ -48,7 +48,7 @@ app
         const m = JSON.parse(message);
         switch (m[0]) {
           case 'no-login':
-            ws.send('false');
+            ws.send(JSON.stringify(['no-login']));
           	break;
           case 'credentials':
             const json = {
