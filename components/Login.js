@@ -10,6 +10,12 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 const Login = props => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const setState = s => e => {
+    s(e.target.value);
+    if (e.key === 'Enter' && (!!email && !!password)) {
+      props.onSubmit([email, password]);
+    }
+  };
   return (
     <Dialog
       aria-labelledby="form-dialog-title"
@@ -25,7 +31,7 @@ const Login = props => {
           fullWidth
           label="Email Address"
           margin="normal"
-          onChange={ e => setEmail(e.target.value) }
+          onKeyUp={ setState(setEmail) }
           variant="outlined"
           type="email"
         />
@@ -34,7 +40,7 @@ const Login = props => {
           fullWidth
           label="Password"
           margin="normal"
-          onChange={ e => setPassword(e.target.value) }
+          onKeyUp={ setState(setPassword) }
           variant="outlined"
           type="password"
         />
