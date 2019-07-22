@@ -1,5 +1,5 @@
 # ![AbleMail](static/logo-blue.png)
-AbleMail SourceAmerica Project. Furthering independence through email.
+Furthering independence through email.
 
 <!-- Try it out [here](https://theamazingness.github.io/ablemail)! -->
 
@@ -23,4 +23,4 @@ This project was made with [Next.js](https://nextjs.org/), [Material UI](https:/
 5. Sign in
 
 ## Next
-This branch is for AbleMail with Next.js, React hooks, and independency from Gmail.
+This branch is for AbleMail with Next.js, React hooks, and independence from Gmail.
