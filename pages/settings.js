@@ -29,13 +29,22 @@ const Settings = () => {
             location.href = `${ location.href.split('/')[0] }/app`;
           } } />
           <div className="settings-offset" />
-          <Grid className="settings-body" container spacing={ 8 }>
+          <Grid className="settings-body" container spacing={ 4 }>
             <Grid className="settings-title" item sm={ 12 }>
               <SettingsIcon className="settings-icon" />
               &emsp;Settings
             </Grid>
-            <Grid item sm={ 4 }>
+            <Grid item sm={ 3 }>
               <Setting name="tts">Text-to-Speech</Setting>
+            </Grid>
+            <Grid item sm={ 3 }>
+              <Setting name="vemail">Voice Email</Setting>
+            </Grid>
+            <Grid item sm={ 3 }>
+              <Setting name="recognition">Voice Recognition</Setting>
+            </Grid>
+            <Grid item sm={ 3 }>
+              <Setting name="font">Larger Font</Setting>
             </Grid>
             <Grid className="settings-apply" item sm={ 12 }>
               <Link href="/app">
