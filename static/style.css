@@ -63,6 +63,9 @@ main {
   margin: 2vh auto;
   width: 70vw;
 }
+.mail-preview > button > div {
+  padding: 2vh 2vw !important;
+}
 .main-load {
   margin: auto;
 }
