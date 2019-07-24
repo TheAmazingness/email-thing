@@ -1,7 +1,7 @@
 {
   "name": "ablemail",
   "version": "1.0.0",
-  "description": "",
+  "description": "An email client for people with cognitive disabilities.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,8 +16,8 @@
     "url": "git+https://github.com/TheAmazingness/ablemail.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Tristan Peng",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/TheAmazingness/ablemail/issues"
   },
