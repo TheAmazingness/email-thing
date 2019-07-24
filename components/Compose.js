@@ -6,19 +6,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { Close as CloseIcon, Mail as MailIcon, Send as SendIcon } from '@material-ui/icons';
+import font from '../utils/font';
 
 const Compose = props => {
   const [to, setTo] = useState();
   const [subject, setSubject] = useState();
   const [body, setBody] = useState();
   return (
-    <Dialog
-      aria-labelledby="form-dialog-title"
-      fullWidth
-      onClose={ () => props.onClose() }
-      open={ props.open }
-    >
-      <DialogTitle id="form-dialog-title">
+    <Dialog fullWidth onClose={ () => props.onClose() } open={ props.open }>
+      <DialogTitle data-size={ font() }>
         <MailIcon />
         &emsp;Send Email
       </DialogTitle>
@@ -59,7 +55,7 @@ const Compose = props => {
         </Button>
         {
           (!!subject && !!body) &&
-          <Button color="primary" onClick={ () => { props.onSubmit([to, subject, body]); props.onClose(); } }>
+          <Button color="primary" data-size={ font() } onClick={ () => { props.onSubmit([to, subject, body]); props.onClose(); } }>
             <SendIcon />
             &emsp;Send
           </Button>

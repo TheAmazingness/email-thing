@@ -1,3 +1,6 @@
+*[data-size=large] {
+  font-size: 6em !important;
+}
 main {
   bottom: 0;
   display: grid;
@@ -46,7 +49,7 @@ main {
   margin: auto !important;
 }
 .mail-close > span {
-  font-size: 20pt;
+  font-size: 4em;
 }
 .mail-content {
   border: 5px solid black;
@@ -56,7 +59,7 @@ main {
   padding: 2vh 2vw;
 }
 .mail-preview {
-  height: 50vh;
+  height: 60vh;
   margin: 2vh auto;
   width: 70vw;
 }
@@ -67,10 +70,10 @@ main {
   text-align: center;
 }
 .mp-name {
-  font-size: 30pt;
+  font-size: 4em;
 }
 .mp-subject {
-  font-size: 45pt;
+  font-size: 4em;
 }
 .name {
   display: block;
@@ -79,7 +82,7 @@ main {
 }
 .preview-action-area {
   border-radius: 4px;
-  height: 50vh;
+  height: 60vh;
   width: 70vw;
 }
 .settings-action {
