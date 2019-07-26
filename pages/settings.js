@@ -18,7 +18,7 @@ const Settings = () => {
   useEffect(() => {
     const credentials = JSON.parse(localStorage.getItem('login'));
     if (!credentials) {
-      location.href = `${ location.href.split('/')[0] }/app`;
+      location.href = `${ location.pathname }/app`;
     } else {
       setBody(
         <>
@@ -26,7 +26,7 @@ const Settings = () => {
           <CustomHead />
           <TopNav onLogout={ () => {
             localStorage.removeItem('login');
-            location.href = `${ location.href.split('/')[0] }/app`;
+            location.href = `${ location.pathname }/app`;
           } } />
           <div className="settings-offset" />
           <Grid className="settings-body" container spacing={ 4 }>
