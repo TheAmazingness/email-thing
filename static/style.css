@@ -49,7 +49,7 @@ main {
   margin: auto !important;
 }
 .mail-close > span {
-  font-size: 4em;
+  font-size: 24pt;
 }
 .mail-content {
   border: 5px solid black;

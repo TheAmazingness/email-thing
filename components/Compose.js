@@ -26,7 +26,7 @@ const Compose = props => {
           margin="normal"
           onChange={ e => setTo(e.target.value) }
           variant="outlined"
-          type="text"
+          type="email"
         />
         <br />
         <TextField
