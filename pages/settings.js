@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import CustomHead from '../components/Head';
+import HelpEmail from '../components/HelpEmail';
 import Setting from '../components/Setting';
 import TopNav from '../components/TopNav';
 import { Check as CheckIcon, Settings as SettingsIcon } from '@material-ui/icons';
@@ -45,6 +46,11 @@ const Settings = () => {
             </Grid>
             <Grid item sm={ 3 }>
               <Setting name="font">Larger Font</Setting>
+            </Grid>
+            <Grid item sm={ 6 }>
+            </Grid>
+            <Grid item sm={ 6 }>
+              <HelpEmail />
             </Grid>
             <Grid className="settings-apply" item sm={ 12 }>
               <Link href="/app">
