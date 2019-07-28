@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 const HelpEmail = () => {
   const [state, setState] = useState('');
   useEffect(() => {
-    const get = item => !!localStorage.getItem(item) ? JSON.parse(localStorage.getItem(item)) : '';
+    const get = item => !!localStorage.getItem(item) ? localStorage.getItem(item) : '';
     setState(get('help'));
   }, []);
   useEffect(() => { localStorage.setItem('help', state) }, [state]);

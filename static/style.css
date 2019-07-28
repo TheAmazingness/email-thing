@@ -20,6 +20,9 @@ main {
   top: 0;
   width: 100vw;
 }
+.compose-title {
+  font-size: 24pt;
+}
 .drawer-list-separator {
   width: 2vw;
 }

@@ -16,7 +16,7 @@ const Compose = props => {
     <Dialog fullWidth onClose={ () => props.onClose() } open={ props.open }>
       <DialogTitle data-size={ font() }>
         <MailIcon />
-        &emsp;Send Email
+        <span className="compose-title">&emsp;Send Email</span>
       </DialogTitle>
       <DialogContent>
         { /* TODO: Temporary fix, will make into dropdown select */ }
@@ -49,13 +49,20 @@ const Compose = props => {
         />
       </DialogContent>
       <DialogActions>
-        <Button color="primary" onClose={ () => props.onClose() }>
+        <Button color="primary" onClick={ () => props.onClose() }>
           <CloseIcon />
           &emsp;Cancel
         </Button>
         {
           (!!subject && !!body) &&
-          <Button color="primary" data-size={ font() } onClick={ () => { props.onSubmit([to, subject, body]); props.onClose(); } }>
+          <Button
+            color="primary"
+            data-size={ font() }
+            onClick={ () => {
+              props.onSubmit([to, subject, body]);
+              props.onClose();
+            } }
+          >
             <SendIcon />
             &emsp;Send
           </Button>

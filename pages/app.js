@@ -6,6 +6,7 @@ import SideNav from '../components/SideNav';
 import Main from '../components/Main';
 import CustomHead from '../components/Head';
 import Login from '../components/Login'
+import help from '../utils/help';
 
 const App = () => {
   const [load, setLoad] = useState(
@@ -41,7 +42,7 @@ const App = () => {
         data[1].forEach((el, index) => !!el ? messages[index] = {
           from: el.from.value[0],
           subject: el.subject,
-          body: el.html
+          body: !!el.html ? el.html : el.textAsHtml
         } : null);
         setLoad(
           <>
@@ -59,7 +60,14 @@ const App = () => {
                 } } />
               );
             } } />
-            <SideNav onSend={ data => open && ws.send(JSON.stringify(['send', credentials, data])) } />
+            <SideNav
+              onSend={ data => open && ws.send(JSON.stringify([
+                'send',
+                credentials,
+                data,
+                help() ? localStorage.getItem('help') : ''
+              ])) }
+            />
             <Main data={ messages } />
           </>
         );

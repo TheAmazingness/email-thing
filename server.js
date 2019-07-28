@@ -51,14 +51,13 @@ app
             ws.send(JSON.stringify(['no-login']));
           	break;
           case 'credentials':
-            const json = {
+            const mail = await imapConnect({
               user: m[1][0],
               password: m[1][1],
               host: hosts[m[1][0].split('@')[1]],
               port: 993,
               tls: true
-            };
-            const mail = await imapConnect(json);
+            });
             ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
           	break;
           case 'send':
@@ -71,14 +70,15 @@ app
                 pass: m[1][1]
               }
             });
-            await transporter.sendMail({
+            let fields = {
               from: `"AbleMail" <${ m[1][0] }>`,
-              to: m[2][0], // TODO: Auto cc option
+              to: m[2][0],
               subject: m[2][1],
               text: m[2][2],
               // attachments: [{ filename: 'recording.mp4' }] // TODO: Make this work: https://nodemailer.com/message/attachments/
-            });
-
+            };
+            if (m[3] !== '') fields.cc =  m[3];
+            await transporter.sendMail(fields);
         }
       });
     });
