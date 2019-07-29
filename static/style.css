@@ -51,7 +51,7 @@ main {
 .mail-close {
   margin: auto !important;
 }
-.mail-close > span {
+.mail-close > span, .mail-close > span > svg {
   font-size: 24pt;
 }
 .mail-content {

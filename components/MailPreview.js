@@ -28,7 +28,15 @@ const MailPreview = props => {
           </CardContent>
         </CardActionArea>
       </Card>
-      <Mail message={ props.message } onClose={ () => { setOpen(false); setClose(true); } } open={ open } />
+      <Mail
+        message={ props.message }
+        onClose={ () => {
+          setOpen(false);
+          setClose(true);
+        } }
+        onHelp={ data => props.onHelp(data) }
+        open={ open }
+      />
     </div>
   );
 };

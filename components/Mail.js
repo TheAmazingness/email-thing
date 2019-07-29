@@ -4,8 +4,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Divider from '@material-ui/core/Divider';
-import CloseIcon from '@material-ui/icons/Close';
+import { Close as CloseIcon, Feedback as FeedbackIcon } from '@material-ui/icons';
 import font from '../utils/font';
+import help from '../utils/help';
 
 const Mail = props => {
   return (
@@ -16,6 +17,14 @@ const Mail = props => {
       <DialogContent className="mail-content" dangerouslySetInnerHTML={ { __html: props.message.body } } />
       <Divider />
       <DialogActions>
+        {
+          help() && (
+            <Button className="mail-close" color="secondary" onClick={ () => props.onHelp(props.message) }>
+              <FeedbackIcon />
+              &emsp;Send Help Email
+            </Button>
+          )
+        }
         <Button className="mail-close" color="primary" onClick={ () => props.onClose() }>
           <CloseIcon />
           &emsp;Close

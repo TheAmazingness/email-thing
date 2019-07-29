@@ -14,13 +14,11 @@ const App = () => {
      <CircularProgress className="load-app" />
     </div>
   );
-  let open = false;
   useEffect(() => {
     const ws = new WebSocket(`ws://${ location.hostname }:8081`);
     const credentials = JSON.parse(localStorage.getItem('login'));
     ws.onerror = err => console.error(err);
     ws.onopen = () => {
-      open = true;
       ws.send(JSON.stringify(!!credentials ? ['credentials', credentials] : ['no-login']));
     };
     ws.onmessage = e => {
@@ -28,14 +26,15 @@ const App = () => {
       if (data[0] === 'no-login') {
         setLoad(
           <Login open={ true } onSubmit={ login => {
-            ws.send(JSON.stringify(['credentials', login]));
-            localStorage.setItem('login', JSON.stringify(login));
-            setLoad(
-              <div className="load-wrap">
-                <CircularProgress className="load-app" />
-              </div>
-            );
-          } } />
+              ws.send(JSON.stringify(['credentials', login]));
+              localStorage.setItem('login', JSON.stringify(login));
+              setLoad(
+                <div className="load-wrap">
+                  <CircularProgress className="load-app" />
+                </div>
+              );
+            } }
+          />
         );
       } else {
         let messages = [];
@@ -47,28 +46,38 @@ const App = () => {
         setLoad(
           <>
             <TopNav onLogout={ () => {
-              localStorage.removeItem('login');
-              setLoad(
-                <Login open={ true } onSubmit={ login => {
-                  ws.send(JSON.stringify(['credentials', login]));
-                  localStorage.setItem('login', JSON.stringify(login));
-                  setLoad(
-                    <div className="load-wrap">
-                      <CircularProgress className="load-app" />
-                    </div>
-                  );
-                } } />
-              );
-            } } />
+                localStorage.removeItem('login');
+                setLoad(
+                  <Login open={ true } onSubmit={ login => {
+                      ws.send(JSON.stringify(['credentials', login]));
+                      localStorage.setItem('login', JSON.stringify(login));
+                      setLoad(
+                        <div className="load-wrap">
+                          <CircularProgress className="load-app" />
+                        </div>
+                      );
+                    } }
+                  />
+                );
+              } }
+            />
             <SideNav
-              onSend={ data => open && ws.send(JSON.stringify([
+              onSend={ data => ws.send(JSON.stringify([
                 'send',
                 credentials,
                 data,
                 help() ? localStorage.getItem('help') : ''
               ])) }
             />
-            <Main data={ messages } />
+            <Main
+              data={ messages }
+              onHelp={ data => ws.send(JSON.stringify([
+                'help',
+                credentials,
+                data,
+                localStorage.getItem('help'),
+              ])) }
+            />
           </>
         );
       }

@@ -61,15 +61,6 @@ app
             ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
           	break;
           case 'send':
-            const transporter = nodemailer.createTransport({
-              host: 'smtp.gmail.com', // TODO: Other smtp servers
-              port: 465,
-              secure: true,
-              auth: {
-                user: m[1][0],
-                pass: m[1][1]
-              }
-            });
             let fields = {
               from: `"AbleMail" <${ m[1][0] }>`,
               to: m[2][0],
@@ -78,7 +69,31 @@ app
               // attachments: [{ filename: 'recording.mp4' }] // TODO: Make this work: https://nodemailer.com/message/attachments/
             };
             if (m[3] !== '') fields.cc =  m[3];
-            await transporter.sendMail(fields);
+            await nodemailer.createTransport({
+              host: 'smtp.gmail.com', // TODO: Other smtp servers
+              port: 465,
+              secure: true,
+              auth: {
+                user: m[1][0],
+                pass: m[1][1]
+              }
+            }).sendMail(fields);
+            break;
+          case 'help':
+            await nodemailer.createTransport({
+              host: 'smtp.gmail.com', // TODO: Other smtp servers
+              port: 465,
+              secure: true,
+              auth: {
+                user: m[1][0],
+                pass: m[1][1]
+              }
+            }).sendMail({
+              from: `"AbleMail" <${ m[1][0] }>`,
+              to: m[3],
+              subject: m[2].subject,
+              text: m[2].body
+            });
         }
       });
     });
