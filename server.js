@@ -11,7 +11,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = 3000;
-const wss = new WebSocketServer({ port: 80 });
+const wss = new WebSocketServer({ port: 443 });
 const hosts = JSON.parse(fs.readFileSync('imap.json'));
 
 const imapConnect = login => {

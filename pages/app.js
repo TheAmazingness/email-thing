@@ -15,7 +15,7 @@ const App = () => {
     </div>
   );
   useEffect(() => {
-    const ws = new WebSocket(`ws://${ location.hostname }:80`);
+    const ws = new WebSocket(`ws://${ location.hostname }:443`);
     const credentials = JSON.parse(localStorage.getItem('login'));
     ws.onerror = err => console.error(err);
     ws.onopen = () => {
