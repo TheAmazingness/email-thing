@@ -3,7 +3,7 @@
 
 See a more detailed project description [here](http://www.team1540.org/ablemail)!
 
-Try the app [here](https://ablemail.herokuapp.com)
+Try the app [here](https://ablemail.herokuapp.com)!
 
 Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
 
