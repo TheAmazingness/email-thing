@@ -124,3 +124,7 @@ main {
 .sidenav-text > span {
   font-size: 30pt;
 }
+.whitelist-list:hover {
+  cursor: pointer;
+  text-decoration: line-through;
+}

@@ -8,6 +8,7 @@ import CustomHead from '../components/Head';
 import HelpEmail from '../components/HelpEmail';
 import Setting from '../components/Setting';
 import TopNav from '../components/TopNav';
+import Whitelist from '../components/Whitelist';
 import { Check as CheckIcon, Settings as SettingsIcon } from '@material-ui/icons';
 
 const Settings = () => {
@@ -48,6 +49,7 @@ const Settings = () => {
               <Setting name="font">Larger Font</Setting>
             </Grid>
             <Grid item sm={ 6 }>
+              <Whitelist />
             </Grid>
             <Grid item sm={ 6 }>
               <HelpEmail />
