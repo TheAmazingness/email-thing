@@ -3,6 +3,8 @@
 
 See a more detailed project description [here](http://www.team1540.org/ablemail)!
 
+Try the app [here](https://ablemail.herokuapp.com)
+
 Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
 
 This project was made with [Next.js](https://nextjs.org/), [Material UI](https://material-ui.com), [Express](http://expressjs.com), and [React](https://reactjs.org).
