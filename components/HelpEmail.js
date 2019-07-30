@@ -10,8 +10,7 @@ const HelpEmail = () => {
     const get = item => !!localStorage.getItem(item) ? localStorage.getItem(item) : '';
     setState(get('help'));
   }, []);
-  useEffect(() => { localStorage.setItem('help', state) }, [state]);
-  const handleChange = e => setState(e.target.value);
+  useEffect(() => { localStorage.setItem('help', state); }, [state]);
   return (
     <Card>
       <CardContent className="settings-name">Help Email</CardContent>
@@ -20,7 +19,7 @@ const HelpEmail = () => {
           fullWidth
           label="Help Email"
           margin="normal"
-          onChange={ handleChange }
+          onChange={ e => setState(e.target.value) }
           variant="outlined"
           type="email"
         />
