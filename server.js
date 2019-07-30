@@ -102,7 +102,7 @@ app
 
     server.get('*', (req, res) => handle(req, res));
 
-    server.listen(port, err => {
+    server.listen(process.env.PORT || port, err => {
       if (err) throw err;
       console.log('> Ready on http://localhost:3000');
     });
