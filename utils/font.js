@@ -1,5 +1,3 @@
-const font = () => {
-  return JSON.parse(localStorage.getItem('font')) ? 'large' : '';
-};
+const font = () => JSON.parse(localStorage.getItem('font')) ? 'large' : '';
 
 export default font;
