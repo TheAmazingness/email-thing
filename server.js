@@ -16,6 +16,7 @@ const hosts = JSON.parse(fs.readFileSync('imap.json'));
 
 const imapConnect = login => {
   const imap = new Imap(login);
+  console.log(login, imap);
   return new Promise(resolve => {
     let mail = [];
     imap
@@ -24,7 +25,6 @@ const imapConnect = login => {
           if (err) throw err;
           imap.seq.fetch('1:20', { bodies: '' })
             .on('message', (msg, seqno) => msg.on('body', stream => {
-              console.log(1);
               let buffer = '', count = 0;
               stream.on('data', chunk => {
                 count += chunk.length;
