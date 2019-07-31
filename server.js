@@ -67,6 +67,7 @@ app
               port: 993,
               tls: true
             });
+            console.log(mail);
             ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
             break;
           case 'send':
