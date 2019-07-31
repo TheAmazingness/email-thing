@@ -16,11 +16,11 @@ const hosts = JSON.parse(fs.readFileSync('imap.json'));
 
 const imapConnect = login => {
   const imap = new Imap(login);
-  console.log(login, imap);
   return new Promise(resolve => {
     let mail = [];
     imap
       .once('ready', () => {
+        console.log(1);
         imap.openBox('INBOX', true, err => {
           if (err) throw err;
           imap.seq.fetch('1:20', { bodies: '' })
