@@ -24,6 +24,7 @@ const imapConnect = login => {
           if (err) throw err;
           imap.seq.fetch('1:20', { bodies: '' })
             .on('message', (msg, seqno) => msg.on('body', stream => {
+              console.log(1);
               let buffer = '', count = 0;
               stream.on('data', chunk => {
                 count += chunk.length;
@@ -67,7 +68,6 @@ app
               port: 993,
               tls: true
             });
-            console.log(mail);
             ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
             break;
           case 'send':
