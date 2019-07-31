@@ -10,8 +10,8 @@ const dev = process.env.NODE_ENV !== 'production';
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const port = 3000;
-const wss = new WebSocketServer({ port: 8081 });
+const port = process.env.PORT || 3000;
+// const wss = new WebSocketServer({ port: 8081 });
 const hosts = JSON.parse(fs.readFileSync('imap.json'));
 
 const imapConnect = login => {
@@ -43,13 +43,22 @@ const imapConnect = login => {
 app
   .prepare()
   .then(async () => {
+    const server = express()
+      .get('*', (req, res) => handle(req, res))
+      .listen(port, err => {
+        if (err) throw err;
+        console.log('> Ready on http://localhost:3000');
+      });
+
+    const wss = new WebSocketServer({ server });
+
     wss.on('connection', ws => {
       ws.on('message', async message => {
         const m = JSON.parse(message);
         switch (m[0]) {
           case 'no-login':
             ws.send(JSON.stringify(['no-login']));
-          	break;
+            break;
           case 'credentials':
             const mail = await imapConnect({
               user: m[1][0],
@@ -59,7 +68,7 @@ app
               tls: true
             });
             ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
-          	break;
+            break;
           case 'send':
             let fields = {
               from: `"AbleMail" <${ m[1][0] }>`,
@@ -98,14 +107,6 @@ app
       });
     });
 
-    const server = express();
-
-    server.get('*', (req, res) => handle(req, res));
-
-    server.listen(process.env.PORT || port, err => {
-      if (err) throw err;
-      console.log('> Ready on http://localhost:3000');
-    });
   })
   .catch(ex => {
     console.error(ex.stack);
