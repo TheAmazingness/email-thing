@@ -11,7 +11,6 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = process.env.PORT || 3000;
-// const wss = new WebSocketServer({ port: 8081 });
 const hosts = JSON.parse(fs.readFileSync('imap.json'));
 
 const imapConnect = login => {
@@ -20,7 +19,6 @@ const imapConnect = login => {
     let mail = [];
     imap
       .once('ready', () => {
-        console.log(1);
         imap.openBox('INBOX', true, err => {
           if (err) throw err;
           imap.seq.fetch('1:20', { bodies: '' })
