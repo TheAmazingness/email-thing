@@ -8,7 +8,7 @@ const Main = props => {
     <main>
       {
         props.data.map(message => {
-          if (list.includes(props.data.from.address) || !list.length) {
+          if (list.includes(message.from.address) || !list.length) {
             return <MailPreview key={ `mp-${ count++ }` } message={ message } onHelp={ data => props.onHelp(data) }/>
           }
         })
