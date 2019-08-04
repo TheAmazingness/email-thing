@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="67bba2f0-1985-4787-b34c-17476bc0527f" name="Default Changelist" comment="" />
+    <list default="true" id="67bba2f0-1985-4787-b34c-17476bc0527f" name="Default Changelist" comment="Update mailbox action if whitelist is empty">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -16,21 +20,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret column="17" selection-start-column="17" selection-end-column="17" />
+            <state relative-caret-position="1449">
+              <caret line="69" column="61" selection-start-line="69" selection-start-column="61" selection-end-line="69" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pages/app.js">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-812">
-              <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-                <marker date="1564786626474" expanded="true" signature="628:743" ph="..." />
-              </folding>
+            <state relative-caret-position="63">
+              <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -38,11 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="189">
               <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-              <folding>
-                <element signature="e#0#52#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -119,7 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/MailPreview.js" />
         <option value="$PROJECT_DIR$/src/Compose.js" />
         <option value="$PROJECT_DIR$/src/features/VoiceRecognitionFeature.js" />
         <option value="$PROJECT_DIR$/src/nav/SideNav.js" />
@@ -145,7 +153,6 @@
         <option value="$PROJECT_DIR$/login.json" />
         <option value="$PROJECT_DIR$/components/TopNav.js" />
         <option value="$PROJECT_DIR$/imap.json" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/pages/index.js" />
         <option value="$PROJECT_DIR$/components/Login.js" />
         <option value="$PROJECT_DIR$/components/Settings.js" />
@@ -170,13 +177,8 @@
         <option value="$PROJECT_DIR$/components/Main.js" />
         <option value="$PROJECT_DIR$/pages/app.js" />
         <option value="$PROJECT_DIR$/server.js" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+        <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -207,6 +209,7 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -219,21 +222,6 @@
               <item name="ablemail" type="b2602c69:ProjectViewProjectNode" />
               <item name="ablemail" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ablemail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ablemail" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ablemail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ablemail" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ablemail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ablemail" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -242,6 +230,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="editorconfig.notification" value="null" />
@@ -282,7 +271,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="start" />
@@ -484,6 +473,7 @@
       <workItem from="1564557503869" duration="5344000" />
       <workItem from="1564593669094" duration="1495000" />
       <workItem from="1564785303143" duration="1937000" />
+      <workItem from="1564957473560" duration="134000" />
     </task>
     <task id="LOCAL-00182" summary="Displays message when preview is clicked">
       <created>1562878968926</created>
@@ -832,7 +822,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="552566000" />
+    <option name="totallyTimeSpent" value="553555000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -845,8 +835,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22692037" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22692037" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -858,7 +849,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4989429" weight="0.32891566" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4989429" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010571" side_tool="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4989429" weight="0.32891566" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32891566" />
@@ -1001,7 +992,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Update mailbox action if whitelist is empty" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/theme.js" />
     <entry file="file://$PROJECT_DIR$/next.config.js" />
     <entry file="file://$PROJECT_DIR$/src/Link.js" />
     <entry file="file://$PROJECT_DIR$/src/ProTip.js" />
@@ -1049,13 +1039,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/.gitkeep" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/logo-blue.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1189,13 +1172,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -1237,34 +1213,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.next/static/YOLLSQ-zlCOibnkWynhf5/pages/_app.js" />
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile" />
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        <state relative-caret-position="1449">
+          <caret line="69" column="61" selection-start-line="69" selection-start-column="61" selection-end-line="69" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
+        <state relative-caret-position="189">
           <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
           <folding>
-            <element signature="e#0#52#0" expanded="true" />
+            <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.next/static/YOLLSQ-zlCOibnkWynhf5/pages/_app.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/app.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-812">
-          <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-            <marker date="1564786626474" expanded="true" signature="628:743" ph="..." />
-          </folding>
+        <state relative-caret-position="63">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
         </state>
       </provider>
     </entry>

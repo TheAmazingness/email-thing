@@ -59,13 +59,17 @@ app
             ws.send(JSON.stringify(['no-login']));
             break;
           case 'credentials':
-            const mail = await imapConnect({
+            let config = {
               user: m[1][0],
               password: m[1][1],
               host: hosts[m[1][0].split('@')[1]],
               port: 993,
               tls: true
-            });
+            };
+            if (process.env.NODE_ENV !== 'production') {
+              config.tlsOptions = { rejectUnauthorized: false };
+            }
+            const mail = await imapConnect(config);
             ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
             break;
           case 'send':
