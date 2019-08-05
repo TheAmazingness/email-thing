@@ -27,7 +27,7 @@ const App = () => {
         setLoad(
           <Login open={ true } onSubmit={ login => {
               ws.send(JSON.stringify(['credentials', login]));
-              localStorage.setItem('login', JSON.stringify(login));
+              login[2] && localStorage.setItem('login', JSON.stringify(login));
               setLoad(
                 <div className="load-wrap">
                   <CircularProgress className="load-app" />
@@ -50,7 +50,7 @@ const App = () => {
                 setLoad(
                   <Login open={ true } onSubmit={ login => {
                       ws.send(JSON.stringify(['credentials', login]));
-                      localStorage.setItem('login', JSON.stringify(login));
+                      login[2] && localStorage.setItem('login', JSON.stringify(login));
                       setLoad(
                         <div className="load-wrap">
                           <CircularProgress className="load-app" />
