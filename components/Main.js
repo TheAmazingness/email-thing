@@ -7,7 +7,7 @@ const Main = props => {
   return (
     <main>
       {
-        props.data.map(message => {
+        props.data.reverse().map(message => {
           if (list.includes(message.from.address) || !list.length) {
             return <MailPreview key={ `mp-${ count++ }` } message={ message } onHelp={ data => props.onHelp(data) }/>
           }
