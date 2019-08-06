@@ -46,7 +46,7 @@ app
       .get('*', (req, res) => handle(req, res))
       .listen(port, err => {
         if (err) throw err;
-        console.log('> Ready on http://localhost:3000');
+        dev && console.log('> Ready on http://localhost:3000');
       });
 
     const wss = new WebSocketServer({ server });
@@ -66,7 +66,7 @@ app
               port: 993,
               tls: true
             };
-            if (process.env.NODE_ENV !== 'production') {
+            if (dev) {
               config.tlsOptions = { rejectUnauthorized: false };
             }
             const mail = await imapConnect(config);
@@ -109,7 +109,6 @@ app
         }
       });
     });
-
   })
   .catch(ex => {
     console.error(ex.stack);

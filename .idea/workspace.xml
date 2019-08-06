@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="67bba2f0-1985-4787-b34c-17476bc0527f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -42,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/Login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="73" column="2" lean-forward="true" selection-start-line="73" selection-start-column="2" selection-end-line="73" selection-end-column="2" />
+            <state relative-caret-position="545">
+              <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -479,14 +477,7 @@
       <workItem from="1565116710202" duration="91000" />
       <workItem from="1565116846771" duration="51000" />
       <workItem from="1565117041863" duration="120000" />
-      <workItem from="1565123403080" duration="1981000" />
-    </task>
-    <task id="LOCAL-00183" summary="Make credentials save on client side">
-      <created>1562885953045</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1562885953046</updated>
+      <workItem from="1565123403080" duration="2280000" />
     </task>
     <task id="LOCAL-00184" summary="Add instructions for Gmail users">
       <created>1563004593677</created>
@@ -824,11 +815,18 @@
       <option name="project" value="LOCAL" />
       <updated>1564957769180</updated>
     </task>
-    <option name="localTasksCounter" value="232" />
+    <task id="LOCAL-00232" summary="Add &quot;Keep me logged in&quot; feature">
+      <created>1565039593879</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1565039593881</updated>
+    </task>
+    <option name="localTasksCounter" value="233" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="556123000" />
+    <option name="totallyTimeSpent" value="556422000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -849,7 +847,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32678133" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32678133" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -970,7 +968,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add padding" />
     <MESSAGE value="Add more description" />
     <MESSAGE value="Move placement" />
     <MESSAGE value="Update package.json" />
@@ -995,7 +992,8 @@
     <MESSAGE value="Tidy server" />
     <MESSAGE value="Update mailbox action if whitelist is empty" />
     <MESSAGE value="Fix #10" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix #10" />
+    <MESSAGE value="Add &quot;Keep me logged in&quot; feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add &quot;Keep me logged in&quot; feature" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/next.config.js" />
@@ -1251,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="73" column="2" lean-forward="true" selection-start-line="73" selection-start-column="2" selection-end-line="73" selection-end-column="2" />
+        <state relative-caret-position="545">
+          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
