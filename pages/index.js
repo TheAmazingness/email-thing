@@ -5,8 +5,9 @@ const Index = () => {
   return (
     <div className="app">
       <CustomHead />
+      <h1>Temporary Landing Page</h1>
       <Link href="/app">
-        <a>yeetus</a>
+        <a>AbleMail</a>
       </Link>
     </div>
   );
