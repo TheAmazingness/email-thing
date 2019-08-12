@@ -7,6 +7,7 @@ import Main from '../components/Main';
 import CustomHead from '../components/Head';
 import Login from '../components/Login'
 import help from '../utils/help';
+import command from '../utils/command';
 
 const App = () => {
   const [load, setLoad] = useState(
@@ -62,6 +63,7 @@ const App = () => {
               } }
             />
             <SideNav
+              command={ () => command() }
               onSend={ data => ws.send(JSON.stringify([
                 'send',
                 credentials,

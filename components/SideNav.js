@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Compose from './Compose';
-import { Mail as MailIcon, NoteAdd as NoteAddIcon, Settings as SettingsIcon } from '@material-ui/icons';
+import { Mail as MailIcon, Mic as MicIcon, NoteAdd as NoteAddIcon, Settings as SettingsIcon } from '@material-ui/icons';
 
 const SideNav = props => {
   const [open, setOpen] = useState(false);
@@ -18,7 +18,8 @@ const SideNav = props => {
           {
             [
               ['Inbox', <MailIcon className="icon" />],
-              ['Send Email', <NoteAddIcon className="icon" />, () => setOpen(true)]
+              ['Send Email', <NoteAddIcon className="icon" />, () => setOpen(true)],
+              ['Voice Command', <MicIcon className="icon" />, () => props.command()]
             ].map(info =>
               <span key={ info[0] }>
                 <ListItem button onClick={ () => info[2] && info[2]() }>
