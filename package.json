@@ -15,7 +15,14 @@
     "type": "git",
     "url": "git+https://github.com/TheAmazingness/ablemail.git"
   },
-  "keywords": ["email-client", "flamingchickens1540", "nextjs", "expressjs", "reactjs", "material-ui"],
+  "keywords": [
+    "email-client",
+    "flamingchickens1540",
+    "nextjs",
+    "expressjs",
+    "reactjs",
+    "material-ui"
+  ],
   "author": "Tristan Peng",
   "license": "MIT",
   "bugs": {
