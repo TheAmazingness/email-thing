@@ -15,6 +15,7 @@ const App = () => {
      <CircularProgress className="load-app" />
     </div>
   );
+  const [voice, setVoice] = useState({ compose: false });
   useEffect(() => {
     const ws = new WebSocket(`${ location.hostname === 'localhost' ? 'ws' : 'wss' }://${ location.host }`);
     const credentials = JSON.parse(localStorage.getItem('login'));
@@ -63,13 +64,21 @@ const App = () => {
               } }
             />
             <SideNav
-              command={ () => command() }
+              command={ async () => {
+                switch ((await command()).toLowerCase()) {
+                  case 'write':
+                  case 'write email':
+                  	setVoice({ ...voice, compose: true });
+                  	break;
+                }
+              } }
               onSend={ data => ws.send(JSON.stringify([
                 'send',
                 credentials,
                 data,
                 help() ? localStorage.getItem('help') : ''
               ])) }
+              voice={ voice.compose }
             />
             <Main
               data={ messages }

@@ -10,7 +10,7 @@ import Compose from './Compose';
 import { Mail as MailIcon, Mic as MicIcon, NoteAdd as NoteAddIcon, Settings as SettingsIcon } from '@material-ui/icons';
 
 const SideNav = props => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(props.voice);
   return (
     <>
       <Drawer classes={ { paper: 'drawer-paper' } } className="drawer" variant="permanent">
