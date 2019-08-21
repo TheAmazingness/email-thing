@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 const Whitelist = () => {
   const [state, setState] = useState([]);
   const [whitelist, setWhitelist] = useState([]);
+  const del = email => setState(state.filter(el => el !== email));
   const handleChange = e => {
     if (e.key === 'Enter') {
       setState([...state, e.target.value]);
@@ -21,7 +22,6 @@ const Whitelist = () => {
     ));
   }, []);
   useEffect(() => {
-    const del = email => setState(state.filter(el => el !== email));
     localStorage.setItem('whitelist', JSON.stringify(state));
     setWhitelist(state.map((email, i) =>
       <p className="whitelist-list" key={ i } onClick={ () => del(email) }>{ email }</p>

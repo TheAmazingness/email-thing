@@ -3,7 +3,7 @@ import whitelist from '../utils/whitelist';
 
 const Main = props => {
   let count = 0;
-  let list = whitelist() ? localStorage.getItem('whitelist') : [];
+  let list = whitelist() ? JSON.parse(localStorage.getItem('whitelist')) : [];
   return (
     <main>
       {
