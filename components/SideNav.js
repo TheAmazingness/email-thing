@@ -13,15 +13,17 @@ import command from '../utils/command';
 const SideNav = props => {
   const [open, setOpen] = useState(false);
   const [listener, setListener] = useState(true);
-  useEffect(async () => {
-    switch ((await command()).toLowerCase()) {
-      case 'write':
-      case 'write email':
-      case 'right':
-      case 'right email':
-        setOpen(true);
-        break;
-    }
+  useEffect(() => {
+    (async () => {
+      switch ((await command()).toLowerCase()) {
+        case 'write':
+        case 'write email':
+        case 'right':
+        case 'right email':
+          setOpen(true);
+          break;
+      }
+    })();
   }, [listener]);
   return (
     <>
