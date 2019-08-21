@@ -7,7 +7,6 @@ import Main from '../components/Main';
 import CustomHead from '../components/Head';
 import Login from '../components/Login'
 import help from '../utils/help';
-import command from '../utils/command';
 
 const App = () => {
   const [load, setLoad] = useState(
@@ -15,7 +14,6 @@ const App = () => {
      <CircularProgress className="load-app" />
     </div>
   );
-  const [voice, setVoice] = useState({ compose: false });
   useEffect(() => {
     const ws = new WebSocket(`${ location.hostname === 'localhost' ? 'ws' : 'wss' }://${ location.host }`);
     const credentials = JSON.parse(localStorage.getItem('login'));
@@ -25,19 +23,20 @@ const App = () => {
     };
     ws.onmessage = e => {
       const data = JSON.parse(e.data);
+      const loginJSX = (
+        <Login open={ true } onSubmit={ login => {
+          ws.send(JSON.stringify(['credentials', login]));
+          login[2] && localStorage.setItem('login', JSON.stringify(login));
+          setLoad(
+            <div className="load-wrap">
+              <CircularProgress className="load-app" />
+            </div>
+          );
+        } }
+        />
+      );
       if (data[0] === 'no-login') {
-        setLoad(
-          <Login open={ true } onSubmit={ login => {
-              ws.send(JSON.stringify(['credentials', login]));
-              login[2] && localStorage.setItem('login', JSON.stringify(login));
-              setLoad(
-                <div className="load-wrap">
-                  <CircularProgress className="load-app" />
-                </div>
-              );
-            } }
-          />
-        );
+        setLoad(loginJSX);
       } else {
         let messages = [];
         data[1].forEach((el, index) => !!el ? messages[index] = {
@@ -49,36 +48,16 @@ const App = () => {
           <>
             <TopNav onLogout={ () => {
                 localStorage.removeItem('login');
-                setLoad(
-                  <Login open={ true } onSubmit={ login => {
-                      ws.send(JSON.stringify(['credentials', login]));
-                      login[2] && localStorage.setItem('login', JSON.stringify(login));
-                      setLoad(
-                        <div className="load-wrap">
-                          <CircularProgress className="load-app" />
-                        </div>
-                      );
-                    } }
-                  />
-                );
+                setLoad(loginJSX);
               } }
             />
             <SideNav
-              command={ async () => {
-                switch ((await command()).toLowerCase()) {
-                  case 'write':
-                  case 'write email':
-                  	setVoice({ ...voice, compose: true });
-                  	break;
-                }
-              } }
               onSend={ data => ws.send(JSON.stringify([
                 'send',
                 credentials,
                 data,
                 help() ? localStorage.getItem('help') : ''
               ])) }
-              voice={ voice.compose }
             />
             <Main
               data={ messages }
