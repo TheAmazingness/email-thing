@@ -15,14 +15,8 @@ const SideNav = props => {
   const [listener, setListener] = useState(true);
   useEffect(() => {
     (async () => {
-      switch ((await command()).toLowerCase()) {
-        case 'write':
-        case 'write email':
-        case 'right':
-        case 'right email':
-          setOpen(true);
-          break;
-      }
+      let speech = (await command()).toLowerCase();
+      (speech.includes('write') || speech.includes('right')) && setOpen(true);
     })();
   }, [listener]);
   return (
