@@ -43,7 +43,7 @@ const SideNav = props => {
         </List>
         <Divider />
         <List>
-          <Link as="/app" href="/settings">
+          <Link href="/settings">
             <ListItem button>
               <ListItemIcon><SettingsIcon className="icon" /></ListItemIcon>
               <div className="drawer-list-separator" />
