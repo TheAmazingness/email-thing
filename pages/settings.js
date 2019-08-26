@@ -24,8 +24,6 @@ const Settings = () => {
     } else {
       setBody(
         <>
-          <CssBaseline />
-          <CustomHead />
           <TopNav onLogout={ () => {
             localStorage.removeItem('login');
             location.href = `${ location.host }/app`;
@@ -70,6 +68,7 @@ const Settings = () => {
   return (
     <>
       <CssBaseline />
+      <CustomHead />
       { body }
     </>
   );

@@ -30,7 +30,9 @@ const Whitelist = () => {
   return (
     <Card>
       <CardContent>
-        <p className="settings-name">Whitelist</p>
+        <span className="settings-name">Whitelist</span>
+        <br />
+        <br />
         <Card>
           <CardContent className="whitelist">{ whitelist }</CardContent>
         </Card>
