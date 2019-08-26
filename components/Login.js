@@ -12,7 +12,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 const Login = props => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [keep, setKeep] = useState(false);
+  const [keep, setKeep] = useState(true);
   const setState = s => e => {
     s(e.target.value);
     if (e.key === 'Enter' && (!!email && !!password)) {
