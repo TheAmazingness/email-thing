@@ -7,6 +7,7 @@ import Main from '../components/Main';
 import CustomHead from '../components/Head';
 import Login from '../components/Login'
 import help from '../utils/help';
+import tts from '../utils/tts';
 
 const App = () => {
   const [load, setLoad] = useState(
@@ -39,7 +40,7 @@ const App = () => {
         setLoad(loginJSX);
       } else {
         let messages = [];
-        data[1].forEach((el, index) => !!el ? messages[index] = {
+        data[1].forEach((el, i) => !!el ? messages[i] = {
           from: el.from.value[0],
           subject: el.subject,
           body: !!el.html ? el.html : el.textAsHtml
@@ -58,6 +59,11 @@ const App = () => {
                 data,
                 help() ? localStorage.getItem('help') : ''
               ])) }
+              readHeaders={ () =>
+                messages.forEach((el, i) =>
+                  tts(`Email ${ i }, from ${ el.from }, ${ el.subject }`)
+                )
+              }
             />
             <Main
               data={ messages }

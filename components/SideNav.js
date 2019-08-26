@@ -16,7 +16,11 @@ const SideNav = props => {
   useEffect(() => {
     (async () => {
       let speech = (await command()).toLowerCase();
-      (speech.includes('write') || speech.includes('right')) && setOpen(true);
+      if (speech.includes('write') || speech.includes('right')) {
+        setOpen(true);
+      } else if (speech.includes('read')) {
+        props.readHeaders();
+      }
     })();
   }, [listener]);
   return (
