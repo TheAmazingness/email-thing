@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,14 +8,29 @@ import Divider from '@material-ui/core/Divider';
 import { Close as CloseIcon, Feedback as FeedbackIcon } from '@material-ui/icons';
 import font from '../utils/font';
 import help from '../utils/help';
+import tts from '../utils/tts';
 
 const Mail = props => {
+  const [read, setRead] = useState(false);
+  useEffect(() => {
+    if (read) {
+      tts(window.getSelection().toString() !== '' ?
+        window.getSelection().toString() :
+        document.getElementsByClassName('mail-content')[0].innerText
+      );
+      setRead(false);
+    }
+  }, [read]);
   return (
     <Dialog className="mail-dialog" fullScreen open={ props.open }>
-      <DialogTitle data-size={ font() }>
+      <DialogTitle className="mail-subject" data-size={ font() } onClick={ () => tts(props.message.subject) }>
         { props.message.subject }
       </DialogTitle>
-      <DialogContent className="mail-content" dangerouslySetInnerHTML={ { __html: props.message.body } } />
+      <DialogContent
+        className="mail-content"
+        dangerouslySetInnerHTML={ { __html: props.message.body } }
+        onClick={ () => setRead(true) }
+      />
       <Divider />
       <DialogActions>
         {

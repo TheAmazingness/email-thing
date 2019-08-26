@@ -57,6 +57,7 @@ main {
 .mail-content {
   border: 5px solid black;
   border-radius: 4px;
+  overflow-x: hidden;
 }
 .mail-dialog > div[role=document] > div {
   padding: 2vh 2vw;
@@ -68,6 +69,9 @@ main {
 }
 .mail-preview > button > div {
   padding: 2vh 2vw !important;
+}
+.mail-subject > h6 {
+  font-size: 4em;
 }
 .main-load {
   margin: auto;
