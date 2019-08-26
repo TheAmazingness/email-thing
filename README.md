@@ -1,7 +1,7 @@
 # ![AbleMail](static/logo-blue.png)
 **Furthering independence through email:** AbleMail is a free email client web app that allows people with cognitive disabilities to independently use email.
 
-See a more detailed project description [here](http://www.team1540.org/ablemail)!
+See a more detailed project description [here](https://www.team1540.org/ablemail-1)!
 
 Try the app [here](https://ablemail.herokuapp.com)!
 
