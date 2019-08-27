@@ -20,6 +20,9 @@ main {
   top: 0;
   width: 100vw;
 }
+.compose-select {
+  width: 25vw;
+}
 .compose-title {
   font-size: 24pt;
 }
@@ -36,6 +39,10 @@ main {
 }
 .icon {
   font-size: 45pt !important;
+}
+.list:hover {
+  cursor: pointer;
+  text-decoration: line-through;
 }
 .load-app {
   color: #ff0000;
@@ -103,10 +110,7 @@ main {
   text-align: center;
 }
 .settings-apply > button {
-  bottom: 2vh;
-  left: 2vw;
-  position: absolute;
-  width: 96vw;
+  width: 100%;
 }
 .settings-body {
   margin: 0 2vw !important;
@@ -127,8 +131,4 @@ main {
 }
 .sidenav-text > span {
   font-size: 30pt;
-}
-.whitelist-list:hover {
-  cursor: pointer;
-  text-decoration: line-through;
 }

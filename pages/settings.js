@@ -9,6 +9,7 @@ import HelpEmail from '../components/HelpEmail';
 import Setting from '../components/Setting';
 import TopNav from '../components/TopNav';
 import Whitelist from '../components/Whitelist';
+import BuddyList from '../components/BuddyList';
 import { Check as CheckIcon, Settings as SettingsIcon } from '@material-ui/icons';
 
 const Settings = () => {
@@ -52,9 +53,12 @@ const Settings = () => {
             <Grid item sm={ 6 }>
               <HelpEmail />
             </Grid>
+            <Grid item sm={ 6 }>
+              <BuddyList />
+            </Grid>
             <Grid className="settings-apply" item sm={ 12 }>
               <Link href="/app">
-                <Button color="primary" size="large" variant="outlined">
+                <Button color="primary" size="large" variant="contained">
                   <CheckIcon />
                   &emsp;Apply
                 </Button>
