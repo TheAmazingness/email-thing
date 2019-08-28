@@ -30,7 +30,7 @@ const Compose = props => {
       <Select className="compose-select" onChange={ e => setTo(e.target.value) } value={ to }>
         {
           JSON.parse(localStorage.getItem('buddyList')).map(el =>
-            <MenuItem key={ el } value={ el }>{ el }</MenuItem>
+            <MenuItem key={ el[1] } value={ el[1] }>{ el[0] }</MenuItem>
           )
         }
       </Select>
