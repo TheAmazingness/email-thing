@@ -26,6 +26,11 @@ main {
 .compose-title {
   font-size: 24pt;
 }
+.compose-voice {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
 .drawer-list-separator {
   width: 2vw;
 }
