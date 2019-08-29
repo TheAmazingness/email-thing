@@ -67,7 +67,7 @@ const App = () => {
               ])) }
               readHeaders={ () =>
                 messages.forEach((el, i) =>
-                  tts(`Email ${ i }, from ${ el.from }, ${ el.subject }`)
+                  tts(`Email ${ i }, from ${ el.from.name }, ${ el.subject }`)
                 )
               }
             />

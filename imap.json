@@ -1,4 +1,5 @@
 {
   "gmail.com": "imap.gmail.com",
-  "outlook.com": "outlook.office365.com"
+  "outlook.com": "outlook.office365.com",
+  "hotmail.com": "outlook.office365.com"
 }

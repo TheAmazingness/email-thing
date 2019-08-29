@@ -12,15 +12,16 @@ import command from '../utils/command';
 
 const SideNav = props => {
   const [open, setOpen] = useState(false);
-  const [listener, setListener] = useState(true);
+  const [listener, setListener] = useState(false);
   useEffect(() => {
-    (async () => {
+    !listener && (async () => {
       let speech = (await command()).toLowerCase();
       if (speech.includes('write') || speech.includes('right')) {
         setOpen(true);
       } else if (speech.includes('read')) {
         props.readHeaders();
       }
+      setListener(false);
     })();
   }, [listener]);
   return (
@@ -31,7 +32,7 @@ const SideNav = props => {
             [
               ['Inbox', <MailIcon className="icon" />],
               ['Send Email', <NoteAddIcon className="icon" />, () => setOpen(true)],
-              ['Voice Command', <MicIcon className="icon" />, () => setListener(!listener)]
+              ['Voice Command', <MicIcon className="icon" />, () => setListener(true)]
             ].map(info =>
               <span key={ info[0] }>
                 <ListItem button onClick={ () => info[2] && info[2]() }>
