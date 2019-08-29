@@ -14,13 +14,23 @@ const BuddyList = () => {
     if (e.key === 'Enter') {
       setState([ ...state, [name, e.target.value] ]);
       e.target.value = '';
+      e
+        .target
+        .parentElement
+        .parentElement
+        .parentElement
+        .parentElement
+        .firstElementChild
+        .firstElementChild
+        .lastElementChild
+        .lastElementChild
+        .value = '';
       setName('');
     }
   };
   const handleName = e => {
     if (e.key === 'Enter') {
       setName(e.target.value);
-      // e.target.value = '';
     }
   };
   useEffect(() => {
@@ -65,6 +75,7 @@ const BuddyList = () => {
           <Grid item sm={ 5 }>
             <TextField
               fullWidth
+              helperText="Press 'Enter' to continue"
               label="Add Name"
               margin="normal"
               onKeyUp={ handleName }
@@ -78,7 +89,9 @@ const BuddyList = () => {
               <Grid item sm={ 2 } />
               <Grid item sm={ 5 }>
                 <TextField
+                  autoFocus
                   fullWidth
+                  helperText="Press 'Enter' to submit"
                   label="Add Email"
                   margin="normal"
                   onKeyUp={ handleEmail }

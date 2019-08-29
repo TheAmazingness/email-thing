@@ -40,6 +40,7 @@ const Whitelist = () => {
       <CardActions className="settings-action">
         <TextField
           fullWidth
+          helperText="Press 'Enter' to submit"
           label="Add Email"
           margin="normal"
           onKeyUp={ handleChange }
