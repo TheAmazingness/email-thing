@@ -27,7 +27,7 @@ const Settings = () => {
         <>
           <TopNav onLogout={ () => {
             localStorage.removeItem('login');
-            location.href = `${ location.host }/app`;
+            location.href = `/app`;
           } } />
           <div className="settings-offset" />
           <Grid className="settings-body" container spacing={ 4 }>
