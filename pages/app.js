@@ -15,12 +15,18 @@ const App = () => {
      <CircularProgress className="load-app" />
     </div>
   );
+  const [user, setUser] = useState();
   useEffect(() => {
     const ws = new WebSocket(`${ location.hostname === 'localhost' ? 'ws' : 'wss' }://${ location.host }`);
     const credentials = JSON.parse(localStorage.getItem('login'));
     ws.onerror = err => console.error(err);
     ws.onopen = () => {
-      ws.send(JSON.stringify(!!credentials ? ['credentials', credentials] : ['no-login']));
+      if (!!credentials) {
+        ws.send(JSON.stringify( ['credentials', credentials]));
+        setUser(credentials[0]);
+      } else {
+        ws.send(JSON.stringify( ['no-login']));
+      }
     };
     ws.onmessage = e => {
       const data = JSON.parse(e.data);
@@ -82,7 +88,7 @@ const App = () => {
   return (
     <div className="app">
       <CssBaseline />
-      <CustomHead />
+      <CustomHead>{ user }</CustomHead>
       { load }
     </div>
   );

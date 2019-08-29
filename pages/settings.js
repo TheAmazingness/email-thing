@@ -72,7 +72,7 @@ const Settings = () => {
   return (
     <>
       <CssBaseline />
-      <CustomHead />
+      <CustomHead>Settings</CustomHead>
       { body }
     </>
   );
