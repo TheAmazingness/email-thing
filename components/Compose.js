@@ -68,7 +68,7 @@ const Compose = props => {
         </Grid>
         {
           mic &&
-          <Grid className="compose-voice" item sm={ 2 }>
+          <Grid className="icon-wrap" item sm={ 2 }>
             <IconButton color="secondary">
               <MicIcon />
             </IconButton>
@@ -88,7 +88,7 @@ const Compose = props => {
         </Grid>
         {
           mic &&
-          <Grid className="compose-voice" item sm={ 2 }>
+          <Grid className="icon-wrap" item sm={ 2 }>
             <IconButton color="secondary">
               <MicIcon />
             </IconButton>

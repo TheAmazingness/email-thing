@@ -1,6 +1,24 @@
 *[data-size=large] {
   font-size: 6em !important;
 }
+kbd {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  color: #333;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 0 0.1em;
+  padding: 0.1em 0.6em;
+  text-shadow: 0 1px 0 #fff;
+}
 main {
   bottom: 0;
   display: grid;
@@ -20,16 +38,14 @@ main {
   top: 0;
   width: 100vw;
 }
+.center {
+  text-align: center;
+}
 .compose-select {
   width: 25vw;
 }
 .compose-title {
   font-size: 24pt;
-}
-.compose-voice {
-  align-items: center;
-  display: flex;
-  justify-content: center;
 }
 .drawer-list-separator {
   width: 2vw;
@@ -44,6 +60,11 @@ main {
 }
 .icon {
   font-size: 45pt !important;
+}
+.icon-wrap {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 .list:hover {
   cursor: pointer;

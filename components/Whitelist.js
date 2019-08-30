@@ -18,13 +18,13 @@ const Whitelist = () => {
     const get = item => !!localStorage.getItem(item) ? JSON.parse(localStorage.getItem(item)) :[];
     setState(get('whitelist'));
     setWhitelist(get('whitelist').map((email, i) =>
-      <p className="list" key={ i } onClick={ () => del(email) }>{ email }</p>
+      <p className="center list" key={ i } onClick={ () => del(email) }>{ email }</p>
     ));
   }, []);
   useEffect(() => {
     localStorage.setItem('whitelist', JSON.stringify(state));
     setWhitelist(state.map((email, i) =>
-      <p className="list" key={ i } onClick={ () => del(email) }>{ email }</p>
+      <p className="center list" key={ i } onClick={ () => del(email) }>{ email }</p>
     ));
   }, [state]);
   return (
@@ -40,7 +40,7 @@ const Whitelist = () => {
       <CardActions className="settings-action">
         <TextField
           fullWidth
-          helperText="Press 'Enter' to submit"
+          helperText={ <>Press <kbd>Enter</kbd> to submit</> }
           label="Add Email"
           margin="normal"
           onKeyUp={ handleChange }

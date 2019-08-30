@@ -38,11 +38,11 @@ const BuddyList = () => {
     setState(get('buddyList'));
     setBuddyList(get('buddyList').map((email, i) =>
       <Grid container key={ i }>
-        <Grid item sm={ 6 }>
-          <p className="list" key={ i } onClick={ () => del(email) }>{ email[0] }</p>
+        <Grid className="center" item sm={ 6 }>
+          <p className="list" onClick={ () => del(email) }>{ email[0] }</p>
         </Grid>
-        <Grid item sm={ 6 }>
-          <p className="list" key={ i } onClick={ () => del(email) }>{ email[1] }</p>
+        <Grid className="center" item sm={ 6 }>
+          <p className="list" onClick={ () => del(email) }>{ email[1] }</p>
         </Grid>
       </Grid>
     ));
@@ -51,11 +51,11 @@ const BuddyList = () => {
     localStorage.setItem('buddyList', JSON.stringify(state));
     setBuddyList(state.map((email, i) =>
       <Grid container key={ i }>
-        <Grid item sm={ 6 }>
-          <p className="list" key={ i } onClick={ () => del(email) }>{ email[0] }</p>
+        <Grid className="center" item sm={ 6 }>
+          <p className="list" onClick={ () => del(email) }>{ email[0] }</p>
         </Grid>
-        <Grid item sm={ 6 }>
-          <p className="list" key={ i } onClick={ () => del(email) }>{ email[1] }</p>
+        <Grid className="center" item sm={ 6 }>
+          <p className="list" onClick={ () => del(email) }>{ email[1] }</p>
         </Grid>
       </Grid>
     ));
@@ -75,7 +75,7 @@ const BuddyList = () => {
           <Grid item sm={ 5 }>
             <TextField
               fullWidth
-              helperText="Press 'Enter' to continue"
+              helperText={ <>Press <kbd>Enter</kbd> to continue</> }
               label="Add Name"
               margin="normal"
               onKeyUp={ handleName }
@@ -91,7 +91,7 @@ const BuddyList = () => {
                 <TextField
                   autoFocus
                   fullWidth
-                  helperText="Press 'Enter' to submit"
+                  helperText={ <>Press <kbd>Enter</kbd> to submit</> }
                   label="Add Email"
                   margin="normal"
                   onKeyUp={ handleEmail }
