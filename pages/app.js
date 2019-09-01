@@ -53,11 +53,7 @@ const App = () => {
         } : null);
         setLoad(
           <>
-            <TopNav onLogout={ () => {
-                localStorage.removeItem('login');
-                setLoad(loginJSX);
-              } }
-            />
+            <TopNav onLogout={ () => { localStorage.removeItem('login'); setLoad(loginJSX); } } />
             <SideNav
               onSend={ data => ws.send(JSON.stringify([
                 'send',
