@@ -29,11 +29,7 @@ const Canned = () => {
       setIcon('');
     }
   };
-  const handleName = e => {
-    if (e.key === 'Enter') {
-      setIcon(e.target.value);
-    }
-  };
+  const handleName = e => e.key === 'Enter' && setIcon(e.target.value);
   useEffect(() => {
     const get = item => !!localStorage.getItem(item) ? JSON.parse(localStorage.getItem(item)) :[];
     setState(get('canned'));
