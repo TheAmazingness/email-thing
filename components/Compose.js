@@ -22,17 +22,24 @@ const Compose = props => {
   const [compose, setCompose] = useState();
   const [list, setList] = useState(
     <TextField
+      disabled={ props.disabled }
       fullWidth
       label="To:"
       margin="normal"
       onChange={ e => setTo(e.target.value) }
-      variant="outlined"
       type="email"
+      value={ props.to || to }
+      variant="outlined"
     />
   );
   useEffect(() => {
     buddyList() && setList(
-      <Select className="compose-select" onChange={ e => setTo(e.target.value) } value={ to }>
+      <Select
+        className="compose-select"
+        disabled={ props.disabled }
+        onChange={ e => setTo(e.target.value) }
+        value={ props.to || to }
+      >
         {
           JSON.parse(localStorage.getItem('buddyList')).map(el =>
             <MenuItem key={ el[1] } value={ el[1] }>{ el[0] }</MenuItem>
@@ -52,17 +59,16 @@ const Compose = props => {
     let mic = !!localStorage.getItem('voiceEmail');
     setCompose(
       <Grid container spacing={ 8 }>
-        <Grid item sm={ 12 }>
-          { list }
-        </Grid>
-        <Grid item sm={ mic ? 10 : 12 }>
+        <Grid item sm={ mic ? 5 : 6 }>{ list }</Grid>
+        <Grid item sm={ mic ? 5 : 6 }>
           <TextField
+            disabled={ props.disabled }
             fullWidth
             label="Subject"
             margin="normal"
             onChange={ e => setSubject(e.target.value) }
             type="text"
-            value={ body }
+            value={ props.subject || subject }
             variant="outlined"
           />
         </Grid>
@@ -98,7 +104,7 @@ const Compose = props => {
     );
   }, []);
   return (
-    <Dialog fullWidth onClose={ () => props.onClose() } open={ props.open }>
+    <Dialog fullWidth maxWidth="xl" onClose={ () => props.onClose() } open={ props.open }>
       <DialogTitle data-size={ font() }>
         <MailIcon />
         <span className="compose-title">&emsp;Send Email</span>
@@ -112,7 +118,7 @@ const Compose = props => {
           &emsp;Cancel
         </Button>
         {
-          (!!subject && !!body) &&
+          ((!!subject  || props.disabled) && !!body) &&
           <Button
             color="primary"
             data-size={ font() }
