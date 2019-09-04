@@ -10,7 +10,6 @@ import Compose from './Compose';
 import font from '../utils/font';
 import help from '../utils/help';
 import tts from '../utils/tts';
-import canned from '../utils/canned';
 
 const Mail = props => {
   const [read, setRead] = useState(false);
