@@ -5,6 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
+import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -13,6 +14,7 @@ import { Close as CloseIcon, Mail as MailIcon, Mic as MicIcon, Send as SendIcon 
 import font from '../utils/font';
 import buddyList from '../utils/buddyList';
 import voiceEmail from '../utils/voiceEmail';
+import canned from '../utils/canned';
 
 const Compose = props => {
   const [to, setTo] = useState('');
@@ -20,6 +22,7 @@ const Compose = props => {
   const [body, setBody] = useState();
   const [voice, setVoice] = useState(0);
   const [compose, setCompose] = useState();
+  const [reply, setReply] = useState();
   const [list, setList] = useState(
     <TextField
       disabled={ props.disabled }
@@ -102,6 +105,22 @@ const Compose = props => {
         }
       </Grid>
     );
+    canned() && setReply(
+      <Grid container>
+        <Grid item sm={ 12 }>
+          <h1 data-size={ font() }>Quick Reply</h1>
+        </Grid>
+        {
+          JSON.parse(localStorage.getItem('canned')).map(e =>
+            <Grid item key={ e[0] } sm={ 2 }>
+              <IconButton color="secondary" onClick={ () => setBody(e[1]) }>
+                <Icon>{ e[0] }</Icon>
+              </IconButton>
+            </Grid>
+          )
+        }
+      </Grid>
+    );
   }, []);
   return (
     <Dialog fullWidth maxWidth="xl" onClose={ () => props.onClose() } open={ props.open }>
@@ -111,6 +130,8 @@ const Compose = props => {
       </DialogTitle>
       <DialogContent>
         { compose }
+        <br />
+        { reply }
       </DialogContent>
       <DialogActions>
         <Button color="primary" onClick={ () => props.onClose() }>
@@ -122,10 +143,7 @@ const Compose = props => {
           <Button
             color="primary"
             data-size={ font() }
-            onClick={ () => {
-              props.onSubmit([to, subject, body]);
-              props.onClose();
-            } }
+            onClick={ () => { props.onSubmit([to, subject, body]); props.onClose(); } }
           >
             <SendIcon />
             &emsp;Send
