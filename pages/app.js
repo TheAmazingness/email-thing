@@ -46,6 +46,12 @@ const App = () => {
         setLoad(loginJSX);
       } else {
         let messages = [];
+        const send = data => ws.send(JSON.stringify([
+          'send',
+          credentials,
+          data,
+          help() ? localStorage.getItem('help') : ''
+        ]));
         data[1].forEach((el, i) => !!el ? messages[i] = {
           from: el.from.value[0],
           subject: el.subject,
@@ -55,12 +61,7 @@ const App = () => {
           <>
             <TopNav onLogout={ () => { localStorage.removeItem('login'); setLoad(loginJSX); } } />
             <SideNav
-              onSend={ data => ws.send(JSON.stringify([
-                'send',
-                credentials,
-                data,
-                help() ? localStorage.getItem('help') : ''
-              ])) }
+              onSend={ data => send(data) }
               readHeaders={ () =>
                 messages.forEach((el, i) =>
                   tts(`Email ${ i }, from ${ el.from.name }, ${ el.subject }`)
@@ -75,6 +76,7 @@ const App = () => {
                 data,
                 localStorage.getItem('help'),
               ])) }
+              onSend={ data => send(data) }
             />
           </>
         );

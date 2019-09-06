@@ -36,6 +36,7 @@ const MailPreview = props => {
         } }
         onHelp={ data => props.onHelp(data) }
         open={ open }
+        onSend={ data => props.onSend(data) }
       />
     </div>
   );

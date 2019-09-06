@@ -9,7 +9,12 @@ const Main = props => {
       {
         props.data.reverse().map(message => {
           if (list.includes(message.from.address) || !list.length) {
-            return <MailPreview key={ `mp-${ count++ }` } message={ message } onHelp={ data => props.onHelp(data) } />
+            return <MailPreview
+              key={ `mp-${ count++ }` }
+              message={ message }
+              onHelp={ data => props.onHelp(data) }
+              onSend={ data => props.onSend(data) }
+            />
           }
         })
       }

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -106,20 +108,33 @@ const Compose = props => {
       </Grid>
     );
     canned() && setReply(
-      <Grid container>
-        <Grid item sm={ 12 }>
-          <h1 data-size={ font() }>Quick Reply</h1>
-        </Grid>
-        {
-          JSON.parse(localStorage.getItem('canned')).map(e =>
-            <Grid item key={ e[0] } sm={ 2 }>
-              <IconButton color="secondary" onClick={ () => setBody(e[1]) }>
-                <Icon>{ e[0] }</Icon>
-              </IconButton>
+      <Card raised>
+        <CardContent>
+          <Grid container>
+            <Grid item sm={ 12 }>
+              <h1 className="center" data-size={ font() }>Quick Send</h1>
             </Grid>
-          )
-        }
-      </Grid>
+            {
+              JSON.parse(localStorage.getItem('canned')).map(e =>
+                <Grid item key={ e[0] } sm={ 2 }>
+                  <IconButton
+                    color="secondary"
+                    onClick={ () => {
+                      setBody(e[1]);
+                      setTimeout(() => {
+                        props.onSubmit([props.to, props.subject, e[1]]);
+                        props.onClose();
+                      }, 500)
+                    } }
+                  >
+                    <Icon>{ e[0] }</Icon>
+                  </IconButton>
+                </Grid>
+              )
+            }
+          </Grid>
+        </CardContent>
+      </Card>
     );
   }, []);
   return (
