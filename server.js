@@ -19,9 +19,9 @@ const imapConnect = login => {
     let mail = [];
     imap
       .once('ready', () => {
-        imap.openBox('INBOX', true, err => {
+        imap.openBox('INBOX', true, (err, box) => {
           if (err) throw err;
-          imap.seq.fetch('1:20', { bodies: '', markSeen: true })
+          imap.seq.fetch(`${ box.messages.total - 20 }:${ box.messages.total }`, { bodies: '', markSeen: true })
             .on('message', (msg, seqno) => msg.on('body', stream => {
               let buffer = '', count = 0;
               stream.on('data', chunk => {
