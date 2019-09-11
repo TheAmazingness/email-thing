@@ -55,11 +55,20 @@ const Mail = props => {
         </DialogActions>
       </Dialog>
       <Compose
-        onClose={ () => setOpen(false) }
+        body={
+          `
+            <br>
+            <br>
+            On ${ new Date(props.message.date).toDateString() }, ${ props.message.from.name } &lt;<a href="mailto:${ props.message.from.address }">${ props.message.from.address }</a>&gt; wrote:
+            <br>
+            ${ props.message.body }
+          `
+        }
         disabled
+        onClose={ () => setOpen(false) }
         open={ open }
         onSubmit={ data => props.onSend(data) }
-        subject={ `RE: ${ props.message.subject }` }
+        subject={ `Re: ${ props.message.subject }` }
         to={ props.message.from.address }
       />
     </>

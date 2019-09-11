@@ -55,7 +55,8 @@ const App = () => {
         data[1].forEach((el, i) => !!el ? messages[i] = {
           from: el.from.value[0],
           subject: el.subject,
-          body: !!el.html ? el.html : el.textAsHtml
+          body: !!el.html ? el.html : el.textAsHtml,
+          date: el.date
         } : null);
         setLoad(
           <>

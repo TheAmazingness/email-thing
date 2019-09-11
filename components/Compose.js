@@ -120,9 +120,9 @@ const Compose = props => {
                   <IconButton
                     color="secondary"
                     onClick={ () => {
-                      setBody(e[1]);
+                      setBody(e[1] + (props.body ? props.body : ''));
                       setTimeout(() => {
-                        props.onSubmit([props.to, props.subject, e[1]]);
+                        props.onSubmit([props.to, props.subject, e[1] + (props.body ? props.body : '')]);
                         props.onClose();
                       }, 500)
                     } }
@@ -158,7 +158,7 @@ const Compose = props => {
           <Button
             color="primary"
             data-size={ font() }
-            onClick={ () => { props.onSubmit([to, subject, body]); props.onClose(); } }
+            onClick={ () => { props.onSubmit([to, subject, body + (props.body ? props.body : '')]); props.onClose(); } }
           >
             <SendIcon />
             &emsp;Send
