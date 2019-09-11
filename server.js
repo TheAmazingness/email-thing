@@ -77,7 +77,7 @@ app
               from: `"AbleMail" <${ m[1][0] }>`,
               to: m[2][0],
               subject: m[2][1],
-              text: m[2][2],
+              html: m[2][2],
               // attachments: [{ filename: 'recording.mp4' }] // TODO: Make this work: https://nodemailer.com/message/attachments/
             };
             if (m[3] !== '') fields.cc =  m[3];
@@ -104,7 +104,7 @@ app
               from: `"AbleMail" <${ m[1][0] }>`,
               to: m[3],
               subject: m[2].subject,
-              text: m[2].body
+              html: m[2].body
             });
         }
       });
