@@ -32,6 +32,11 @@ const App = () => {
       const data = JSON.parse(e.data);
       const loginJSX = (
         <Login open={ true } onSubmit={ login => {
+          if (login[0].includes('gmail')) {
+            login.push('imap.gmail.com');
+          } else if (login[0].includes('hotmail') || login[0].includes('outlook')) {
+            login.push('outlook.office365.com');
+          }
           ws.send(JSON.stringify(['credentials', login]));
           login[2] && localStorage.setItem('login', JSON.stringify(login));
           setLoad(

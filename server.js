@@ -2,7 +2,6 @@ const express = require('express');
 const next = require('next');
 const Imap = require('imap');
 const nodemailer = require('nodemailer');
-const fs = require('fs');
 const parser = require('mailparser').simpleParser;
 const WebSocketServer = require('ws').Server;
 
@@ -11,7 +10,6 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = process.env.PORT || 3000;
-const hosts = JSON.parse(fs.readFileSync('imap.json'));
 
 const imapConnect = login => {
   const imap = new Imap(login);
@@ -62,7 +60,7 @@ app
             let config = {
               user: m[1][0],
               password: m[1][1],
-              host: hosts[m[1][0].split('@')[1]],
+              host: m[1][3],
               port: 993,
               tls: true
             };
