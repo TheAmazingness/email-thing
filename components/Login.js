@@ -7,6 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
+import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 const Login = props => {
@@ -25,6 +27,10 @@ const Login = props => {
       fullWidth
       open={ props.open }
     >
+      <Snackbar anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }} open={ props.error } message={<span>The email or password was incorrect.</span>} />
       <DialogTitle id="form-dialog-title">
         <VpnKeyIcon />
         &emsp;Sign in

@@ -10,6 +10,7 @@ import help from '../utils/help';
 import tts from '../utils/tts';
 
 const App = () => {
+  let first = true;
   const [load, setLoad] = useState(
     <div className="load-wrap">
      <CircularProgress className="load-app" />
@@ -30,25 +31,24 @@ const App = () => {
     };
     ws.onmessage = e => {
       const data = JSON.parse(e.data);
-      const loginJSX = (
-        <Login open={ true } onSubmit={ login => {
-          if (login[0].includes('gmail')) {
-            login.push('imap.gmail.com');
-          } else if (login[0].includes('hotmail') || login[0].includes('outlook')) {
-            login.push('outlook.office365.com');
-          }
-          ws.send(JSON.stringify(['credentials', login]));
-          login[2] && localStorage.setItem('login', JSON.stringify(login));
-          setLoad(
-            <div className="load-wrap">
-              <CircularProgress className="load-app" />
-            </div>
-          );
-        } }
-        />
-      );
+      const loginJSX = (err = false) => <Login error={ err } open={ true } onSubmit={ login => {
+        if (login[0].includes('gmail')) {
+          login.push('imap.gmail.com');
+        } else if (login[0].includes('hotmail') || login[0].includes('outlook')) {
+          login.push('outlook.office365.com');
+        }
+        ws.send(JSON.stringify(['credentials', login]));
+        login[2] && localStorage.setItem('login', JSON.stringify(login));
+        setLoad(
+          <div className="load-wrap">
+            <CircularProgress className="load-app"/>
+          </div>
+        );
+      } }
+      />;
       if (data[0] === 'no-login') {
-        setLoad(loginJSX);
+        setLoad(loginJSX(!first));
+        first = false;
       } else {
         let messages = [];
         const send = data => ws.send(JSON.stringify([
@@ -65,7 +65,7 @@ const App = () => {
         } : null);
         setLoad(
           <>
-            <TopNav onLogout={ () => { localStorage.removeItem('login'); setLoad(loginJSX); } } />
+            <TopNav onLogout={ () => { localStorage.removeItem('login'); setLoad(loginJSX()); } } />
             <SideNav
               onSend={ data => send(data) }
               readHeaders={ () =>
