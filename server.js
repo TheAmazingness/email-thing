@@ -49,64 +49,62 @@ app
 
     const wss = new WebSocketServer({ server });
 
-    wss.on('connection', ws => {
-      ws.on('message', async message => {
-        const m = JSON.parse(message);
-        switch (m[0]) {
-          case 'no-login':
-            ws.send(JSON.stringify(['no-login']));
-            break;
-          case 'credentials':
-            let config = {
+    wss.on('connection', ws => ws.on('message', async message => {
+      const m = JSON.parse(message);
+      switch (m[0]) {
+        case 'no-login':
+          ws.send(JSON.stringify(['no-login']));
+          break;
+        case 'credentials':
+          let config = {
+            user: m[1][0],
+            password: m[1][1],
+            host: m[1][3],
+            port: 993,
+            tls: true
+          };
+          if (dev) {
+            config.tlsOptions = { rejectUnauthorized: false };
+          }
+          const mail = await imapConnect(config);
+          ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
+          break;
+        case 'send':
+          let fields = {
+            from: `"AbleMail" <${ m[1][0] }>`,
+            to: m[2][0],
+            subject: m[2][1],
+            html: m[2][2],
+            // attachments: [{ filename: 'recording.mp4' }] // TODO: Make this work: https://nodemailer.com/message/attachments/
+          };
+          if (m[3] !== '') fields.cc =  m[3];
+          await nodemailer.createTransport({
+            host: m[4],
+            port: 465,
+            secure: true,
+            auth: {
               user: m[1][0],
-              password: m[1][1],
-              host: m[1][3],
-              port: 993,
-              tls: true
-            };
-            if (dev) {
-              config.tlsOptions = { rejectUnauthorized: false };
+              pass: m[1][1]
             }
-            const mail = await imapConnect(config);
-            ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
-            break;
-          case 'send':
-            let fields = {
-              from: `"AbleMail" <${ m[1][0] }>`,
-              to: m[2][0],
-              subject: m[2][1],
-              html: m[2][2],
-              // attachments: [{ filename: 'recording.mp4' }] // TODO: Make this work: https://nodemailer.com/message/attachments/
-            };
-            if (m[3] !== '') fields.cc =  m[3];
-            await nodemailer.createTransport({
-              host: 'smtp.gmail.com', // TODO: Other smtp servers
-              port: 465,
-              secure: true,
-              auth: {
-                user: m[1][0],
-                pass: m[1][1]
-              }
-            }).sendMail(fields);
-            break;
-          case 'help':
-            await nodemailer.createTransport({
-              host: 'smtp.gmail.com', // TODO: Other smtp servers
-              port: 465,
-              secure: true,
-              auth: {
-                user: m[1][0],
-                pass: m[1][1]
-              }
-            }).sendMail({
-              from: `"AbleMail" <${ m[1][0] }>`,
-              to: m[3],
-              subject: m[2].subject,
-              html: m[2].body
-            });
-        }
-      });
-    });
+          }).sendMail(fields);
+          break;
+        case 'help':
+          await nodemailer.createTransport({
+            host: 'smtp.gmail.com', // TODO: Other smtp servers
+            port: 465,
+            secure: true,
+            auth: {
+              user: m[1][0],
+              pass: m[1][1]
+            }
+          }).sendMail({
+            from: `"AbleMail" <${ m[1][0] }>`,
+            to: m[3],
+            subject: m[2].subject,
+            html: m[2].body
+          });
+      }
+    }));
   })
   .catch(ex => {
     console.error(ex.stack);

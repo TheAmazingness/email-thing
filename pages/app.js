@@ -51,11 +51,18 @@ const App = () => {
         first = false;
       } else {
         let messages = [];
+        let smtp = '';
+        if (credentials[0].includes('gmail')) {
+          smtp = 'smtp.gmail.com';
+        } else if (credentials[0].includes('outlook') || credentials[0].includes('hotmail')) {
+          smtp = 'outlook.office365.com';
+        }
         const send = data => ws.send(JSON.stringify([
           'send',
           credentials,
           data,
-          help() ? localStorage.getItem('help') : ''
+          help() ? localStorage.getItem('help') : '',
+          smtp
         ]));
         data[1].forEach((el, i) => !!el ? messages[i] = {
           from: el.from.value[0],
