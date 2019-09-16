@@ -88,6 +88,7 @@ const App = () => {
                 credentials,
                 data,
                 localStorage.getItem('help'),
+                smtp
               ])) }
               onSend={ data => send(data) }
             />

@@ -90,7 +90,7 @@ app
           break;
         case 'help':
           await nodemailer.createTransport({
-            host: 'smtp.gmail.com', // TODO: Other smtp servers
+            host: m[4],
             port: 465,
             secure: true,
             auth: {
