@@ -59,9 +59,9 @@ const Mail = props => {
           `
             <br>
             <br>
-            On ${ new Date(props.message.date).toDateString() }, ${ props.message.from.name } &lt;<a href="mailto:${ props.message.from.address }">${ props.message.from.address }</a>&gt; wrote:
+            On ${ new Date(props.message.date).toString() }, ${ props.message.from.name } &lt;<a href="mailto:${ props.message.from.address }">${ props.message.from.address }</a>&gt; wrote:
             <br>
-            ${ props.message.body }
+            <blockquote>${ props.message.body }</blockquote>
           `
         }
         disabled
