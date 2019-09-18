@@ -100,8 +100,11 @@ app
           }).sendMail({
             from: `"AbleMail" <${ m[1][0] }>`,
             to: m[3],
-            subject: m[2].subject,
-            html: m[2].body
+            subject: `Fwd (help needed): ${ m[2].subject }`,
+            html: `I think I may need help with this email:
+              <br>
+              <br>
+              <blockquote>${ m[2].body }</blockquote>`
           });
       }
     }));
