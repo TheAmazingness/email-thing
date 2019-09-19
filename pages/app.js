@@ -64,12 +64,12 @@ const App = () => {
           help() ? localStorage.getItem('help') : '',
           smtp
         ]));
-        data[1].forEach((el, i) => !!el ? messages[i] = {
+        data[1].forEach(el => !!el ? messages.push({
           from: el.from.value[0],
           subject: el.subject,
           body: !!el.html ? el.html : el.textAsHtml,
           date: el.date
-        } : null);
+        }) : null);
         setLoad(
           <>
             <TopNav onLogout={ () => { localStorage.removeItem('login'); setLoad(loginJSX()); } } />
