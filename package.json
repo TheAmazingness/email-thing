@@ -24,7 +24,7 @@
     "react",
     "material-ui"
   ],
-  "author": "Tristan Peng",
+  "author": "Tristan Peng <pengt@catlin.edu> (https://kizjkre.github.io)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/TheAmazingness/ablemail/issues"
