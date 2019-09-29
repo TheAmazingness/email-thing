@@ -8,6 +8,8 @@ import CustomHead from '../components/Head';
 import Login from '../components/Login'
 import help from '../utils/help';
 import tts from '../utils/tts';
+import Session from '../utils/clientSession';
+import SocketData from '../utils/clientSocketData';
 
 const App = () => {
   let first = true;
@@ -19,14 +21,14 @@ const App = () => {
   const [user, setUser] = useState();
   useEffect(() => {
     const ws = new WebSocket(`${ location.hostname === 'localhost' ? 'ws' : 'wss' }://${ location.host }`);
-    const credentials = JSON.parse(localStorage.getItem('login'));
+    const credentials = Session.fromJSON(JSON.parse(localStorage.getItem('login')));
     ws.onerror = err => console.error(err);
     ws.onopen = () => {
       if (!!credentials) {
-        ws.send(JSON.stringify( ['credentials', credentials]));
-        setUser(credentials[0]);
+        ws.send(new SocketData('credentials', credentials).toString());
+        setUser(credentials.email);
       } else {
-        ws.send(JSON.stringify( ['no-login']));
+        ws.send(new SocketData('no-login').toString());
       }
     };
     ws.onmessage = e => {
