@@ -1,4 +1,4 @@
-export class ClientSocketDataReceiver {
+class ServerSocketDataReceiver {
   constructor(data) {
     data = JSON.parse(data);
     this._name = data.name;
@@ -10,5 +10,7 @@ export class ClientSocketDataReceiver {
   get data() { return this._data; }
 }
 
-export const ClientSocketDataSender = (name, data = null) =>
+const ServerSocketDataSender = (name, data = null) =>
   JSON.stringify({ name, data });
+
+module.exports = { ServerSocketDataReceiver, ServerSocketDataSender };

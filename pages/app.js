@@ -9,7 +9,10 @@ import Login from '../components/Login'
 import help from '../utils/help';
 import tts from '../utils/tts';
 import Session from '../utils/clientSession';
-import SocketData from '../utils/clientSocketData';
+import {
+  ClientSocketDataSender as SocketDataSender,
+  ClientSocketDataReceiver as SocketDataReceiver
+} from '../utils/clientSocketData';
 
 const App = () => {
   let first = true;
@@ -25,48 +28,47 @@ const App = () => {
     ws.onerror = err => console.error(err);
     ws.onopen = () => {
       if (!!credentials) {
-        ws.send(new SocketData('credentials', credentials).toString());
+        ws.send(SocketDataSender('credentials', credentials));
         setUser(credentials.email);
       } else {
-        ws.send(new SocketData('no-login').toString());
+        ws.send(SocketDataSender('no-login'));
       }
     };
     ws.onmessage = e => {
-      const data = JSON.parse(e.data);
+      const data = new SocketDataReceiver(e.data);
       const loginJSX = (err = false) => <Login error={ err } open={ true } onSubmit={ login => {
-        if (login[0].includes('gmail')) {
-          login.push('imap.gmail.com');
-        } else if (login[0].includes('hotmail') || login[0].includes('outlook')) {
-          login.push('outlook.office365.com');
-        }
-        ws.send(JSON.stringify(['credentials', login]));
-        login[2] && localStorage.setItem('login', JSON.stringify(login));
-        setLoad(
-          <div className="load-wrap">
-            <CircularProgress className="load-app"/>
-          </div>
-        );
-      } }
+          if (login.email.includes('gmail')) {
+            login.imap = 'imap.gmail.com';
+          } else if (login.email.includes('hotmail') || login.email.includes('outlook')) {
+            login.imap = 'outlook.office365.com';
+          }
+          ws.send(SocketDataSender('credentials', login));
+          login.keep && localStorage.setItem('login', JSON.stringify(login));
+          setLoad(
+            <div className="load-wrap">
+              <CircularProgress className="load-app"/>
+            </div>
+          );
+        } }
       />;
-      if (data[0] === 'no-login') {
+      if (data.name === 'no-login') {
         setLoad(loginJSX(!first));
         first = false;
       } else {
         let messages = [];
         let smtp = '';
-        if (credentials[0].includes('gmail')) {
+        if (credentials.email.includes('gmail')) {
           smtp = 'smtp.gmail.com';
-        } else if (credentials[0].includes('outlook') || credentials[0].includes('hotmail')) {
+        } else if (credentials.email.includes('outlook') || credentials.email.includes('hotmail')) {
           smtp = 'outlook.office365.com';
         }
-        const send = data => ws.send(JSON.stringify([
-          'send',
+        const send = data => ws.send(SocketDataSender('send', {
           credentials,
           data,
-          help() ? localStorage.getItem('help') : '',
+          help: help() ? localStorage.getItem('help') : '',
           smtp
-        ]));
-        data[1].forEach(el => !!el ? messages.push({
+        }));
+        data.data.forEach(el => !!el ? messages.push({
           from: el.from.value[0],
           subject: el.subject,
           body: !!el.html ? el.html : el.textAsHtml,
@@ -85,13 +87,12 @@ const App = () => {
             />
             <Main
               data={ messages }
-              onHelp={ data => ws.send(JSON.stringify([
-                'help',
+              onHelp={ data => ws.send(SocketDataSender('help', {
                 credentials,
                 data,
-                localStorage.getItem('help'),
+                help: localStorage.getItem('help'),
                 smtp
-              ])) }
+              })) }
               onSend={ data => send(data) }
             />
           </>

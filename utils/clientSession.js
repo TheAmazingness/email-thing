@@ -6,7 +6,7 @@ export default class ClientSession {
   }
 
   static fromJSON = obj =>
-    new Session(obj.email, obj.pass, obj.keep)
+    new ClientSession(obj.email, obj.pass, obj.keep)
     || throw new Error('Cannot read property email, pass, or keep of JSON');
 
   get email() { return this._email; }

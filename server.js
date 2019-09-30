@@ -4,6 +4,10 @@ const Imap = require('imap');
 const nodemailer = require('nodemailer');
 const parser = require('mailparser').simpleParser;
 const WebSocketServer = require('ws').Server;
+const {
+    ServerSocketDataSender,
+    ServerSocketDataReceiver
+  } = require('./server-utils/serverSocketData');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -50,29 +54,31 @@ app
     const wss = new WebSocketServer({ server });
 
     wss.on('connection', ws => ws.on('message', async message => {
-      const m = JSON.parse(message);
-      switch (m[0]) {
+      const m = new ServerSocketDataReceiver(message);
+      switch (m.name) {
         case 'no-login':
-          ws.send(JSON.stringify(['no-login']));
+          ws.send(ServerSocketDataSender('no-login'));
           break;
         case 'credentials':
           let config = {
-            user: m[1][0],
-            password: m[1][1],
-            host: m[1][3],
+            user: m.data.email,
+            password: m.data.password,
+            host: m.data.imap,
             port: 993,
             tls: true
           };
-          if (dev) {
-            config.tlsOptions = { rejectUnauthorized: false };
-          }
+          if (dev) config.tlsOptions = { rejectUnauthorized: false };
           const mail = await imapConnect(config);
-          ws.send(JSON.stringify(mail !== -1 ? ['mail', mail] : ['no-login']));
+          ws.send(
+            mail !== -1 ?
+              ServerSocketDataSender('mail', mail)
+              : ServerSocketDataSender('no-login')
+          );
           break;
         case 'send':
           let fields = {
-            from: `"AbleMail" <${ m[1][0] }>`,
-            to: m[2][0],
+            from: `"AbleMail" <${ m.data.credentials.email }>`,
+            to: m[2][0], // TODO: Clean up this mess
             subject: m[2][1],
             html: m[2][2],
             // attachments: [{ filename: 'recording.mp4' }] // TODO: Make this work: https://nodemailer.com/message/attachments/
