@@ -17,7 +17,7 @@ const Login = props => {
   const setState = s => e => {
     s(e.target.value);
     if (e.key === 'Enter' && (!!email && !!password)) {
-      props.onSubmit([email, password, keep]);
+      props.onSubmit({ email, password, keep });
     }
   };
   return (
@@ -69,7 +69,7 @@ const Login = props => {
         />
         {
           (!!email && !!password) &&
-          <Button color="primary" onClick={ () => props.onSubmit([email, password, keep]) }>
+          <Button color="primary" onClick={ () => props.onSubmit({ email, password, keep }) }>
             Login
           </Button>
         }
