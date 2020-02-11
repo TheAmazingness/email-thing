@@ -1,30 +1,68 @@
-# ![AbleMail](static/logo-blue.png)
-**Furthering independence through email:** AbleMail is a free email client web app that allows people with cognitive disabilities to independently use email.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-See a more detailed project description [here](https://www.team1540.org/ablemail-1)!
+## Available Scripts
 
-Try the app [here](https://ablemail.herokuapp.com)!
+In the project directory, you can run:
 
-Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
+### `yarn start`
 
-This project was made with [Next.js](https://nextjs.org/), [Material UI](https://material-ui.com), [Express](http://expressjs.com), and [React](https://reactjs.org).
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Setup
-1. Clone this repository:
-<br>`git clone https://github.com/TheAmazingness/ablemail.git <your-project-folder>`
-2. Run `yarn` on the folder to install all dependencies.
-3. Run `yarn run dev` for the dev version.
-4. Visit [`http://localhost:3000`](http://localhost:3000).
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-## Signing In With a Gmail Account
-1. Visit [https://myaccount.google.com/](https://myaccount.google.com/).
-2. Click on `Security`
-3. Turn on `Less secure app access`
-4. Go back to AbleMail
-5. Sign in
+### `yarn test`
 
-## Usage
-It is recommended to use Google Chrome to use AbleMail because AbleMail uses experimential Web APIs such as [`SpeechRecognition`](https://caniuse.com/#feat=speech-recognition) and [`SpeechSynthesis`](https://caniuse.com/#feat=speech-synthesis). To see what browsers to support these experimental technologies, click on the words to learn more.
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Next
-This branch is for AbleMail with Next.js, React hooks, and independence from Gmail.
+### `yarn build`
+
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `yarn build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
