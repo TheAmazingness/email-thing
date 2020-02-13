@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MailItem = () => {
+const MailItem = ({ mail }) => {
 	return (
     <section className="section">
       <div className="card">
@@ -18,7 +18,7 @@ const MailItem = () => {
           </div>
         </div>
         <footer className="card-footer">
-          <Link to="/" className="card-footer-item">
+          <Link to={ `/message/${ mail.id }` } className="card-footer-item">
             <i className="fas fa-envelope-open-text" />
             &nbsp;
             Open

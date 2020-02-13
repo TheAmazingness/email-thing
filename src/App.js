@@ -8,6 +8,7 @@ import SignUp from './components/auth/SignUp';
 import Compose from './components/mail/Compose';
 import LandingPage from './components/layout/LandingPage';
 import About from './components/pages/About';
+import Settings from './components/pages/Settings';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" component={ SignUp } />
           <Route path="/compose" component={ Compose } />
           <Route path="/about" component={ About } />
+          <Route path="/settings" component={ Settings } />
         </Switch>
       </div>
     </BrowserRouter>

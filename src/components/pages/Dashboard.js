@@ -21,7 +21,7 @@ const Dashboard = ({ mail }) => {
 };
 
 const mapStateToProps = state => ({
-  mail: state.mail.mail
+    mail: state.mail.mail
 });
 
 export default connect(mapStateToProps)(Dashboard);

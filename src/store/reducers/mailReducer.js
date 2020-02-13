@@ -1,7 +1,5 @@
 const initialState = {
-  // mail: [
-  //   { id: 1, body: 'hello world' }
-  // ]
+  mail: [{ id: 1, body: 'hello world' }]
 };
 
 const mailReducer = (state = initialState, action) => {
