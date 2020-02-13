@@ -60,7 +60,7 @@ const SignUp = () => {
           </div>
           <div className="field">
             <div className="control">
-              <button className="button is-primart is-fullwidth">
+              <button className="button is-primary is-fullwidth">
                 <i className="fas fa-key" />
                 &nbsp;
                 Sign Up

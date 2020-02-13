@@ -7,9 +7,14 @@ $tertiary: #FFFFFF;
 $quaternary: #F5CE6F;
 $quinary: #CA3A40;
 
+$menu-label-font-size: 14pt;
+
 .inbox {
   overflow-y: scroll;
   height: 75vh;
+}
+.menu-list > li > a {
+  font-size: 18pt;
 }
 .no-mail {
   height: 100%;
