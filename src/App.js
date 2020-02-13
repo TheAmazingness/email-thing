@@ -7,6 +7,7 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import Compose from './components/mail/Compose';
 import LandingPage from './components/layout/LandingPage';
+import About from './components/pages/About';
 
 function App() {
   return (
