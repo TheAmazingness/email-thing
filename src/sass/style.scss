@@ -1,0 +1,15 @@
+@import '../../node_modules/bulma/sass/utilities/initial-variables';
+
+// Color palette obtained through http://colormind.io
+$primary: #00588F;
+$secondary: #5FA7B9;
+$tertiary: #FFFFFF;
+$quaternary: #F5CE6F;
+$quinary: #CA3A40;
+
+.inbox {
+  overflow-y: scroll;
+  height: 75vh;
+}
+
+@import '../../node_modules/bulma/bulma';
