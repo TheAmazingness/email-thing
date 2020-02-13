@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from './components/pages/Dashboard';
 import Navbar from './components/layout/Navbar';
 import Mail from './components/mail/Mail';
 import SignIn from './components/auth/SignIn';
@@ -20,6 +20,7 @@ function App() {
           <Route path="/signin" component={ SignIn } />
           <Route path="/signup" component={ SignUp } />
           <Route path="/compose" component={ Compose } />
+          <Route path="/about" component={ About } />
         </Switch>
       </div>
     </BrowserRouter>
