@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MailItem = () => {
 	return (
@@ -6,7 +7,7 @@ const MailItem = () => {
       <div className="card">
         <header className="card-header">
           <p className="card-header-title">
-            Component
+            Name
           </p>
         </header>
         <div className="card-content">
@@ -17,9 +18,11 @@ const MailItem = () => {
           </div>
         </div>
         <footer className="card-footer">
-          <span href="#" className="card-footer-item">Save</span>
-          <span href="#" className="card-footer-item">Edit</span>
-          <span href="#" className="card-footer-item">Delete</span>
+          <Link to="/" className="card-footer-item">
+            <i className="fas fa-envelope-open-text" />
+            &nbsp;
+            Open
+          </Link>
         </footer>
       </div>
     </section>

@@ -12,7 +12,7 @@ const Dashboard = ({ mail }) => {
             <Menu />
           </div>
           <div className="column">
-            <Inbox />
+            <Inbox mail={ mail } />
           </div>
         </div>
       </div>

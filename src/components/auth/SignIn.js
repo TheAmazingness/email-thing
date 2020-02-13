@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
   const [state, setState] = useState({
@@ -42,11 +43,13 @@ const SignIn = () => {
           </div>
           <div className="field">
             <div className="control">
-              <button className="button is-link is-fullwidth">
+              <button className="button is-primary is-fullwidth">
                 <i className="fas fa-key" />
                 &nbsp;
                 Sign In
               </button>
+              <br />
+              <Link to="/signup">Don't have an account? Click here to sign up!</Link>
             </div>
           </div>
         </form>

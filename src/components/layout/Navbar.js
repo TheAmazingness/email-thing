@@ -1,16 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
-import LogoWhite from '../../images/logo.png'
+import LogoWhite from '../../images/logo.png';
+import LogoBlue from '../../images/logo-blue.png';
 
-const Navbar = () => {
+const Navbar = ({ location, overrideLocationHiding }) => {
+  if (location.pathname === '/' && !overrideLocationHiding) {
+    return null;
+  }
   return (
     <header className="navbar">
       <div className="container">
         <div className="navbar-brand">
           <Link className="navbar-item" to="/">
-            <img src={ LogoWhite } alt="Logo" />
+            <img src={ location.pathname === '/' ? LogoWhite : LogoBlue } alt="Logo" />
           </Link>
           <span className="navbar-burger burger" data-target="navbar">
             <span/>
@@ -29,4 +33,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
