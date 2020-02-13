@@ -25,7 +25,7 @@ const Navbar = ({ location, overrideLocationHiding }) => {
         <div id="navbar" className="navbar-menu">
           <div className="navbar-end">
             <SignedInLinks />
-            <SignedOutLinks />
+            <SignedOutLinks home={ location.pathname === '/' } />
           </div>
         </div>
       </div>
