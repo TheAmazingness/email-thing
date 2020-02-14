@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { compose } from '../../store/actions/mailActions';
 import { connect } from 'react-redux';
 
-const Compose = props => {
+const Compose = ({ compose }) => {
   const [state, setState] = useState({
     to: null,
     subject: null,
@@ -13,7 +13,7 @@ const Compose = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.compose(state);
+    compose(state);
   };
 
   return (

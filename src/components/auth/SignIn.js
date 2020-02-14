@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signIn } from '../../store/actions/authActions';
 
-const SignIn = () => {
+const SignIn = ({ signIn }) => {
   const [state, setState] = useState({
     email: null,
     pass: null
@@ -11,6 +13,7 @@ const SignIn = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    signIn(state);
   };
 
 	return (
@@ -59,4 +62,9 @@ const SignIn = () => {
 	);
 };
 
-export default SignIn;
+const mapDispatchToProps = dispatch => ({
+  signIn: credentials => dispatch(signIn(credentials))
+});
+
+
+export default connect(null, mapDispatchToProps)(SignIn);

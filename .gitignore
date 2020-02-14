@@ -23,5 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 /.idea
-/src/sass/*.css
-/src/sass/*.css.map
+/src/sass/
+/src/config
+
+!/src/sass/style.scss
+!/src/config/.gitkeep

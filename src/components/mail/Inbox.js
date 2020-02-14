@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MailItem from './MailItem';
+import { connect } from 'react-redux';
+import { getMail } from '../../store/actions/mailActions';
 
-const Inbox = ({ mail }) => {
+const Inbox = ({ mail, getMail }) => {
+  useEffect(() => {
+    getMail();
+  });
+
   const [state, setState] = useState({
     noMail: (
       <div className="container no-mail">
@@ -41,4 +47,8 @@ const Inbox = ({ mail }) => {
   );
 };
 
-export default Inbox;
+const mapDispatchToProps = dispatch => ({
+  getMail: () => dispatch(getMail())
+});
+
+export default connect(null, mapDispatchToProps)(Inbox);
