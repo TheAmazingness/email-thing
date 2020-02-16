@@ -6,7 +6,7 @@ import { getMail } from '../../store/actions/mailActions';
 const Inbox = ({ mail, getMail }) => {
   useEffect(() => {
     getMail();
-  });
+  }, []);
 
   const [state, setState] = useState({
     noMail: (
@@ -19,9 +19,12 @@ const Inbox = ({ mail, getMail }) => {
       </div>
     )
   });
-  const list = mail ? mail.map(m => <MailItem mail={ m } key={ m.id } />) : state.noMail;
 
-  if (!mail) {
+  console.log(mail);
+
+  const list = mail && mail.length > 0 ? mail.map(m => <MailItem mail={ m } key={ m.id } />) : state.noMail;
+
+  if (!mail || mail.length === 0) {
     setTimeout(() => setState({
       ...state,
       noMail: (
@@ -47,8 +50,12 @@ const Inbox = ({ mail, getMail }) => {
   );
 };
 
+const mapStateToProps = state => ({
+  mail: state.mail.mail
+});
+
 const mapDispatchToProps = dispatch => ({
   getMail: () => dispatch(getMail())
 });
 
-export default connect(null, mapDispatchToProps)(Inbox);
+export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
