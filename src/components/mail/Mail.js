@@ -2,7 +2,7 @@ import React from 'react';
 
 const Mail = props => {
   const id = props.match.params.id;
-	return (
+  return (
     <section className="section">
       <div className="container">
         <div className="card">

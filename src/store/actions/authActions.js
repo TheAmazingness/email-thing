@@ -5,3 +5,5 @@ export const signIn = credentials => async (dispatch, getState) => {
 export const signUp = credentials => (dispatch, getState) => {
   dispatch({ type: 'SIGN_UP', credentials });
 };
+
+export const saveAccessToken = token => ({ type: 'SAVE_ACCESS_TOKEN', token });

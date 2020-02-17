@@ -2,19 +2,32 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MailItem = ({ mail }) => {
-	return (
+  let date = null;
+  let subject = null;
+  mail.payload.headers.forEach(({ name, value }) => {
+    switch (name) {
+      case 'Date':
+        date = new Date(value);
+        break;
+      case 'Subject':
+        subject = value;
+        break;
+    }
+  });
+  return (
     <section className="section">
       <div className="card">
         <header className="card-header">
           <p className="card-header-title">
-            Name
+            { subject }
           </p>
         </header>
         <div className="card-content">
           <div className="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+            { mail.snippet }...
             <br />
-            <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            <br />
+            <time>{ date.toLocaleString() }</time>
           </div>
         </div>
         <footer className="card-footer">
@@ -26,7 +39,7 @@ const MailItem = ({ mail }) => {
         </footer>
       </div>
     </section>
-	);
+  );
 };
 
 export default MailItem;

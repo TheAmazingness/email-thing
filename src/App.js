@@ -9,6 +9,7 @@ import Compose from './components/mail/Compose';
 import LandingPage from './components/layout/LandingPage';
 import About from './components/pages/About';
 import Settings from './components/pages/Settings';
+import GoogleTokenSaver from './components/helper/GoogleTokenSaver';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" component={ LandingPage } />
+          <Route path="/inbox/:profile" component={ GoogleTokenSaver } />
           <Route path="/inbox" component={ Dashboard } />
           <Route path="/message/:id" component={ Mail } />
           <Route path="/signin" component={ SignIn } />
