@@ -4,11 +4,13 @@ import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import LogoWhite from '../../images/logo.png';
 import LogoBlue from '../../images/logo-blue.png';
+import { connect } from 'react-redux';
 
-const Navbar = ({ location, overrideLocationHiding }) => {
+const Navbar = ({ location, overrideLocationHiding, accessToken }) => {
   if (location.pathname === '/' && !overrideLocationHiding) {
     return null;
   }
+  const links = accessToken ? <SignedInLinks /> : <SignedOutLinks home={ location.pathname === '/' } />;
   return (
     <header className="navbar">
       <div className="container">
@@ -23,14 +25,15 @@ const Navbar = ({ location, overrideLocationHiding }) => {
           </span>
         </div>
         <div id="navbar" className="navbar-menu">
-          <div className="navbar-end">
-            <SignedInLinks />
-            <SignedOutLinks home={ location.pathname === '/' } />
-          </div>
+          <div className="navbar-end">{ links }</div>
         </div>
       </div>
     </header>
   );
 };
 
-export default withRouter(Navbar);
+const mapStateToProp = state => ({
+  accessToken: state.auth.accessToken
+});
+
+export default connect(mapStateToProp)(withRouter(Navbar));
