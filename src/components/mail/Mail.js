@@ -1,22 +1,47 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Mail = props => {
-  const id = props.match.params.id;
+const Mail = ({ match, mail }) => {
+  const id = match.params.id;
+  let selectedMail = null;
+  let subject = null;
+  let html = null;
+
+  mail.forEach(m => {
+    if (m.id === id) {
+      selectedMail = m;
+    }
+  });
+
+  selectedMail.payload.headers.forEach(({ name, value }) => {
+    switch (name) {
+      case 'Subject':
+        subject = value;
+        break;
+    }
+  });
+
+  selectedMail.payload.parts.forEach(({ mimeType, body }) => {
+    if (!html && mimeType === 'text/plain') {
+      // html = window.atob(body.data);
+      console.log(body.data);
+    } else if (mimeType === 'text/html') {
+      // html = window.atob(body.data);
+      console.log(body.data);
+    }
+  });
+
   return (
     <section className="section">
       <div className="container">
         <div className="card">
           <header className="card-header">
             <p className="card-header-title">
-              Component - { id }
+              { subject }
             </p>
           </header>
           <div className="card-content">
-            <div className="content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-              <br />
-              <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-            </div>
+            <div className="content" dangerouslySetInnerHTML={ { __html: html } } />
           </div>
           <footer className="card-footer">
             <span href="#" className="card-footer-item">Save</span>
@@ -29,4 +54,8 @@ const Mail = props => {
 	);
 };
 
-export default Mail;
+const mapStateToProps = state => ({
+  mail: state.mail.mail
+});
+
+export default connect(mapStateToProps)(Mail);

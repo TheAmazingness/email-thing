@@ -24,7 +24,7 @@ const MailItem = ({ mail }) => {
         </header>
         <div className="card-content">
           <div className="content">
-            { mail.snippet }...
+            <span dangerouslySetInnerHTML={ { __html: mail.snippet } } />
             <br />
             <br />
             <time>{ date.toLocaleString() }</time>
