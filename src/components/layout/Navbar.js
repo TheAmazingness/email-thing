@@ -15,7 +15,7 @@ const Navbar = ({ location, overrideLocationHiding, accessToken }) => {
     <header className="navbar">
       <div className="container">
         <div className="navbar-brand">
-          <Link className="navbar-item" to="/">
+          <Link className="navbar-item" to={ accessToken ? '/inbox' : '/' }>
             <img src={ location.pathname === '/' ? LogoWhite : LogoBlue } alt="Logo" />
           </Link>
           <span className="navbar-burger burger" data-target="navbar">

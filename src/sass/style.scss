@@ -7,6 +7,7 @@ $tertiary: #FFFFFF;
 $quaternary: #F5CE6F;
 $quinary: #CA3A40;
 
+$body-font-size: 18pt;
 $menu-label-font-size: 14pt;
 
 .inbox {
@@ -18,6 +19,10 @@ $menu-label-font-size: 14pt;
 }
 .no-mail {
   height: 100%;
+}
+.mail-body {
+  overflow-y: scroll;
+  height: 60vh;
 }
 
 @import '../../node_modules/bulma/bulma';

@@ -23,11 +23,9 @@ const Mail = ({ match, mail }) => {
 
   selectedMail.payload.parts.forEach(({ mimeType, body }) => {
     if (!html && mimeType === 'text/plain') {
-      // html = window.atob(body.data);
-      console.log(body.data);
+      html = window.atob(body.data.replace(/-/g, '+').replace(/_/g, '/'));
     } else if (mimeType === 'text/html') {
-      // html = window.atob(body.data);
-      console.log(body.data);
+      html = window.atob(body.data.replace(/-/g, '+').replace(/_/g, '/'));
     }
   });
 
@@ -41,13 +39,13 @@ const Mail = ({ match, mail }) => {
             </p>
           </header>
           <div className="card-content">
-            <div className="content" dangerouslySetInnerHTML={ { __html: html } } />
+            <div className="content mail-body" dangerouslySetInnerHTML={ { __html: html } } />
           </div>
-          <footer className="card-footer">
-            <span href="#" className="card-footer-item">Save</span>
-            <span href="#" className="card-footer-item">Edit</span>
-            <span href="#" className="card-footer-item">Delete</span>
-          </footer>
+          {/*<footer className="card-footer">*/}
+          {/*  <span href="#" className="card-footer-item">Save</span>*/}
+          {/*  <span href="#" className="card-footer-item">Edit</span>*/}
+          {/*  <span href="#" className="card-footer-item">Delete</span>*/}
+          {/*</footer>*/}
         </div>
       </div>
     </section>

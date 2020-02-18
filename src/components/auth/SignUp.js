@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { key } from '../../config/key';
+import { signUp } from '../../store/actions/authActions';
+import { connect } from 'react-redux';
 
-const SignUp = () => {
+const SignUp = ({ signUp }) => {
   const [state, setState] = useState({
     email: null,
     pass: null,
@@ -14,12 +15,7 @@ const SignUp = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-  };
-
-  const handleClick = e => {
-    if (e.target.id === 'auth-google') {
-      window.location.href = `http://localhost:8000/auth?provider=google&key=${ key }`;
-    }
+    signUp(state);
   };
 
   return (
@@ -78,16 +74,13 @@ const SignUp = () => {
             </div>
           </form>
         </div>
-        <div className="box">
-          <button id="auth-google" className="button is-danger is-large is-fullwidth" onClick={ handleClick }>
-            <i className="fab fa-google" />
-            &emsp;
-            Sign up with Google
-          </button>
-        </div>
       </div>
     </section>
   );
 };
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+  signUp: credentials => dispatch(signUp(credentials))
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);

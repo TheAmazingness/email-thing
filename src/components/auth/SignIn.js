@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
-import { key } from '../../config/key';
 
 const SignIn = ({ signIn }) => {
   const [state, setState] = useState({
@@ -15,12 +14,6 @@ const SignIn = ({ signIn }) => {
   const handleSubmit = e => {
     e.preventDefault();
     signIn(state);
-  };
-
-  const handleClick = e => {
-    if (e.target.id === 'auth-google') {
-      window.location.href = `http://localhost:8000/auth?provider=google&key=${ key }`;
-    }
   };
 
 	return (
@@ -65,13 +58,6 @@ const SignIn = ({ signIn }) => {
               </div>
             </div>
           </form>
-        </div>
-        <div className="box">
-          <button id="auth-google" className="button is-danger is-large is-fullwidth" onClick={ handleClick }>
-            <i className="fab fa-google" />
-            &emsp;
-            Sign in with Google
-          </button>
         </div>
       </div>
     </section>

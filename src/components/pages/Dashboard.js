@@ -2,24 +2,31 @@ import React from 'react';
 import Menu from '../layout/Menu';
 import Inbox from '../mail/Inbox';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-const Dashboard = ({ mail, match }) => (
-  <section className="section">
-    <div className="container">
-      <div className="columns">
-        <div className="column is-one-fifth">
-          <Menu />
-        </div>
-        <div className="column">
-          <Inbox mail={ mail } profile={ match.params.profile } />
+const Dashboard = ({ mail, match, accessToken }) => {
+  if (!accessToken) {
+    return <Redirect to="/" />;
+  }
+  return (
+    <section className="section">
+      <div className="container">
+        <div className="columns">
+          <div className="column is-one-fifth">
+            <Menu />
+          </div>
+          <div className="column">
+            <Inbox mail={ mail } profile={ match.params.profile } />
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const mapStateToProps = state => ({
-    mail: state.mail.mail
+  mail: state.mail.mail,
+  accessToken: state.auth.accessToken
 });
 
 export default connect(mapStateToProps)(Dashboard);

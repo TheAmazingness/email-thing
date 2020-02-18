@@ -8,8 +8,6 @@ const GoogleTokenSaver = ({ saveAccessToken, match }) => {
   return <Redirect to="/inbox" />;
 };
 
-const mapDispatchtoProps = dispatch => ({
-  saveAccessToken: token => dispatch(saveAccessToken(token))
-});
+const mapDispatchtoProps = dispatch => ({ saveAccessToken: token => dispatch(saveAccessToken(token)) });
 
 export default connect(null, mapDispatchtoProps)(GoogleTokenSaver);
