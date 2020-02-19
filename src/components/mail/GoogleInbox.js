@@ -3,9 +3,9 @@ import MailItem from './MailItem';
 import { connect } from 'react-redux';
 import { getMail } from '../../store/actions/mailActions';
 
-const Inbox = ({ mail, getMail, id }) => {
+const GoogleInbox = ({ mail, getMail, accessToken }) => {
   useEffect(() => {
-    getMail(id);
+    getMail(accessToken);
   }, []);
 
   const [state, setState] = useState({
@@ -50,11 +50,11 @@ const Inbox = ({ mail, getMail, id }) => {
 
 const mapStateToProps = state => ({
   mail: state.mail.mail,
-  id: state.auth.id
+  accessToken: state.auth.accessToken
 });
 
 const mapDispatchToProps = dispatch => ({
   getMail: id => dispatch(getMail(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
+export default connect(mapStateToProps, mapDispatchToProps)(GoogleInbox);

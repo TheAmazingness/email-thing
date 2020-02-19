@@ -4,7 +4,7 @@ import Inbox from '../mail/Inbox';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const Dashboard = ({ mail, match, id }) => {
+const GoogleDashboard = ({ mail, match, accessToken }) => {
   if (!accessToken) {
     return <Redirect to="/" />;
   }
@@ -26,7 +26,7 @@ const Dashboard = ({ mail, match, id }) => {
 
 const mapStateToProps = state => ({
   mail: state.mail.mail,
-  id: state.auth.id
+  accessToken: state.auth.accessToken
 });
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(GoogleDashboard);
