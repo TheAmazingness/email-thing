@@ -5,8 +5,7 @@ export const compose = mail => (dispatch, getState) => {
 };
 
 export const getMail = id => async (dispatch, getState) => {
-  const response = await fetch(`http://localhost:8000/get-mail?token=${ id }&key=${ key }`);
+  const response = await fetch(`http://localhost:8000/google/get-mail?token=${ id }&key=${ key }`);
   const data = await response.json();
-  console.log(data);
   dispatch({ type: 'GET_MAIL', data });
 };
