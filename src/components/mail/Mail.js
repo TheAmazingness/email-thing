@@ -25,7 +25,9 @@ const Mail = ({ match, mail }) => {
             </p>
           </header>
           <div className="card-content">
-            <div className="content mail-body" dangerouslySetInnerHTML={ { __html: selectedMail.html ? selectedMail.html : selectedMail.textAsHtml } } />
+            <div className="content">
+              <iframe className="mail-body" srcDoc={ selectedMail.html ? selectedMail.html : selectedMail.textAsHtml } />
+            </div>
           </div>
           {/*<footer className="card-footer">*/}
           {/*  <span href="#" className="card-footer-item">Save</span>*/}

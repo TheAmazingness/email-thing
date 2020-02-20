@@ -23,6 +23,7 @@ $menu-label-font-size: 14pt;
 .mail-body {
   overflow-y: scroll;
   height: 60vh;
+  width: 100%;
 }
 
 @import '../../node_modules/bulma/bulma';
