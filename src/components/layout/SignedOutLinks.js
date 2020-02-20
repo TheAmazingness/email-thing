@@ -7,7 +7,7 @@ const SignedOutLinks = ({ home }) => {
       <Link className={ `navbar-item ${ home ? 'is-active' : '' }` } to="/">Home</Link>
       <Link className="navbar-item" to="/about">About</Link>
       <span className="navbar-item">
-        <Link className="button is-primary is-inverted" to="/signup">
+        <Link className="button is-primary is-inverted is-large" to="/signup">
           <span className="icon">
             <i className="fas fa-key" />
           </span>

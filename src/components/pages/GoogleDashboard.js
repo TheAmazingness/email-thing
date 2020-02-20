@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from '../layout/Menu';
-import Inbox from '../mail/Inbox';
+import GoogleInbox from '../mail/GoogleInbox';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const GoogleDashboard = ({ mail, match, accessToken }) => {
             <Menu />
           </div>
           <div className="column">
-            <Inbox mail={ mail } profile={ match.params.profile } />
+            <GoogleInbox mail={ mail } profile={ match.params.profile } />
           </div>
         </div>
       </div>

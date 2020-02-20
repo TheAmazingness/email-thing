@@ -12,6 +12,7 @@ import Settings from './components/pages/Settings';
 import GoogleTokenSaver from './components/helper/GoogleTokenSaver';
 import IdSaver from './components/helper/IdSaver';
 import Dashboard from './components/pages/Dashboard';
+import GoogleMail from './components/mail/GoogleMail';
 
 const App = () => (
   <BrowserRouter>
@@ -23,6 +24,7 @@ const App = () => (
         <Route path="/inbox/google" component={ GoogleDashboard } />
         <Route path="/inbox/:profile" component={ IdSaver } />
         <Route path="/inbox" component={ Dashboard } />
+        <Route path="/message/google/:id" component={ GoogleMail } />
         <Route path="/message/:id" component={ Mail } />
         <Route path="/signin" component={ SignIn } />
         <Route path="/signup" component={ SignUp } />

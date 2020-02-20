@@ -1,4 +1,5 @@
 const initState = {
+  googleMail: [],
   mail: []
 };
 
@@ -7,16 +8,17 @@ const mailReducer = (state = initState, action) => {
     case 'COMPOSE':
       console.log('composed email:', action.mail);
       break;
-    case 'SET_EMAIL':
+    case 'GET_GOOGLE_MAIL':
       return ({
         ...state,
-        email: action.email
+        googleMail: action.data
       });
     case 'GET_MAIL':
       return ({
         ...state,
         mail: action.data
       });
+      break;
   }
   return state;
 };

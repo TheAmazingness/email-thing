@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 const Dashboard = ({ mail, match, id }) => {
-  if (!accessToken) {
+  if (!id) {
     return <Redirect to="/" />;
   }
   return (

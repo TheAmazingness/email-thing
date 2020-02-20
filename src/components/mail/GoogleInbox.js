@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import MailItem from './MailItem';
+import GoogleMailItem from './GoogleMailItem';
 import { connect } from 'react-redux';
-import { getMail } from '../../store/actions/mailActions';
+import { getGoogleMail } from '../../store/actions/mailActions';
 
-const GoogleInbox = ({ mail, getMail, accessToken }) => {
+const GoogleInbox = ({ googleMail, getGoogleMail, accessToken }) => {
   useEffect(() => {
-    getMail(accessToken);
+    getGoogleMail(accessToken);
   }, []);
 
   const [state, setState] = useState({
@@ -20,7 +20,7 @@ const GoogleInbox = ({ mail, getMail, accessToken }) => {
     )
   });
 
-  const list = mail && mail.length > 0 ? mail.map(m => <MailItem mail={ m } key={ m.id } />) : state.noMail;
+  const list = googleMail && googleMail.length > 0 ? googleMail.map(m => <GoogleMailItem mail={ m } key={ m.id } />) : state.noMail;
 
   // if (!mail || mail.length === 0) {
   //   setTimeout(() => setState({
@@ -49,12 +49,12 @@ const GoogleInbox = ({ mail, getMail, accessToken }) => {
 };
 
 const mapStateToProps = state => ({
-  mail: state.mail.mail,
+  googleMail: state.mail.googleMail,
   accessToken: state.auth.accessToken
 });
 
 const mapDispatchToProps = dispatch => ({
-  getMail: id => dispatch(getMail(id))
+  getGoogleMail: id => dispatch(getGoogleMail(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GoogleInbox);

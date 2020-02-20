@@ -5,7 +5,7 @@ import { saveAccessToken } from '../../store/actions/authActions';
 
 const GoogleTokenSaver = ({ saveAccessToken, match }) => {
   useEffect(() => { saveAccessToken(match.params.profile); }, []);
-  return <Redirect to="/inbox" />;
+  return <Redirect to="/inbox/google" />;
 };
 
 const mapDispatchtoProps = dispatch => ({ saveAccessToken: token => dispatch(saveAccessToken(token)) });
