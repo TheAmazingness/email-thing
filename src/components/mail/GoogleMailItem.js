@@ -31,7 +31,7 @@ const GoogleMailItem = ({ mail }) => {
           </div>
         </div>
         <footer className="card-footer">
-          <Link to={ `/message/${ mail.id }` } className="card-footer-item">
+          <Link to={ `/message/google/${ mail.id }` } className="card-footer-item">
             <i className="fas fa-envelope-open-text" />
             &nbsp;
             Open
