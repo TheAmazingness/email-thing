@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
 
-const SignIn = ({ signIn }) => {
+const SignIn = ({ signIn, match }) => {
+  useEffect(() => {
+    if (match && match.params.failure === 'failure') {
+      setState({
+        ...state,
+        failure: (
+          <article className="message is-danger">
+            <div className="message-header">
+              <p>Incorrect email or password</p>
+            </div>
+          </article>
+        )
+      });
+    }
+  }, []);
+
   const [state, setState] = useState({
     email: null,
-    pass: null
+    pass: null,
+    failure: null
   });
 
   const handleChange = e => setState({ ...state, [e.target.id]: e.target.value });
@@ -16,9 +32,10 @@ const SignIn = ({ signIn }) => {
     signIn(state);
   };
 
-	return (
+  return (
     <section className="section">
       <div className="container">
+        { state.failure }
         <div className="box">
           <h1 className="title">
             Sign In
@@ -61,7 +78,7 @@ const SignIn = ({ signIn }) => {
         </div>
       </div>
     </section>
-	);
+  );
 };
 
 const mapDispatchToProps = dispatch => ({
