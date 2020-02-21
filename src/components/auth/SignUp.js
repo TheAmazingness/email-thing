@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signUp } from '../../store/actions/authActions';
-import { connect } from 'react-redux';
+import { uri } from '../../config/server';
+import { key } from '../../config/key';
 
-const SignUp = ({ signUp }) => {
+const SignUp = () => {
   const [state, setState] = useState({
     email: null,
     pass: null,
@@ -15,7 +15,11 @@ const SignUp = ({ signUp }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    signUp(state);
+    if (state.email.split('@')[1] === 'gmail.com') {
+      window.location.assign(`${ uri }/auth?provider=google&email=${ state.email }&pass=${ state.pass }&key=${ key }`);
+    } else {
+      window.location.assign(`${ uri }/auth/signup?email=${ state.email }&pass=${ state.pass }&first=${ state.first }&last=${ state.last }&key=${ key }`);
+    }
   };
 
   return (
@@ -79,8 +83,4 @@ const SignUp = ({ signUp }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  signUp: credentials => dispatch(signUp(credentials))
-});
-
-export default connect(null, mapDispatchToProps)(SignUp);
+export default SignUp;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { signIn } from '../../store/actions/authActions';
+import { uri } from '../../config/server';
+import { key } from '../../config/key';
 
 const SignIn = ({ signIn, match }) => {
   useEffect(() => {
@@ -29,7 +29,11 @@ const SignIn = ({ signIn, match }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    signIn(state);
+    if (state.email.split('@')[1] === 'gmail.com') {
+      window.location.assign(`${ uri }/auth?provider=google&email=${ state.email }&pass=${ state.pass }&key=${ key }`);
+    } else {
+      window.location.assign(`${ uri }/auth?email=${ state.email }&pass=${ state.pass }&key=${ key }`);
+    }
   };
 
   return (
@@ -81,9 +85,5 @@ const SignIn = ({ signIn, match }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  signIn: credentials => dispatch(signIn(credentials))
-});
 
-
-export default connect(null, mapDispatchToProps)(SignIn);
+export default SignIn;
