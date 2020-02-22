@@ -3,19 +3,32 @@ import { Link } from 'react-router-dom';
 import { uri } from '../../config/server';
 import { key } from '../../config/key';
 
-const SignIn = ({ signIn, match }) => {
+const SignIn = ({ match }) => {
   useEffect(() => {
-    if (match && match.params.failure === 'failure') {
-      setState({
-        ...state,
-        failure: (
-          <article className="message is-danger">
-            <div className="message-header">
-              <p>Incorrect email or password</p>
-            </div>
-          </article>
-        )
-      });
+    if (match) {
+      if (match.params.failure === 'failure') {
+        setState({
+          ...state,
+          failure: (
+            <article className="message is-danger">
+              <div className="message-header">
+                <p>Incorrect email or password</p>
+              </div>
+            </article>
+          )
+        });
+      } else if (match.params.failure === 'signup') {
+        setState({
+          ...state,
+          failure: (
+            <article className="message is-danger">
+              <div className="message-header">
+                <p>You already have an account!</p>
+              </div>
+            </article>
+          )
+        });
+      }
     }
   }, []);
 
@@ -27,12 +40,20 @@ const SignIn = ({ signIn, match }) => {
 
   const handleChange = e => setState({ ...state, [e.target.id]: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (state.email.split('@')[1] === 'gmail.com') {
       window.location.assign(`${ uri }/auth?provider=google&email=${ state.email }&pass=${ state.pass }&key=${ key }`);
     } else {
-      window.location.assign(`${ uri }/auth?email=${ state.email }&pass=${ state.pass }&key=${ key }`);
+      const response = await fetch(`${ uri }/auth/other`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        body: `username=${ state.email }&password=${ state.pass }`
+      });
+      const data = await response.json();
+      window.location.assign(`/inbox/${ data }`);
     }
   };
 
@@ -54,8 +75,8 @@ const SignIn = ({ signIn, match }) => {
               <div className="control has-icons-left">
                 <input className="input" type="email" placeholder="Email" id="email" onChange={ handleChange } />
                 <span className="icon is-small is-left">
-                <i className="fas fa-envelope" />
-              </span>
+                  <i className="fas fa-envelope" />
+                </span>
               </div>
             </div>
             <div className="field">
@@ -63,8 +84,8 @@ const SignIn = ({ signIn, match }) => {
               <div className="control has-icons-left">
                 <input className="input" type="password" placeholder="Password" id="pass" onChange={ handleChange } />
                 <span className="icon is-small is-left">
-                <i className="fas fa-lock" />
-              </span>
+                  <i className="fas fa-lock" />
+                </span>
               </div>
             </div>
             <div className="field">

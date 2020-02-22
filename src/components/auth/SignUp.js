@@ -32,24 +32,6 @@ const SignUp = () => {
             <i className="fas fa-key" />
           </h1>
           <form onSubmit={ handleSubmit }>
-            <div className="field">
-              <label className="label" htmlFor="email">Email</label>
-              <div className="control has-icons-left">
-                <input className="input" type="email" placeholder="Email" id="email" onChange={ handleChange } />
-                <span className="icon is-small is-left">
-                <i className="fas fa-envelope" />
-              </span>
-              </div>
-            </div>
-            <div className="field">
-              <label className="label" htmlFor="pass">Password</label>
-              <div className="control has-icons-left">
-                <input className="input" type="password" placeholder="Password" id="pass" onChange={ handleChange } />
-                <span className="icon is-small is-left">
-                <i className="fas fa-lock" />
-              </span>
-              </div>
-            </div>
             <label className="label">Name</label>
             <div className="field is-grouped">
               <div className="control is-expanded has-icons-left">
@@ -61,8 +43,26 @@ const SignUp = () => {
               <div className="control is-expanded has-icons-left">
                 <input className="input" type="text" placeholder="Last Name" id="last" onChange={ handleChange } />
                 <span className="icon is-small is-left">
-                <i className="fas fa-user" />
-              </span>
+                  <i className="fas fa-user" />
+                </span>
+              </div>
+            </div>
+            <div className="field">
+              <label className="label" htmlFor="email">Email</label>
+              <div className="control has-icons-left">
+                <input className="input" type="email" placeholder="Email" id="email" onChange={ handleChange } />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope" />
+                </span>
+              </div>
+            </div>
+            <div className="field">
+              <label className="label" htmlFor="pass">Password</label>
+              <div className="control has-icons-left">
+                <input className="input" type="password" placeholder="Password" id="pass" onChange={ handleChange } />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-lock" />
+                </span>
               </div>
             </div>
             <div className="field">
