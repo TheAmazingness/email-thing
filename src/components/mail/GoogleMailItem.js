@@ -12,6 +12,8 @@ const GoogleMailItem = ({ mail }) => {
       case 'Subject':
         subject = value;
         break;
+      default:
+        break;
     }
   });
   return (

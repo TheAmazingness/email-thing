@@ -26,7 +26,7 @@ const Mail = ({ match, mail }) => {
           </header>
           <div className="card-content">
             <div className="content">
-              <iframe className="mail-body" srcDoc={ selectedMail.html ? selectedMail.html : selectedMail.textAsHtml } />
+              <iframe className="mail-body" title="mail-body" srcDoc={ selectedMail.html ? selectedMail.html : selectedMail.textAsHtml } />
             </div>
           </div>
           {/*<footer className="card-footer">*/}

@@ -20,11 +20,9 @@ const Inbox = ({ mail, getMail, id }) => {
     )
   });
 
-  const list = mail && mail.length > 0 ? mail.reverse().map(message => {
-    if (message) {
-      return <MailItem key={ Math.random() } mail={ message } />
-    }
-  }) : state.noMail;
+  const list = mail && mail.length > 0 ?
+    mail.reverse().map(message => message ? <MailItem key={ message.messageId } mail={ message } /> : null)
+    : state.noMail;
 
   // if (!mail || mail.length === 0) {
   //   setTimeout(() => setState({

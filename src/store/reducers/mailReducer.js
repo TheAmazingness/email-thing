@@ -7,7 +7,7 @@ const mailReducer = (state = initState, action) => {
   switch (action.type) {
     case 'COMPOSE':
       console.log('composed email:', action.mail);
-      break;
+      return state;
     case 'GET_GOOGLE_MAIL':
       return ({
         ...state,
@@ -18,9 +18,9 @@ const mailReducer = (state = initState, action) => {
         ...state,
         mail: action.data
       });
-      break;
+    default:
+      return state;
   }
-  return state;
 };
 
 export default mailReducer;

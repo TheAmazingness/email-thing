@@ -16,10 +16,8 @@ const GoogleMail = ({ match, googleMail }) => {
 
   try {
     selectedMail.payload.headers.forEach(({ name, value }) => {
-      switch (name) {
-        case 'Subject':
-          subject = value;
-          break;
+      if (name === 'Subject') {
+        subject = value;
       }
     });
 
@@ -44,7 +42,9 @@ const GoogleMail = ({ match, googleMail }) => {
             </p>
           </header>
           <div className="card-content">
-            <div className="content mail-body" dangerouslySetInnerHTML={ { __html: html } } />
+            <div className="content">
+              <iframe className="mail-body" title="mail-body" srcDoc={ html } />
+            </div>
           </div>
           {/*<footer className="card-footer">*/}
           {/*  <span href="#" className="card-footer-item">Save</span>*/}
