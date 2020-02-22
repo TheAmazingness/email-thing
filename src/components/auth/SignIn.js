@@ -12,7 +12,11 @@ const SignIn = ({ match }) => {
           failure: (
             <article className="message is-danger">
               <div className="message-header">
-                <p>Incorrect email or password</p>
+                <p>
+                  <i className="fas fa-exclamation-triangle" />
+                  &emsp;
+                  Incorrect email or password
+                </p>
               </div>
             </article>
           )
@@ -23,7 +27,11 @@ const SignIn = ({ match }) => {
           failure: (
             <article className="message is-danger">
               <div className="message-header">
-                <p>You already have an account!</p>
+                <p>
+                  <i className="fas fa-exclamation-triangle" />
+                  &emsp;
+                  You already have an account!
+                </p>
               </div>
             </article>
           )
@@ -53,7 +61,11 @@ const SignIn = ({ match }) => {
         body: `username=${ state.email }&password=${ state.pass }`
       });
       const data = await response.json();
-      window.location.assign(`/inbox/${ data }`);
+      if (data.message && data.message === 'failed to auth') {
+        window.location.assign('/signin/failure');
+      } else {
+        window.location.assign(`/inbox/${ data }`);
+      }
     }
   };
 
