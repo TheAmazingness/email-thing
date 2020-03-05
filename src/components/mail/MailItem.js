@@ -11,7 +11,7 @@ const MailItem = ({ mail }) => (
       </header>
       <div className="card-content">
         <div className="content">
-          <span dangerouslySetInnerHTML={ { __html: mail.text ? `${ mail.text.split(/[ \n]/g).slice(0, 20).join(' ') }...` : '...' } } />
+          <span className="mail-preview" dangerouslySetInnerHTML={ { __html: mail.text ? `${ mail.text }...` : '...' } } />
           <br />
           <br />
           <time>{ new Date(mail.date).toLocaleString() }</time>

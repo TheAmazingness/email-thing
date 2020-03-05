@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { compose } from '../../store/actions/mailActions';
 import { connect } from 'react-redux';
+import { uri } from '../../config/server.json';
+import { key } from '../../config/key.json';
 
-const Compose = ({ compose }) => {
+const Compose = ({ id }) => {
   const [state, setState] = useState({
     to: null,
     subject: null,
@@ -11,9 +12,15 @@ const Compose = ({ compose }) => {
 
   const handleChange = e => setState({ ...state, [e.target.id]: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    compose(state);
+    const response = fetch(`${ uri }/send`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      body: `key=${ key }&id=${ id }&to=${ state.to }&subject=${ state.subject }&body=${ state.body }`
+    });
   };
 
   return (
@@ -21,9 +28,9 @@ const Compose = ({ compose }) => {
       <div className="container">
         <div className="box">
           <h1 className="title">
-            <i className="fas fa-edit" />
-            &emsp;
             Compose Email
+            &emsp;
+            <i className="fas fa-edit" />
           </h1>
           <form onSubmit={ handleSubmit }>
             <div className="field">
@@ -45,7 +52,7 @@ const Compose = ({ compose }) => {
             <div className="field">
               <label className="label">Message</label>
               <div className="control">
-                <textarea className="textarea" placeholder="Body" id="body" onChange={ handleChange } />
+                <textarea className="textarea" rows="10" placeholder="Body" id="body" onChange={ handleChange } />
               </div>
             </div>
             <div className="field">
@@ -53,7 +60,7 @@ const Compose = ({ compose }) => {
                 <button className="button is-primary is-fullwidth is-large">
                   <h1 className="title has-text-white">
                     <i className="fas fa-paper-plane" />
-                    &nbsp;
+                    &emsp;
                     Send
                   </h1>
                 </button>
@@ -66,8 +73,8 @@ const Compose = ({ compose }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  compose: mail => dispatch(compose(mail))
+const mapStateToProps = state => ({
+  id: state.auth.id
 });
 
-export default connect(null, mapDispatchToProps)(Compose);
+export default connect(mapStateToProps)(Compose);

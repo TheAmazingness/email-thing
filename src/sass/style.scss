@@ -25,5 +25,14 @@ $menu-label-font-size: 14pt;
   height: 60vh;
   width: 100%;
 }
+.mail-preview {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.no-overflow {
+  overflow-x: hidden;
+}
 
 @import '../../node_modules/bulma/bulma';

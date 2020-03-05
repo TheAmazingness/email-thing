@@ -51,14 +51,14 @@ const SignIn = ({ match }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (state.email.split('@')[1] === 'gmail.com') {
-      window.location.assign(`${ uri }/auth?provider=google&email=${ state.email }&pass=${ state.pass }&key=${ key }`);
+      window.location.assign(`${ uri }/auth/google?email=${ encodeURI(state.email) }&pass=${ encodeURI(state.pass) }&key=${ encodeURI(key) }`);
     } else {
       const response = await fetch(`${ uri }/auth/other`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
         },
-        body: `username=${ state.email }&password=${ state.pass }`
+        body: `key=${ encodeURI(key) }&username=${ encodeURI(state.email) }&password=${ encodeURI(state.pass) }`
       });
       const data = await response.json();
       if (data.message && data.message === 'failed to auth') {

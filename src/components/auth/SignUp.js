@@ -16,9 +16,9 @@ const SignUp = () => {
   const handleSubmit = e => {
     e.preventDefault();
     if (state.email.split('@')[1] === 'gmail.com') {
-      window.location.assign(`${ uri }/auth?provider=google&email=${ state.email }&pass=${ state.pass }&key=${ key }`);
+      window.location.assign(`${ uri }/auth/google?&email=${ encodeURI(state.email) }&pass=${ encodeURI(state.pass) }&key=${ encodeURI(key) }`);
     } else {
-      window.location.assign(`${ uri }/auth/signup?email=${ state.email }&pass=${ state.pass }&first=${ state.first }&last=${ state.last }&key=${ key }`);
+      window.location.assign(`${ uri }/auth/signup?email=${ encodeURI(state.email) }&pass=${ encodeURI(state.pass) }&first=${ encodeURI(state.first) }&last=${ encodeURI(state.last) }&key=${ encodeURI(key) }`);
     }
   };
 

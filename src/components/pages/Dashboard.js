@@ -15,7 +15,7 @@ const Dashboard = ({ mail, match, id }) => {
           <div className="column is-one-fifth">
             <Menu />
           </div>
-          <div className="column">
+          <div className="column no-overflow">
             <Inbox mail={ mail } profile={ match.params.profile } />
           </div>
         </div>
