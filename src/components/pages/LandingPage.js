@@ -1,8 +1,15 @@
 import React from 'react';
-import Navbar from './Navbar';
+import Navbar from '../layout/Navbar';
 import LogoWhite from '../../images/logo.png';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const LandingPage = () => {
+const LandingPage = ({ id, token }) => {
+  if (id) {
+    return <Redirect to="/inbox" />;
+  } else if (token) {
+    return <Redirect to="/inbox/google" />;
+  }
   return (
     <section className="hero is-primary is-fullheight">
       <div className="hero-head">
@@ -22,4 +29,9 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+const mapStateToProps = state => ({
+  id: state.auth.id,
+  token: state.auth.accessToken
+});
+
+export default connect(mapStateToProps)(LandingPage);

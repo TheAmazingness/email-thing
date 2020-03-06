@@ -6,7 +6,7 @@ import Mail from './components/mail/Mail';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import Compose from './components/mail/Compose';
-import LandingPage from './components/layout/LandingPage';
+import LandingPage from './components/pages/LandingPage';
 import About from './components/pages/About';
 import Settings from './components/pages/Settings';
 import GoogleTokenSaver from './components/helper/GoogleTokenSaver';
