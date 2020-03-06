@@ -2,30 +2,51 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { uri } from '../../config/server.json';
 import { key } from '../../config/key.json';
+import { Redirect } from 'react-router-dom';
 
 const Compose = ({ id }) => {
   const [state, setState] = useState({
     to: null,
     subject: null,
-    body: null
+    body: null,
+    sending: null,
+    sent: null
   });
 
   const handleChange = e => setState({ ...state, [e.target.id]: e.target.value });
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const response = fetch(`${ uri }/send`, {
+    setState({
+      ...state,
+      sending: (
+        <div className="modal is-active">
+          <div className="modal-background" />
+          <div className="modal-content">
+            <progress className="progress is-primary" max="100" />
+          </div>
+        </div>
+      )
+    });
+    const { sent } = await (await fetch(`${ uri }/send`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       body: `key=${ key }&id=${ id }&to=${ state.to }&subject=${ state.subject }&body=${ state.body }`
-    });
+    })).json();
+    if (!sent) {
+      setState({ ...state, sending: null });
+    } else {
+      setState({ ...state, sent: <Redirect to="/" /> });
+    }
   };
 
   return (
     <section className="section">
       <div className="container">
+        { state.sending }
+        { state.sent }
         <div className="box">
           <h1 className="title">
             Compose Email
