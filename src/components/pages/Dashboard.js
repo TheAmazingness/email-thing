@@ -1,32 +1,24 @@
 import React from 'react';
 import Menu from '../layout/Menu';
 import Inbox from '../mail/Inbox';
+import authCheck from '../helper/AuthCheck';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
-const Dashboard = ({ mail, match, id }) => {
-  if (!id) {
-    return <Redirect to="/" />;
-  }
-  return (
-    <section className="section">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-one-fifth">
-            <Menu />
-          </div>
-          <div className="column no-overflow">
-            <Inbox mail={ mail } profile={ match.params.profile } />
-          </div>
+const Dashboard = ({ mail, match }) => (
+  <section className="section">
+    <div className="container">
+      <div className="columns">
+        <div className="column is-one-fifth">
+          <Menu />
+        </div>
+        <div className="column no-overflow">
+          <Inbox mail={ mail } profile={ match.params.profile } />
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
-const mapStateToProps = state => ({
-  mail: state.mail.mail,
-  id: state.auth.id
-});
+const mapStateToProps = state => ({ mail: state.mail.mail });
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(authCheck(true)(Dashboard));

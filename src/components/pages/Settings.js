@@ -1,9 +1,10 @@
 import React from 'react';
+import authCheck from '../helper/AuthCheck';
 import { connect } from 'react-redux';
 
 const Settings = ({ settings }) => {
-	return (
-		<section className="section">
+  return (
+    <section className="section">
       <div className="container">
         <h1 className="title">
           Settings
@@ -17,7 +18,7 @@ const Settings = ({ settings }) => {
                 <div className="tile">
                   <div className="tile is-parent is-vertical">
                     <article className="tile is-child notification is-primary">
-                      <p className="title">Vertical...</p>
+                      <p className="title">Text-to-Speech</p>
                       <p className="subtitle">Top tile</p>
                     </article>
                     <article className="tile is-child notification is-warning">
@@ -61,11 +62,11 @@ const Settings = ({ settings }) => {
         </section>
       </div>
     </section>
-	);
+  );
 };
 
 const mapStateToProps = state => ({
   settings: state.settings
 });
 
-export default connect(mapStateToProps)(Settings);
+export default connect(mapStateToProps)(authCheck(true)(Settings));

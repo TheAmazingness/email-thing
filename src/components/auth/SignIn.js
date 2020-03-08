@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import authCheck from '../helper/AuthCheck';
 import { Link } from 'react-router-dom';
 import { uri } from '../../config/server';
 import { key } from '../../config/key';
@@ -119,4 +120,4 @@ const SignIn = ({ match }) => {
 };
 
 
-export default SignIn;
+export default authCheck(false)(SignIn);
