@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { uri } from '../../config/server.json';
 import { key } from '../../config/key.json';
 import { Redirect } from 'react-router-dom';
+import { post } from '../../helper/fetch';
 
 const Compose = ({ id }) => {
   const [state, setState] = useState({
@@ -28,12 +29,12 @@ const Compose = ({ id }) => {
         </div>
       )
     });
-    const { sent } = await (await fetch(`${ uri }/send`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      body: `key=${ key }&id=${ id }&to=${ state.to }&subject=${ state.subject }&body=${ state.body }`
+    const { sent } = await (await post(`${ uri }/send`, {
+      key,
+      id,
+      to: state.to,
+      subject: state.subject,
+      body: state.body
     })).json();
     if (!sent) {
       setState({ ...state, sending: null });

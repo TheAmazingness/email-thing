@@ -3,6 +3,7 @@ import authCheck from '../helper/AuthCheck';
 import { Link } from 'react-router-dom';
 import { uri } from '../../config/server';
 import { key } from '../../config/key';
+import { direct } from '../../helper/fetch';
 
 const SignUp = () => {
   const [state, setState] = useState({
@@ -17,9 +18,13 @@ const SignUp = () => {
   const handleSubmit = e => {
     e.preventDefault();
     if (state.email.split('@')[1] === 'gmail.com') {
-      window.location.assign(`${ uri }/auth/google?&email=${ encodeURI(state.email) }&pass=${ encodeURI(state.pass) }&key=${ encodeURI(key) }`);
+      direct(`${ uri }/auth/google`, {
+        email: state.email,
+        pass: state.pass,
+        key
+      });
     } else {
-      window.location.assign(`${ uri }/auth/signup?email=${ encodeURI(state.email) }&pass=${ encodeURI(state.pass) }&first=${ encodeURI(state.first) }&last=${ encodeURI(state.last) }&key=${ encodeURI(key) }`);
+      direct(`${ uri }/auth/signup`, { ...state, key });
     }
   };
 

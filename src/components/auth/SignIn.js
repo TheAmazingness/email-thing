@@ -3,6 +3,8 @@ import authCheck from '../helper/AuthCheck';
 import { Link } from 'react-router-dom';
 import { uri } from '../../config/server';
 import { key } from '../../config/key';
+import { direct, post } from '../../helper/fetch';
+import { Redirect } from 'react-router-dom';
 
 const SignIn = ({ match }) => {
   useEffect(() => {
@@ -10,7 +12,7 @@ const SignIn = ({ match }) => {
       if (match.params.failure === 'failure') {
         setState({
           ...state,
-          failure: (
+          update: (
             <article className="message is-danger">
               <div className="message-header">
                 <p>
@@ -25,7 +27,7 @@ const SignIn = ({ match }) => {
       } else if (match.params.failure === 'signup') {
         setState({
           ...state,
-          failure: (
+          update: (
             <article className="message is-danger">
               <div className="message-header">
                 <p>
@@ -44,7 +46,7 @@ const SignIn = ({ match }) => {
   const [state, setState] = useState({
     email: null,
     pass: null,
-    failure: null
+    update: null
   });
 
   const handleChange = e => setState({ ...state, [e.target.id]: e.target.value });
@@ -52,20 +54,28 @@ const SignIn = ({ match }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (state.email.split('@')[1] === 'gmail.com') {
-      window.location.assign(`${ uri }/auth/google?email=${ encodeURI(state.email) }&pass=${ encodeURI(state.pass) }&key=${ encodeURI(key) }`);
+      direct(uri, {
+        email: state.email,
+        pass: state.pass,
+        key
+      });
     } else {
-      const response = await fetch(`${ uri }/auth/other`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        body: `key=${ encodeURI(key) }&username=${ encodeURI(state.email) }&password=${ encodeURI(state.pass) }`
+      const response = await post(`${ uri }/auth/other`, {
+        key,
+        username: state.email,
+        password: state.pass
       });
       const data = await response.json();
       if (data.message && data.message === 'failed to auth') {
-        window.location.assign('/signin/failure');
+        setState({
+          ...state,
+          update: <Redirect to="/signin/failure" />
+        });
       } else {
-        window.location.assign(`/inbox/${ data }`);
+        setState({
+          ...state,
+          update: <Redirect to={ `/inbox/${ data }` } />
+        });
       }
     }
   };
@@ -73,7 +83,7 @@ const SignIn = ({ match }) => {
   return (
     <section className="section">
       <div className="container">
-        { state.failure }
+        { state.update }
         <div className="box">
           <h1 className="title">
             Sign In
