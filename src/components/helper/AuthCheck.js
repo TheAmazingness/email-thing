@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const AuthChecker = connect(mapStateToProps)(({ token, id, children, authed }) =>
-  (authed && (!token || !id)) || (!authed && (token || id)) ?
+  (authed && (!token && !id)) || (!authed && (token || id)) ?
     <Redirect to="/" /> :
     children
 );
