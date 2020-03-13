@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import authCheck from '../helper/AuthCheck';
 import { Link } from 'react-router-dom';
 import { uri } from '../../config/server';
-import { key } from '../../config/key';
 import { direct } from '../../helper/fetch';
 
 const SignUp = () => {
@@ -20,11 +19,10 @@ const SignUp = () => {
     if (state.email.split('@')[1] === 'gmail.com') {
       direct(`${ uri }/auth/google`, {
         email: state.email,
-        pass: state.pass,
-        key
+        pass: state.pass
       });
     } else {
-      direct(`${ uri }/auth/signup`, { ...state, key });
+      direct(`${ uri }/auth/signup`, state);
     }
   };
 

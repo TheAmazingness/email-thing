@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import authCheck from '../helper/AuthCheck';
 import { Link } from 'react-router-dom';
 import { uri } from '../../config/server';
-import { key } from '../../config/key';
 import { direct, post } from '../../helper/fetch';
 import { Redirect } from 'react-router-dom';
 
@@ -56,12 +55,10 @@ const SignIn = ({ match }) => {
     if (state.email.split('@')[1] === 'gmail.com') {
       direct(uri, {
         email: state.email,
-        pass: state.pass,
-        key
+        pass: state.pass
       });
     } else {
       const response = await post(`${ uri }/auth/other`, {
-        key,
         username: state.email,
         password: state.pass
       });
