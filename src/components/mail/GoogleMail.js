@@ -14,6 +14,8 @@ const GoogleMail = ({ match, googleMail }) => {
     }
   });
 
+  console.log(selectedMail);
+
   try {
     selectedMail.payload.headers.forEach(({ name, value }) => {
       if (name === 'Subject') {
@@ -21,13 +23,17 @@ const GoogleMail = ({ match, googleMail }) => {
       }
     });
 
-    selectedMail.payload.parts.forEach(({ mimeType, body }) => {
-      if (!html && mimeType === 'text/plain') {
-        html = window.atob(body.data.replace(/-/g, '+').replace(/_/g, '/'));
-      } else if (mimeType === 'text/html') {
-        html = window.atob(body.data.replace(/-/g, '+').replace(/_/g, '/'));
-      }
-    });
+    if (selectedMail.payload.body.data) {
+      html = window.atob(selectedMail.payload.body.data.replace(/-/g, '+').replace(/_/g, '/'));
+    } else {
+      selectedMail.payload.parts.forEach(({ mimeType, body }) => {
+        if (!html && mimeType === 'text/plain') {
+          html = window.atob(body.data.replace(/-/g, '+').replace(/_/g, '/'));
+        } else if (mimeType === 'text/html') {
+          html = window.atob(body.data.replace(/-/g, '+').replace(/_/g, '/'));
+        }
+      });
+    }
   } catch (e) {
     return <Redirect to="/inbox/google" />;
   }
