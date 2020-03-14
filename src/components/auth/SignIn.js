@@ -53,7 +53,7 @@ const SignIn = ({ match }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (state.email.split('@')[1] === 'gmail.com') {
-      direct(uri, {
+      direct(`${ uri }/auth/google`, {
         email: state.email,
         pass: state.pass
       });

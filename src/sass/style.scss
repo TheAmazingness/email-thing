@@ -10,7 +10,7 @@ $quinary: #CA3A40;
 $body-font-size: 18pt;
 $menu-label-font-size: 14pt;
 
-.inbox {
+.inbox, .settings-wrap {
   overflow-y: scroll;
   height: 75vh;
 }

@@ -7,7 +7,7 @@ export const direct = (url, query = {}) => {
   let stringify = '';
   Object.keys(query).forEach(key => stringify += !/[;,/?:@&=+$#]/g.test(key) ? `&${ key }=${ encodeURIComponent(query[key]) }` : null);
   stringify = stringify.replace('&', '?');
-  window.location.assign(url + stringify)
+  window.location.assign(url + stringify);
 };
 
 export const get = (url, query = {}) => {
