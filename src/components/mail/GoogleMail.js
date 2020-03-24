@@ -14,8 +14,6 @@ const GoogleMail = ({ match, googleMail }) => {
     }
   });
 
-  console.log(selectedMail);
-
   try {
     selectedMail.payload.headers.forEach(({ name, value }) => {
       if (name === 'Subject') {
