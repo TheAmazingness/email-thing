@@ -9,8 +9,6 @@ import Compose from './components/mail/Compose';
 import LandingPage from './components/pages/LandingPage';
 import About from './components/pages/About';
 import Settings from './components/pages/Settings';
-import GoogleTokenSaver from './components/helper/GoogleTokenSaver';
-import IdSaver from './components/helper/IdSaver';
 import Dashboard from './components/pages/Dashboard';
 import GoogleMail from './components/mail/GoogleMail';
 
@@ -20,9 +18,7 @@ const App = () => (
       <Navbar />
       <Switch>
         <Route exact path="/" component={ LandingPage } />
-        <Route path="/inbox/google/:profile" component={ GoogleTokenSaver } />
         <Route path="/inbox/google" component={ GoogleDashboard } />
-        <Route path="/inbox/:profile" component={ IdSaver } />
         <Route path="/inbox" component={ Dashboard } />
         <Route path="/message/google/:id" component={ GoogleMail } />
         <Route path="/message/:id" component={ Mail } />
