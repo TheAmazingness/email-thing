@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import MailItem from './MailItem';
 import { connect } from 'react-redux';
 import { getMail } from '../../store/actions/mailActions';
+import { get } from '../../helper/fetch';
+import { uri } from '../../config/server.json';
 
 const Inbox = ({ mail, getMail, id }) => {
   useEffect(() => {
     getMail(id);
+    // console.log(get(`${ uri }/auth/user`));
   }, []);
 
   const [state, setState] = useState({

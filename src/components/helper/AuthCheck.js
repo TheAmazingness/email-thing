@@ -1,17 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getAuth } from '../../store/actions/authActions';
 
 const mapStateToProps = state => ({
-  token: state.auth.accessToken,
-  id: state.auth.id
+  auth: state.auth.auth
 });
 
-const AuthChecker = connect(mapStateToProps)(({ token, id, children, authed }) =>
-  (authed && (!token && !id)) || (!authed && (token || id)) ?
+const mapDispatchToProps = dispatch => ({
+  getAuth: () => dispatch(getAuth())
+});
+
+const AuthChecker = connect(mapStateToProps, mapDispatchToProps)(({ children, authed, getAuth, auth }) => {
+  useEffect(() => { getAuth() }, []);
+
+  return (authed && !auth) || (!authed && auth) ?
     <Redirect to="/" /> :
     children
-);
+});
 
 const authCheck = shouldBeAuthed => Component => props => (
   <AuthChecker authed={ shouldBeAuthed }>

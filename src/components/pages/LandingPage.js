@@ -2,15 +2,12 @@ import React from 'react';
 import Navbar from '../layout/Navbar';
 import LogoWhite from '../../images/logo.png';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { get } from '../../helper/fetch';
+import { uri } from '../../config/server.json';
 
-const LandingPage = ({ id, token }) => {
-  if (id) {
-    return <Redirect to="/inbox" />;
-  } else if (token) {
-    return <Redirect to="/inbox/google" />;
-  }
-  return (
+const isAuthed = async () => await (await get(`${ uri }/auth/is-authed`)).json();
+
+const LandingPage = () => !isAuthed() ? <Redirect to="/inbox" /> : (
     <section className="hero is-primary is-fullheight">
       <div className="hero-head">
         <Navbar overrideLocationHiding />
@@ -27,11 +24,5 @@ const LandingPage = ({ id, token }) => {
       </div>
     </section>
   );
-};
 
-const mapStateToProps = state => ({
-  id: state.auth.id,
-  token: state.auth.accessToken
-});
-
-export default connect(mapStateToProps)(LandingPage);
+export default LandingPage;

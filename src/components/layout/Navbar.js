@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import LogoWhite from '../../images/logo.png';
 import LogoBlue from '../../images/logo-blue.png';
+import { getAuth } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 
-const Navbar = ({ location, overrideLocationHiding, accessToken, id }) => {
+const Navbar = ({ location, overrideLocationHiding, getAuth, auth }) => {
+  useEffect(() => { getAuth() }, []);
+
+  const links = auth ? <SignedInLinks /> : <SignedOutLinks home={ location.pathname === '/' } />;
+  const home = auth ? '/inbox' : '/';
+
   if (location.pathname === '/' && !overrideLocationHiding) {
     return null;
   }
-  const links = accessToken || id ? <SignedInLinks /> : <SignedOutLinks home={ location.pathname === '/' } />;
-  const home = accessToken || id ? id ? '/inbox' : '/inbox/google' : '/';
+
   return (
     <header className="navbar">
       <div className="container">
@@ -33,9 +38,12 @@ const Navbar = ({ location, overrideLocationHiding, accessToken, id }) => {
   );
 };
 
-const mapStateToProp = state => ({
-  accessToken: state.auth.accessToken,
-  id: state.auth.id
+const mapStateToProps = state => ({
+  auth: state.auth.auth
 });
 
-export default connect(mapStateToProp)(withRouter(Navbar));
+const mapDispatchToProps = dispatch => ({
+  getAuth: () => dispatch(getAuth())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Navbar));
