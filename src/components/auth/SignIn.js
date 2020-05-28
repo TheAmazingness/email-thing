@@ -62,8 +62,8 @@ const SignIn = ({ match }) => {
         username: state.email,
         password: state.pass
       });
-      const data = await response.json();
-      if (data.message && data.message === 'failed to auth') {
+      const data = await response.text();
+      if (data && data === 'failed to auth') {
         setState({
           ...state,
           update: <Redirect to="/signin/failure" />
@@ -71,7 +71,7 @@ const SignIn = ({ match }) => {
       } else {
         setState({
           ...state,
-          update: <Redirect to={ `/inbox/${ data }` } />
+          update: <Redirect to="/inbox" />
         });
       }
     }

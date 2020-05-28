@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { uri } from '../../config/server.json';
 import { Redirect } from 'react-router-dom';
 import { post } from '../../helper/fetch';
 
-const Compose = ({ id }) => {
+const Compose = () => {
   const [state, setState] = useState({
     to: null,
     subject: null,
@@ -29,7 +28,6 @@ const Compose = ({ id }) => {
       )
     });
     const { sent } = await (await post(`${ uri }/send`, {
-      id,
       to: state.to,
       subject: state.subject,
       body: state.body
@@ -93,8 +91,4 @@ const Compose = ({ id }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  id: state.auth.id
-});
-
-export default connect(mapStateToProps)(Compose);
+export default Compose;

@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react';
 import MailItem from './MailItem';
 import { connect } from 'react-redux';
 import { getMail } from '../../store/actions/mailActions';
-import { get } from '../../helper/fetch';
-import { uri } from '../../config/server.json';
 
-const Inbox = ({ mail, getMail, id }) => {
+const Inbox = ({ mail, getMail }) => {
   useEffect(() => {
-    getMail(id);
-    // console.log(get(`${ uri }/auth/user`));
+    getMail();
   }, []);
 
   const [state, setState] = useState({
@@ -54,12 +51,11 @@ const Inbox = ({ mail, getMail, id }) => {
 };
 
 const mapStateToProps = state => ({
-  mail: state.mail.mail,
-  id: state.auth.id
+  mail: state.mail.mail
 });
 
 const mapDispatchToProps = dispatch => ({
-  getMail: id => dispatch(getMail(id))
+  getMail: () => dispatch(getMail())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inbox);

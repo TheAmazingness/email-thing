@@ -22,7 +22,7 @@ const App = () => (
         <Route path="/inbox" component={ Dashboard } />
         <Route path="/message/google/:id" component={ GoogleMail } />
         <Route path="/message/:id" component={ Mail } />
-        <Route path="/signin/:failure" component={ SignIn } />
+        <Route path="/signin/failure" component={ SignIn } />
         <Route path="/signin" component={ SignIn } />
         <Route path="/signup" component={ SignUp } />
         <Route path="/compose" component={ Compose } />

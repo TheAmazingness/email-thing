@@ -7,7 +7,8 @@ const authReducer = (state = initState, action) => {
   switch (action.type) {
     case 'GET_AUTH':
       return ({
-        auth: action.data,
+        auth: action.data.isAuthed,
+        strategy: action.data.strategy,
         isUpdated: true
       });
     default:

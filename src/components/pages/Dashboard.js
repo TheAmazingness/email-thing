@@ -20,6 +20,6 @@ const Dashboard = ({ mail, match, google }) => google ? <Redirect to="/inbox/goo
   </section>
 );
 
-const mapStateToProps = state => ({ mail: state.mail.mail, google: !!state.auth.accessToken });
+const mapStateToProps = state => ({ mail: state.mail.mail, google: state.auth.strategy === 'google' });
 
 export default connect(mapStateToProps)(authCheck(true)(Dashboard));

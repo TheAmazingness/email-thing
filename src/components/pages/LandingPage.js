@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../layout/Navbar';
 import LogoWhite from '../../images/logo.png';
 import { Redirect } from 'react-router-dom';
-import { get } from '../../helper/fetch';
-import { uri } from '../../config/server.json';
+import { connect } from 'react-redux';
+import { getAuth } from '../../store/actions/authActions';
 
-const isAuthed = async () => await (await get(`${ uri }/auth/is-authed`)).json();
+const LandingPage = ({ auth, getAuth }) => {
+  useEffect(() => { getAuth(); }, []);
 
-const LandingPage = () => !isAuthed() ? <Redirect to="/inbox" /> : (
+  return auth ? <Redirect to="/inbox" /> : (
     <section className="hero is-primary is-fullheight">
       <div className="hero-head">
         <Navbar overrideLocationHiding />
@@ -24,5 +25,14 @@ const LandingPage = () => !isAuthed() ? <Redirect to="/inbox" /> : (
       </div>
     </section>
   );
+}
 
-export default LandingPage;
+const mapStateToProps = state => ({
+  auth: state.auth.auth
+});
+
+const mapDispatchToProps = dispatch => ({
+  getAuth: () => dispatch(getAuth())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

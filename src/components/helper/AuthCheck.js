@@ -11,16 +11,16 @@ const mapDispatchToProps = dispatch => ({
   getAuth: () => dispatch(getAuth())
 });
 
-const AuthChecker = connect(mapStateToProps, mapDispatchToProps)(({ children, authed, getAuth, auth }) => {
+const AuthChecker = connect(mapStateToProps, mapDispatchToProps)(({ children, shouldBeAuthed, getAuth, auth }) => {
   useEffect(() => { getAuth() }, []);
 
-  return (authed && !auth) || (!authed && auth) ?
+  return (shouldBeAuthed && !auth) || (!shouldBeAuthed && auth) ?
     <Redirect to="/" /> :
     children
 });
 
 const authCheck = shouldBeAuthed => Component => props => (
-  <AuthChecker authed={ shouldBeAuthed }>
+  <AuthChecker shouldBeAuthed={ shouldBeAuthed }>
     <Component { ...props } />
   </AuthChecker>
 );
