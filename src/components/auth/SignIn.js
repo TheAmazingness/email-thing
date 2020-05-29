@@ -102,7 +102,7 @@ const SignIn = ({ match }) => {
             <div className="field">
               <label className="label" htmlFor="pass">Password</label>
               <div className="control has-icons-left">
-                <input className="input" type="password" placeholder="Password" id="pass" onChange={ handleChange } />
+                <input className="input" type="password" placeholder="Password" id="pass" onChange={ handleChange } autoComplete="current-password" />
                 <span className="icon is-small is-left">
                   <i className="fas fa-lock" />
                 </span>
