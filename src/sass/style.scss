@@ -10,7 +10,7 @@ $quinary: #CA3A40;
 $body-font-size: 18pt;
 $menu-label-font-size: 14pt;
 
-.inbox, .settings-wrap {
+.inbox{
   overflow-y: scroll;
   height: 75vh;
 }
@@ -34,5 +34,11 @@ $menu-label-font-size: 14pt;
 .no-overflow {
   overflow-x: hidden;
 }
+.settings-wrap {
+  overflow-y: scroll;
+  height: 60vh;
+}
 
 @import '../../node_modules/bulma/bulma';
+@import '../../node_modules/bulma-switch';
+@import '../../node_modules/bulma-pageloader';

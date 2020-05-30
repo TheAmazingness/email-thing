@@ -12,7 +12,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const AuthChecker = connect(mapStateToProps, mapDispatchToProps)(({ children, shouldBeAuthed, getAuth, auth }) => {
-  useEffect(() => { getAuth() }, []);
+  useEffect(() => { getAuth(); }, []);
+
+  if (auth === null) return <div className="pageloader is-active"><h1 className="title">Authenticating</h1></div>;
 
   return (shouldBeAuthed && !auth) || (!shouldBeAuthed && auth) ?
     <Redirect to="/" /> :
