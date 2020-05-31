@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { uri } from '../../config/server.json';
 import { Redirect } from 'react-router-dom';
-import { post } from '../../helper/fetch';
+import { postBody } from '../../helper/fetch';
 
 const Compose = () => {
   const [state, setState] = useState({
@@ -27,7 +27,7 @@ const Compose = () => {
         </div>
       )
     });
-    const { sent } = await (await post(`${ uri }/send`, {
+    const { sent } = await (await postBody(`${ uri }/send`, {
       to: state.to,
       subject: state.subject,
       body: state.body

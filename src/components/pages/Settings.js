@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import authCheck from '../helper/AuthCheck';
 import { connect } from 'react-redux';
+import { getSettings, setSettings } from '../../store/actions/settingsActions';
 
-const Settings = ({ settings }) => {
+const Settings = ({ settings, getSettings, setSettings }) => {
+  const s = settings.settings;
+
+  useEffect(() => { getSettings(); }, []);
+
   return (
     <section className="section">
       <div className="container">
@@ -13,49 +18,89 @@ const Settings = ({ settings }) => {
         </h1>
         <section className="section">
           <div className="container">
-            <div className="tile is-ancestor">
-              <div className="tile is-vertical is-8">
-                <div className="tile">
-                  <div className="tile is-parent is-vertical">
-                    <article className="tile is-child notification is-primary">
-                      <p className="title">Text-to-Speech</p>
-                      <p className="subtitle">Top tile</p>
-                    </article>
-                    <article className="tile is-child notification is-warning">
-                      <p className="title">...tiles</p>
-                      <p className="subtitle">Bottom tile</p>
-                    </article>
+            <div className="settings-wrap">
+              <div className="tile is-ancestor">
+                <div className="tile is-vertical is-8">
+                  <div className="tile">
+                    <div className="tile is-parent is-vertical">
+                      <article className="tile is-child notification is-primary">
+                        <p className="title">Text-to-Speech</p>
+                        <p className="subtitle">{ s.tts ? 'On' : 'Off' }</p>
+                        <div className="field">
+                          <input
+                            id="tts"
+                            type="checkbox"
+                            name="tts"
+                            className="switch"
+                            onChange={ e => setSettings({ [e.target.name]: e.target.checked })}
+                            checked={ s.tts }
+                          />
+                          <label htmlFor="tts" />
+                        </div>
+                      </article>
+                      <article className="tile is-child notification is-warning">
+                        <p className="title">Larger Font</p>
+                        <p className="subtitle">{ s.large ? 'Larger' : 'Smaller' }</p>
+                        <div className="field">
+                          <input
+                            id="large"
+                            type="checkbox"
+                            name="large"
+                            className="switch"
+                            onChange={ e => setSettings({ [e.target.name]: e.target.checked })}
+                            checked={ s.large }
+                          />
+                          <label htmlFor="large" />
+                        </div>
+                      </article>
+                    </div>
+                    <div className="tile is-parent">
+                      <article className="tile is-child notification is-info">
+                        <p className="title">Voice Email</p>
+                        <p className="subtitle">{ s.voicemail ? 'On' : 'Off' }</p>
+                        <div className="field">
+                          <input
+                            id="voicemail"
+                            type="checkbox"
+                            name="voicemail"
+                            className="switch"
+                            onChange={ e => setSettings({ [e.target.name]: e.target.checked })}
+                            checked={ s.voicemail }
+                          />
+                          <label htmlFor="voicemail" />
+                        </div>
+                      </article>
+                    </div>
                   </div>
-                  <div className="tile is-parent">
-                    <article className="tile is-child notification is-info">
-                      <p className="title">Middle tile</p>
-                      <p className="subtitle">With an image</p>
-                      <figure className="image is-4by3">
-                        <img alt="example" src="https://bulma.io/images/placeholders/640x480.png" />
-                      </figure>
-                    </article>
-                  </div>
+                  {/*<div className="tile is-parent">*/}
+                  {/*  <article className="tile is-child notification is-danger">*/}
+                  {/*    <p className="title">Wide tile</p>*/}
+                  {/*    <p className="subtitle">Aligned with the right tile</p>*/}
+                  {/*    <div className="content">*/}
+                  {/*      yoink*/}
+                  {/*    </div>*/}
+                  {/*  </article>*/}
+                  {/*</div>*/}
                 </div>
                 <div className="tile is-parent">
-                  <article className="tile is-child notification is-danger">
-                    <p className="title">Wide tile</p>
-                    <p className="subtitle">Aligned with the right tile</p>
+                  <article className="tile is-child notification is-success">
                     <div className="content">
-                      yoink
+                      <p className="title">Voice Recognition</p>
+                      <p className="subtitle">{ s.recognition ? 'On' : 'Off' }</p>
+                      <div className="field">
+                        <input
+                          id="recognition"
+                          type="checkbox"
+                          name="recognition"
+                          className="switch"
+                          onChange={ e => setSettings({ [e.target.name]: e.target.checked })}
+                          checked={ s.recognition }
+                        />
+                        <label htmlFor="recognition" />
+                      </div>
                     </div>
                   </article>
                 </div>
-              </div>
-              <div className="tile is-parent">
-                <article className="tile is-child notification is-success">
-                  <div className="content">
-                    <p className="title">Tall tile</p>
-                    <p className="subtitle">With even more content</p>
-                    <div className="content">
-                      yeet
-                    </div>
-                  </div>
-                </article>
               </div>
             </div>
           </div>
@@ -69,4 +114,9 @@ const mapStateToProps = state => ({
   settings: state.settings
 });
 
-export default connect(mapStateToProps)(authCheck(true)(Settings));
+const mapDispatchToProps = dispatch => ({
+  getSettings: () => dispatch(getSettings()),
+  setSettings: settings => dispatch(setSettings(settings))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(authCheck(true)(Settings));

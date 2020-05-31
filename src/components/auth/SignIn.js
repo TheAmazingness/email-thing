@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import authCheck from '../helper/AuthCheck';
 import { Link } from 'react-router-dom';
 import { uri } from '../../config/server';
-import { direct, post } from '../../helper/fetch';
+import { direct, postQuery } from '../../helper/fetch';
 import { Redirect } from 'react-router-dom';
 
 const SignIn = ({ match }) => {
@@ -58,7 +58,7 @@ const SignIn = ({ match }) => {
         pass: state.pass
       });
     } else {
-      const response = await post(`${ uri }/auth/other`, {
+      const response = await postQuery(`${ uri }/auth/other`, {
         username: state.email,
         password: state.pass
       });

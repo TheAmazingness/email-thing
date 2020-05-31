@@ -1,7 +1,7 @@
-// const fetch = window.fetch;
-//
-// window.fetch = null;
-// window.XMLHttpRequest = null;
+const fetch = window.fetch;
+
+window.fetch = null;
+window.XMLHttpRequest = null;
 
 export const direct = (url, query = {}) => {
   let stringify = '';
@@ -25,7 +25,7 @@ export const get = (url, query = {}) => {
   });
 };
 
-export const post = (url, body = {}) => {
+export const postQuery = (url, body = '') => {
   let stringify = '';
   Object.keys(body).forEach(key => stringify += `&${ key }=${ body[key] }`);
   stringify = stringify.replace('&', '?');
@@ -36,6 +36,20 @@ export const post = (url, body = {}) => {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Credentials': true,
       Connection: 'keep-alive'
+    },
+    credentials: 'include'
+  });
+};
+
+export const postBody = (url, body = '') => {
+  let stringify = '';
+  Object.keys(body).forEach(key => stringify += `&${ key }=${ body[key] }`);
+  stringify = stringify.replace('&', '?');
+  return fetch(`${ url }${ stringify }`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true,
     },
     credentials: 'include'
   });

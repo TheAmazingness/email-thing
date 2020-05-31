@@ -34,6 +34,9 @@ $menu-label-font-size: 14pt;
 .no-overflow {
   overflow-x: hidden;
 }
+.pageloader .title {
+  letter-spacing: normal !important;
+}
 .settings-wrap {
   overflow-y: scroll;
   height: 60vh;

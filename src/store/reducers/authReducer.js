@@ -1,5 +1,5 @@
 const initState = {
-  auth: false,
+  auth: null,
   isUpdated: false
 };
 
