@@ -19,9 +19,13 @@ const SettingsChecker = connect(mapStateToProps, mapDispatchToProps)(({ children
     // TODO: Implement TTS
   }
   if (settings.large) {
-    console.log(1);
     props.className.push('font-large');
   }
+  if (settings.dyslexia) {
+    props.className.push('font-dyslexia');
+  }
+
+  props.className = props.className.join(' ');
 
   return (
     <span { ...props }>

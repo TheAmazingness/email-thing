@@ -18,7 +18,7 @@ const Settings = ({ settings, getSettings, setSettings }) => {
         </h1>
         <section className="section">
           <div className="container">
-            <div className="settings-wrap">
+            <div className="settings-wrap no-overflow">
               <div className="tile is-ancestor">
                 <div className="tile is-vertical is-8">
                   <div className="tile">
@@ -72,15 +72,23 @@ const Settings = ({ settings, getSettings, setSettings }) => {
                       </article>
                     </div>
                   </div>
-                  {/*<div className="tile is-parent">*/}
-                  {/*  <article className="tile is-child notification is-danger">*/}
-                  {/*    <p className="title">Wide tile</p>*/}
-                  {/*    <p className="subtitle">Aligned with the right tile</p>*/}
-                  {/*    <div className="content">*/}
-                  {/*      yoink*/}
-                  {/*    </div>*/}
-                  {/*  </article>*/}
-                  {/*</div>*/}
+                  <div className="tile is-parent">
+                    <article className="tile is-child notification is-danger">
+                      <p className="title">Dyslexia-Friendly Font</p>
+                      <p className="subtitle">{ s.dyslexia ? 'OpenDyslexic' : 'Default Font' }</p>
+                      <div className="field">
+                        <input
+                          id="dyslexia"
+                          type="checkbox"
+                          name="dyslexia"
+                          className="switch"
+                          onChange={ e => setSettings({ [e.target.name]: e.target.checked })}
+                          checked={ s.dyslexia }
+                        />
+                        <label htmlFor="dyslexia" />
+                      </div>
+                    </article>
+                  </div>
                 </div>
                 <div className="tile is-parent">
                   <article className="tile is-child notification is-success">
