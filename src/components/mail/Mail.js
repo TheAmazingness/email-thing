@@ -1,4 +1,5 @@
 import React from 'react';
+import settingsCheck from '../helper/settingsCheck';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -44,4 +45,4 @@ const mapStateToProps = state => ({
   mail: state.mail.mail
 });
 
-export default connect(mapStateToProps)(Mail);
+export default connect(mapStateToProps)(settingsCheck(Mail));

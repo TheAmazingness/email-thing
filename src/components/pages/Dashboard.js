@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from '../layout/Menu';
 import Inbox from '../mail/Inbox';
+import settingsCheck from '../helper/settingsCheck';
 import authCheck from '../helper/AuthCheck';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -22,4 +23,4 @@ const Dashboard = ({ mail, match, google }) => google ? <Redirect to="/inbox/goo
 
 const mapStateToProps = state => ({ mail: state.mail.mail, google: state.auth.strategy === 'google' });
 
-export default connect(mapStateToProps)(authCheck(true)(Dashboard));
+export default connect(mapStateToProps)(authCheck(true)(settingsCheck(Dashboard)));
