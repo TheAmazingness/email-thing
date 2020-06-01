@@ -121,7 +121,7 @@ const Settings = ({ settings, getSettings, setSettings }) => {
                     </article>
                     <article className="tile is-child notification is-dark">
                       <div className="columns">
-                        <div className="column is-10">
+                        <div className="column is-7">
                           <p className="title">
                             Contacts
                             &emsp;
@@ -130,17 +130,34 @@ const Settings = ({ settings, getSettings, setSettings }) => {
                           <p className="subtitle">Number of contacts: { s.contacts.length }</p>
                         </div>
                         <div className="column">
-                          <button
-                            className="button is-large is-success"
-                            onClick={ () => {
-                              setSettings({ contacts: [...s.contacts, state] });
-                              setState({ name: '', email: '' });
-                            } }
-                          >
-                            <span className="icon is-large">
-                              <i className="fas fa-plus" />
-                            </span>
-                          </button>
+                          <div className="level">
+                            <div className="level-left">
+                              <button
+                                className="button is-large is-success"
+                                onClick={ () => {
+                                  setSettings({ contacts: [...s.contacts, state] });
+                                  setState({ name: '', email: '' });
+                                } }
+                              >
+                                <span className="icon is-large">
+                                  <i className="fas fa-plus" />
+                                </span>
+                              </button>
+                            </div>
+                            <div className="level-right">
+                              <button
+                                className="button is-success"
+                                onClick={ () => {
+                                  setSettings({ contacts: [...s.contacts, state] });
+                                  setState({ name: '', email: '' });
+                                } }
+                              >
+                                View Contacts
+                                &emsp;
+                                <i className="fas fa-address-book" />
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className="field">
