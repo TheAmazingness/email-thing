@@ -92,7 +92,7 @@ const SignIn = ({ match, getAuth }) => {
             <div className="field">
               <label className="label" htmlFor="email">Email</label>
               <div className="control has-icons-left">
-                <input className="input" type="email" placeholder="Email" id="email" onChange={ handleChange } />
+                <input className="input" type="email" placeholder="Email" id="email" onChange={ handleChange } autoComplete="username" />
                 <span className="icon is-small is-left">
                   <i className="fas fa-envelope" />
                 </span>
