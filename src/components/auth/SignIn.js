@@ -3,9 +3,11 @@ import authCheck from '../helper/AuthCheck';
 import { Link } from 'react-router-dom';
 import { uri } from '../../config/server';
 import { direct, postQuery } from '../../helper/fetch';
+import { getAuth } from '../../store/actions/authActions';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const SignIn = ({ match }) => {
+const SignIn = ({ match, getAuth }) => {
   useEffect(() => {
     if (match) {
       if (match.params.failure === 'failure') {
@@ -69,10 +71,7 @@ const SignIn = ({ match }) => {
           update: <Redirect to="/signin/failure" />
         });
       } else {
-        setState({
-          ...state,
-          update: <Redirect to="/inbox" />
-        });
+        getAuth(true);
       }
     }
   };
@@ -126,5 +125,8 @@ const SignIn = ({ match }) => {
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  getAuth: expectStatusChange => dispatch(getAuth(expectStatusChange))
+});
 
-export default authCheck(false)(SignIn);
+export default connect(null, mapDispatchToProps)(authCheck(false)(SignIn));

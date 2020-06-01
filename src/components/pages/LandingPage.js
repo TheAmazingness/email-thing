@@ -25,7 +25,7 @@ const LandingPage = ({ auth, getAuth }) => {
       </div>
     </section>
   );
-}
+};
 
 const mapStateToProps = state => ({
   auth: state.auth.auth
