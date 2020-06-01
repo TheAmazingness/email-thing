@@ -43,7 +43,7 @@ export const postQuery = (url, body = '') => {
 
 export const postBody = (url, body = '') => {
   let stringify = '';
-  Object.keys(body).forEach(key => stringify += `&${ key }=${ body[key] }`);
+  Object.keys(body).forEach(key => stringify += `&${ key }=${ typeof body[key] === 'object' ? JSON.stringify(body[key]) : body[key] }`);
   stringify = stringify.replace('&', '?');
   return fetch(`${ url }${ stringify }`, {
     method: 'POST',
