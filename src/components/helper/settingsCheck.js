@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getSettings } from '../../store/actions/settingsActions';
+import handleTtsClick from './settings/tts';
 
 const mapStateToProps = state => ({
   settings: state.settings.settings
@@ -13,10 +14,16 @@ const mapDispatchToProps = dispatch => ({
 const SettingsChecker = connect(mapStateToProps, mapDispatchToProps)(({ children, getSettings, settings }) => {
   useEffect(() => { getSettings(); }, []);
 
-  const props = { className: [] };
+  const props = { className: [], children: [] };
 
   if (settings.tts) {
-    // TODO: Implement TTS
+    props.children.push(
+      <button className="button is-large is-danger fab" key="btn-tts" onClick={ handleTtsClick }>
+        <span className="icon is-large">
+          <i className="fas fa-volume-up" />
+        </span>
+      </button>
+    );
   }
   if (settings.large) {
     props.className.push('font-large');
@@ -30,6 +37,7 @@ const SettingsChecker = connect(mapStateToProps, mapDispatchToProps)(({ children
   return (
     <span { ...props }>
       { children }
+      { props.children }
     </span>
   );
 });

@@ -15,6 +15,12 @@ $menu-label-font-size: 14pt;
   src: url('../OpenDyslexic/OpenDyslexic3-Regular.ttf');
 }
 
+.fab {
+  border-radius: 50% !important;
+  bottom: 5vh;
+  left: 5vw;
+  position: absolute !important;
+}
 .font-dyslexia {
   font-family: 'OpenDyslexic' !important;
 }
