@@ -22,6 +22,10 @@ $menu-label-font-size: 14pt;
   position: absolute !important;
 }
 
+html {
+  overflow: hidden !important;
+}
+
 .contacts-table {
   margin: auto;
 }

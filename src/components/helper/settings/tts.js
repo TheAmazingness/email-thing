@@ -13,7 +13,7 @@ const handleTtsClick = () => {
     // Detect Chrome
     // https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
     if (!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)) {
-      voice = 48;
+      voice = 49;
     }
 
     let utterance = new SpeechSynthesisUtterance(text);
