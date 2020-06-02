@@ -45,4 +45,4 @@ const mapStateToProps = state => ({
   mail: state.mail.mail
 });
 
-export default connect(mapStateToProps)(settingsCheck(Mail));
+export default connect(mapStateToProps)(settingsCheck({ help: true })(Mail));

@@ -23,4 +23,4 @@ const GoogleDashboard = ({ mail, match, google }) => !google ? <Redirect to="/in
 
 const mapStateToProps = state => ({ mail: state.mail.mail, google: state.auth.strategy === 'google' });
 
-export default connect(mapStateToProps)(authCheck(true)(settingsCheck(GoogleDashboard)));
+export default connect(mapStateToProps)(authCheck(true)(settingsCheck()(GoogleDashboard)));

@@ -66,4 +66,4 @@ const mapStateToProps = state => ({
   googleMail: state.mail.googleMail
 });
 
-export default connect(mapStateToProps)(settingsCheck(GoogleMail));
+export default connect(mapStateToProps)(settingsCheck({ help: true })(GoogleMail));

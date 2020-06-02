@@ -15,15 +15,25 @@ $menu-label-font-size: 14pt;
   src: url('../OpenDyslexic/OpenDyslexic3-Regular.ttf');
 }
 
+@mixin fab($bottom, $left) {
+  border-radius: 50% !important;
+  bottom: $bottom;
+  left: $left;
+  position: absolute !important;
+}
+
 .contacts-table {
   margin: auto;
 }
-.fab {
-  border-radius: 50% !important;
-  bottom: 5vh;
-  left: 5vw;
-  position: absolute !important;
+
+.fab-help {
+  @include fab(5vh, 90vw);
 }
+
+.fab-tts {
+  @include fab(5vh, 5vw);
+}
+
 .font-dyslexia {
   font-family: 'OpenDyslexic' !important;
 }
