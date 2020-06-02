@@ -25,7 +25,7 @@ const Settings = ({ settings, getSettings, setSettings }) => {
             <i className="fas fa-cogs" />
           </h1>
           <section className="section">
-            <div className="container">
+            <div className="box">
               <div className="settings-wrap no-overflow">
                 <div className="tile is-ancestor">
                   <div className="tile is-vertical is-8">

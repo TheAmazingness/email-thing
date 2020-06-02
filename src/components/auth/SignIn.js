@@ -86,8 +86,6 @@ const SignIn = ({ match, getAuth }) => {
             &emsp;
             <i className="fas fa-key" />
           </h1>
-        </div>
-        <div className="box">
           <form onSubmit={ handleSubmit }>
             <div className="field">
               <label className="label" htmlFor="email">Email</label>
