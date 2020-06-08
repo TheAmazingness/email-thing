@@ -75,6 +75,9 @@ html {
   overflow-y: scroll;
   height: 60vh;
 }
+.unread {
+  border: 5px solid $primary;
+}
 
 @import '../../node_modules/bulma/bulma';
 @import '../../node_modules/bulma-switch';

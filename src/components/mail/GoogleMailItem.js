@@ -18,7 +18,7 @@ const GoogleMailItem = ({ mail }) => {
   });
   return (
     <section className="section">
-      <div className="card">
+      <div className={ `card ${ mail.labelIds.includes('UNREAD') ? 'unread' : '' }` }>
         <header className="card-header">
           <p className="card-header-title">
             { subject }

@@ -2,8 +2,9 @@ import React from 'react';
 import settingsCheck from '../helper/settingsCheck';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { readGoogleMail } from '../../store/actions/mailActions';
 
-const GoogleMail = ({ match, googleMail }) => {
+const GoogleMail = ({ match, googleMail, readGoogleMail }) => {
   const id = match.params.id;
   let selectedMail = null;
   let subject = null;
@@ -16,6 +17,10 @@ const GoogleMail = ({ match, googleMail }) => {
   });
 
   try {
+    if (selectedMail.labelIds.includes('UNREAD')) {
+      readGoogleMail(selectedMail.id);
+    }
+
     selectedMail.payload.headers.forEach(({ name, value }) => {
       if (name === 'Subject') {
         subject = value;
@@ -66,4 +71,8 @@ const mapStateToProps = state => ({
   googleMail: state.mail.googleMail
 });
 
-export default connect(mapStateToProps)(settingsCheck({ help: true })(GoogleMail));
+const mapDispatchToProps = dispatch => ({
+  readGoogleMail: id => dispatch(readGoogleMail(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(settingsCheck({ help: true })(GoogleMail));

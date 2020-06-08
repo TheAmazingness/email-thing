@@ -15,6 +15,21 @@ const mailReducer = (state = initState, action) => {
         ...state,
         mail: action.data
       });
+    case 'READ_GOOGLE_MAIL':
+      const googleMail = [];
+      state.googleMail.forEach(mail => {
+        if (mail.id === action.data) {
+          const temp = mail;
+          temp.labelIds.splice(temp.labelIds.indexOf('UNREAD'), 1);
+          googleMail.push(temp);
+        } else {
+          googleMail.push(mail);
+        }
+      });
+      return ({
+        ...state,
+        googleMail
+      });
     default:
       return state;
   }
