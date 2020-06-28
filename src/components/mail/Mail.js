@@ -4,13 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 const Mail = ({ match, mail }) => {
-  let selectedMail = null;
-
-  mail.forEach(m => {
-    if (m && m.messageId === match.params.id) {
-      selectedMail = m;
-    }
-  });
+  let selectedMail = mail[match.params.id];
 
   if (!selectedMail) {
     return <Redirect to="/inbox" />;
@@ -22,12 +16,12 @@ const Mail = ({ match, mail }) => {
         <div className="card">
           <header className="card-header">
             <p className="card-header-title">
-              { selectedMail.subject }
+              { selectedMail.body.subject }
             </p>
           </header>
           <div className="card-content">
             <div className="content">
-              <iframe className="mail-body" title="mail-body" srcDoc={ selectedMail.html ? selectedMail.html : selectedMail.textAsHtml } />
+              <iframe className="mail-body" title="mail-body" srcDoc={ selectedMail.body.html ? selectedMail.body.html : selectedMail.body.textAsHtml } />
             </div>
           </div>
           {/*<footer className="card-footer">*/}

@@ -16,8 +16,8 @@ export const get = (url, query = {}) => {
   stringify = stringify.replace('&', '?');
   return fetch(url + stringify, {
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: '*/*',
+      'Content-Type': '*/*',
       'Access-Control-Allow-Credentials': true,
       Connection: 'keep-alive'
     },

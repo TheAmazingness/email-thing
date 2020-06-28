@@ -1,6 +1,7 @@
 const initState = {
   googleMail: [],
-  mail: []
+  mail: [],
+  isUpdated: false
 };
 
 const mailReducer = (state = initState, action) => {
@@ -8,12 +9,14 @@ const mailReducer = (state = initState, action) => {
     case 'GET_GOOGLE_MAIL':
       return ({
         ...state,
-        googleMail: action.data
+        googleMail: action.data,
+        isUpdated: true
       });
     case 'GET_MAIL':
       return ({
         ...state,
-        mail: action.data
+        mail: action.data.reverse(),
+        isUpdated: true
       });
     case 'READ_GOOGLE_MAIL':
       const googleMail = [];

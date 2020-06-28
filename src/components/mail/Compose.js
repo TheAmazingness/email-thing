@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import settingsCheck from '../helper/settingsCheck';
 import { uri } from '../../config/server.json';
 import { Redirect } from 'react-router-dom';
 import { postBody } from '../../helper/fetch';
@@ -91,4 +92,4 @@ const Compose = () => {
   );
 };
 
-export default Compose;
+export default settingsCheck()(Compose);

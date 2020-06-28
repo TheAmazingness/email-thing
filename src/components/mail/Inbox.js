@@ -21,7 +21,7 @@ const Inbox = ({ mail, getMail }) => {
   });
 
   const list = mail && mail.length > 0 ?
-    mail.reverse().map(message => message ? <MailItem key={ message.messageId } mail={ message } /> : null)
+    mail.map((message, i) => message && message.body ? <MailItem key={ message.body.messageId } mail={ message } index={ i } /> : null)
     : state.noMail;
 
   // if (!mail || mail.length === 0) {
