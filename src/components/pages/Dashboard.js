@@ -1,7 +1,7 @@
 import React from 'react';
 import Menu from '../layout/Menu';
 import Inbox from '../mail/Inbox';
-import settingsCheck from '../helper/settingsCheck';
+import settingsCheck from '../helper/SettingsCheck';
 import authCheck from '../helper/AuthCheck';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';

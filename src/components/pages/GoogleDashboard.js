@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from '../layout/Menu';
 import GoogleInbox from '../mail/GoogleInbox';
 import authCheck from '../helper/AuthCheck';
-import settingsCheck from '../helper/settingsCheck';
+import settingsCheck from '../helper/SettingsCheck';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 

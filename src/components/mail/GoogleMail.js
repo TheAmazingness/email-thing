@@ -1,5 +1,5 @@
 import React from 'react';
-import settingsCheck from '../helper/settingsCheck';
+import settingsCheck from '../helper/SettingsCheck';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { readGoogleMail } from '../../store/actions/mailActions';

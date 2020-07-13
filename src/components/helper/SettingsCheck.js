@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getSettings } from '../../store/actions/settingsActions';
 import handleTtsClick from './settings/tts';
+import handleHelpClick from './settings/help';
 
 const mapStateToProps = state => ({
   settings: state.settings.settings
@@ -11,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
   getSettings: () => dispatch(getSettings())
 });
 
-const SettingsChecker = connect(mapStateToProps, mapDispatchToProps)(({ children, getSettings, settings, help }) => {
+const SettingsChecker = connect(mapStateToProps, mapDispatchToProps)(({ children, getSettings, settings, help, mail, googleMail, match }) => {
   useEffect(() => { getSettings(); }, []);
 
   const props = { className: [], children: [] };
@@ -33,7 +34,11 @@ const SettingsChecker = connect(mapStateToProps, mapDispatchToProps)(({ children
   }
   if (settings.help !== '' && help) {
     props.children.push(
-      <button className="button is-large is-danger fab-help" key="btn-help" onClick={ handleTtsClick }>
+      <button
+        className="button is-large is-danger fab-help"
+        key="btn-help"
+        onClick={ () => handleHelpClick(mail ? mail[match.params.id] : googleMail, settings.help) }
+      >
         <span className="icon is-large">
           <i className="fas fa-question-circle" />
         </span>
@@ -52,7 +57,7 @@ const SettingsChecker = connect(mapStateToProps, mapDispatchToProps)(({ children
 });
 
 const settingsCheck = (settingsProps = { help: false }) => Components => props => (
-  <SettingsChecker { ...settingsProps }>
+  <SettingsChecker { ...settingsProps } { ...props }>
     <Components { ...props } />
   </SettingsChecker>
 );

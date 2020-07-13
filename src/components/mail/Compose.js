@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import settingsCheck from '../helper/settingsCheck';
+import settingsCheck from '../helper/SettingsCheck';
 import { uri } from '../../config/server.json';
 import { Redirect } from 'react-router-dom';
 import { postBody } from '../../helper/fetch';
