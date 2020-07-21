@@ -26,18 +26,19 @@ html {
   overflow: hidden !important;
 }
 
+.about-container {
+  height: 70vh;
+  overflow-y: scroll;
+}
 .contacts-table {
   margin: auto;
 }
-
 .fab-help {
   @include fab(5vh, 90vw);
 }
-
 .fab-tts {
   @include fab(5vh, 5vw);
 }
-
 .font-dyslexia {
   font-family: 'OpenDyslexic' !important;
 }
