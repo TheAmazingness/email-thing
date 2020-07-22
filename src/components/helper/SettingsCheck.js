@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const SettingsChecker = connect(mapStateToProps, mapDispatchToProps)(({ children, getSettings, settings, help, mail, googleMail, match }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getSettings(); }, []);
 
   const props = { className: [], children: [] };

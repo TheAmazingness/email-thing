@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { getAuth } from '../../store/actions/authActions';
 
 const LandingPage = ({ auth, getAuth }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getAuth(); }, []);
 
   return auth ? <Redirect to="/inbox" /> : (

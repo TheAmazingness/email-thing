@@ -42,6 +42,7 @@ const SignIn = ({ match, getAuth }) => {
         });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [state, setState] = useState({

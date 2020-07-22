@@ -12,6 +12,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const AuthChecker = connect(mapStateToProps, mapDispatchToProps)(({ children, shouldBeAuthed, getAuth, auth }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getAuth(); }, []);
 
   if (auth === null) return <div className="pageloader is-active"><h1 className="title">Authenticating</h1></div>;

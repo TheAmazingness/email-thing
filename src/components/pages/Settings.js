@@ -13,6 +13,7 @@ const Settings = ({ settings, getSettings, setSettings }) => {
 
   const s = settings.settings;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getSettings(); }, []);
 
   return (

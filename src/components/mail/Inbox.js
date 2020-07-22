@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+  import React, { useState, useEffect } from 'react';
 import MailItem from './MailItem';
 import { connect } from 'react-redux';
 import { getMail } from '../../store/actions/mailActions';
@@ -6,6 +6,7 @@ import { getMail } from '../../store/actions/mailActions';
 const Inbox = ({ mail, getMail }) => {
   useEffect(() => {
     getMail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [state, setState] = useState({

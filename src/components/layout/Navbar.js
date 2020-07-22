@@ -8,6 +8,7 @@ import { getAuth } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 
 const Navbar = ({ location, overrideLocationHiding, getAuth, auth }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getAuth() }, []);
 
   const links = auth ? <SignedInLinks /> : <SignedOutLinks home={ location.pathname === '/' } />;

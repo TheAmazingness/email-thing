@@ -6,6 +6,7 @@ import { getGoogleMail } from '../../store/actions/mailActions';
 const GoogleInbox = ({ googleMail, getGoogleMail }) => {
   useEffect(() => {
     getGoogleMail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [state, setState] = useState({
