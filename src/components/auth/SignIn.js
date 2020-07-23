@@ -40,10 +40,12 @@ const SignIn = ({ match, getAuth }) => {
             </article>
           )
         });
+      } else {
+        setState({ ...state, update: null });
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [match]);
 
   const [state, setState] = useState({
     email: null,
