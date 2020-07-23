@@ -3,10 +3,7 @@ import MailItem from './MailItem';
 import { connect } from 'react-redux';
 import { getMail } from '../../store/actions/mailActions';
 
-const Inbox = ({ mail, getMail }) => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { getMail(); }, []);
-
+const Inbox = ({ mail, getMail, isUpdated }) => {
   const [state, setState] = useState({
     noMail: (
       <div className="container no-mail">
@@ -16,16 +13,18 @@ const Inbox = ({ mail, getMail }) => {
           </div>
         </div>
       </div>
-    ),
-    loading: false
+    )
   });
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { getMail(); }, []);
 
   const list = mail && mail.length > 0 && mail.some(m => m !== null) ?
     mail.map((message, i) => message && message.body ? <MailItem key={ message.body.messageId } mail={ message } index={ i } /> : null)
     : state.noMail;
 
   useEffect(() => {
-    if ((!mail || mail.length === 0 || mail.every(m => m === null)) && state.loading) {
+    if (mail && mail.every(m => m === null) && isUpdated) {
       setState({
         ...state,
         noMail: (
@@ -42,11 +41,6 @@ const Inbox = ({ mail, getMail }) => {
           </div>
         )
       });
-    } else if ((!mail || mail.length === 0 || mail.every(m => m === null)) && !state.loading) {
-      setState({
-        ...state,
-        loading: true
-      });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mail]);
@@ -59,7 +53,8 @@ const Inbox = ({ mail, getMail }) => {
 };
 
 const mapStateToProps = state => ({
-  mail: state.mail.mail
+  mail: state.mail.mail,
+  isUpdated: state.mail.isUpdated
 });
 
 const mapDispatchToProps = dispatch => ({

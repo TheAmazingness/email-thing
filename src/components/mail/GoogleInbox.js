@@ -3,10 +3,7 @@ import GoogleMailItem from './GoogleMailItem';
 import { connect } from 'react-redux';
 import { getGoogleMail } from '../../store/actions/mailActions';
 
-const GoogleInbox = ({ googleMail, getGoogleMail }) => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { getGoogleMail(); }, []);
-
+const GoogleInbox = ({ googleMail, getGoogleMail, isUpdated }) => {
   const [state, setState] = useState({
     noMail: (
       <div className="container no-mail">
@@ -16,14 +13,18 @@ const GoogleInbox = ({ googleMail, getGoogleMail }) => {
           </div>
         </div>
       </div>
-    ),
-    loading: false
+    )
   });
 
-  const list = googleMail && googleMail.length > 0 && googleMail.some(m => m !== null) ? googleMail.map(m => <GoogleMailItem mail={ m } key={ m.id } />) : state.noMail;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { getGoogleMail(); }, []);
+
+  const list = googleMail && googleMail.length > 0 && googleMail.some(m => m !== null) ?
+    googleMail.map(m => <GoogleMailItem mail={ m } key={ m.id } />) :
+    state.noMail;
 
   useEffect(() => {
-    if ((!googleMail || googleMail.length === 0 || googleMail.every(m => m === null)) && state.loading) {
+    if (googleMail && googleMail.every(m => m === null) && isUpdated) {
       setState({
         ...state,
         noMail: (
@@ -40,14 +41,9 @@ const GoogleInbox = ({ googleMail, getGoogleMail }) => {
           </div>
         )
       });
-    } else if ((!googleMail || googleMail.length === 0 || googleMail.every(m => m === null)) && !state.loading) {
-      setState({
-        ...state,
-        loading: true
-      });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [googleMail]);
+  }, [isUpdated]);
 
   return (
     <div className="inbox">
@@ -57,7 +53,8 @@ const GoogleInbox = ({ googleMail, getGoogleMail }) => {
 };
 
 const mapStateToProps = state => ({
-  googleMail: state.mail.googleMail
+  googleMail: state.mail.googleMail,
+  isUpdated: state.mail.isUpdated
 });
 
 const mapDispatchToProps = dispatch => ({
