@@ -23,3 +23,17 @@ export const readGoogleMail = id => async dispatch => {
   await postBody(`${ uri }/get-mail/google/read-one`, { id });
   dispatch({ type: 'READ_GOOGLE_MAIL', data: id });
 };
+
+export const filterGoogleMail = () => (dispatch, getState) => {
+  const state = getState();
+  if (state.mail.googleMail.length > 0) {
+    dispatch({ type: 'FILTER_GOOGLE_MAIL', data: state.settings.settings.contacts });
+  }
+};
+
+export const filterMail = () => (dispatch, getState) => {
+  const state = getState();
+  if (state.mail.mail.length > 0) {
+    dispatch({ type: 'FILTER_MAIL', data: state.settings.settings.contacts });
+  }
+};

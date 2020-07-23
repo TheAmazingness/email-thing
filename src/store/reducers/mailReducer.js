@@ -33,6 +33,51 @@ const mailReducer = (state = initState, action) => {
         ...state,
         googleMail
       });
+    case 'FILTER_GOOGLE_MAIL':
+      const newGoogleMail = JSON.parse(JSON.stringify(state.googleMail));
+
+      state.googleMail.forEach((mail, i) => {
+        console.log(mail);
+        // let whitelisted = false;
+        //
+        // action.data.forEach(contact => {
+        //   if (mail.body.from.value[0].address === contact.email) {
+        //     whitelisted = true;
+        //   }
+        // });
+        //
+        // if (!whitelisted) {
+        //   newMail[i] = null;
+        // }
+      });
+
+      return ({
+        ...state,
+        mail: newGoogleMail
+      });
+    case 'FILTER_MAIL':
+      const newMail = JSON.parse(JSON.stringify(state.mail));
+
+      state.mail.forEach((mail, i) => {
+        if (mail && mail.body) {
+          let whitelisted = false;
+
+          action.data.forEach(contact => {
+            if (mail.body.from.value[0].address === contact.email) {
+              whitelisted = true;
+            }
+          });
+
+          if (!whitelisted) {
+            newMail[i] = null;
+          }
+        }
+      });
+
+      return ({
+        ...state,
+        mail: newMail
+      });
     default:
       return state;
   }
