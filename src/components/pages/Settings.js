@@ -149,14 +149,18 @@ const Settings = ({ settings, getSettings, setSettings }) => {
                                 </button>
                               </div>
                               <div className="level-right">
-                                <button
-                                  className="button is-success"
-                                  onClick={ () => setState({ ...state, contactsView: true }) }
-                                >
-                                  View Contacts
-                                  &emsp;
-                                  <i className="fas fa-address-book" />
-                                </button>
+                                {
+                                  s.contacts.length > 0 ? (
+                                    <button
+                                      className="button is-success"
+                                      onClick={ () => setState({ ...state, contactsView: true }) }
+                                    >
+                                      View Contacts
+                                      &emsp;
+                                      <i className="fas fa-address-book" />
+                                    </button>
+                                  ) : null
+                                }
                               </div>
                             </div>
                           </div>
