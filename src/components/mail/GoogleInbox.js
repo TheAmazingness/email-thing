@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import { getGoogleMail } from '../../store/actions/mailActions';
 
 const GoogleInbox = ({ googleMail, getGoogleMail }) => {
-  useEffect(() => {
-    getGoogleMail();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { getGoogleMail(); }, []);
 
   const [state, setState] = useState({
     noMail: (
@@ -18,29 +16,38 @@ const GoogleInbox = ({ googleMail, getGoogleMail }) => {
           </div>
         </div>
       </div>
-    )
+    ),
+    loading: false
   });
 
-  const list = googleMail && googleMail.length > 0 ? googleMail.map(m => <GoogleMailItem mail={ m } key={ m.id } />) : state.noMail;
+  const list = googleMail && googleMail.length > 0 && googleMail.some(m => m !== null) ? googleMail.map(m => <GoogleMailItem mail={ m } key={ m.id } />) : state.noMail;
 
-  // if (!mail || mail.length === 0) {
-  //   setTimeout(() => setState({
-  //     ...state,
-  //     noMail: (
-  //       <div className="container no-mail">
-  //         <div className="level no-mail">
-  //           <div className="level-item has-text-centered">
-  //             <h1 className="title is-1 has-text-primary">
-  //               <i className="fas fa-folder-open" />
-  //               &nbsp;
-  //               No mail!
-  //             </h1>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     )
-  //   }), 5000);
-  // }
+  useEffect(() => {
+    if ((!googleMail || googleMail.length === 0 || googleMail.every(m => m === null)) && state.loading) {
+      setState({
+        ...state,
+        noMail: (
+          <div className="container no-mail">
+            <div className="level no-mail">
+              <div className="level-item has-text-centered">
+                <h1 className="title is-1 has-text-primary">
+                  <i className="fas fa-folder-open" />
+                  &nbsp;
+                  No mail!
+                </h1>
+              </div>
+            </div>
+          </div>
+        )
+      });
+    } else if ((!googleMail || googleMail.length === 0 || googleMail.every(m => m === null)) && !state.loading) {
+      setState({
+        ...state,
+        loading: true
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [googleMail]);
 
   return (
     <div className="inbox">

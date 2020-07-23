@@ -6,7 +6,7 @@ import authCheck from '../helper/AuthCheck';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const Dashboard = ({ mail, match, google }) => google ? <Redirect to="/inbox/google" /> : (
+const Dashboard = ({ match, google }) => google ? <Redirect to="/inbox/google" /> : (
   <section className="section">
     <div className="container">
       <div className="columns">
@@ -14,7 +14,7 @@ const Dashboard = ({ mail, match, google }) => google ? <Redirect to="/inbox/goo
           <Menu />
         </div>
         <div className="column no-overflow">
-          <Inbox mail={ mail } profile={ match.params.profile } />
+          <Inbox profile={ match.params.profile } />
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import settingsCheck from '../helper/SettingsCheck';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const GoogleDashboard = ({ mail, match, google }) => !google ? <Redirect to="/inbox" /> : (
+const GoogleDashboard = ({ match, google }) => !google ? <Redirect to="/inbox" /> : (
   <section className="section">
     <div className="container">
       <div className="columns">
@@ -14,13 +14,13 @@ const GoogleDashboard = ({ mail, match, google }) => !google ? <Redirect to="/in
           <Menu />
         </div>
         <div className="column">
-          <GoogleInbox mail={ mail } profile={ match.params.profile } />
+          <GoogleInbox profile={ match.params.profile } />
         </div>
       </div>
     </div>
   </section>
 );
 
-const mapStateToProps = state => ({ mail: state.mail.mail, google: state.auth.strategy === 'google' });
+const mapStateToProps = state => ({ googleMail: state.mail.googleMail, google: state.auth.strategy === 'google' });
 
 export default connect(mapStateToProps)(authCheck(true)(settingsCheck()(GoogleDashboard)));
