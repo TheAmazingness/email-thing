@@ -79,6 +79,9 @@ html {
 .unread {
   border: 5px solid $primary;
 }
+.v-mid {
+  vertical-align: middle !important;
+}
 
 @import '../../node_modules/bulma/bulma';
 @import '../../node_modules/bulma-switch';

@@ -254,7 +254,7 @@ const Settings = ({ settings, getSettings, setSettings }) => {
           </section>
         </div>
       </section>
-      <ContactsView isActive={ state.contactsView } contacts={ s.contacts } onClose={ () => setState({ ...state, contactsView: false }) } />
+      <ContactsView isActive={ state.contactsView } onClose={ () => setState({ ...state, contactsView: false }) } />
     </>
   );
 };
