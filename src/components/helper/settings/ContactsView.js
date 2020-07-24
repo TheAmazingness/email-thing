@@ -47,11 +47,11 @@ const ContactsView = ({ contacts, isActive, onClose, getSettings, setSettings })
           <div className="container">
             <table className="table contacts-table">
               <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th />
-              </tr>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th />
+                </tr>
               </thead>
               <tbody>
                 { table }
