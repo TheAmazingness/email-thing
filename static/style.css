@@ -1,0 +1,160 @@
+*[data-size=large] {
+  font-size: 6em !important;
+}
+kbd {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  color: #333;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 0 0.1em;
+  padding: 0.1em 0.6em;
+  text-shadow: 0 1px 0 #fff;
+}
+main {
+  bottom: 0;
+  display: grid;
+  left: 25vw;
+  overflow-y: scroll;
+  position: absolute;
+  top: 64px;
+  width: 75vw;
+}
+
+.app {
+  height: 100vh;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+.center {
+  text-align: center;
+}
+.compose-select {
+  width: 25vw;
+}
+.compose-title {
+  font-size: 24pt;
+}
+.drawer-list-separator {
+  width: 2vw;
+}
+.drawer-offset {
+  height: 10vh;
+}
+.drawer-paper {
+  z-index: 1 !important;
+  margin-top: 64px;
+  width: 25vw;
+}
+.icon {
+  font-size: 45pt !important;
+}
+.icon-wrap {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.list:hover {
+  cursor: pointer;
+  text-decoration: line-through;
+}
+.load-app {
+  color: #ff0000;
+  left: -50%;
+  position: relative;
+  top: -50%;
+}
+.load-wrap {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
+.mail-close {
+  margin: auto !important;
+}
+.mail-close > span, .mail-close > span > svg {
+  font-size: 24pt;
+}
+.mail-content {
+  border: 5px solid black;
+  border-radius: 4px;
+  overflow-x: hidden;
+}
+.mail-dialog > div[role=document] > div {
+  padding: 2vh 2vw;
+}
+.mail-preview {
+  height: 60vh;
+  margin: 2vh auto;
+  width: 70vw;
+}
+.mail-preview > button > div {
+  padding: 2vh 2vw !important;
+}
+.mail-subject > h6 {
+  font-size: 4em;
+}
+.main-load {
+  margin: auto;
+}
+.mp-content {
+  text-align: center;
+}
+.mp-name {
+  font-size: 4em;
+}
+.mp-subject {
+  font-size: 4em;
+}
+.name {
+  display: block;
+  height: 5vh;
+  margin: auto;
+}
+.preview-action-area {
+  border-radius: 4px;
+  height: 60vh;
+  width: 70vw;
+}
+.settings-action {
+  display: block !important;
+  text-align: center;
+}
+.settings-apply {
+  text-align: center;
+}
+.settings-apply > button {
+  width: 100%;
+}
+.settings-body {
+  margin: 0 2vw !important;
+  width: 96vw !important;
+}
+.settings-icon {
+  font-size: 24pt !important;
+}
+.settings-name {
+  font-size: 24pt;
+}
+.settings-offset {
+  margin: 75px 0;
+}
+.settings-title {
+  font-size: 36pt;
+  text-align: center;
+}
+.sidenav-text > span {
+  font-size: 30pt;
+}
