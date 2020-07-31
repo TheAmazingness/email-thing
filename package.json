@@ -1,44 +1,33 @@
 {
   "name": "ablemail",
   "version": "1.0.0",
-  "description": "An email client for people with cognitive disabilities.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "next": "next",
-    "next-start": "next start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TheAmazingness/ablemail.git"
-  },
-  "keywords": [
-    "email-client",
-    "nextjs",
-    "expressjs",
-    "reactjs",
-    "react",
-    "material-ui"
-  ],
-  "author": "Tristan Peng",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/TheAmazingness/ablemail/issues"
-  },
-  "homepage": "https://github.com/TheAmazingness/ablemail#readme",
+  "private": true,
+  "homepage": "https://theamazingness.github.io/ablemail",
   "dependencies": {
-    "@material-ui/core": "^4.0.2",
-    "@material-ui/icons": "^4.0.1",
-    "express": "^4.17.1",
-    "imap": "^0.8.19",
-    "mailparser": "^2.7.1",
-    "next": "^9.3.2",
-    "nodemailer": "^6.3.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "ws": "^7.0.1"
-  }
+    "@cheapundies/responsive-voice": "^1.5.7",
+    "@material-ui/core": "^3.6.2",
+    "@material-ui/icons": "^3.0.1",
+    "annyang": "^2.6.1",
+    "gh-pages": "^2.0.1",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
