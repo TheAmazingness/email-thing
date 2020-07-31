@@ -1,13 +1,28 @@
-# ![AbleMail](logo-blue.png)
-AbleMail SourceAmerica Project. Furthering independence through email.
+# ![AbleMail](static/logo-blue.png)
+**Furthering independence through email:** AbleMail is a free email client web app that allows people with cognitive disabilities to independently use email.
 
-Try it out [here](https://theamazingness.github.io/ablemail)!
+Try the app [here](https://ablemail.herokuapp.com)!
+
+Created and maintained by [Tristan Peng](https://www.github.com/theamazingness).
+
+This project was made with [Next.js](https://nextjs.org/), [Material UI](https://material-ui.com), [Express](http://expressjs.com), and [React](https://reactjs.org).
 
 ## Setup
-1. Clone this repository
-2. Don't forget to get an API key and an OAuth client ID.
-3. `yarn` or `npm i`
-4. `yarn start` or `npm start` to run the app in development mode. ([http://localhost:3000](http://localhost:3000) will automagically open in your favorite browser and reload with any edits)
-5. `yarn run build` or `npm run build` to build the app for production in the `./build` directory.
+1. Clone this repository:
+<br>`git clone https://github.com/TheAmazingness/ablemail.git <your-project-folder>`
+2. Run `yarn` on the folder to install all dependencies.
+3. Run `yarn run dev` for the dev version.
+4. Visit [`http://localhost:3000`](http://localhost:3000).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Signing In With a Gmail Account
+1. Visit [https://myaccount.google.com/](https://myaccount.google.com/).
+2. Click on `Security`
+3. Turn on `Less secure app access`
+4. Go back to AbleMail
+5. Sign in
+
+## Usage
+It is recommended to use Google Chrome to use AbleMail because AbleMail uses experimential Web APIs such as [`SpeechRecognition`](https://caniuse.com/#feat=speech-recognition) and [`SpeechSynthesis`](https://caniuse.com/#feat=speech-synthesis). To see what browsers to support these experimental technologies, click on the words to learn more.
+
+## Next
+This branch is for AbleMail with Next.js, React hooks, and independence from Gmail.
