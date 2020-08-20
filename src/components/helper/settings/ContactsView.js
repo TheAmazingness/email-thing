@@ -6,7 +6,7 @@ const ContactsView = ({ contacts, isActive, onClose, getSettings, setSettings })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getSettings(); }, [contacts]);
 
-  const handleClick = (_, email) => {
+  const handleClick = email => {
     const updated = JSON.parse(JSON.stringify(contacts));
     contacts.forEach((contact, i) => {
       if (contact.email === email) {
@@ -22,7 +22,7 @@ const ContactsView = ({ contacts, isActive, onClose, getSettings, setSettings })
       <td className="v-mid">{ c.name }</td>
       <td className="v-mid">{ c.email }</td>
       <td>
-        <button className="button is-large is-danger" onClick={ e => handleClick(e, c.email) }>
+        <button className="button is-large is-danger" onClick={ () => handleClick(c.email) }>
           <span className="icon is-large">
             <i className="fas fa-trash" />
           </span>
