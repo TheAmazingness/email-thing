@@ -5,7 +5,7 @@ import { getMail } from '../../store/actions/mailActions';
 
 const Inbox = ({ mail, getMail, isUpdated }) => {
   const [state, setState] = useState({
-    noMail: (
+    display: (
       <div className="container no-mail">
         <div className="level no-mail">
           <div className="level-item has-text-centered">
@@ -19,15 +19,16 @@ const Inbox = ({ mail, getMail, isUpdated }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getMail(); }, []);
 
-  const list = mail && mail.length > 0 && mail.some(m => m !== null) ?
-    mail.map((message, i) => message && message.body ? <MailItem key={ message.body.messageId } mail={ message } index={ i } /> : null)
-    : state.noMail;
-
   useEffect(() => {
-    if (mail && mail.every(m => m === null) && isUpdated) {
+    if (mail && mail.length > 0 && mail.some(m => m !== null)) {
       setState({
         ...state,
-        noMail: (
+        display: mail.map((message, i) => message && message.body ? <MailItem key={ message.body.messageId } mail={ message } index={ i }/> : null)
+      });
+    } else if (mail && mail.every(m => m === null) && isUpdated) {
+      setState({
+        ...state,
+        display: (
           <div className="container no-mail">
             <div className="level no-mail">
               <div className="level-item has-text-centered">
@@ -47,7 +48,7 @@ const Inbox = ({ mail, getMail, isUpdated }) => {
 
   return (
     <div className="inbox">
-      { list }
+      { state.display }
     </div>
   );
 };

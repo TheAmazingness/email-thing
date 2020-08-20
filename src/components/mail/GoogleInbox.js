@@ -5,7 +5,7 @@ import { getGoogleMail } from '../../store/actions/mailActions';
 
 const GoogleInbox = ({ googleMail, getGoogleMail, isUpdated }) => {
   const [state, setState] = useState({
-    noMail: (
+    display: (
       <div className="container no-mail">
         <div className="level no-mail">
           <div className="level-item has-text-centered">
@@ -19,15 +19,16 @@ const GoogleInbox = ({ googleMail, getGoogleMail, isUpdated }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getGoogleMail(); }, []);
 
-  const list = googleMail && googleMail.length > 0 && googleMail.some(m => m !== null) ?
-    googleMail.map(m => <GoogleMailItem mail={ m } key={ m.id } />) :
-    state.noMail;
-
   useEffect(() => {
-    if (googleMail && googleMail.every(m => m === null) && isUpdated) {
+    if (googleMail && googleMail.length > 0 && googleMail.some(m => m !== null)) {
       setState({
         ...state,
-        noMail: (
+        display: googleMail.map(m => <GoogleMailItem mail={ m } key={ m.id } />)
+      });
+    } else if (googleMail && googleMail.every(m => m === null) && isUpdated) {
+      setState({
+        ...state,
+        display: (
           <div className="container no-mail">
             <div className="level no-mail">
               <div className="level-item has-text-centered">
@@ -47,7 +48,7 @@ const GoogleInbox = ({ googleMail, getGoogleMail, isUpdated }) => {
 
   return (
     <div className="inbox">
-      { list }
+      { state.display }
     </div>
   );
 };
