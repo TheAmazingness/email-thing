@@ -6,7 +6,7 @@ const ContactsView = ({ contacts, isActive, onClose, getSettings, setSettings })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getSettings(); }, [contacts]);
 
-  const handleClick = (e, email) => {
+  const handleClick = (_, email) => {
     const updated = JSON.parse(JSON.stringify(contacts));
     contacts.forEach((contact, i) => {
       if (contact.email === email) {
