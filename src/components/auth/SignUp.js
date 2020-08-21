@@ -9,20 +9,28 @@ const SignUp = () => {
     email: null,
     pass: null,
     first: null,
-    last: null
+    last: null,
+    imap: null,
+    smtp: null,
+    settings: 'is-hidden'
   });
 
   const handleChange = e => setState({ ...state, [e.target.id]: e.target.value });
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (state.email.split('@')[1] === 'gmail.com') {
+    const host = state.email.split('@')[1];
+    if (host === 'gmail.com') {
       direct(`${ uri }/auth/google`, {
         email: state.email,
         pass: state.pass
       });
     } else {
-      direct(`${ uri }/auth/signup`, state);
+      if ((host !== 'hotmail.com' && host !== 'outlook.com') || (!state.imap || !state.smtp)) {
+        setState({ ...state, settings: '' });
+      } else {
+        direct(`${ uri }/auth/signup`, state);
+      }
     }
   };
 
@@ -66,6 +74,24 @@ const SignUp = () => {
                 <input className="input" type="password" placeholder="Password" id="pass" onChange={ handleChange } />
                 <span className="icon is-small is-left">
                   <i className="fas fa-lock" />
+                </span>
+              </div>
+            </div>
+            <div className={ `field ${ state.settings }` }>
+              <label className="label" htmlFor="imap">IMAP</label>
+              <div className="control has-icons-left">
+                <input className="input" type="text" placeholder="imap.example.com" id="imap" onChange={ handleChange } />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope-open-text" />
+                </span>
+              </div>
+            </div>
+            <div className={ `field ${ state.settings }` }>
+              <label className="label" htmlFor="smtp">SMTP</label>
+              <div className="control has-icons-left">
+                <input className="input" type="text" placeholder="smtp.example.com" id="smtp" onChange={ handleChange } />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-paper-plane" />
                 </span>
               </div>
             </div>
