@@ -11,7 +11,9 @@ const SignUp = () => {
     first: null,
     last: null,
     imap: null,
+    imapport: null,
     smtp: null,
+    smtpport: null,
     settings: 'is-hidden'
   });
 
@@ -77,22 +79,46 @@ const SignUp = () => {
                 </span>
               </div>
             </div>
-            <div className={ `field ${ state.settings }` }>
-              <label className="label" htmlFor="imap">IMAP</label>
-              <div className="control has-icons-left">
-                <input className="input" type="text" placeholder="imap.example.com" id="imap" onChange={ handleChange } />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-envelope-open-text" />
-                </span>
+            <div className={ `mb-4 ${ state.settings }` }>
+              <div className="columns">
+                <div className="column is-10">
+                  <label className="label" htmlFor="imap">IMAP</label>
+                  <div className="control is-expanded has-icons-left">
+                    <input className="input" type="text" placeholder="imap.example.com" id="imap" onChange={ handleChange } />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-envelope-open-text" />
+                    </span>
+                  </div>
+                </div>
+                <div className="column is-2">
+                  <label className="label" htmlFor="imapport">Port</label>
+                  <div className="control is-expanded has-icons-left">
+                    <input className="input" type="number" placeholder="993" id="imapport" onChange={ handleChange } />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-database" />
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className={ `field ${ state.settings }` }>
-              <label className="label" htmlFor="smtp">SMTP</label>
-              <div className="control has-icons-left">
-                <input className="input" type="text" placeholder="smtp.example.com" id="smtp" onChange={ handleChange } />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-paper-plane" />
-                </span>
+              <div className="columns">
+                <div className="column is-10">
+                  <label className="label" htmlFor="smtp">SMTP</label>
+                  <div className="control is-expanded has-icons-left">
+                    <input className="input" type="text" placeholder="smtp.example.com" id="smtp" onChange={ handleChange } />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-paper-plane" />
+                    </span>
+                  </div>
+                </div>
+                <div className="column is-2">
+                  <label className="label" htmlFor="smtpport">Port</label>
+                  <div className="control is-expanded has-icons-left">
+                    <input className="input" type="number" placeholder="587" id="smtpport" onChange={ handleChange } />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-database" />
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="field">
