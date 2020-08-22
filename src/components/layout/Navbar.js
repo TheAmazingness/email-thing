@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
@@ -9,7 +9,17 @@ import { connect } from 'react-redux';
 
 const Navbar = ({ location, overrideLocationHiding, getAuth, auth }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { getAuth() }, []);
+  useEffect(() => { getAuth(); }, []);
+
+  const [state, setState] = useState({ active: '' });
+
+  const handleClick = () => {
+    if (state.active === 'is-active') {
+      setState({ ...state, active: '' });
+    } else {
+      setState({ ...state, active: 'is-active' });
+    }
+  };
 
   const links = auth ? <SignedInLinks /> : <SignedOutLinks home={ location.pathname === '/' } />;
   const home = auth ? '/inbox' : '/';
@@ -25,13 +35,13 @@ const Navbar = ({ location, overrideLocationHiding, getAuth, auth }) => {
           <Link className="navbar-item" to={ home }>
             <img src={ location.pathname === '/' ? LogoWhite : LogoBlue } alt="Logo" />
           </Link>
-          <span className="navbar-burger burger" data-target="navbar">
-            <span/>
-            <span/>
+          <span className={ `navbar-burger burger is-white ${ state.active }` } data-target="navbar" onClick={ handleClick }>
+            <span />
+            <span />
             <span />
           </span>
         </div>
-        <div id="navbar" className="navbar-menu">
+        <div id="navbar" className={ `navbar-menu ${ state.active }` }>
           <div className="navbar-end">{ links }</div>
         </div>
       </div>
