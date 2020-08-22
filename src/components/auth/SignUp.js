@@ -64,7 +64,7 @@ const SignUp = () => {
             <div className="field">
               <label className="label" htmlFor="email">Email</label>
               <div className="control has-icons-left">
-                <input className="input" type="email" placeholder="Email" id="email" onChange={ handleChange } />
+                <input className="input" type="email" placeholder="Email" id="email" onChange={ handleChange } autoComplete="username" />
                 <span className="icon is-small is-left">
                   <i className="fas fa-envelope" />
                 </span>
@@ -73,7 +73,7 @@ const SignUp = () => {
             <div className="field">
               <label className="label" htmlFor="pass">Password</label>
               <div className="control has-icons-left">
-                <input className="input" type="password" placeholder="Password" id="pass" onChange={ handleChange } />
+                <input className="input" type="password" placeholder="Password" id="pass" onChange={ handleChange } autoComplete="current-password" />
                 <span className="icon is-small is-left">
                   <i className="fas fa-lock" />
                 </span>
